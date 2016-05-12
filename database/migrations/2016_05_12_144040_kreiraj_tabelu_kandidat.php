@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class KreirajTabeluKandidat extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('kandidat', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('ImeKandidata');
+            $table->string('PrezimeKandidata');
+            $table->string('JMBG');
+            $table->dateTime('DatumRodjenja');
+            $table->integer('ID_MestaRodjenja')->unsigned()->index();
+            $table->integer('ID_KrsnaSlava')->unsigned()->index();
+            $table->string('KontaktTelefon')->nullable();
+            $table->string('AdresaStanovanja')->nullable();
+            $table->string('Email')->nullable();
+            $table->string('ImePrezimeJednogRoditelja')->nullable();
+            $table->string('KontaktTelefonRoditelja')->nullable();
+            $table->integer('ID_ZavrseneSkoleFakulteta')->unsigned()->index();
+            $table->integer('SmerZavrseneSkoleFakulteta')->unsigned()->nullable();
+            $table->integer('ID_UspehSrednjaSkola')->unsigned()->index();
+            $table->integer('ID_OpstiUspehSrednjaSkola')->unsigned()->index();
+            $table->decimal('SrednjaOcenaSrednjaSkola', 1, 2);
+            $table->integer('ID_SportskoAngazovanje')->unsigned()->nullable();
+            $table->decimal('TelesnaTezinaKandidata', 2, 2);
+            $table->integer('VisinaKandidata');
+            $table->integer('ID_PrilozenogDokumentaPrvaGodina')->unsigned()->nullable();
+            $table->integer('ID_StatusaUpisaKandidata')->unsigned()->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
+}
