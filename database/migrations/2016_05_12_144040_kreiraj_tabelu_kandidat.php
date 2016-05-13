@@ -26,6 +26,7 @@ class KreirajTabeluKandidat extends Migration
             $table->string('ImePrezimeJednogRoditelja')->nullable();
             $table->string('KontaktTelefonRoditelja')->nullable();
             $table->integer('ID_ZavrseneSkoleFakulteta')->unsigned()->index();
+
             $table->integer('SmerZavrseneSkoleFakulteta')->unsigned()->nullable();
             $table->integer('ID_UspehSrednjaSkola')->unsigned()->index();
             $table->integer('ID_OpstiUspehSrednjaSkola')->unsigned()->index();
@@ -35,6 +36,16 @@ class KreirajTabeluKandidat extends Migration
             $table->integer('VisinaKandidata');
             $table->integer('ID_PrilozenogDokumentaPrvaGodina')->unsigned()->nullable();
             $table->integer('ID_StatusaUpisaKandidata')->unsigned()->nullable();
+            $table->decimal('BrojBodovaTest', 2, 2)->nullable();
+            $table->decimal('BrojBodovaSkola', 2, 2);
+            $table->string('UpisniRok')->nullable();
+            $table->integer('ID_SkolskeGodineUpisa')->unsigned()->index();
+            $table->integer('IndikatorAktivan')->unsigned();
+            $table->integer('ID_StudijskiProgram')->unsigned()->index();
+            $table->integer('ID_TipaStudija')->unsigned()->index();
+            $table->integer('ID_GodinaStudija')->unsigned()->index();
+            $table->integer('ID_KrsnaSlava')->unsigned()->index();
+            $table->integer('ID_Mesta')->unsigned()->index();
             $table->timestamps();
         });
     }
