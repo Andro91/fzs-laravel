@@ -6,8 +6,9 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8"/>
-	<title>SB Admin v2.0 in Laravel 5</title>
+	<title>Fakultet za sport Beograd</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" href="/images/logo_fzs_favicon.png">
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<meta content="" name="description"/>
 	<meta content="" name="author"/>
