@@ -13,3 +13,6 @@ storage/
 .env
 .env.example
 .idea
+.idea/blade.xml
+.idea/blade.xml
+.idea/modules.xml
