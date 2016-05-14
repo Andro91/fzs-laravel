@@ -12,7 +12,7 @@ class KreirajTabeluKandidat extends Migration
      */
     public function up()
     {
-        Schema::create('kandidat', function (Blueprint $table) {
+        Schema::create('Kandidat', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ImeKandidata');
             $table->string('PrezimeKandidata');
@@ -26,11 +26,11 @@ class KreirajTabeluKandidat extends Migration
             $table->string('ImePrezimeJednogRoditelja')->nullable();
             $table->string('KontaktTelefonRoditelja')->nullable();
             $table->integer('ID_ZavrseneSkoleFakulteta')->unsigned()->index();
-
+            $table->integer('ID_MestaZavrseneSkoleFakulteta')->unsigned()->index();
             $table->integer('SmerZavrseneSkoleFakulteta')->unsigned()->nullable();
             $table->integer('ID_UspehSrednjaSkola')->unsigned()->index();
             $table->integer('ID_OpstiUspehSrednjaSkola')->unsigned()->index();
-            $table->decimal('SrednjaOcenaSrednjaSkola', 1, 2);
+            $table->decimal('SrednjaOcenaSrednjaSkola', 2, 2);
             $table->integer('ID_SportskoAngazovanje')->unsigned()->nullable();
             $table->decimal('TelesnaTezinaKandidata', 2, 2);
             $table->integer('VisinaKandidata');
@@ -44,7 +44,6 @@ class KreirajTabeluKandidat extends Migration
             $table->integer('ID_StudijskiProgram')->unsigned()->index();
             $table->integer('ID_TipaStudija')->unsigned()->index();
             $table->integer('ID_GodinaStudija')->unsigned()->index();
-            $table->integer('ID_KrsnaSlava')->unsigned()->index();
             $table->integer('ID_Mesta')->unsigned()->index();
             $table->timestamps();
         });
@@ -57,6 +56,6 @@ class KreirajTabeluKandidat extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('Kandidat');
     }
 }

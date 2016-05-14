@@ -14,5 +14,6 @@ storage/
 .env.example
 .idea
 .idea/blade.xml
-.idea/blade.xml
 .idea/modules.xml
+.idea/workspace.xml
+.idea/vcs.xml
