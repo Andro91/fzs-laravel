@@ -11,11 +11,18 @@
 |
 */
 
+
+//Rute koje se aktivno koriste u projektu
+
 Route::get('/', function()
 {
 	return View::make('home');
 });
 
+Route::resource('kandidat', 'KandidatController');
+
+
+//Rute koje su bile u temi, jos nisu iskoriscene za projekat
 Route::get('/charts', function()
 {
 	return View::make('mcharts');

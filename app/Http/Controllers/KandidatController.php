@@ -2,6 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Godina_Studija;
+use App\Krsna_Slava;
+use App\Mesto;
+use App\Opsti_Uspeh;
+use App\Prilozena_Dokumenta;
+use App\Sportsko_Angazovanje;
+use App\Srednje_Skole_Fakulteti;
+use App\Status_Studiranja;
+use App\Studijski_Program;
+use App\Tip_Studija;
+use App\Uspeh_Srednja_Skola;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +26,8 @@ class KandidatController extends Controller
      */
     public function index()
     {
-        //
+
+        return view("kandidat.indeks");
     }
 
     /**
@@ -25,7 +37,31 @@ class KandidatController extends Controller
      */
     public function create()
     {
-        //
+        $mestoRodjenja = Mesto::all();
+        $krsnaSlava = Krsna_Slava::all();
+        $nazivSkoleFakulteta = Srednje_Skole_Fakulteti::all();
+        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $opstiUspehSrednjaSkola = Opsti_Uspeh::all();
+        $uspehSrednjaSkola = Uspeh_Srednja_Skola::all();
+        $sportskoAngazovanje = Sportsko_Angazovanje::all();
+        $prilozeniDokumentPrvaGodina = Prilozena_Dokumenta::all();
+        $statusaUpisaKandidata = Status_Studiranja::all();
+        $studijskiProgram = Studijski_Program::all();
+        $tipStudija = Tip_Studija::all();
+        $godinaStudija = Godina_Studija::all();
+
+        return view("kandidat.create")
+            ->with('mestoRodjenja', $mestoRodjenja)
+            ->with('krsnaSlava', $krsnaSlava)
+            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            ->with('mestoZavrseneSkoleFakulteta',$mestoZavrseneSkoleFakulteta)
+            ->with('opstiUspehSrednjaSkola',$opstiUspehSrednjaSkola)
+            ->with('uspehSrednjaSkola',$uspehSrednjaSkola)
+            ->with('sportskoAngazovanje',$sportskoAngazovanje)
+            ->with('prilozeniDokumentPrvaGodina',$prilozeniDokumentPrvaGodina)
+            ->with('statusaUpisaKandidata',$statusaUpisaKandidata)
+            ->with('tipStudija',$tipStudija)
+            ->with('godinaStudija',$godinaStudija);
     }
 
     /**
