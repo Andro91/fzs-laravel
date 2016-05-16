@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PrilozenaDokumenta extends Model
 {
-    protected $table = 'prilozena_okumenta';
+    protected $table = 'prilozena_dokumenta';
     //
 }

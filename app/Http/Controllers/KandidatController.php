@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Godina_Studija;
-use App\Krsna_Slava;
+use App\GodinaStudija;
+use App\KrsnaSlava;
 use App\Mesto;
-use App\Opsti_Uspeh;
-use App\Prilozena_Dokumenta;
-use App\Sportsko_Angazovanje;
-use App\Srednje_Skole_Fakulteti;
-use App\Status_Studiranja;
-use App\Studijski_Program;
-use App\Tip_Studija;
-use App\Uspeh_Srednja_Skola;
+use App\OpstiUspeh;
+use App\PrilozenaDokumenta;
+use App\SkolskaGodUpisa;
+use App\SportskoAngazovanje;
+use App\SrednjeSkoleFakulteti;
+use App\StatusStudiranja;
+use App\StudijskiProgram;
+use App\TipStudija;
+use App\UspehSrednjaSkola;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -38,17 +39,18 @@ class KandidatController extends Controller
     public function create()
     {
         $mestoRodjenja = Mesto::all();
-        $krsnaSlava = Krsna_Slava::all();
-        $nazivSkoleFakulteta = Srednje_Skole_Fakulteti::all();
+        $krsnaSlava = KrsnaSlava::all();
+        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Mesto::all();
-        $opstiUspehSrednjaSkola = Opsti_Uspeh::all();
-        $uspehSrednjaSkola = Uspeh_Srednja_Skola::all();
-        $sportskoAngazovanje = Sportsko_Angazovanje::all();
-        $prilozeniDokumentPrvaGodina = Prilozena_Dokumenta::all();
-        $statusaUpisaKandidata = Status_Studiranja::all();
-        $studijskiProgram = Studijski_Program::all();
-        $tipStudija = Tip_Studija::all();
-        $godinaStudija = Godina_Studija::all();
+        $opstiUspehSrednjaSkola = OpstiUspeh::all();
+        $uspehSrednjaSkola = UspehSrednjaSkola::all();
+        $sportskoAngazovanje = SportskoAngazovanje::all();
+        $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
+        $statusaUpisaKandidata = StatusStudiranja::all();
+        $studijskiProgram = StudijskiProgram::all();
+        $tipStudija = TipStudija::all();
+        $godinaStudija = GodinaStudija::all();
+        $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
         return view("kandidat.create")
             ->with('mestoRodjenja', $mestoRodjenja)
@@ -60,8 +62,10 @@ class KandidatController extends Controller
             ->with('sportskoAngazovanje',$sportskoAngazovanje)
             ->with('prilozeniDokumentPrvaGodina',$prilozeniDokumentPrvaGodina)
             ->with('statusaUpisaKandidata',$statusaUpisaKandidata)
+            ->with('studijskiProgram',$studijskiProgram)
             ->with('tipStudija',$tipStudija)
-            ->with('godinaStudija',$godinaStudija);
+            ->with('godinaStudija',$godinaStudija)
+            ->with('skolskeGodineUpisa',$skolskeGodineUpisa);
     }
 
     /**
