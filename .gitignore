@@ -16,4 +16,5 @@ storage/
 .idea/blade.xml
 .idea/modules.xml
 .idea/workspace.xml
+.idea\workspace.xml
 .idea/vcs.xml
