@@ -12,13 +12,13 @@ class KreirajTabeluSportskoAngazovanje extends Migration
      */
     public function up()
     {
-        Schema::create('Sportsko_Angazovanje', function (Blueprint $table) {
+        Schema::create('sportsko_angazovanje', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ID_Sporta')->unsigned()->index();
-            $table->integer('ID_Kandidata')->unsigned()->index();
-            $table->string('NazivKluba');
-            $table->string('OdDoGodina');
-            $table->integer('NazivRimski')->unsigned();
+            $table->integer('sport_id')->unsigned()->index();
+            $table->integer('kandidat_id')->unsigned()->index();
+            $table->string('nazivKluba');
+            $table->string('odDoGodina');
+            $table->integer('ukupnoGodina')->unsigned();
 
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class KreirajTabeluSportskoAngazovanje extends Migration
      */
     public function down()
     {
-        Schema::drop('Sportsko_Angazovanje');
+        Schema::drop('sportsko_angazovanje');
     }
 }

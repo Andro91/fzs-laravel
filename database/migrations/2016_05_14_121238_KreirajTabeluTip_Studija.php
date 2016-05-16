@@ -12,11 +12,11 @@ class KreirajTabeluTipStudija extends Migration
      */
     public function up()
     {
-        Schema::create('Tip_Studija', function (Blueprint $table) {
+        Schema::create('tip_studija', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivTipaStudija');
-            $table->string('SkrNazivTipaStudija');
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->string('skrNaziv');
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class KreirajTabeluTipStudija extends Migration
      */
     public function down()
     {
-        Schema::drop('Tip_Studija');
+        Schema::drop('tip_studija');
     }
 }

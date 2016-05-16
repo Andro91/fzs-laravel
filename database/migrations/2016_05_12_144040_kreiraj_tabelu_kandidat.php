@@ -12,39 +12,39 @@ class KreirajTabeluKandidat extends Migration
      */
     public function up()
     {
-        Schema::create('Kandidat', function (Blueprint $table) {
+        Schema::create('kandidat', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ImeKandidata');
-            $table->string('PrezimeKandidata');
-            $table->string('JMBG');
-            $table->dateTime('DatumRodjenja');
-            $table->integer('ID_MestaRodjenja')->unsigned()->index();
-            $table->integer('ID_KrsnaSlava')->unsigned()->index();
-            $table->string('KontaktTelefon')->nullable();
-            $table->string('AdresaStanovanja')->nullable();
-            $table->string('Email')->nullable();
-            $table->string('ImePrezimeJednogRoditelja')->nullable();
-            $table->string('KontaktTelefonRoditelja')->nullable();
-            $table->integer('ID_ZavrseneSkoleFakulteta')->unsigned()->index();
-            $table->integer('ID_MestaZavrseneSkoleFakulteta')->unsigned()->index();
-            $table->integer('SmerZavrseneSkoleFakulteta')->unsigned()->nullable();
-            $table->integer('ID_UspehSrednjaSkola')->unsigned()->index();
-            $table->integer('ID_OpstiUspehSrednjaSkola')->unsigned()->index();
-            $table->decimal('SrednjaOcenaSrednjaSkola', 2, 2);
-            $table->integer('ID_SportskoAngazovanje')->unsigned()->nullable();
-            $table->decimal('TelesnaTezinaKandidata', 2, 2);
-            $table->integer('VisinaKandidata');
-            $table->integer('ID_PrilozenogDokumentaPrvaGodina')->unsigned()->nullable();
-            $table->integer('ID_StatusaUpisaKandidata')->unsigned()->nullable();
-            $table->decimal('BrojBodovaTest', 2, 2)->nullable();
-            $table->decimal('BrojBodovaSkola', 2, 2);
-            $table->string('UpisniRok')->nullable();
-            $table->integer('ID_SkolskeGodineUpisa')->unsigned()->index();
-            $table->integer('IndikatorAktivan')->unsigned();
-            $table->integer('ID_StudijskiProgram')->unsigned()->index();
-            $table->integer('ID_TipaStudija')->unsigned()->index();
-            $table->integer('ID_GodinaStudija')->unsigned()->index();
-            $table->integer('ID_Mesta')->unsigned()->index();
+            $table->string('imeKandidata');
+            $table->string('prezimeKandidata');
+            $table->string('jmbg');
+            $table->dateTime('datumRodjenja');
+            $table->integer('mestoRodjenja_id')->unsigned()->index();
+            $table->integer('krsnaSlava_id')->unsigned()->index();
+            $table->string('kontaktTelefon')->nullable();
+            $table->string('adresaStanovanja')->nullable();
+            $table->string('email')->nullable();
+            $table->string('imePrezimeJednogRoditelja')->nullable();
+            $table->string('kontaktTelefonRoditelja')->nullable();
+            $table->integer('srednjeSkoleFakulteti_id')->unsigned()->index();
+            $table->integer('mestoZavrseneSkoleFakulteta_id')->unsigned()->index();
+            $table->integer('smerZavrseneSkoleFakulteta')->unsigned()->nullable();
+            $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
+            $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();
+            $table->decimal('srednjaOcenaSrednjaSkola', 2, 2);
+            $table->integer('sportskoAngazovanje_id')->unsigned()->nullable();
+            $table->decimal('telesnaTezina', 2, 2);
+            $table->decimal('visina', 2, 2);
+            $table->integer('prilozenaDokumentaPrvaGodina_id')->unsigned()->nullable();
+            $table->integer('statusUpisa_id')->unsigned()->nullable();
+            $table->decimal('brojBodovaTest', 2, 2)->nullable();
+            $table->decimal('brojBodovaSkola', 2, 2);
+            $table->string('upisniRok')->nullable();
+            $table->integer('skolskaGodinaUpisa_id')->unsigned()->index();
+            $table->integer('indikatorAktivan')->unsigned();
+            $table->integer('studijskiProgram_id')->unsigned()->index();
+            $table->integer('tipStudija_id')->unsigned()->index();
+            $table->integer('godinaStudija_id')->unsigned()->index();
+            $table->integer('mesto_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -56,6 +56,6 @@ class KreirajTabeluKandidat extends Migration
      */
     public function down()
     {
-        Schema::drop('Kandidat');
+        Schema::drop('kandidat');
     }
 }

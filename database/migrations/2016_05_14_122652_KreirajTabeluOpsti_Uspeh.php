@@ -12,9 +12,9 @@ class KreirajTabeluOpstiUspeh extends Migration
      */
     public function up()
     {
-        Schema::create('Opsti_Uspeh', function (Blueprint $table) {
+        Schema::create('opsti_uspeh', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Naziv');
+            $table->string('naziv');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class KreirajTabeluOpstiUspeh extends Migration
      */
     public function down()
     {
-        Schema::drop('Opsti_Uspeh');
+        Schema::drop('opsti_uspeh');
     }
 }

@@ -12,14 +12,14 @@ class KreirajTabeluPredmet extends Migration
      */
     public function up()
     {
-        Schema::create('Predmet', function (Blueprint $table) {
+        Schema::create('predmet', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ID_TipStudija')->unsigned()->index();
-            $table->integer('ID_StudijskogPrograma')->unsigned()->index();
-            $table->integer('ID_GodinaStudija')->unsigned()->index();
-            $table->integer('ID_SemestarSlusanjaPredmeta')->unsigned()->index();
-            $table->integer('ESPB');
-            $table->integer('StatusPredmeta');
+            $table->integer('tipStudija_id')->unsigned()->index();
+            $table->integer('studijskiProgram_id')->unsigned()->index();
+            $table->integer('godinaStudija_id')->unsigned()->index();
+            $table->integer('semestarSlusanjaPredmeta')->unsigned()->index();
+            $table->integer('espb');
+            $table->integer('statusPredmeta');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class KreirajTabeluPredmet extends Migration
      */
     public function down()
     {
-        Schema::drop('Predmet');
+        Schema::drop('predmet');
     }
 }

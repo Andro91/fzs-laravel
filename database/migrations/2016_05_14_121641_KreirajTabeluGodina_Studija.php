@@ -12,13 +12,13 @@ class KreirajTabeluGodinaStudija extends Migration
      */
     public function up()
     {
-        Schema::create('Godina_Studija', function (Blueprint $table) {
+        Schema::create('godina_studija', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivSlovima');
-            $table->string('NazivRimski');
-            $table->string('NazivSlovimaUPadezu');
-            $table->integer('RedosledPrikazivanja')->unsigned();
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->string('nazivRimski');
+            $table->string('nazivSlovimaUPadezu');
+            $table->integer('redosledPrikazivanja')->unsigned();
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class KreirajTabeluGodinaStudija extends Migration
      */
     public function down()
     {
-        Schema::drop('Godina_Studija');
+        Schema::drop('godina_studija');
     }
 }

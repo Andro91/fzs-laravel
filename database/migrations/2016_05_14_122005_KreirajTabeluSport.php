@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluSportovi extends Migration
+class KreirajTabeluSport extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class KreirajTabeluSportovi extends Migration
      */
     public function up()
     {
-        Schema::create('Sportovi', function (Blueprint $table) {
+        Schema::create('sport', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivSporta');
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluSportovi extends Migration
      */
     public function down()
     {
-        Schema::drop('Sportovi');
+        Schema::drop('sport');
     }
 }

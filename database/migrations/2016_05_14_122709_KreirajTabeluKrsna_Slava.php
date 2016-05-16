@@ -12,11 +12,11 @@ class KreirajTabeluKrsnaSlava extends Migration
      */
     public function up()
     {
-        Schema::create('Krsna_Slava', function (Blueprint $table) {
+        Schema::create('krsna_slava', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivSlave');
-            $table->dateTime('DatumSlave');
-            $table->integer('IndikatorAktivan');
+            $table->string('naziv');
+            $table->dateTime('datumSlave');
+            $table->integer('indikatorAktivan');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class KreirajTabeluKrsnaSlava extends Migration
      */
     public function down()
     {
-        Schema::drop('Krsna_Slava');
+        Schema::drop('krsna_slava');
     }
 }

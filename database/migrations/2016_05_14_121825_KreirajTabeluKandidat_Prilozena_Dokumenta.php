@@ -12,10 +12,10 @@ class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
      */
     public function up()
     {
-        Schema::create('Kadnidat_Prilozena_Dokumenta', function (Blueprint $table) {
+        Schema::create('kadnidat_prilozena_dokumenta', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ID_Prilozenog_Dokumenta')->unsigned()->index();
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->integer('prilozenaDokumenta_id')->unsigned()->index();
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
      */
     public function down()
     {
-        Schema::drop('Kadnidat_Prilozena_Dokumenta');
+        Schema::drop('kadnidat_prilozena_dokumenta');
     }
 }

@@ -12,10 +12,10 @@ class KreirajTabeluOpstina extends Migration
      */
     public function up()
     {
-        Schema::create('Opstina', function (Blueprint $table) {
+        Schema::create('opstina', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivOpstine');
-            $table->integer('ID_Regiona')->unsigned()->index();
+            $table->string('naziv');
+            $table->integer('region_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluOpstina extends Migration
      */
     public function down()
     {
-        Schema::drop('Opstina');
+        Schema::drop('opstina');
     }
 }

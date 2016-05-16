@@ -12,10 +12,10 @@ class KreirajTabeluStatusStudiranja extends Migration
      */
     public function up()
     {
-        Schema::create('Status_Studiranja', function (Blueprint $table) {
+        Schema::create('status_studiranja', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivStatusaStudiranja');
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->integer('indikatorAktivan')->unsigned();
 
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class KreirajTabeluStatusStudiranja extends Migration
      */
     public function down()
     {
-        Schema::drop('Status_Studiranja');
+        Schema::drop('status_studiranja');
     }
 }

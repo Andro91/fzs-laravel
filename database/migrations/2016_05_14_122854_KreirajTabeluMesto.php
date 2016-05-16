@@ -12,10 +12,10 @@ class KreirajTabeluMesto extends Migration
      */
     public function up()
     {
-        Schema::create('Mesto', function (Blueprint $table) {
+        Schema::create('mesto', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivMesta');
-            $table->integer('ID_Opstine')->unsigned()->index();
+            $table->string('naziv');
+            $table->integer('opstina_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluMesto extends Migration
      */
     public function down()
     {
-        Schema::drop('Mesto');
+        Schema::drop('mesto');
     }
 }

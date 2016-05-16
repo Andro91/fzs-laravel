@@ -12,12 +12,12 @@ class KreirajTabeluStudijskiProgram extends Migration
      */
     public function up()
     {
-        Schema::create('Studijski_Program', function (Blueprint $table) {
+        Schema::create('studijski_program', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivStudijskogPrograma');
-            $table->string('SkrNazivStudijskogPrograma');
-            $table->integer('ID_TipaStudija')->unsigned()->index();
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->string('skrNazivStudijskogPrograma');
+            $table->integer('tipStudija_id')->unsigned()->index();
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class KreirajTabeluStudijskiProgram extends Migration
      */
     public function down()
     {
-        Schema::drop('Studijski_Program');
+        Schema::drop('studijski_program');
     }
 }

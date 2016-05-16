@@ -12,10 +12,10 @@ class KreirajTabeluSrednjeSkoleFakulteti extends Migration
      */
     public function up()
     {
-        Schema::create('Srednje_Skole_Fakulteti', function (Blueprint $table) {
+        Schema::create('srednje_skole_fakulteti', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivSkoleFakulteta');
-            $table->integer('IndSkoleFakulteta');
+            $table->string('naziv');
+            $table->integer('indSkoleFakulteta');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluSrednjeSkoleFakulteti extends Migration
      */
     public function down()
     {
-        Schema::drop('Srednje_Skole_Fakulteti');
+        Schema::drop('srednje_skole_fakulteti');
     }
 }

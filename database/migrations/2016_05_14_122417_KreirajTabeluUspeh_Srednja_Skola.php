@@ -12,11 +12,11 @@ class KreirajTabeluUspehSrednjaSkola extends Migration
      */
     public function up()
     {
-        Schema::create('Uspeh_Srednja_Skola', function (Blueprint $table) {
+        Schema::create('uspeh_srednja_skola', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ID_Kandidata')->unsigned()->index();
-            $table->integer('ID_SkoleFakulteta')->unsigned()->index();
-            $table->integer('ID_OpstiUspeh')->unsigned()->index();
+            $table->integer('kandidat_id')->unsigned()->index();
+            $table->integer('srednjeSkoleFakulteti_id')->unsigned()->index();
+            $table->integer('opstiUspeh_id')->unsigned()->index();
             $table->integer('RedniBrojRazreda');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class KreirajTabeluUspehSrednjaSkola extends Migration
      */
     public function down()
     {
-        Schema::drop('Uspeh_Srednja_Skola');
+        Schema::drop('uspeh_srednja_skola');
     }
 }

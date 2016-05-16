@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Godina_Studija extends Model
+class Sport extends Model
 {
-    //
+    protected $table = 'sport';
 }

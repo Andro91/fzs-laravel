@@ -12,9 +12,9 @@ class KreirajTabeluRegion extends Migration
      */
     public function up()
     {
-        Schema::create('Region', function (Blueprint $table) {
+        Schema::create('region', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivRegiona');
+            $table->string('naziv');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class KreirajTabeluRegion extends Migration
      */
     public function down()
     {
-        Schema::drop('Region');
+        Schema::drop('region');
     }
 }

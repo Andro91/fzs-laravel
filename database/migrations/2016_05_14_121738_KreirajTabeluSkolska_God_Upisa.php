@@ -12,10 +12,10 @@ class KreirajTabeluSkolskaGodUpisa extends Migration
      */
     public function up()
     {
-        Schema::create('Skolska_God_Upisa', function (Blueprint $table) {
+        Schema::create('skolska_god_upisa', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('NazivSkolskeGodineUpisa');
-            $table->integer('IndikatorAktivan')->unsigned();
+            $table->string('naziv');
+            $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class KreirajTabeluSkolskaGodUpisa extends Migration
      */
     public function down()
     {
-        Schema::drop('Skolska_God_Upisa');
+        Schema::drop('skolska_god_upisa');
     }
 }
