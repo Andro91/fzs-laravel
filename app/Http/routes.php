@@ -21,6 +21,11 @@ Route::get('/', function()
 
 Route::resource('kandidat', 'KandidatController');
 
+Route::get('/tipStudija', 'TipStudijaController@index');
+Route::get('/studijskiProgram', 'StudijskiProgramController@index');
+Route::get('/godinaStudija', 'GodinaStudijaController@index');
+Route::get('/sport', 'SportController@index');
+
 
 //Rute koje su bile u temi, jos nisu iskoriscene za projekat
 Route::get('/charts', function()
