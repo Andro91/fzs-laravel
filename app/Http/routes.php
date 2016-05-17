@@ -13,18 +13,25 @@
 
 
 //Rute koje se aktivno koriste u projektu
-
+//Home route
 Route::get('/', function()
 {
 	return View::make('home');
 });
 
+//Dodao Andrija
 Route::resource('kandidat', 'KandidatController');
+
+
 
 Route::get('/tipStudija', 'TipStudijaController@index');
 Route::get('/studijskiProgram', 'StudijskiProgramController@index');
 Route::get('/godinaStudija', 'GodinaStudijaController@index');
 Route::get('/sport', 'SportController@index');
+
+//Dodao Andrija rute za testiranje
+Route::get('/test1', 'KandidatController@test1');
+Route::get('/test2', 'KandidatController@test2');
 
 
 //Rute koje su bile u temi, jos nisu iskoriscene za projekat
