@@ -4,7 +4,8 @@
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
             <div class="col-lg-8">
-                <form role="form" method="get" action="{{ url('/test2') }}">
+                <form role="form" method="post" action="{{ url('/testPost') }}">
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
                     {{--STUDIJSKI PROGRAM--}}
                     <div class="panel panel-success">

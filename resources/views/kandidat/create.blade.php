@@ -5,6 +5,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <form role="form" method="post" action="{{ url('kandidat/create') }}">
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Osnovni podaci</h3>

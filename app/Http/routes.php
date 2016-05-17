@@ -33,6 +33,8 @@ Route::get('/sport', 'SportController@index');
 Route::get('/test1', 'KandidatController@test1');
 Route::get('/test2', 'KandidatController@test2');
 
+Route::post('/testPost', 'KandidatController@testPost');
+
 
 //Rute koje su bile u temi, jos nisu iskoriscene za projekat
 Route::get('/charts', function()

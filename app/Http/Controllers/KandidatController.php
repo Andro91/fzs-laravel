@@ -27,7 +27,6 @@ class KandidatController extends Controller
      */
     public function index()
     {
-
         return view("kandidat.indeks");
     }
 
@@ -186,5 +185,10 @@ class KandidatController extends Controller
             ->with('tipStudija',$tipStudija)
             ->with('godinaStudija',$godinaStudija)
             ->with('skolskeGodineUpisa',$skolskeGodineUpisa);
+    }
+
+    public function testPost(Request $request)
+    {
+        return $request->all();
     }
 }
