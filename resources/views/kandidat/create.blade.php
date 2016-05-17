@@ -10,25 +10,25 @@
                             <h3 class="panel-title">Osnovni podaci</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="ImeKandidata">Ime Kandidata</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
                                 <label for="PrezimeKandidata">Prezime Kandidata</label>
                                 <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata">
                             </div>
                             <div class="form-group">
                                 <label for="JMBG">JMBG</label>
-                                <input class="form-control" type="text" name="JMBG" id="JMBG">
+                                <input class="form-control" type="text" name="JMBG" id="JMBG" style="max-width: 60%">
                             </div>
                             <div class="form-group">
                                 <label for="DatumRodjenja">Datum Rodjenja</label>
-                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja">
+                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja" style="max-width: 60%">
                             </div>
                             <div class="form-group">
                                 <label for="MestoRodjenja">MestoRodjenja:</label>
-                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja">
+                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%">
                                     @foreach($mestoRodjenja as $item)
                                         <option value="{{$item->id}}">{{$item->NazivMesta}}</option>
                                     @endforeach
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="KrsnaSlava">KrsnaSlava:</label>
-                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja">
+                                <select class="form-control" id="KrsnaSlava" name="KrsnaSlava" style="max-width: 50%">
                                     @foreach($krsnaSlava as $item)
                                         <option value="{{$item->id}}">{{$item->NazivSlave}}</option>
                                     @endforeach
@@ -44,29 +44,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Kontakt Telefon</label>
-                                <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon">
+                                <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%">
                             </div>
                             <div class="form-group">
                                 <label for="AdresaStanovanja">AdresaStanovanja</label>
-                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja">
+                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja" style="max-width: 80%">
                             </div>
                             <div class="form-group">
                                 <label for="Email">Email</label>
-                                <input class="form-control" type="text" name="Email" id="Email">
+                                <input class="form-control" type="text" name="Email" id="Email" style="max-width: 60%">
                             </div>
                             <div class="form-group">
                                 <label for="ImePrezimeJednogRoditelja">ImePrezimeJednogRoditelja</label>
                                 <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
-                                       id="ImePrezimeJednogRoditelja">
+                                       id="ImePrezimeJednogRoditelja" style="max-width: 80%">
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefonRoditelja">KontaktTelefonRoditelja</label>
                                 <input class="form-control" type="text" name="KontaktTelefonRoditelja"
-                                       id="KontaktTelefonRoditelja">
+                                       id="KontaktTelefonRoditelja" style="max-width: 40%">
                             </div>
                             <div class="form-group">
                                 <label for="NazivSkoleFakulteta">NazivSkoleFakulteta:</label>
-                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
+                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta" style="max-width: 80%">
                                     @foreach($nazivSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->NazivSkoleFakulteta}}</option>
                                     @endforeach
@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <label for="MestoZavrseneSkoleFakulteta">MestoZavrseneSkoleFakulteta:</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
-                                        name="MestoZavrseneSkoleFakulteta">
+                                        name="MestoZavrseneSkoleFakulteta" style="max-width: 60%">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->NazivMesta}}</option>
                                     @endforeach
@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <label for="SmerZavrseneSkoleFakulteta">SmerZavrseneSkoleFakulteta</label>
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
-                                       id="SmerZavrseneSkoleFakulteta">
+                                       id="SmerZavrseneSkoleFakulteta" style="max-width: 80%">
                             </div>
                         </div>
                     </div>
