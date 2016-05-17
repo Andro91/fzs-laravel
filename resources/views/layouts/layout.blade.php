@@ -37,8 +37,8 @@
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('kandidat/create') }}">Dodavanje</a>
                                 </li>
-                                <li {{ (Request::is('*kandidat/index') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('kandidat/index' ) }}">Pregled</a>
+                                <li {{ (Request::is('*kandidat/') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('kandidat/' ) }}">Pregled</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -168,7 +168,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">@yield('page_heading')</h1>
+                    <h2 class="page-header">@yield('page_heading')</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

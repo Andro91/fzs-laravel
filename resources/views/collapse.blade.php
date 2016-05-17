@@ -1,4 +1,4 @@
-@extends ('layouts.dashboard')
+@extends('layouts.layout')
 
 @section('page_title')	Collapse @stop
 @section ('page_heading', 'Collapse')

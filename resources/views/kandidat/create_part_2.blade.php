@@ -3,7 +3,7 @@
 @section('section')
     <div class="col-sm-12">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <form role="form" method="post" action="{{ url('kandidat/create') }}">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
@@ -235,14 +235,6 @@
                             <div class="form-group">
                                 <label for="UpisniRok">UpisniRok</label>
                                 <input class="form-control" type="text" name="UpisniRok" id="UpisniRok">
-                            </div>
-                            <div class="form-group">
-                                <label for="SkolskeGodineUpisa">SkolskeGodineUpisa:</label>
-                                <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
-                                    @foreach($skolskeGodineUpisa as $item)
-                                        <option value="{{$item->id}}">{{$item->NazivSkolskeGodineUpisa}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="IndikatorAktivan">IndikatorAktivan</label>

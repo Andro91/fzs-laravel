@@ -3,21 +3,40 @@
 @section('section')
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <form role="form" method="get" action="{{ url('/test2') }}">
-                    <div class="panel panel-primary">
+
+                    {{--STUDIJSKI PROGRAM--}}
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Osnovni podaci</h3>
+                            <h3 class="panel-title">Studijski program</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label for="StudijskiProgram">StudijskiProgram:</label>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="StudijskiProgram">Studijski Program:</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
+                                <label for="SkolskeGodineUpisa">Skolska Godina:</label>
+                                <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
+                                    @foreach($skolskeGodineUpisa as $item)
+                                        <option value="{{$item->id}}">{{$item->NazivSkolskeGodineUpisa}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--OSNOVNI PODACI--}}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Osnovni podaci</h3>
+                        </div>
+                        <div class="panel-body">
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="ImeKandidata">Ime Kandidata</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata">
