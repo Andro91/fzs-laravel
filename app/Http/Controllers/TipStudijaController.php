@@ -15,4 +15,15 @@ class TipStudijaController extends Controller
 
         return view('sifarnici.tipStudija', compact('tipStudija'));
     }
+
+    public function unos(Request $request)
+    {
+        $tipStudija = new TipStudija();
+
+        $tipStudija->naziv = $request->naziv;
+        $tipStudija->indikatorAktivan = $request->indikatorAktivan;
+        $tipStudija->save();
+
+        return back();
+    }
 }
