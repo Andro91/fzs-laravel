@@ -43,6 +43,39 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li >
+                            <a href="#"><i class="fa fa-table fa-fw"></i>&nbsp;Šifarnici<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*/tipStudija') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/tipStudija') }}">Tip studija</a>
+                                </li>
+                                <li {{ (Request::is('*/studijskiProgram') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/studijskiProgram' ) }}">Studijski program</a>
+                                </li>
+                                <li {{ (Request::is('*/godinaStudija') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/godinaStudija' ) }}">Godina studija</a>
+                                </li>
+                                <li {{ (Request::is('*sport') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('sport' ) }}">Sportovi</a>
+                                </li>
+                                <li {{ (Request::is('*sportskoAngayovanje/index') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('sportskoAngayovanje/index' ) }}">Sportsko angažovanje</a>
+                                </li>
+                                <li {{ (Request::is('*statusStudiranja/index') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('statusStudiranja/index' ) }}">Status studiranja</a>
+                                </li>
+                                <li {{ (Request::is('*predmet/index') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('predmet/index' ) }}">Predmet</a>
+                                </li>
+                                <li {{ (Request::is('*srednjeSkoleFakulteti/index') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('srednjeSkoleFakulteti/index' ) }}">Srednje škole i fakulteti</a>
+                                </li>
+                                <li {{ (Request::is('*krsnaSlava/index') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('krsnaSlava/index' ) }}">Krsna slava</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>

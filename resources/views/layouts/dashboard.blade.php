@@ -257,6 +257,39 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li >
+                            <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;Šifarnici<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*panels') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('panels') }}">Tip studija</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Studijski program</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Godina studija</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Sportovi</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Sportsko angažovanje</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Status studiranja</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Predmet</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Srednje škole i fakulteti</a>
+                                </li>
+                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('buttons' ) }}">Krsna slava</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
