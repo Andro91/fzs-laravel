@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col-lg-8">
                 <form role="form" method="post" action="{{ url('kandidat/create') }}">
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                    <input type="hidden" name="page" id="page" value="2" />
+
                     <div class="panel panel-warning">
                         <div class="panel-heading">
                             <h3 class="panel-title">Samo za prvu godinu</h3>

@@ -6,6 +6,7 @@
             <div class="col-lg-8">
                 <form role="form" method="post" action="{{ url('/testPost') }}">
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                    <input type="hidden" name="page" id="page" value="1" />
 
                     {{--STUDIJSKI PROGRAM--}}
                     <div class="panel panel-success">
