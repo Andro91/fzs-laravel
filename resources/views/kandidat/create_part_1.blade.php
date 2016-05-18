@@ -4,7 +4,7 @@
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
             <div class="col-lg-8">
-                <form role="form" method="post" action="{{ url('/testPost') }}">
+                <form role="form" method="post" action="{{ url('/kandidat') }}">
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                     <input type="hidden" name="page" id="page" value="1" />
 
@@ -14,6 +14,14 @@
                             <h3 class="panel-title">Studijski program</h3>
                         </div>
                         <div class="panel-body">
+                            <div class="form-group" style="width: 50%;">
+                                <label for="TipStudija">TipStudija:</label>
+                                <select class="form-control" id="TipStudija" name="TipStudija">
+                                    @foreach($tipStudija as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="StudijskiProgram">Studijski Program:</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
@@ -26,7 +34,7 @@
                                 <label for="SkolskeGodineUpisa">Skolska Godina:</label>
                                 <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
                                     @foreach($skolskeGodineUpisa as $item)
-                                        <option value="{{$item->id}}">{{$item->NazivSkolskeGodineUpisa}}</option>
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -117,9 +125,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="GodinaStudija">GodinaStudija:</label>
-                                <select class="form-control" id="GodinaStudija" name="GodinaStudija">
+                                <select class="form-control" id="GodinaStudija" name="GodinaStudija" style="max-width: 40%">
                                     @foreach($godinaStudija as $item)
-                                        <option value="{{$item->id}}">{{$item->Naziv}}</option>
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>

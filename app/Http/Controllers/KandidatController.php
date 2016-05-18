@@ -94,6 +94,10 @@ class KandidatController extends Controller
             $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
             $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
+            $kandidat->studijskiProgram_id = $request->StudijskiProgram;
+            $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+            $kandidat->godinaStudija_id = $request->GodinaStudija;
+
             $kandidat->save();
 
             $insertedId = $kandidat->id;
@@ -112,7 +116,7 @@ class KandidatController extends Controller
             $godinaStudija = GodinaStudija::all();
             $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
-            return view("kandidat.create_part_1")
+            return view("kandidat.create_part_2")
                 ->with('mestoRodjenja', $mestoRodjenja)
                 ->with('krsnaSlava', $krsnaSlava)
                 ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
@@ -125,9 +129,14 @@ class KandidatController extends Controller
                 ->with('studijskiProgram', $studijskiProgram)
                 ->with('tipStudija', $tipStudija)
                 ->with('godinaStudija', $godinaStudija)
-                ->with('skolskeGodineUpisa', $skolskeGodineUpisa);
+                ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
+                ->with('insertedId',$insertedId);
 
         }else if($request->page == 2){
+
+            $kandidat = Kandidat::find($request->insertedId);
+
+
 
         }
     }
