@@ -23,11 +23,18 @@ Route::get('/', function()
 Route::resource('kandidat', 'KandidatController');
 
 
-
+// rute za sifarnike
 Route::get('/tipStudija', 'TipStudijaController@index');
 Route::get('/studijskiProgram', 'StudijskiProgramController@index');
 Route::get('/godinaStudija', 'GodinaStudijaController@index');
 Route::get('/sport', 'SportController@index');
+Route::get('/sportskoAngazovanje', 'SportskoAngazovanjeController@index');
+Route::get('/statusStudiranja', 'StatusStudiranjaController@index');
+Route::get('/predmet', 'PredmetController@index');
+Route::get('/srednjeSkoleFakulteti', 'SrednjeSkoleFakultetiController@index');
+Route::get('/krsnaSlava', 'KrsnaSlavaController@index');
+
+Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');

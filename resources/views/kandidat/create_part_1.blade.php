@@ -116,6 +116,14 @@
                                        id="SmerZavrseneSkoleFakulteta" style="max-width: 80%">
                             </div>
                             <div class="form-group">
+                                <label for="GodinaStudija">GodinaStudija:</label>
+                                <select class="form-control" id="GodinaStudija" name="GodinaStudija">
+                                    @foreach($godinaStudija as $item)
+                                        <option value="{{$item->id}}">{{$item->Naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
                                 <button type="submit" name="Submit" class="btn btn-primary btn-lg">Dalje</button>
                             </div>
                         </div>

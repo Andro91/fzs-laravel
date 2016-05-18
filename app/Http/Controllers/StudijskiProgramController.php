@@ -13,6 +13,6 @@ class StudijskiProgramController extends Controller
     {
         $studijskiProgram = StudijskiProgram::all();
 
-        return view('sifarnici.studijskiProgram ', compact('studijskiProgram'));
+        return view('sifarnici.studijskiProgram', compact('studijskiProgram'));
     }
 }
