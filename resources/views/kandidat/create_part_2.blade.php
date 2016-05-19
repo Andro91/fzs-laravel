@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 @section('page_heading','Unos kandidata')
 @section('section')
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
             <div class="col-lg-8">
-                <form role="form" method="post" action="{{ url('kandidat/create') }}">
+                <form role="form" method="post" action="{{ url('/kandidat') }}">
                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                     <input type="hidden" name="page" id="page" value="2" />
                     <input type="hidden" name="insertedId" id="insertedId" value="{{ $insertedId }}" />
@@ -89,21 +89,39 @@
                                 <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td><input class="form-control" style="margin: 0 0 0 0" type="text" name="sport1" id="sport1"></td>
+                                    <td>
+                                        <select class="form-control" id="sport1" name="sport1">
+                                            @foreach($sport as $item)
+                                                <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td><input class="form-control" type="text" name="klub1" id="klub1"></td>
                                     <td><input class="form-control" type="text" name="uzrast1" id="uzrast1"></td>
                                     <td><input class="form-control" type="text" name="godine1" id="godine1"></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
-                                    <td><input class="form-control" type="text" name="sport2" id="sport2"></td>
+                                    <td>
+                                        <select class="form-control" id="sport2" name="sport2">
+                                            @foreach($sport as $item)
+                                                <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td><input class="form-control" type="text" name="klub2" id="klub2"></td>
                                     <td><input class="form-control" type="text" name="uzrast2" id="uzrast2"></td>
                                     <td><input class="form-control" type="text" name="godine2" id="godine2"></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
-                                    <td><input class="form-control" type="text" name="sport3" id="sport3"></td>
+                                    <td>
+                                        <select class="form-control" id="sport3" name="sport3">
+                                            @foreach($sport as $item)
+                                                <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td><input class="form-control" type="text" name="klub3" id="klub3"></td>
                                     <td><input class="form-control" type="text" name="uzrast3" id="uzrast3"></td>
                                     <td><input class="form-control" type="text" name="godine3" id="godine3"></td>
@@ -138,90 +156,46 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-default">
+                    <div class="panel panel-default pull-left" style="width: 50%">
                         <div class="panel-heading">
                             <h3 class="panel-title">DOKUMENTA - za upis na I GODINU STUDIJA</h3>
                         </div>
                         <div class="panel-body">
+                            @foreach($dokumentiPrvaGodina as $dokument)
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="">
-                                    Diploma o završenoj srednjoj školi
+                                    <input type="checkbox" value="{{$dokument->id}}">
+                                    {{ $dokument->naziv }}
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Svedočanstva iz srednje škole (sve četiri godine)
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Izvod iz matične knjige rođenih
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    3 fotografije
-                                </label>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="panel panel-default">
+                    <div class="panel panel-default pull-left" style="width: 50%;">
                         <div class="panel-heading">
                             <h3 class="panel-title">DOKUMENTA - za upis na II, III, IV GODINU STUDIJA i prelazak sa
                             drugog fakulteta</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Diploma o završenoj visokoj školi
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Uverenje o položenim ispitima
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    Izvod iz matične knjige rođenih
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    3 fotografije
-                                </label>
-                            </div>
+                            @foreach($dokumentiOstaleGodine as $dokument)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="{{$dokument->id}}">
+                                        {{ $dokument->naziv }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-
-
-
-                    <div class="panel panel-info">
+                    <div class="panel panel-info pull-left" style="width: 100%;">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Sportsko angazovanje</h3>
+                            <h3 class="panel-title">Ostalo</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="PrilozeniDokumentPrvaGodina">PrilozeniDokumentPrvaGodina:</label>
-                                <select class="form-control" id="PrilozeniDokumentPrvaGodina"
-                                        name="PrilozeniDokumentPrvaGodina">
-                                    @foreach($prilozeniDokumentPrvaGodina as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="StatusaUpisaKandidata">StatusaUpisaKandidata:</label>
+                                <label for="StatusaUpisaKandidata">Status Upisa Kandidata:</label>
                                 <select class="form-control" id="StatusaUpisaKandidata" name="StatusaUpisaKandidata">
                                     @foreach($statusaUpisaKandidata as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -229,24 +203,27 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="BrojBodovaTest">BrojBodovaTest</label>
+                                <label for="BrojBodovaTest">Broj Bodova Test</label>
                                 <input class="form-control" type="text" name="BrojBodovaTest" id="BrojBodovaTest">
                             </div>
                             <div class="form-group">
-                                <label for="BrojBodovaSkola">BrojBodovaSkola</label>
+                                <label for="BrojBodovaSkola">Broj Bodova Skola</label>
                                 <input class="form-control" type="text" name="BrojBodovaSkola" id="BrojBodovaSkola">
                             </div>
                             <div class="form-group">
-                                <label for="UpisniRok">UpisniRok</label>
+                                <label for="UpisniRok">Upisni Rok</label>
                                 <input class="form-control" type="text" name="UpisniRok" id="UpisniRok">
                             </div>
                             <div class="form-group">
-                                <label for="IndikatorAktivan">IndikatorAktivan</label>
+                                <label for="IndikatorAktivan">Indikator Aktivan</label>
                                 <input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">
                             </div>
                         </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Dalje</button>
+                        </div>
+
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

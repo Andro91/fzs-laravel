@@ -9,6 +9,7 @@ use App\Mesto;
 use App\OpstiUspeh;
 use App\PrilozenaDokumenta;
 use App\SkolskaGodUpisa;
+use App\Sport;
 use App\SportskoAngazovanje;
 use App\SrednjeSkoleFakulteti;
 use App\StatusStudiranja;
@@ -103,7 +104,7 @@ class KandidatController extends Controller
             $insertedId = $kandidat->id;
 
             $mestoRodjenja = Mesto::all();
-            $krsnaSlava = KrsnaSlava::all();
+            //$krsnaSlava = KrsnaSlava::all();
             $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
             $mestoZavrseneSkoleFakulteta = Mesto::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
@@ -115,10 +116,13 @@ class KandidatController extends Controller
             $tipStudija = TipStudija::all();
             $godinaStudija = GodinaStudija::all();
             $skolskeGodineUpisa = SkolskaGodUpisa::all();
+            $sport = Sport::all();
+            $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina','1')->get();
+            $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina','2')->get();
 
             return view("kandidat.create_part_2")
                 ->with('mestoRodjenja', $mestoRodjenja)
-                ->with('krsnaSlava', $krsnaSlava)
+                //->with('krsnaSlava', $krsnaSlava)
                 ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
                 ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
                 ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
@@ -130,13 +134,16 @@ class KandidatController extends Controller
                 ->with('tipStudija', $tipStudija)
                 ->with('godinaStudija', $godinaStudija)
                 ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
-                ->with('insertedId',$insertedId);
+                ->with('insertedId',$insertedId)
+                ->with('sport',$sport)
+                ->with('dokumentiPrvaGodina',$dokumentiPrvaGodina)
+                ->with('dokumentiOstaleGodine',$dokumentiOstaleGodine);
 
         }else if($request->page == 2){
 
             $kandidat = Kandidat::find($request->insertedId);
 
-
+            return $request->all();
 
         }
     }

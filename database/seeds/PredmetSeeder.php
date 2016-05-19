@@ -19,7 +19,7 @@ class PredmetSeeder extends Seeder
         $predmet->studijskiProgram_id = 1;
         $predmet->godinaStudija_id = 1;
         $predmet->espb = 5;
-        $predmet->status = 1;
+        $predmet->statusPredmeta = 1;
 
         $predmet->save();
     }

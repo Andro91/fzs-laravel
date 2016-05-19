@@ -14,7 +14,7 @@
                             <h3 class="panel-title">Studijski program</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group" style="width: 50%;">
+                            <div class="form-group pull-left" style="width: 28%; margin-right: 2%">
                                 <label for="TipStudija">TipStudija:</label>
                                 <select class="form-control" id="TipStudija" name="TipStudija">
                                     @foreach($tipStudija as $item)
@@ -22,7 +22,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                                 <label for="StudijskiProgram">Studijski Program:</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
@@ -30,7 +30,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
+                            <div class="form-group pull-left" style="width: 20%;">
                                 <label for="SkolskeGodineUpisa">Skolska Godina:</label>
                                 <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
                                     @foreach($skolskeGodineUpisa as $item)
@@ -55,14 +55,16 @@
                                 <label for="PrezimeKandidata">Prezime Kandidata</label>
                                 <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata">
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group pull-left" style="width: 60%; margin-right: 2%;">
                                 <label for="JMBG">JMBG</label>
-                                <input class="form-control" type="text" name="JMBG" id="JMBG" style="max-width: 60%">
+                                <input class="form-control" type="text" name="JMBG" id="JMBG">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group pull-left" style="width: 38%;">
                                 <label for="DatumRodjenja">Datum Rodjenja</label>
-                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja" style="max-width: 60%">
+                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja">
                             </div>
+
                             <div class="form-group">
                                 <label for="MestoRodjenja">MestoRodjenja:</label>
                                 <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%">
@@ -84,47 +86,52 @@
                                 <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%">
                             </div>
                             <div class="form-group">
-                                <label for="AdresaStanovanja">AdresaStanovanja</label>
+                                <label for="AdresaStanovanja">Adresa Stanovanja</label>
                                 <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja" style="max-width: 80%">
                             </div>
                             <div class="form-group">
                                 <label for="Email">Email</label>
                                 <input class="form-control" type="text" name="Email" id="Email" style="max-width: 60%">
                             </div>
-                            <div class="form-group">
-                                <label for="ImePrezimeJednogRoditelja">ImePrezimeJednogRoditelja</label>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="ImePrezimeJednogRoditelja">Ime i Prezime Jednog Roditelja</label>
                                 <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
-                                       id="ImePrezimeJednogRoditelja" style="max-width: 80%">
+                                       id="ImePrezimeJednogRoditelja">
                             </div>
-                            <div class="form-group">
-                                <label for="KontaktTelefonRoditelja">KontaktTelefonRoditelja</label>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="KontaktTelefonRoditelja">Kontakt Telefon Roditelja</label>
                                 <input class="form-control" type="text" name="KontaktTelefonRoditelja"
-                                       id="KontaktTelefonRoditelja" style="max-width: 40%">
+                                       id="KontaktTelefonRoditelja">
                             </div>
-                            <div class="form-group">
-                                <label for="NazivSkoleFakulteta">NazivSkoleFakulteta:</label>
-                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta" style="max-width: 80%">
+
+                            <div class="clearfix"></div>
+                            <hr>
+
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="NazivSkoleFakulteta">Naziv Skole ili Fakulteta:</label>
+                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
                                     @foreach($nazivSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="MestoZavrseneSkoleFakulteta">MestoZavrseneSkoleFakulteta:</label>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="SmerZavrseneSkoleFakulteta">Smer Zavrsene Skole ili Fakulteta</label>
+                                <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
+                                       id="SmerZavrseneSkoleFakulteta">
+                            </div>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="MestoZavrseneSkoleFakulteta">Mesto Zavrsene Skole ili Fakulteta:</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
-                                        name="MestoZavrseneSkoleFakulteta" style="max-width: 60%">
+                                        name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="SmerZavrseneSkoleFakulteta">SmerZavrseneSkoleFakulteta</label>
-                                <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
-                                       id="SmerZavrseneSkoleFakulteta" style="max-width: 80%">
-                            </div>
-                            <div class="form-group">
-                                <label for="GodinaStudija">GodinaStudija:</label>
+
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="GodinaStudija">Godina Studija:</label>
                                 <select class="form-control" id="GodinaStudija" name="GodinaStudija" style="max-width: 40%">
                                     @foreach($godinaStudija as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
