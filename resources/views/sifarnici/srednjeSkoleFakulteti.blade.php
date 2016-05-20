@@ -1,4 +1,4 @@
-<title>Tip studija</title>
+<title>Srednje škole i fakulteti</title>
 @extends('layouts.layout')
 @section('page_heading','Srednje škole i fakulteti')
 @section('section')

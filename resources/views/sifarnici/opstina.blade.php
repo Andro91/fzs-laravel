@@ -1,6 +1,6 @@
-<title>Krsna slava</title>
+<title>Opština</title>
 @extends('layouts.layout')
-@section('page_heading','Krsna slava')
+@section('page_heading','Opština')
 @section('section')
 
     <div class="table-responsive">
@@ -10,14 +10,14 @@
                 Naziv
             </th>
             <th>
-                Datum
+                Naziv regiona
             </th>
             </thead>
 
-            @foreach($krsnaSlava as $krsnaSlava)
+            @foreach($opstina as $opstina)
                 <tr>
-                    <td>{{$krsnaSlava->naziv}}</td>
-                    <td>{{$krsnaSlava->datumSlave}}</td>
+                    <td>{{$opstina->naziv}}</td>
+                    <td>{{$opstina->region->naziv}}</td>
                 </tr>
             @endforeach
         </table>

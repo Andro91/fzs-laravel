@@ -36,6 +36,10 @@
                     <input name="naziv" type="text" class="form-control">
                 </div>
                 <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <label for="naziv">Skraćeni naziv:</label>
+                    <input name="skrNaziv" type="text" class="form-control">
+                </div>
+                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                     <label for="naziv">Aktivan:</label>
                     <input name="indikatorAktivan" type="checkbox" class="form-control">
                 </div>

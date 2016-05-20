@@ -8,7 +8,7 @@ class TipStudija extends Model
 {
     protected $table = 'tip_studija';
 
-    protected $fillable = ['body', 'indikatorAktivan'];
+    protected $fillable = ['naziv', 'skrNaziv', 'indikatorAktivan'];
 
     public function studijskiProgram()
     {

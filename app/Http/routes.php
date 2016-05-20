@@ -33,8 +33,14 @@ Route::get('/statusStudiranja', 'StatusStudiranjaController@index');
 Route::get('/predmet', 'PredmetController@index');
 Route::get('/srednjeSkoleFakulteti', 'SrednjeSkoleFakultetiController@index');
 Route::get('/krsnaSlava', 'KrsnaSlavaController@index');
+Route::get('/region', 'RegionController@index');
+Route::get('/opstina', 'OpstinaController@index');
+Route::get('/mesto', 'MestoController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
+Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
+Route::post('/godinaStudija/unos', 'GodinaStudijaController@unos');
+Route::post('/sport/unos', 'SportController@unos');
 
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');

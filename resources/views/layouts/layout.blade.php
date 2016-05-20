@@ -73,6 +73,15 @@
                                 <li {{ (Request::is('*krsnaSlava') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('krsnaSlava' ) }}">Krsna slava</a>
                                 </li>
+                                <li {{ (Request::is('*region') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('region' ) }}">Region</a>
+                                </li>
+                                <li {{ (Request::is('*opstina') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('opstina' ) }}">Opština</a>
+                                </li>
+                                <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('mesto' ) }}">Mesto</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

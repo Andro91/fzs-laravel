@@ -21,7 +21,14 @@ class TipStudijaController extends Controller
         $tipStudija = new TipStudija();
 
         $tipStudija->naziv = $request->naziv;
-        $tipStudija->indikatorAktivan = $request->indikatorAktivan;
+        $tipStudija->skrNaziv = $request->skrNaziv;
+        if($request->indikatorAktivan == 'on') {
+            $tipStudija->indikatorAktivan = 1;
+        }
+        else{
+            $tipStudija->indikatorAktivan = 0;
+        }
+
         $tipStudija->save();
 
         return back();

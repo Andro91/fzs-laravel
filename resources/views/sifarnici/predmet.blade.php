@@ -1,4 +1,4 @@
-<title>Tip studija</title>
+<title>Predmet</title>
 @extends('layouts.layout')
 @section('page_heading','Predmet')
 @section('section')
