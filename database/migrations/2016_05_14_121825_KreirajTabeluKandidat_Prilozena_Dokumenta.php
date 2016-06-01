@@ -14,6 +14,7 @@ class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
     {
         Schema::create('kadnidat_prilozena_dokumenta', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('kandidat_id')->unsigned();
             $table->integer('prilozenaDokumenta_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();

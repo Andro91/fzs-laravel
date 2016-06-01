@@ -16,7 +16,11 @@
                         <div class="panel-body">
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="prviRazred">1. razred</label>
-                                <input class="form-control" type="text" name="prviRazred" id="prviRazred" placeholder="uspeh">
+                                <select class="form-control" id="prviRazred" name="prviRazred">
+                                    @foreach($opstiUspehSrednjaSkola as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
                                 <label for="SrednjaOcena1">Srednja Ocena</label>
@@ -24,7 +28,11 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="drugiRazred">2. razred</label>
-                                <input class="form-control" type="text" name="drugiRazred" id="drugiRazred" placeholder="uspeh">
+                                <select class="form-control" id="drugiRazred" name="drugiRazred">
+                                    @foreach($opstiUspehSrednjaSkola as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
                                 <label for="SrednjaOcena2">Srednja Ocena</label>
@@ -32,7 +40,11 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="treciRazred">3. razred</label>
-                                <input class="form-control" type="text" name="treciRazred" id="treciRazred" placeholder="uspeh">
+                                <select class="form-control" id="treciRazred" name="treciRazred">
+                                    @foreach($opstiUspehSrednjaSkola as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
                                 <label for="SrednjaOcena3">Srednja Ocena</label>
@@ -40,12 +52,20 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="cetvrtiRazred">4. razred</label>
-                                <input class="form-control" type="text" name="cetvrtiRazred" id="cetvrtiRazred" placeholder="uspeh">
+                                <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred">
+                                    @foreach($opstiUspehSrednjaSkola as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
                                 <label for="SrednjaOcena4">Srednja Ocena</label>
                                 <input class="form-control" type="text" name="SrednjaOcena4" id="SrednjaOcena4">
                             </div>
+
+                            <div class="clearfix"></div>
+                            <hr>
+
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="OpstiUspehSrednjaSkola">OpstiUspehSrednjaSkola:</label>
                                 <select class="form-control" id="OpstiUspehSrednjaSkola" name="OpstiUspehSrednjaSkola">
@@ -55,15 +75,6 @@
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                <label for="UspehSrednjaSkola">UspehSrednjaSkola:</label>
-                                {{--<select class="form-control" id="UspehSrednjaSkola" name="UspehSrednjaSkola">--}}
-                                    {{--@foreach($uspehSrednjaSkola as $item)--}}
-                                        {{--<option value="{{$item->id}}">{{$item->naziv}}</option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                                <input class="form-control" type="text" name="UspehSrednjaSkola" id="UspehSrednjaSkola">
-                            </div>
-                            <div class="form-group">
                                 <label for="SrednjaOcenaSrednjaSkola">SrednjaOcenaSrednjaSkola</label>
                                 <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
                                        id="SrednjaOcenaSrednjaSkola">
@@ -164,7 +175,7 @@
                             @foreach($dokumentiPrvaGodina as $dokument)
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="{{$dokument->id}}">
+                                    <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
                                     {{ $dokument->naziv }}
                                 </label>
                             </div>
@@ -181,7 +192,7 @@
                             @foreach($dokumentiOstaleGodine as $dokument)
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="{{$dokument->id}}">
+                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
                                         {{ $dokument->naziv }}
                                     </label>
                                 </div>

@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56ab9f7a-6ef2-4b24-a091-3463921042e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/npm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/npm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css.map" />
     </list>
     <ignored path="fzs-laravel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +39,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="KandidatController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KandidatController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.576923">
-              <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.6848204">
+              <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_part_2.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-26.153847">
+              <caret line="229" column="94" selection-start-line="229" selection-start-column="78" selection-end-line="229" selection-end-column="94" />
+              <folding>
+                <element signature="e#3273#3309#0#HTML" expanded="true" />
+                <element signature="e#3602#3639#0#HTML" expanded="true" />
+                <element signature="e#4603#4640#0#HTML" expanded="true" />
+                <element signature="e#5224#5260#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UspehSrednjaSkola.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/UspehSrednjaSkola.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,24 +89,9 @@
       <file leaf-file-name="create_part_1.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384">
-              <caret line="3" column="52" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="52" />
-              <folding>
-                <element signature="e#116#141#0#HTML" expanded="true" />
-                <element signature="e#836#872#0#HTML" expanded="true" />
-                <element signature="e#1396#1433#0#HTML" expanded="true" />
-                <element signature="e#1988#2007#0#HTML" expanded="true" />
-                <element signature="e#2927#2964#0#HTML" expanded="true" />
-                <element signature="e#3254#3290#0#HTML" expanded="true" />
-                <element signature="e#3597#3634#0#HTML" expanded="true" />
-                <element signature="e#3891#3910#0#HTML" expanded="true" />
-                <element signature="e#6193#6230#0#HTML" expanded="true" />
-                <element signature="e#6615#6652#0#HTML" expanded="true" />
-                <element signature="e#7118#7155#0#HTML" expanded="true" />
-                <element signature="e#7730#7767#0#HTML" expanded="true" />
-                <element signature="e#8158#8195#0#HTML" expanded="true" />
-                <element signature="e#8852#8889#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-18.307692">
+              <caret line="106" column="28" selection-start-line="106" selection-start-column="28" selection-end-line="107" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,26 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_part_2.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.059096176">
-              <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-              <folding>
-                <element signature="e#116#141#0#HTML" expanded="true" />
-                <element signature="e#11124#11142#0#HTML" expanded="true" />
-                <element signature="e#11919#11938#0#HTML" expanded="true" />
-                <element signature="e#12807#12827#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="3" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
+            <state vertical-scroll-proportion="-27.461538">
+              <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -129,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Region.php" />
         <option value="$PROJECT_DIR$/app/SkolskaGodUpisa.php" />
         <option value="$PROJECT_DIR$/app/StudijskiProgram.php" />
         <option value="$PROJECT_DIR$/app/TipStudija.php" />
@@ -138,7 +132,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121602_KreirajTabeluStudijski_Program.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121641_KreirajTabeluGodina_Studija.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121738_KreirajTabeluSkolska_God_Upisa.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121825_KreirajTabeluKandidat_Prilozena_Dokumenta.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121933_KreirajTabeluPrilozena_Dokumenta.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_122113_KreirajTabeluSportsko_Angazovanje.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_14_122139_KreirajTabeluStatus_Studiranja.php" />
@@ -177,9 +170,11 @@
         <option value="$PROJECT_DIR$/app/PrilozenaDokumenta.php" />
         <option value="$PROJECT_DIR$/database/seeds/PrilozenaDokumentaSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_05_14_121825_KreirajTabeluKandidat_Prilozena_Dokumenta.php" />
+        <option value="$PROJECT_DIR$/app/KandidatPrilozenaDokumenta.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
       </list>
     </option>
   </component>
@@ -247,8 +242,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -353,12 +346,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,28 +504,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_121825_KreirajTabeluKandidat_Prilozena_Dokumenta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.846153">
-          <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_121933_KreirajTabeluPrilozena_Dokumenta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.846153">
-          <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_122005_KreirajTabeluSport.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.5">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_122113_KreirajTabeluSportsko_Angazovanje.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -714,7 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="177" column="35" selection-start-line="177" selection-start-column="35" selection-end-line="177" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -722,7 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="104" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,23 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Kandidat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="3" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,8 +807,24 @@
         <state vertical-scroll-proportion="-15.038462">
           <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
           <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
+            <element signature="e#7#38#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.461538">
+          <caret line="55" column="3" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="106" column="28" selection-start-line="106" selection-start-column="28" selection-end-line="107" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -834,47 +836,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
+    <entry file="file://$PROJECT_DIR$/app/UspehSrednjaSkola.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.576923">
-          <caret line="139" column="24" selection-start-line="139" selection-start-column="24" selection-end-line="139" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Kandidat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="52" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="52" />
-          <folding>
-            <element signature="e#116#141#0#HTML" expanded="true" />
-            <element signature="e#836#872#0#HTML" expanded="true" />
-            <element signature="e#1396#1433#0#HTML" expanded="true" />
-            <element signature="e#1988#2007#0#HTML" expanded="true" />
-            <element signature="e#2927#2964#0#HTML" expanded="true" />
-            <element signature="e#3254#3290#0#HTML" expanded="true" />
-            <element signature="e#3597#3634#0#HTML" expanded="true" />
-            <element signature="e#3891#3910#0#HTML" expanded="true" />
-            <element signature="e#6193#6230#0#HTML" expanded="true" />
-            <element signature="e#6615#6652#0#HTML" expanded="true" />
-            <element signature="e#7118#7155#0#HTML" expanded="true" />
-            <element signature="e#7730#7767#0#HTML" expanded="true" />
-            <element signature="e#8158#8195#0#HTML" expanded="true" />
-            <element signature="e#8852#8889#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.15758981">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_121825_KreirajTabeluKandidat_Prilozena_Dokumenta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/KandidatPrilozenaDokumenta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.059096176">
-          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+        <state vertical-scroll-proportion="-26.153847">
+          <caret line="229" column="94" selection-start-line="229" selection-start-column="78" selection-end-line="229" selection-end-column="94" />
           <folding>
-            <element signature="e#116#141#0#HTML" expanded="true" />
-            <element signature="e#11124#11142#0#HTML" expanded="true" />
-            <element signature="e#11919#11938#0#HTML" expanded="true" />
-            <element signature="e#12807#12827#0#HTML" expanded="true" />
+            <element signature="e#3273#3309#0#HTML" expanded="true" />
+            <element signature="e#3602#3639#0#HTML" expanded="true" />
+            <element signature="e#4603#4640#0#HTML" expanded="true" />
+            <element signature="e#5224#5260#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6848204">
+          <caret line="229" column="30" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

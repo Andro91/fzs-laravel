@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\GodinaStudija;
 use App\Kandidat;
+use App\KandidatPrilozenaDokumenta;
 use App\KrsnaSlava;
 use App\Mesto;
 use App\OpstiUspeh;
@@ -142,6 +143,91 @@ class KandidatController extends Controller
         }else if($request->page == 2){
 
             $kandidat = Kandidat::find($request->insertedId);
+
+            $skola_id = $kandidat->srednjeSkoleFakulteti_id;
+
+            try {
+            $prviRazred = new UspehSrednjaSkola();
+            $prviRazred->kandidat_id = $request->insertedId;
+            $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            $prviRazred->opstiUspeh_id = $request->prviRazred;
+            $prviRazred->RedniBrojRazreda = 1;
+            $prviRazred->save();
+            }catch (\Exception $e){
+                return $e;
+            }
+
+            $drugiRazred = new UspehSrednjaSkola();
+            $drugiRazred->kandidat_id = $request->insertedId;
+            $drugiRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+            $drugiRazred->RedniBrojRazreda = 2;
+            $drugiRazred->save();
+
+            $treciRazred = new UspehSrednjaSkola();
+            $treciRazred->kandidat_id = $request->insertedId;
+            $treciRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            $treciRazred->opstiUspeh_id = $request->treciRazred;
+            $treciRazred->RedniBrojRazreda = 3;
+            $treciRazred->save();
+
+            $cetvrtiRazred = new UspehSrednjaSkola();
+            $cetvrtiRazred->kandidat_id = $request->insertedId;
+            $cetvrtiRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+            $cetvrtiRazred->RedniBrojRazreda = 4;
+            $cetvrtiRazred->save();
+
+            $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
+            $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
+
+            $sport1 = new SportskoAngazovanje();
+            $sport1->sport_id = $request->sport1;
+            $sport1->kandidat_id = $request->insertedId;
+            $sport1->nazivKluba = $request->klub1;
+            $sport1->odDoGodina = $request->uzrast1;
+            $sport1->ukupnoGodina = $request->godine1;
+            $sport1->save();
+
+            $sport2 = new SportskoAngazovanje();
+            $sport2->sport_id = $request->sport2;
+            $sport2->kandidat_id = $request->insertedId;
+            $sport2->nazivKluba = $request->klub2;
+            $sport2->odDoGodina = $request->uzrast2;
+            $sport2->ukupnoGodina = $request->godine2;
+            $sport2->save();
+
+            $sport3 = new SportskoAngazovanje();
+            $sport3->sport_id = $request->sport3;
+            $sport3->kandidat_id = $request->insertedId;
+            $sport3->nazivKluba = $request->klub3;
+            $sport3->odDoGodina = $request->uzrast3;
+            $sport3->ukupnoGodina = $request->godine3;
+            $sport3->save();
+
+            $kandidat->visina = $request->VisinaKandidata;
+            $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
+
+
+            $dokumenta = PrilozenaDokumenta::all();
+
+            foreach($dokumenta as $dokument){
+                if($request->has(str_replace(' ','_',$dokument->naziv))){
+                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                    $prilozenDokument->kandidat_id = $request->insertedId;
+                    $prilozenDokument->indikatorAktivan = 1;
+                    $prilozenDokument->save();
+                }
+            }
+
+            $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
+            $kandidat->brojBodovaTest = $request->BrojBodovaTest;
+            $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
+            $kandidat->upisniRok = $request->UpisniRok;
+            $kandidat->indikatorAktivan = $request->IndikatorAktivan;
+
+            $kandidat->save();
 
             return $request->all();
 
