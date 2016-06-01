@@ -138,6 +138,10 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div class="clearfix"></div>
+                            <hr>
+
                             <div class="form-group text-center">
                                 <button type="submit" name="Submit" class="btn btn-primary btn-lg">Dalje</button>
                             </div>

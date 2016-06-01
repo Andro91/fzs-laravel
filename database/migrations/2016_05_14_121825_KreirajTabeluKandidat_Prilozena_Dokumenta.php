@@ -12,7 +12,7 @@ class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
      */
     public function up()
     {
-        Schema::create('kadnidat_prilozena_dokumenta', function (Blueprint $table) {
+        Schema::create('kandidat_prilozena_dokumenta', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kandidat_id')->unsigned();
             $table->integer('prilozenaDokumenta_id')->unsigned()->index();
@@ -28,6 +28,6 @@ class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
      */
     public function down()
     {
-        Schema::drop('kadnidat_prilozena_dokumenta');
+        Schema::drop('kandidat_prilozena_dokumenta');
     }
 }

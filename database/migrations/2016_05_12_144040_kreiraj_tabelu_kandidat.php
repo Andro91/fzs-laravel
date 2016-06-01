@@ -16,7 +16,7 @@ class KreirajTabeluKandidat extends Migration
             $table->increments('id');
             $table->string('imeKandidata');
             $table->string('prezimeKandidata');
-            $table->string('jmbg');
+            $table->string('jmbg')->unique();
             $table->dateTime('datumRodjenja');
             $table->integer('mestoRodjenja_id')->unsigned()->index();
             $table->integer('krsnaSlava_id')->unsigned()->index();
@@ -30,14 +30,14 @@ class KreirajTabeluKandidat extends Migration
             $table->integer('smerZavrseneSkoleFakulteta')->unsigned()->nullable();
             $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
             $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();
-            $table->decimal('srednjaOcenaSrednjaSkola', 2, 2);
+            $table->double('srednjaOcenaSrednjaSkola', 2, 2);
             $table->integer('sportskoAngazovanje_id')->unsigned()->nullable();
-            $table->decimal('telesnaTezina', 2, 2);
-            $table->decimal('visina', 2, 2);
+            $table->double('telesnaTezina', 2, 2);
+            $table->double('visina', 2, 2);
             $table->integer('prilozenaDokumentaPrvaGodina_id')->unsigned()->nullable();
             $table->integer('statusUpisa_id')->unsigned()->nullable();
-            $table->decimal('brojBodovaTest', 2, 2)->nullable();
-            $table->decimal('brojBodovaSkola', 2, 2);
+            $table->double('brojBodovaTest', 2, 2)->nullable();
+            $table->double('brojBodovaSkola', 2, 2);
             $table->string('upisniRok')->nullable();
             $table->integer('skolskaGodinaUpisa_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();
