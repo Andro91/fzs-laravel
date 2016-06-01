@@ -15,4 +15,15 @@ class RegionController extends Controller
 
         return view('sifarnici.region', compact('region'));
     }
+
+    public function unos(Request $request)
+    {
+        $region = new Region();
+        $region->naziv = $request->naziv;
+
+        $region->save();
+
+        return back();
+    }
+
 }

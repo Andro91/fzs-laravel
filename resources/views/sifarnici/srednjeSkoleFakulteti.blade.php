@@ -7,7 +7,7 @@
         <table class="table">
             <thead>
             <th>
-                Naziv statusa
+                Naziv srednje škole/fakulteta
             </th>
             <th>
                 Indikator
@@ -22,5 +22,29 @@
             @endforeach
         </table>
     </div>
+    <form role="form" method="post" action="{{ url('/srednjeSkoleFakulteti/unos') }}">
+        {{csrf_field()}}
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Srednje škole i fakulteti</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <label for="naziv">Naziv:</label>
+                    <input name="naziv" type="text" class="form-control">
+                </div>
+                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <label for="naziv">Indikator:</label>
+                    <input name="indSkoleFakulteta" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
 @endsection

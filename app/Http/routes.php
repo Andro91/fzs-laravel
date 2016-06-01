@@ -41,6 +41,13 @@ Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
 Route::post('/godinaStudija/unos', 'GodinaStudijaController@unos');
 Route::post('/sport/unos', 'SportController@unos');
+Route::post('/srednjeSkoleFakulteti/unos', 'SrednjeSkoleFakultetiController@unos');
+Route::post('/krsnaSlava/unos', 'KrsnaSlavaController@unos');
+Route::post('/region/unos', 'RegionController@unos');
+Route::post('/opstina/unos', 'OpstinaController@unos');
+Route::post('/mesto/unos', 'MestoController@unos');
+Route::post('/statusStudiranja/unos', 'StatusStudiranjaController@unos');
+Route::post('/predmet/unos', 'PredmetController@unos');
 
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');

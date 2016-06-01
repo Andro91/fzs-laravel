@@ -15,4 +15,17 @@ class SrednjeSkoleFakultetiController extends Controller
 
         return view('sifarnici.srednjeSkoleFakulteti', compact('srednjeSkoleFakulteti'));
     }
+
+    public function unos(Request $request)
+    {
+        $srednjeSkoleFakulteti = new SrednjeSkoleFakulteti();
+
+        $srednjeSkoleFakulteti->naziv = $request->naziv;
+        $srednjeSkoleFakulteti->indSkoleFakulteta = $request->indSkoleFakulteta;
+
+        $srednjeSkoleFakulteti->save();
+
+        return back();
+    }
+
 }
