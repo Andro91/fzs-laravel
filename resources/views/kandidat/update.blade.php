@@ -4,11 +4,11 @@
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
             <div class="col-lg-8">
-                
+
                 {{--GRESKE--}}
                 @if (Session::get('errors'))
                     <div class="alert alert-dismissable alert-danger">
-                        <h4>Gre≈°ka!</h4>
+                        <h4>Greöka!</h4>
                         <ul>
                             @foreach (Session::get('errors')->all() as $error)
                                 <li>{!! $error !!}</li>
@@ -19,7 +19,7 @@
 
                 @if (Session::get('jmbgError'))
                     <div class="alert alert-dismissable alert-danger">
-                        <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Gre≈°ka!</h4>
+                        <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Greöka!</h4>
                         <p>JMBG vec postoji u sistemu. Pokusajte da nadjete kandidata u postojecim.</p>
                         <p>{{ Session::get('status') }}</p>
                     </div>
@@ -165,7 +165,7 @@
                             <hr>
 
                             <div class="form-group text-center">
-                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Na sledeƒáu stranu</button>
+                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Na slede?u stranu</button>
                             </div>
                         </div>
                     </div>
