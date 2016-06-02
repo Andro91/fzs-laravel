@@ -19,8 +19,15 @@ Route::get('/', function()
 	return View::make('home');
 });
 
-//Dodao Andrija
-Route::resource('kandidat', 'KandidatController');
+//Added by Andrija
+//Routes in the web middleware group
+
+Route::group(['middleware' => ['web']], function () {
+
+	Route::resource('kandidat', 'KandidatController');
+
+});
+
 
 
 // rute za sifarnike

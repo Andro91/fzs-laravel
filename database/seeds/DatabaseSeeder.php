@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StudijskiProgramSeeder::class);
         $this->call(TipStudijaSeeder::class);
         $this->call(PrilozenaDokumentaSeeder::class);
+        $this->call(OpstiUspehSeeder::class);
     }
 }

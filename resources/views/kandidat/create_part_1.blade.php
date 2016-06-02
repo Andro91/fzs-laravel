@@ -148,6 +148,7 @@
                         </div>
                     </div>
                 </form>
+                {{ var_dump($errors) }}
             </div>
         </div>
     </div>
