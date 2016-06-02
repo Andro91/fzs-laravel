@@ -17,6 +17,7 @@ use App\StatusStudiranja;
 use App\StudijskiProgram;
 use App\TipStudija;
 use App\UspehSrednjaSkola;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -97,7 +98,10 @@ class KandidatController extends Controller
             $kandidat->imeKandidata = $request->ImeKandidata;
             $kandidat->prezimeKandidata = $request->PrezimeKandidata;
             $kandidat->jmbg = $request->JMBG;
-            $kandidat->datumRodjenja = $request->DatumRodjenja;
+
+            //$dateArray = explode('.', ); date()
+            $kandidat->datumRodjenja = date_create_from_format('d.m.Y', $request->DatumRodjenja);
+
             $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
             $kandidat->krsnaSlava_id = $request->KrsnaSlava;
             $kandidat->kontaktTelefon = $request->KontaktTelefon;
@@ -109,6 +113,7 @@ class KandidatController extends Controller
             $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
             $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
+            $kandidat->tipStudija_id = $request->TipStudija;
             $kandidat->studijskiProgram_id = $request->StudijskiProgram;
             $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
             $kandidat->godinaStudija_id = $request->GodinaStudija;
@@ -275,7 +280,42 @@ class KandidatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mestoRodjenja = Mesto::all();
+        $krsnaSlava = KrsnaSlava::all();
+        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $opstiUspehSrednjaSkola = OpstiUspeh::all();
+        $uspehSrednjaSkola = UspehSrednjaSkola::all();
+        $sportskoAngazovanje = SportskoAngazovanje::all();
+        $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
+        $statusaUpisaKandidata = StatusStudiranja::all();
+        $studijskiProgram = StudijskiProgram::all();
+        $tipStudija = TipStudija::all();
+        $godinaStudija = GodinaStudija::all();
+        $skolskeGodineUpisa = SkolskaGodUpisa::all();
+        $sport = Sport::all();
+        $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina','1')->get();
+        $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina','2')->get();
+
+        $kandidat = Kandidat::find($id);
+
+        return view('kandidat.update')->with('kandidat',$kandidat)
+            ->with('mestoRodjenja', $mestoRodjenja)
+            ->with('krsnaSlava', $krsnaSlava)
+            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
+            ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
+            ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
+            ->with('sportskoAngazovanje', $sportskoAngazovanje)
+            ->with('prilozeniDokumentPrvaGodina', $prilozeniDokumentPrvaGodina)
+            ->with('statusaUpisaKandidata', $statusaUpisaKandidata)
+            ->with('studijskiProgram', $studijskiProgram)
+            ->with('tipStudija', $tipStudija)
+            ->with('godinaStudija', $godinaStudija)
+            ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
+            ->with('sport',$sport)
+            ->with('dokumentiPrvaGodina',$dokumentiPrvaGodina)
+            ->with('dokumentiOstaleGodine',$dokumentiOstaleGodine);
     }
 
     /**

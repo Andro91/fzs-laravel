@@ -7,6 +7,7 @@
                     <th>Ime</th>
                     <th>Prezime</th>
                     <th>JMBG</th>
+                    <th>Izmena</th>
                 </thead>
                 <tbody>
                 @foreach($kandidati as $kandidat)
@@ -14,6 +15,7 @@
                         <td>{{$kandidat->imeKandidata}}</td>
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
+                        <td><a href="/kandidat/{{ $kandidat->id }}/edit">Izmeni</a></td>
                     </tr>
                 @endforeach
                 </tbody>

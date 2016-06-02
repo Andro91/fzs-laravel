@@ -42,8 +42,8 @@
       <file leaf-file-name="KandidatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769">
-              <caret line="120" column="70" selection-start-line="120" selection-start-column="70" selection-end-line="120" selection-end-column="70" />
+            <state vertical-scroll-proportion="-30.076923">
+              <caret line="317" column="66" selection-start-line="317" selection-start-column="66" selection-end-line="317" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -52,21 +52,23 @@
       <file leaf-file-name="update.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5034551">
-              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+            <state vertical-scroll-proportion="1.9397829">
+              <caret line="334" column="81" selection-start-line="334" selection-start-column="81" selection-end-line="334" selection-end-column="81" />
               <folding>
-                <element signature="e#4243#4279#0#HTML" expanded="true" />
-                <element signature="e#4625#4662#0#HTML" expanded="true" />
-                <element signature="e#4946#4965#0#HTML" expanded="true" />
-                <element signature="e#5470#5492#0#HTML" expanded="true" />
-                <element signature="e#6045#6067#0#HTML" expanded="true" />
-                <element signature="e#6608#6630#0#HTML" expanded="true" />
-                <element signature="e#6963#6985#0#HTML" expanded="true" />
-                <element signature="e#7275#7297#0#HTML" expanded="true" />
-                <element signature="e#7424#7461#0#HTML" expanded="true" />
-                <element signature="e#7894#7931#0#HTML" expanded="true" />
-                <element signature="e#8443#8480#0#HTML" expanded="true" />
-                <element signature="e#9055#9092#0#HTML" expanded="true" />
+                <element signature="e#5416#5438#0#HTML" expanded="true" />
+                <element signature="e#6025#6047#0#HTML" expanded="true" />
+                <element signature="e#6654#6676#0#HTML" expanded="true" />
+                <element signature="e#7013#7035#0#HTML" expanded="true" />
+                <element signature="e#7329#7351#0#HTML" expanded="true" />
+                <element signature="e#7472#7491#0#HTML" expanded="true" />
+                <element signature="e#7918#7937#0#HTML" expanded="true" />
+                <element signature="e#8453#8490#0#HTML" expanded="true" />
+                <element signature="e#9142#9179#0#HTML" expanded="true" />
+                <element signature="e#9622#9659#0#HTML" expanded="true" />
+                <element signature="e#10399#10436#0#HTML" expanded="true" />
+                <element signature="e#10622#10644#0#HTML" expanded="true" />
+                <element signature="e#22041#22060#0#HTML" expanded="true" />
+                <element signature="e#22891#22910#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,8 +100,8 @@
       <file leaf-file-name="create_part_2.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-149.73077">
-              <caret line="229" column="94" selection-start-line="229" selection-start-column="78" selection-end-line="229" selection-end-column="94" />
+            <state vertical-scroll-proportion="-36.346153">
+              <caret line="240" column="10" selection-start-line="3" selection-start-column="4" selection-end-line="240" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -118,8 +120,8 @@
       <file leaf-file-name="indeks.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -199,11 +201,11 @@
         <option value="$PROJECT_DIR$/database/seeds/OpstiUspehSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/MestoSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/update.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" />
       </list>
     </option>
   </component>
@@ -385,7 +387,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog radeci" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="kernel.php&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Kernel.php&#10;kernel&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/vendor/symfony/http-kernel/Kernel.php&#10;rout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;lay&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;seeder&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/seeds/DatabaseSeeder.php&#10;route&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandida&#9;null&#9;null&#10;kandidat&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_12_144040_kreiraj_tabelu_kandidat.php&#10;kandidatCon&#9;null&#9;null&#10;plane&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/plane.blade.php&#10;create&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_2.blade.php&#10;create_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_2.blade.php&#10;create.bl&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create.blade.php&#10;kreirajt&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_14_122909_KreirajTabeluPredmet.php&#10;routes&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php" />
     <property name="recentsLimit" value="5" />
@@ -455,11 +457,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27552083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1859375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925024" sideWeight="0.5029542" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -815,14 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/http-kernel/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.171767">
@@ -839,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-149.73077">
-          <caret line="229" column="94" selection-start-line="229" selection-start-column="78" selection-end-line="229" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.115385">
@@ -855,10 +841,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="120" column="70" selection-start-line="120" selection-start-column="70" selection-end-line="120" selection-end-column="70" />
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-36.346153">
+          <caret line="240" column="10" selection-start-line="3" selection-start-column="4" selection-end-line="240" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -884,23 +878,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.076923">
+          <caret line="317" column="66" selection-start-line="317" selection-start-column="66" selection-end-line="317" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5034551">
-          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+        <state vertical-scroll-proportion="1.9397829">
+          <caret line="334" column="81" selection-start-line="334" selection-start-column="81" selection-end-line="334" selection-end-column="81" />
           <folding>
-            <element signature="e#4243#4279#0#HTML" expanded="true" />
-            <element signature="e#4625#4662#0#HTML" expanded="true" />
-            <element signature="e#4946#4965#0#HTML" expanded="true" />
-            <element signature="e#5470#5492#0#HTML" expanded="true" />
-            <element signature="e#6045#6067#0#HTML" expanded="true" />
-            <element signature="e#6608#6630#0#HTML" expanded="true" />
-            <element signature="e#6963#6985#0#HTML" expanded="true" />
-            <element signature="e#7275#7297#0#HTML" expanded="true" />
-            <element signature="e#7424#7461#0#HTML" expanded="true" />
-            <element signature="e#7894#7931#0#HTML" expanded="true" />
-            <element signature="e#8443#8480#0#HTML" expanded="true" />
-            <element signature="e#9055#9092#0#HTML" expanded="true" />
+            <element signature="e#5416#5438#0#HTML" expanded="true" />
+            <element signature="e#6025#6047#0#HTML" expanded="true" />
+            <element signature="e#6654#6676#0#HTML" expanded="true" />
+            <element signature="e#7013#7035#0#HTML" expanded="true" />
+            <element signature="e#7329#7351#0#HTML" expanded="true" />
+            <element signature="e#7472#7491#0#HTML" expanded="true" />
+            <element signature="e#7918#7937#0#HTML" expanded="true" />
+            <element signature="e#8453#8490#0#HTML" expanded="true" />
+            <element signature="e#9142#9179#0#HTML" expanded="true" />
+            <element signature="e#9622#9659#0#HTML" expanded="true" />
+            <element signature="e#10399#10436#0#HTML" expanded="true" />
+            <element signature="e#10622#10644#0#HTML" expanded="true" />
+            <element signature="e#22041#22060#0#HTML" expanded="true" />
+            <element signature="e#22891#22910#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
