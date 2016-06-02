@@ -27,6 +27,9 @@
             <th>
                 Status
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($predmet as $predmet)
@@ -38,6 +41,16 @@
                     <td>{{$predmet->semestarSlusanjaPredmeta}}</td>
                     <td>{{$predmet->espb}}</td>
                     <td>{{$predmet->statusPredmeta}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="predmet/edit/{{$predmet->id}}">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="predmet/delete/{{$predmet->id}}">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

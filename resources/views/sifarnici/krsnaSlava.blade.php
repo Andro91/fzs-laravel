@@ -12,12 +12,25 @@
             <th>
                 Datum
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($krsnaSlava as $krsnaSlava)
                 <tr>
                     <td>{{$krsnaSlava->naziv}}</td>
                     <td>{{$krsnaSlava->datumSlave}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="krsnaSlava/edit/{{$krsnaSlava->id}}">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="krsnaSlava/delete/{{$krsnaSlava->id}}">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

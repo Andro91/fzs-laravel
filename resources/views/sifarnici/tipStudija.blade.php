@@ -12,11 +12,24 @@
             <th>
                 Skraćeni naziv
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
             @foreach($tipStudija as $tipStudija)
                 <tr>
                     <td>{{$tipStudija->naziv}}</td>
                     <td>{{$tipStudija->skrNaziv}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="tipStudija/{{$tipStudija->id}}/edit">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="tipStudija/{{$tipStudija->id}}/delete">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

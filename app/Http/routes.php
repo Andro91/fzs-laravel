@@ -56,6 +56,27 @@ Route::post('/mesto/unos', 'MestoController@unos');
 Route::post('/statusStudiranja/unos', 'StatusStudiranjaController@unos');
 Route::post('/predmet/unos', 'PredmetController@unos');
 
+Route::get('/sport/{sport}/edit', 'SportController@edit');
+Route::patch('sport/{sport}', 'SportController@update');
+Route::get('sport/{sport}/delete', 'SportController@delete');
+
+Route::get('/tipStudija/{tipStudija}/edit', 'TipStudijaController@edit');
+Route::patch('tipStudija/{tipStudija}', 'TipStudijaController@update');
+Route::get('tipStudija/{tipStudija}/delete', 'TipStudijaController@delete');
+
+Route::get('/studijskiProgram/{studijskiProgram}/edit', 'StudijskiProgramController@edit');
+Route::patch('studijskiProgram/{studijskiProgram}', 'StudijskiProgramController@update');
+Route::get('studijskiProgram/{studijskiProgram}/delete', 'StudijskiProgramController@delete');
+
+Route::get('/godinaStudija/{godinaStudija}/edit', 'GodinaStudijaController@edit');
+Route::patch('godinaStudija/{godinaStudija}', 'GodinaStudijaController@update');
+Route::get('godinaStudija/{godinaStudija}/delete', 'GodinaStudijaController@delete');
+
+Route::get('/statusStudiranja/{statusStudiranja}/edit', 'StatusStudiranjaController@edit');
+Route::patch('statusStudiranja/{statusStudiranja}', 'StatusStudiranjaController@update');
+Route::get('statusStudiranja/{statusStudiranja}/delete', 'StatusStudiranjaController@delete');
+
+
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');
 Route::get('/test2', 'KandidatController@test2');

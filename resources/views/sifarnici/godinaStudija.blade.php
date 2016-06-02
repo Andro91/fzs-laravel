@@ -15,6 +15,9 @@
             <th>
                 Naziv u padežu
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($godinaStudija as $godinaStudija)
@@ -22,6 +25,16 @@
                     <td>{{$godinaStudija->naziv}}</td>
                     <td>{{$godinaStudija->nazivRimski}}</td>
                     <td>{{$godinaStudija->nazivSlovimaUPadezu}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="godinaStudija/{{$godinaStudija->id}}/edit">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="godinaStudija/{{$godinaStudija->id}}/delete">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

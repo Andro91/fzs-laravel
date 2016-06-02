@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\TipStudija;
+use Illuminate\Support\Facades\Redirect;
 
 class TipStudijaController extends Controller
 {
@@ -30,6 +31,34 @@ class TipStudijaController extends Controller
         }
 
         $tipStudija->save();
+
+        return back();
+    }
+
+    public function edit(TipStudija $tipStudija)
+    {
+        return view('sifarnici.editTipStudija', compact('tipStudija'));
+    }
+
+    public function update(Request $request, TipStudija $tipStudija)
+    {
+        $tipStudija->naziv = $request->naziv;
+        $tipStudija->skrNaziv = $request->skrNaziv;
+        if($request->indikatorAktivan == 'on') {
+            $tipStudija->indikatorAktivan = 1;
+        }
+        else{
+            $tipStudija->indikatorAktivan = 0;
+        }
+
+        $tipStudija->update();
+
+        return Redirect::to('/tipStudija');
+    }
+
+    public function delete(TipStudija $tipStudija)
+    {
+        $tipStudija->delete();
 
         return back();
     }

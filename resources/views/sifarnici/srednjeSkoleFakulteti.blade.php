@@ -12,12 +12,25 @@
             <th>
                 Indikator
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($srednjeSkoleFakulteti as $srednjeSkoleFakulteti)
                 <tr>
                     <td>{{$srednjeSkoleFakulteti->naziv}}</td>
                     <td>{{$srednjeSkoleFakulteti->indSkoleFakulteta}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="srednjeSkoleFakulteti/edit/{{$srednjeSkoleFakulteti->id}}">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="srednjeSkoleFakulteti/delete/{{$srednjeSkoleFakulteti->id}}">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

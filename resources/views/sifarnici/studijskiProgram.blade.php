@@ -15,12 +15,25 @@
             <th>
                 Tip studija
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
             @foreach($studijskiProgram as $studijskiProgram)
                 <tr>
                     <td>{{$studijskiProgram->naziv}}</td>
                     <td>{{$studijskiProgram->skrNazivStudijskogPrograma}}</td>
                     <td>{{$studijskiProgram->tipStudija->naziv}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/edit">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/delete">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>
@@ -32,7 +45,7 @@
 
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Tip studija</h3>
+                <h3 class="panel-title">Studijski program</h3>
             </div>
             <div class="panel-body">
                 <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">

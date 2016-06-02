@@ -9,11 +9,24 @@
             <th>
                 Naziv
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($sport as $sport)
                 <tr>
                     <td>{{$sport->naziv}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="sport/{{$sport->id}}/edit">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="sport/{{$sport->id}}/delete">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>
@@ -21,10 +34,9 @@
     <form role="form" method="post" action="{{ url('/sport/unos') }}">
         {{csrf_field()}}
 
-
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Tip studija</h3>
+                <h3 class="panel-title">Sport</h3>
             </div>
             <div class="panel-body">
                 <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">

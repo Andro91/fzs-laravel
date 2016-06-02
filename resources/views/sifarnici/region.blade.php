@@ -9,11 +9,24 @@
             <th>
                 Naziv
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($region as $region)
                 <tr>
                     <td>{{$region->naziv}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="region/edit/{{$region->id}}">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="region/delete/{{$region->id}}">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>

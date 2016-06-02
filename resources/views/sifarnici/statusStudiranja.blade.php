@@ -9,11 +9,24 @@
             <th>
                 Naziv statusa
             </th>
+            <th>
+                Akcije
+            </th>
             </thead>
 
             @foreach($statusStudiranja as $statusStudiranja)
                 <tr>
                     <td>{{$statusStudiranja->naziv}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="btn" action="statusStudiranja/{{$statusStudiranja->id}}/edit">
+                                <input type="submit" class="btn btn-primary" value="Promeni">
+                            </form>
+                            <form class="btn" action="statusStudiranja/{{$statusStudiranja->id}}/delete">
+                                <input type="submit" class="btn btn-primary" value="Izbriši">
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </table>
