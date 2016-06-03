@@ -29,8 +29,6 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
-
-
 // rute za sifarnike
 Route::get('/tipStudija', 'TipStudijaController@index');
 Route::get('/studijskiProgram', 'StudijskiProgramController@index');
@@ -80,6 +78,26 @@ Route::get('statusStudiranja/{statusStudiranja}/delete', 'StatusStudiranjaContro
 Route::get('/predmet/{predmet}/edit', 'PredmetController@edit');
 Route::patch('predmet/{predmet}', 'PredmetController@update');
 Route::get('predmet/{predmet}/delete', 'PredmetController@delete');
+
+Route::get('/krsnaSlava/{krsnaSlava}/edit', 'KrsnaSlavaController@edit');
+Route::patch('krsnaSlava/{krsnaSlava}', 'KrsnaSlavaController@update');
+Route::get('krsnaSlava/{krsnaSlava}/delete', 'KrsnaSlavaController@delete');
+
+Route::get('/region/{region}/edit', 'RegionController@edit');
+Route::patch('region/{region}', 'RegionController@update');
+Route::get('region/{region}/delete', 'RegionController@delete');
+
+Route::get('/opstina/{opstina}/edit', 'OpstinaController@edit');
+Route::patch('opstina/{opstina}', 'OpstinaController@update');
+Route::get('opstina/{opstina}/delete', 'OpstinaController@delete');
+
+Route::get('/mesto/{mesto}/edit', 'MestoController@edit');
+Route::patch('mesto/{mesto}', 'MestoController@update');
+Route::get('mesto/{mesto}/delete', 'MestoController@delete');
+
+Route::get('/srednjeSkoleFakulteti/{srednjeSkoleFakulteti}/edit', 'SrednjeSkoleFakultetiController@edit');
+Route::patch('srednjeSkoleFakulteti/{srednjeSkoleFakulteti}', 'SrednjeSkoleFakultetiController@update');
+Route::get('srednjeSkoleFakulteti/{srednjeSkoleFakulteti}/delete', 'SrednjeSkoleFakultetiController@delete');
 
 
 //Dodao Andrija rute za testiranje

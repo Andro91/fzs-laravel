@@ -20,10 +20,10 @@
                         <td>{{$region->naziv}}</td>
                         <td>
                             <div class="btn-group">
-                                <form class="btn" action="region/edit/{{$region->id}}">
+                                <form class="btn" action="region/{{$region->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form class="btn" action="region/delete/{{$region->id}}">
+                                <form class="btn" action="region/{{$region->id}}/delete">
                                     <input type="submit" class="btn btn-primary" value="Izbriši">
                                 </form>
                             </div>

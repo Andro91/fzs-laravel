@@ -24,10 +24,10 @@
                         <td>{{$opstina->region->naziv}}</td>
                         <td>
                             <div class="btn-group">
-                                <form class="btn" action="opstina/edit/{{$opstina->id}}">
+                                <form class="btn" action="opstina/{{$opstina->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form class="btn" action="opstina/delete/{{$opstina->id}}">
+                                <form class="btn" action="opstina/{{$opstina->id}}/delete">
                                     <input type="submit" class="btn btn-primary" value="Izbriši">
                                 </form>
                             </div>

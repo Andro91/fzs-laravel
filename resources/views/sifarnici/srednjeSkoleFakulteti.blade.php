@@ -24,10 +24,10 @@
                         <td>{{$srednjeSkoleFakulteti->indSkoleFakulteta}}</td>
                         <td>
                             <div class="btn-group">
-                                <form class="btn" action="srednjeSkoleFakulteti/edit/{{$srednjeSkoleFakulteti->id}}">
+                                <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form class="btn" action="srednjeSkoleFakulteti/delete/{{$srednjeSkoleFakulteti->id}}">
+                                <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/delete">
                                     <input type="submit" class="btn btn-primary" value="Izbriši">
                                 </form>
                             </div>
@@ -49,8 +49,11 @@
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Indikator:</label>
-                        <input name="indSkoleFakulteta" type="text" class="form-control">
+                        <label for="naziv">Škola/Fakultet:</label>
+                        <select class="form-control" id="indSkoleFakulteta" name="indSkoleFakulteta">
+                            <option value="1">Škola</option>
+                            <option value="2">Fakultet</option>
+                        </select>
                     </div>
                 </div>
                 <div class="panel-body">
