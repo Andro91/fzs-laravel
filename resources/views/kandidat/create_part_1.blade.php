@@ -37,7 +37,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group pull-left" style="width: 28%; margin-right: 2%">
-                                <label for="TipStudija">TipStudija:</label>
+                                <label for="TipStudija">Tip Studija:</label>
                                 <select class="form-control" id="TipStudija" name="TipStudija">
                                     @foreach($tipStudija as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 20%;">
-                                <label for="SkolskeGodineUpisa">Skolska Godina:</label>
+                                <label for="SkolskeGodineUpisa">Školska Godina:</label>
                                 <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
                                     @foreach($skolskeGodineUpisa as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -83,12 +83,12 @@
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ old('JMBG') }}" >
                             </div>
                             <div class="form-group pull-left" style="width: 38%;">
-                                <label for="DatumRodjenja">Datum Rodjenja</label>
+                                <label for="DatumRodjenja">Datum Rođenja</label>
                                 <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja" value="{{ old('DatumRodjenja') }}" >
                             </div>
 
                             <div class="form-group">
-                                <label for="MestoRodjenja">MestoRodjenja:</label>
+                                <label for="MestoRodjenja">Mesto Rođenja:</label>
                                 <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
                                     @foreach($mestoRodjenja as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -96,7 +96,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="KrsnaSlava">KrsnaSlava:</label>
+                                <label for="KrsnaSlava">Krsna Slava:</label>
                                 <select class="form-control" id="KrsnaSlava" name="KrsnaSlava" style="max-width: 50%">
                                     @foreach($krsnaSlava as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -130,7 +130,7 @@
                             <hr>
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="NazivSkoleFakulteta">Naziv Skole ili Fakulteta:</label>
+                                <label for="NazivSkoleFakulteta">Naziv Škole ili Fakulteta:</label>
                                 <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
                                     @foreach($nazivSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -138,12 +138,12 @@
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="SmerZavrseneSkoleFakulteta">Smer Zavrsene Skole ili Fakulteta</label>
+                                <label for="SmerZavrseneSkoleFakulteta">Smer Zavrsene Škole ili Fakulteta</label>
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
                                        id="SmerZavrseneSkoleFakulteta" value="{{ old('SmerZavrseneSkoleFakulteta') }}">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="MestoZavrseneSkoleFakulteta">Mesto Zavrsene Skole ili Fakulteta:</label>
+                                <label for="MestoZavrseneSkoleFakulteta">Mesto Zavrsene Škole ili Fakulteta:</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
@@ -165,7 +165,7 @@
                             <hr>
 
                             <div class="form-group text-center">
-                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Na sledeću stranu</button>
+                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Dalje</button>
                             </div>
                         </div>
                     </div>

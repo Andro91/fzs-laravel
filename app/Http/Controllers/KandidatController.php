@@ -280,6 +280,11 @@ class KandidatController extends Controller
      */
     public function edit($id)
     {
+
+        $kandidat = Kandidat::find($id);
+
+        $this->authorize('update',$kandidat);
+
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
         $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
@@ -300,7 +305,7 @@ class KandidatController extends Controller
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id',$id)->lists('prilozenaDokumenta_id')->toArray();
         
 
-        $kandidat = Kandidat::find($id);
+
 
         return view('kandidat.update')->with('kandidat',$kandidat)
             ->with('mestoRodjenja', $mestoRodjenja)
