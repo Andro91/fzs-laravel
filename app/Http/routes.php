@@ -77,6 +77,10 @@ Route::get('/statusStudiranja/{statusStudiranja}/edit', 'StatusStudiranjaControl
 Route::patch('statusStudiranja/{statusStudiranja}', 'StatusStudiranjaController@update');
 Route::get('statusStudiranja/{statusStudiranja}/delete', 'StatusStudiranjaController@delete');
 
+Route::get('/predmet/{predmet}/edit', 'PredmetController@edit');
+Route::patch('predmet/{predmet}', 'PredmetController@update');
+Route::get('predmet/{predmet}/delete', 'PredmetController@delete');
+
 
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');

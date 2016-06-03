@@ -1,8 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Pregled kandidata')
 @section('section')
-    <script type="text/javascript" src="{{ URL::asset('/js/datatables.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/datatables.min.css') }}"/>
+
     <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->
     <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>-->
 

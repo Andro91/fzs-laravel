@@ -9975,7 +9975,8 @@ if (typeof jQuery === 'undefined') {
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    clearMenus()
+
+	  clearMenus()
 
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
@@ -15007,7 +15008,7 @@ if (typeof jQuery === 'undefined') {
  * Made by Osman Nuri Okumus
  * Under MIT License
  */
-;(function($, window, document, undefined) {
+(function($, window, document, undefined) {
 
     var pluginName = "metisMenu",
         defaults = {

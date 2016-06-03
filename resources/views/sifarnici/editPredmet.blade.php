@@ -1,63 +1,11 @@
-<title>Predmet</title>
+<title>Izmeni predmet</title>
 @extends('layouts.layout')
-@section('page_heading','Predmet')
+@section('page_heading','Izmeni predmet')
 @section('section')
 
-    <div class="col-md-9">
-        <div class="table-responsive">
-            <table id="tabela" class="table">
-                <thead>
-                <th>
-                    Naziv predmeta
-                </th>
-                <th>
-                    Tip studija
-                </th>
-                <th>
-                    Studijski program
-                </th>
-                <th>
-                    Godina studija
-                </th>
-                <th>
-                    Semestar
-                </th>
-                <th>
-                    ESPB
-                </th>
-                <th>
-                    Status
-                </th>
-                <th>
-                    Akcije
-                </th>
-                </thead>
-
-                @foreach($predmet as $predmet)
-                    <tr>
-                        <td>{{$predmet->naziv}}</td>
-                        <td>{{$predmet->tipStudija->naziv}}</td>
-                        <td>{{$predmet->studijskiProgram->naziv}}</td>
-                        <td>{{$predmet->godinaStudija->naziv}}</td>
-                        <td>{{$predmet->semestarSlusanjaPredmeta}}</td>
-                        <td>{{$predmet->espb}}</td>
-                        <td>{{$predmet->statusPredmeta}}</td>
-                        <td>
-                            <div class="btn-group">
-                                <form class="btn" action="predmet/{{$predmet->id}}/edit">
-                                    <input type="submit" class="btn btn-primary" value="Promeni">
-                                </form>
-                                <form class="btn" action="predmet/{{$predmet->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-        <form role="form" method="post" action="{{ url('/predmet/unos') }}">
+        <form role="form" method="post" action="/predmet/{{$predmet->id}}">
             {{csrf_field()}}
+            {{method_field('PATCH')}}
 
 
             <div class="panel panel-success">
@@ -67,10 +15,12 @@
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Naziv:</label>
-                        <input name="naziv" type="text" class="form-control">
+                        <input name="naziv" type="text" class="form-control" value="{{$predmet->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="tipStudija_id">Tip studija:</label>
+                        <input type="hidden" id="tipStudijaHidden" name="tipStudijaHidden"
+                               value="{{$predmet->tipStudija_id}}">
                         <select class="form-control" id="tipStudija_id" name="tipStudija_id">
                             @foreach($tipStudija as $tipStudija)
                                 <option value="{{$tipStudija->id}}">{{$tipStudija->naziv}}</option>
@@ -79,6 +29,8 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="studijskiProgram_id">Studijski program:</label>
+                        <input type="hidden" id="studijskiProgramHidden" name="studijskiProgramHidden"
+                               value="{{$predmet->studijskiProgram_id}}">
                         <select class="form-control" id="studijskiProgram_id" name="studijskiProgram_id">
                             @foreach($studijskiProgram as $studijskiProgram)
                                 <option value="{{$studijskiProgram->id}}">{{$studijskiProgram->naziv}}</option>
@@ -87,6 +39,8 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="godinaStudija_id">Region:</label>
+                        <input type="hidden" id="godinaStudijaHidden" name="godinaStudijaHidden"
+                               value="{{$predmet->godinaStudija_id}}">
                         <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
                             @foreach($godinaStudija as $godinaStudija)
                                 <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>
@@ -95,26 +49,36 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Semestar:</label>
-                        <input name="semestarSlusanjaPredmeta" type="text" class="form-control">
+                        <input name="semestarSlusanjaPredmeta" type="text" class="form-control" value="{{$predmet->semestarSlusanjaPredmeta}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">ESPB:</label>
-                        <input name="espb" type="number" class="form-control">
+                        <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Status:</label>
-                        <input name="statusPredmeta" type="checkbox" class="form-control">
+                        @if($predmet->statusPredmeta == 1)
+                            <input name="statusPredmeta" type="checkbox" checked="true" class="form-control">
+                        @else
+                            <input name="statusPredmeta" type="checkbox" class="form-control">
+                        @endif
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                        <button type="submit" class="btn btn-primary">Izmeni</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $("#tipStudija_id").val($("#tipStudijaHidden").val());
+                $("#studijskiProgram_id").val($("#studijskiProgramHidden").val());
+                $("#godinaStudija_id").val($("#godinaStudijaHidden").val());
+            });
+        </script>
 
 @endsection

@@ -21,16 +21,15 @@
 <!--<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>-->
 <script src="{{ asset("assets/scripts/bootstrap.js") }}" type="text/javascript"></script>
 <script src="{{ asset("assets/scripts/metisMenu.js") }}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
 
-    $('#side-menu').metisMenu();
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#side-menu').metisMenu();
 
     });
 </script>
-
-
-
 
 </body>
 </html>
