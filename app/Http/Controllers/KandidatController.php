@@ -283,7 +283,6 @@ class KandidatController extends Controller
 
         $kandidat = Kandidat::find($id);
 
-        $this->authorize('update',$kandidat);
 
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
@@ -336,7 +335,98 @@ class KandidatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kandidat = Kandidat::find($id);
+
+        $kandidat->imeKandidata = $request->ImeKandidata;
+        $kandidat->prezimeKandidata = $request->PrezimeKandidata;
+        $kandidat->jmbg = $request->JMBG;
+
+        $kandidat->datumRodjenja = date_create_from_format('d.m.Y', $request->DatumRodjenja);
+
+        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->krsnaSlava_id = $request->KrsnaSlava;
+        $kandidat->kontaktTelefon = $request->KontaktTelefon;
+        $kandidat->adresaStanovanja = $request->AdresaStanovanja;
+        $kandidat->email = $request->Email;
+        $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
+        $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
+        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
+
+        $kandidat->tipStudija_id = $request->TipStudija;
+        $kandidat->studijskiProgram_id = $request->StudijskiProgram;
+        $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+        $kandidat->godinaStudija_id = $request->GodinaStudija;
+
+        $skola_id = $kandidat->srednjeSkoleFakulteti_id;
+
+        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
+        $prviRazred->opstiUspeh_id = $request->prviRazred;
+        $prviRazred->save();
+
+        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
+        $drugiRazred->opstiUspeh_id = $request->prviRazred;
+        $drugiRazred->save();
+
+        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
+        $treciRazred->opstiUspeh_id = $request->prviRazred;
+        $treciRazred->save();
+
+        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
+        $cetvrtiRazred->opstiUspeh_id = $request->prviRazred;
+        $cetvrtiRazred->save();
+
+        $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
+        $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
+
+//        $sport1 = new SportskoAngazovanje();
+//        $sport1->sport_id = $request->sport1;
+//        $sport1->kandidat_id = $request->insertedId;
+//        $sport1->nazivKluba = $request->klub1;
+//        $sport1->odDoGodina = $request->uzrast1;
+//        $sport1->ukupnoGodina = $request->godine1;
+//        $sport1->save();
+//
+//        $sport2 = new SportskoAngazovanje();
+//        $sport2->sport_id = $request->sport2;
+//        $sport2->kandidat_id = $request->insertedId;
+//        $sport2->nazivKluba = $request->klub2;
+//        $sport2->odDoGodina = $request->uzrast2;
+//        $sport2->ukupnoGodina = $request->godine2;
+//        $sport2->save();
+//
+//        $sport3 = new SportskoAngazovanje();
+//        $sport3->sport_id = $request->sport3;
+//        $sport3->kandidat_id = $request->insertedId;
+//        $sport3->nazivKluba = $request->klub3;
+//        $sport3->odDoGodina = $request->uzrast3;
+//        $sport3->ukupnoGodina = $request->godine3;
+//        $sport3->save();
+
+        $kandidat->visina = $request->VisinaKandidata;
+        $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
+
+
+        $dokumenta = PrilozenaDokumenta::all();
+
+        foreach($dokumenta as $dokument){
+            if($request->has(str_replace(' ','_',$dokument->naziv))){
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->kandidat_id = $request->insertedId;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
+            }
+        }
+
+        $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
+        $kandidat->brojBodovaTest = $request->BrojBodovaTest;
+        $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
+        $kandidat->upisniRok = $request->UpisniRok;
+        $kandidat->indikatorAktivan = $request->IndikatorAktivan;
+
+        $kandidat->save();
     }
 
     /**

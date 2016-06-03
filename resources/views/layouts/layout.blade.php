@@ -18,7 +18,19 @@
                 <a class="navbar-brand"  href="{{ url ('') }}"> Fakultet za sport</a>
             </div>
             <!-- /.navbar-header -->
-
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+                @if (Auth::guest())
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Aktivni Korisnik: {{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/logout">Izlaz</a></li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -34,7 +46,7 @@
                             {{--<!-- /input-group -->--}}
                         {{--</li>--}}
                         <li >
-                            <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;Studenti<span class="fa arrow"></span></a>
+                            <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;Kandidati<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('kandidat/create') }}">Dodavanje</a>
