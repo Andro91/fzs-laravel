@@ -297,6 +297,9 @@ class KandidatController extends Controller
         $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina','1')->get();
         $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina','2')->get();
 
+        $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id',$id)->lists('prilozenaDokumenta_id')->toArray();
+        
+
         $kandidat = Kandidat::find($id);
 
         return view('kandidat.update')->with('kandidat',$kandidat)
@@ -315,7 +318,8 @@ class KandidatController extends Controller
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
             ->with('sport',$sport)
             ->with('dokumentiPrvaGodina',$dokumentiPrvaGodina)
-            ->with('dokumentiOstaleGodine',$dokumentiOstaleGodine);
+            ->with('dokumentiOstaleGodine',$dokumentiOstaleGodine)
+            ->with('prilozenaDokumenta',$prilozenaDokumenta);
     }
 
     /**

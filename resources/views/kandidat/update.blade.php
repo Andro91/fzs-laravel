@@ -340,7 +340,8 @@
                             @foreach($dokumentiPrvaGodina as $dokument)
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
+                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}"
+                                                {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
                                         {{ $dokument->naziv }}
                                     </label>
                                 </div>
@@ -357,7 +358,8 @@
                             @foreach($dokumentiOstaleGodine as $dokument)
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
+                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}"
+                                                {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
                                         {{ $dokument->naziv }}
                                     </label>
                                 </div>
