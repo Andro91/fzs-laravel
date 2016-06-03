@@ -13,10 +13,24 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
+
     <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
 </head>
 <body>
 @yield('body')
-<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
+<!--<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>-->
+<script src="{{ asset("assets/scripts/bootstrap.js") }}" type="text/javascript"></script>
+<script src="{{ asset("assets/scripts/metisMenu.js") }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+
+    $('#side-menu').metisMenu();
+
+    });
+</script>
+
+
+
+
 </body>
 </html>

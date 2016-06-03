@@ -1,11 +1,9 @@
 @extends('layouts.header')
+<script type="text/javascript" src="{{ URL::asset('/js/jquery-1.12.4.min.js') }}"></script>
 
 @section('body')
-    <script
-            src="https://code.jquery.com/jquery-1.12.4.min.js"
-            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-            crossorigin="anonymous"></script>
     <div id="wrapper">
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -171,7 +169,7 @@
                         {{--<li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>--}}
                             {{--<a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>--}}
                         {{--</li>--}}
-                    {{--</ul>--}}
+                    </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
