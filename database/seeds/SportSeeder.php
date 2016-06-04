@@ -12,11 +12,20 @@ class SportSeeder extends Seeder
      */
     public function run()
     {
-        $sport = new Sport();
+        $sportovi = array('Američki fudbal', 'Australijski fudbal', 'Bejzbol', 'Baskijska pelota', 'Kanadski fudbal',
+            'Kriket', 'Karling', 'Košarka', 'Odbojka', 'Peintbol', 'Petanque', 'Polo', 'Rukomet', 'Ragbi', 'Softbol',
+            'Faustbal', 'Florbol', 'Fudbal', 'Futsal', 'Hokej', 'Hokej na travi', 'Hurling', 'Hokej na ledu',
+            'Hokej na rolerima');
 
-        $sport->naziv = str_random(10);
-        $sport->indikatorAktivan = 1;
+        foreach ($sportovi as $s) {
+            $sport = new Sport();
 
-        $sport->save();
+            $sport->naziv = $s;
+            $sport->indikatorAktivan = 1;
+
+            $sport->save();
+        }
+
+
     }
 }

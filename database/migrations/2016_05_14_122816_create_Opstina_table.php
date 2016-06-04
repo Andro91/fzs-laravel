@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluOpstina extends Migration
+class CreateOpstinaTable extends Migration
 {
     /**
      * Run the migrations.

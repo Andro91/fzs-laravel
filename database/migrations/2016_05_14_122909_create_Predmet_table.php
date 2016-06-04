@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluPredmet extends Migration
+class CreatePredmetTable extends Migration
 {
     /**
      * Run the migrations.

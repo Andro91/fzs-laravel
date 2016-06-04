@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluKandidatPrilozenaDokumenta extends Migration
+class CreateKandidatPrilozenaDokumentaTable extends Migration
 {
     /**
      * Run the migrations.

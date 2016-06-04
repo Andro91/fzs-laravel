@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluSport extends Migration
+class CreateSportTable extends Migration
 {
     /**
      * Run the migrations.

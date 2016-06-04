@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluStudijskiProgram extends Migration
+class CreateStudijskiProgramTable extends Migration
 {
     /**
      * Run the migrations.

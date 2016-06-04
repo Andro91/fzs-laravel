@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluUspehSrednjaSkola extends Migration
+class CreateUspehSrednjaSkolaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class KreirajTabeluUspehSrednjaSkola extends Migration
             $table->integer('kandidat_id')->unsigned()->index();
             $table->integer('srednjeSkoleFakulteti_id')->unsigned()->index();
             $table->integer('opstiUspeh_id')->unsigned()->index();
+            $table->double('srednja_ocena');
             $table->integer('RedniBrojRazreda');
             $table->timestamps();
         });

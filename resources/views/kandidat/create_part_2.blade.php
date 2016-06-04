@@ -205,14 +205,14 @@
                             <h3 class="panel-title">Ostalo</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label for="StatusaUpisaKandidata">Status Upisa Kandidata:</label>
-                                <select class="form-control" id="StatusaUpisaKandidata" name="StatusaUpisaKandidata">
-                                    @foreach($statusaUpisaKandidata as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label for="StatusaUpisaKandidata">Status Upisa Kandidata:</label>--}}
+                                {{--<select class="form-control" id="StatusaUpisaKandidata" name="StatusaUpisaKandidata">--}}
+                                    {{--@foreach($statusaUpisaKandidata as $item)--}}
+                                        {{--<option value="{{$item->id}}">{{$item->naziv}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
                             <div class="form-group">
                                 <label for="BrojBodovaTest">Broj Bodova Test</label>
                                 <input class="form-control" type="text" name="BrojBodovaTest" id="BrojBodovaTest">
@@ -225,10 +225,10 @@
                                 <label for="UpisniRok">Upisni Rok</label>
                                 <input class="form-control" type="text" name="UpisniRok" id="UpisniRok">
                             </div>
-                            <div class="form-group">
-                                <label for="IndikatorAktivan">Indikator Aktivan</label>
-                                <input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
+                                {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}
+                            {{--</div>--}}
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary btn-lg">Dalje</button>

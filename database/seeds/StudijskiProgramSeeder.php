@@ -11,13 +11,21 @@ class StudijskiProgramSeeder extends Seeder
      */
     public function run()
     {
-        $studijskiProgram = new \App\StudijskiProgram();
+        $studijskiProgrami = array('Menadžment u sportu','Trener u sportu','Sportsko novinarstvo');
 
-        $studijskiProgram->naziv = str_random(10);
-        $studijskiProgram->skrNazivStudijskogPrograma = str_random(10);
-        $studijskiProgram->tipStudija_id = 2;
-        $studijskiProgram->indikatorAktivan = 1;
 
-        $studijskiProgram->save();
+        foreach ($studijskiProgrami as $program) {
+
+            $studijskiProgram = new \App\StudijskiProgram();
+
+            $studijskiProgram->naziv = $program;
+            $studijskiProgram->skrNazivStudijskogPrograma = $program;
+            $studijskiProgram->tipStudija_id = 2;
+            $studijskiProgram->indikatorAktivan = 1;
+
+            $studijskiProgram->save();
+        }
+
+
     }
 }

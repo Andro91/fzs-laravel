@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluTipStudija extends Migration
+class CreateTipStudijaTable extends Migration
 {
     /**
      * Run the migrations.

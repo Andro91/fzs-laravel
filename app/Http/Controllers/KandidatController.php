@@ -124,6 +124,8 @@ class KandidatController extends Controller
 
                 if (strpos($e->getMessage(), 'jmbg_UNIQUE') !== false) {
                     return back()->with('jmbgError','1')->withInput();
+                }else{
+                    dd("nesto je poslo po zlu");
                 }
             }
 
@@ -131,13 +133,10 @@ class KandidatController extends Controller
 
             $insertedId = $kandidat->id;
 
-            //$mestoRodjenja = Mesto::all();
-            //$krsnaSlava = KrsnaSlava::all();
             $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
             $mestoZavrseneSkoleFakulteta = Mesto::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
             $uspehSrednjaSkola = UspehSrednjaSkola::all();
-            $sportskoAngazovanje = SportskoAngazovanje::all();
             $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
             $statusaUpisaKandidata = StatusStudiranja::all();
             $studijskiProgram = StudijskiProgram::all();
@@ -155,7 +154,6 @@ class KandidatController extends Controller
                 ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
                 ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
                 ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
-                ->with('sportskoAngazovanje', $sportskoAngazovanje)
                 ->with('prilozeniDokumentPrvaGodina', $prilozeniDokumentPrvaGodina)
                 ->with('statusaUpisaKandidata', $statusaUpisaKandidata)
                 ->with('studijskiProgram', $studijskiProgram)
@@ -248,11 +246,11 @@ class KandidatController extends Controller
                 }
             }
 
-            $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
+            //$kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
             $kandidat->brojBodovaTest = $request->BrojBodovaTest;
             $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
             $kandidat->upisniRok = $request->UpisniRok;
-            $kandidat->indikatorAktivan = $request->IndikatorAktivan;
+            //$kandidat->indikatorAktivan = $request->IndikatorAktivan;
 
             $kandidat->save();
 
@@ -290,7 +288,6 @@ class KandidatController extends Controller
         $mestoZavrseneSkoleFakulteta = Mesto::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
-        $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
         $studijskiProgram = StudijskiProgram::all();
@@ -302,8 +299,15 @@ class KandidatController extends Controller
         $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina','2')->get();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id',$id)->lists('prilozenaDokumenta_id')->toArray();
-        
 
+        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
+        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
+        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
+        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
+
+        $sportskoAngazovanjeKandidata = SportskoAngazovanje::where('kandidat_id',$id)->get();
+
+        //dd($sportskoAngazovanjeKandidata);
 
 
         return view('kandidat.update')->with('kandidat',$kandidat)
@@ -313,7 +317,6 @@ class KandidatController extends Controller
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
-            ->with('sportskoAngazovanje', $sportskoAngazovanje)
             ->with('prilozeniDokumentPrvaGodina', $prilozeniDokumentPrvaGodina)
             ->with('statusaUpisaKandidata', $statusaUpisaKandidata)
             ->with('studijskiProgram', $studijskiProgram)
@@ -323,7 +326,12 @@ class KandidatController extends Controller
             ->with('sport',$sport)
             ->with('dokumentiPrvaGodina',$dokumentiPrvaGodina)
             ->with('dokumentiOstaleGodine',$dokumentiOstaleGodine)
-            ->with('prilozenaDokumenta',$prilozenaDokumenta);
+            ->with('prilozenaDokumenta',$prilozenaDokumenta)
+            ->with('prviRazred',$prviRazred)
+            ->with('drugiRazred',$drugiRazred)
+            ->with('treciRazred',$treciRazred)
+            ->with('cetvrtiRazred',$cetvrtiRazred)
+            ->with('sportskoAngazovanjeKandidata',$sportskoAngazovanjeKandidata);
     }
 
     /**
@@ -335,6 +343,9 @@ class KandidatController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        return $request->all();
+
         $kandidat = Kandidat::find($id);
 
         $kandidat->imeKandidata = $request->ImeKandidata;
@@ -440,69 +451,6 @@ class KandidatController extends Controller
         //
     }
 
-    public function test1()
-    {
-        $mestoRodjenja = Mesto::all();
-        $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
-        //$opstiUspehSrednjaSkola = OpstiUspeh::all();
-        //$uspehSrednjaSkola = UspehSrednjaSkola::all();
-        //$sportskoAngazovanje = SportskoAngazovanje::all();
-        //$prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
-        //$statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
-        $tipStudija = TipStudija::all();
-        $godinaStudija = GodinaStudija::all();
-        $skolskeGodineUpisa = SkolskaGodUpisa::all();
-
-        return view("kandidat.create_part_1")
-            ->with('mestoRodjenja', $mestoRodjenja)
-            ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
-            ->with('mestoZavrseneSkoleFakulteta',$mestoZavrseneSkoleFakulteta)
-//            ->with('opstiUspehSrednjaSkola',$opstiUspehSrednjaSkola)
-//            ->with('uspehSrednjaSkola',$uspehSrednjaSkola)
-//            ->with('sportskoAngazovanje',$sportskoAngazovanje)
-//            ->with('prilozeniDokumentPrvaGodina',$prilozeniDokumentPrvaGodina)
-//            ->with('statusaUpisaKandidata',$statusaUpisaKandidata)
-            ->with('studijskiProgram',$studijskiProgram)
-            ->with('tipStudija',$tipStudija)
-            ->with('godinaStudija',$godinaStudija)
-            ->with('skolskeGodineUpisa',$skolskeGodineUpisa);
-    }
-
-    public function test2()
-    {
-        $mestoRodjenja = Mesto::all();
-        $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
-        $opstiUspehSrednjaSkola = OpstiUspeh::all();
-        $uspehSrednjaSkola = UspehSrednjaSkola::all();
-        $sportskoAngazovanje = SportskoAngazovanje::all();
-        $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
-        $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
-        $tipStudija = TipStudija::all();
-        $godinaStudija = GodinaStudija::all();
-        $skolskeGodineUpisa = SkolskaGodUpisa::all();
-
-        return view("kandidat.create_part_2")
-            ->with('mestoRodjenja', $mestoRodjenja)
-            ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
-            ->with('mestoZavrseneSkoleFakulteta',$mestoZavrseneSkoleFakulteta)
-            ->with('opstiUspehSrednjaSkola',$opstiUspehSrednjaSkola)
-            ->with('uspehSrednjaSkola',$uspehSrednjaSkola)
-            ->with('sportskoAngazovanje',$sportskoAngazovanje)
-            ->with('prilozeniDokumentPrvaGodina',$prilozeniDokumentPrvaGodina)
-            ->with('statusaUpisaKandidata',$statusaUpisaKandidata)
-            ->with('studijskiProgram',$studijskiProgram)
-            ->with('tipStudija',$tipStudija)
-            ->with('godinaStudija',$godinaStudija)
-            ->with('skolskeGodineUpisa',$skolskeGodineUpisa);
-    }
 
     public function testPost(Request $request)
     {

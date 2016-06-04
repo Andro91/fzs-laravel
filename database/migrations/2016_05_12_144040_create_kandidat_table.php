@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluKandidat extends Migration
+class CreateKandidatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,14 +30,14 @@ class KreirajTabeluKandidat extends Migration
             $table->integer('smerZavrseneSkoleFakulteta')->unsigned()->nullable();
             $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
             $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();
-            $table->double('srednjaOcenaSrednjaSkola', 2, 2);
+            $table->double('srednjaOcenaSrednjaSkola');
             $table->integer('sportskoAngazovanje_id')->unsigned()->nullable();
-            $table->double('telesnaTezina', 2, 2);
-            $table->double('visina', 2, 2);
+            $table->double('telesnaTezina');
+            $table->double('visina');
             $table->integer('prilozenaDokumentaPrvaGodina_id')->unsigned()->nullable();
             $table->integer('statusUpisa_id')->unsigned()->nullable();
-            $table->double('brojBodovaTest', 2, 2)->nullable();
-            $table->double('brojBodovaSkola', 2, 2);
+            $table->double('brojBodovaTest')->nullable();
+            $table->double('brojBodovaSkola');
             $table->string('upisniRok')->nullable();
             $table->integer('skolskaGodinaUpisa_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();

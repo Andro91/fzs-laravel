@@ -11,11 +11,15 @@ class SrednjeSkoleFakultetiSeeder extends Seeder
      */
     public function run()
     {
-        $srednjeSkoleFakulteti = new \App\SrednjeSkoleFakulteti();
+        $skole = array('skola1','skola2','skola3','skola4','skola5');
 
-        $srednjeSkoleFakulteti->naziv = str_random(10);
-        $srednjeSkoleFakulteti->indSkoleFakulteta = 1;
+        foreach ($skole as $skola) {
+            $srednjeSkoleFakulteti = new \App\SrednjeSkoleFakulteti();
 
-        $srednjeSkoleFakulteti->save();
+            $srednjeSkoleFakulteti->naziv = $skola;
+            $srednjeSkoleFakulteti->indSkoleFakulteta = 1;
+
+            $srednjeSkoleFakulteti->save();
+        }
     }
 }

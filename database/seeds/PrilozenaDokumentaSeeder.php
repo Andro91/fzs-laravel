@@ -12,13 +12,24 @@ class PrilozenaDokumentaSeeder extends Seeder
      */
     public function run()
     {
-        $dokumenta = array('Izvod iz maticne knjige rodjenih','dokument','3 fotografije');
+        $dokumentaPrva = array('Dokument za prvu godinu 1','Dokument za prvu godinu 2','Dokument za prvu godinu 3');
+        $dokumentaDruga = array('Dokument za drugu godinu 1','Dokument za drugu godinu 2','Dokument za drugu godinu 3');
 
-        foreach($dokumenta as $dok){
+        foreach($dokumentaPrva as $dok){
             $dokument = new PrilozenaDokumenta();
 
             $dokument->naziv = $dok;
             $dokument->indGodina = "1";
+            $dokument->redniBrojDokumenta = 1;
+
+            $dokument->save();
+        }
+
+        foreach($dokumentaDruga as $dok){
+            $dokument = new PrilozenaDokumenta();
+
+            $dokument->naziv = $dok;
+            $dokument->indGodina = "2";
             $dokument->redniBrojDokumenta = 1;
 
             $dokument->save();

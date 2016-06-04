@@ -12,12 +12,18 @@ class TipStudijaSeeder extends Seeder
      */
     public function run()
     {
-        $tipStudija = new TipStudija();
+        $tipoviStudija = array('Osnovne studije', 'Master Studije', 'Doktorske Studije');
 
-        $tipStudija->naziv = str_random(10);
-        $tipStudija->skrNaziv = str_random(10);
-        $tipStudija->indikatorAktivan = 1;
+        foreach ($tipoviStudija as $tip) {
+            $tipStudija = new TipStudija();
 
-        $tipStudija->save();
+            $tipStudija->naziv = $tip;
+            $tipStudija->skrNaziv = $tip;
+            $tipStudija->indikatorAktivan = 1;
+
+            $tipStudija->save();
+        }
+
+
     }
 }

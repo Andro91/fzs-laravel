@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class KreirajTabeluKrsnaSlava extends Migration
+class CreateKrsnaSlavaTable extends Migration
 {
     /**
      * Run the migrations.
