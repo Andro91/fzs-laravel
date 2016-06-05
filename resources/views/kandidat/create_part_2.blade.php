@@ -67,7 +67,7 @@
                             <hr>
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="OpstiUspehSrednjaSkola">OpstiUspehSrednjaSkola:</label>
+                                <label for="OpstiUspehSrednjaSkola">Opšti Uspeh Srednja Škola:</label>
                                 <select class="form-control" id="OpstiUspehSrednjaSkola" name="OpstiUspehSrednjaSkola">
                                     @foreach($opstiUspehSrednjaSkola as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
@@ -75,7 +75,7 @@
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                <label for="SrednjaOcenaSrednjaSkola">SrednjaOcenaSrednjaSkola</label>
+                                <label for="SrednjaOcenaSrednjaSkola">Srednja Ocena Srednja Škola</label>
                                 <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
                                        id="SrednjaOcenaSrednjaSkola">
                             </div>
@@ -84,7 +84,7 @@
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Sportsko angazovanje</h3>
+                            <h3 class="panel-title">Sportsko angažovanje</h3>
                         </div>
                         <div class="panel-body">
                             <table class="table table-bordered table-condensed">
@@ -148,11 +148,11 @@
                                 {{--</select>--}}
                             {{--</div>--}}
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="VisinaKandidata">VisinaKandidata</label>
+                                <label for="VisinaKandidata">Visina Kandidata</label>
                                 <input class="form-control" type="text" name="VisinaKandidata" id="VisinaKandidata">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                <label for="TelesnaTezinaKandidata">TelesnaTezinaKandidata</label>
+                                <label for="TelesnaTezinaKandidata">Telesna Težina Kandidata</label>
                                 <input class="form-control" type="text" name="TelesnaTezinaKandidata" id="TelesnaTezinaKandidata">
                             </div>
                             {{--<div class="form-group">--}}
@@ -218,7 +218,7 @@
                                 <input class="form-control" type="text" name="BrojBodovaTest" id="BrojBodovaTest">
                             </div>
                             <div class="form-group">
-                                <label for="BrojBodovaSkola">Broj Bodova Skola</label>
+                                <label for="BrojBodovaSkola">Broj Bodova Škola</label>
                                 <input class="form-control" type="text" name="BrojBodovaSkola" id="BrojBodovaSkola">
                             </div>
                             <div class="form-group">

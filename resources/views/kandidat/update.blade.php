@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label for="DatumRodjenja">Datum Rodjenja</label>
                                 <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja"
-                                       value="{{ $kandidat->datumRodjenja }}">
+                                       value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
                             </div>
 
                             <div class="form-group">

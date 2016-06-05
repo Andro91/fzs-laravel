@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
+use Mockery\CountValidator\Exception;
 
 class KandidatController extends Controller
 {
@@ -105,7 +106,12 @@ class KandidatController extends Controller
             $kandidat->jmbg = $request->JMBG;
 
             //$dateArray = explode('.', ); date()
-            $kandidat->datumRodjenja = date_create_from_format('d.m.Y', $request->DatumRodjenja);
+            if(date_create_from_format('d.m.Y.', $request->DatumRodjenja)){
+                $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
+            }else{
+
+            }
+
 
             $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
             $kandidat->krsnaSlava_id = $request->KrsnaSlava;
@@ -355,7 +361,7 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
-        $kandidat->datumRodjenja = date_create_from_format('d.m.Y', $request->DatumRodjenja);
+        $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
 
         $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
         $kandidat->krsnaSlava_id = $request->KrsnaSlava;
@@ -375,20 +381,24 @@ class KandidatController extends Controller
 
         $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
-        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
+        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
         $prviRazred->opstiUspeh_id = $request->prviRazred;
+        $prviRazred->srednja_ocena = $request->SrednjaOcena1;
         $prviRazred->save();
 
-        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
-        $drugiRazred->opstiUspeh_id = $request->prviRazred;
+        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
+        $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+        $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
         $drugiRazred->save();
 
-        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
-        $treciRazred->opstiUspeh_id = $request->prviRazred;
+        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
+        $treciRazred->opstiUspeh_id = $request->treciRazred;
+        $treciRazred->srednja_ocena = $request->SrednjaOcena3;
         $treciRazred->save();
 
-        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->get();
-        $cetvrtiRazred->opstiUspeh_id = $request->prviRazred;
+        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
+        $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+        $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
         $cetvrtiRazred->save();
 
         $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
@@ -428,9 +438,15 @@ class KandidatController extends Controller
             if($request->has(str_replace(' ','_',$dokument->naziv))){
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
                 $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                $prilozenDokument->kandidat_id = $request->insertedId;
+                $prilozenDokument->kandidat_id = $id;
                 $prilozenDokument->indikatorAktivan = 1;
                 $prilozenDokument->save();
+            }else{
+                $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
+                    ->first();
+                if($delete != null){
+                    $delete->delete();
+                }
             }
         }
 
@@ -439,8 +455,9 @@ class KandidatController extends Controller
         $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->indikatorAktivan = $request->IndikatorAktivan;
-
         $kandidat->save();
+
+        return redirect('/kandidat/');
     }
 
     /**
@@ -452,6 +469,8 @@ class KandidatController extends Controller
     public function destroy($id)
     {
         Kandidat::destroy($id);
+
+        return redirect('/kandidat/');
     }
 
 

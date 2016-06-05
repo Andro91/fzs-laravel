@@ -170,9 +170,6 @@
                         </div>
                     </div>
                 </form>
-                {{ var_dump($errors) }}
-                {{ var_dump(\Illuminate\Support\Facades\Session::all()) }}
-
             </div>
         </div>
     </div>

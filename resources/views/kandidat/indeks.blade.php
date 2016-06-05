@@ -19,7 +19,14 @@
                         <td>{{$kandidat->imeKandidata}}</td>
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
-                        <td><a href="/kandidat/{{ $kandidat->id }}/edit">Izmeni</a></td>
+                        <td>
+                            <a class="btn btn-primary pull-left" href="/kandidat/{{ $kandidat->id }}/edit">Izmeni</a>
+                            <form class="pull-left" style="margin-left: 10px" action="/kandidat/{{ $kandidat->id }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-danger" value="Briši" >
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

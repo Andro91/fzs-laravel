@@ -14,10 +14,7 @@
 
 //Rute koje se aktivno koriste u projektu
 //Home route
-Route::get('/', function()
-{
-	return View::make('home');
-});
+Route::get('/', 'HomeController@index');
 
 //Added by Andrija
 //Routes in the web middleware group

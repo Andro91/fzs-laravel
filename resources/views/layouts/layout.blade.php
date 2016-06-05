@@ -21,13 +21,13 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
                 @if (Auth::guest())
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Prijava</a></li>
+                    <li><a href="/register">Registracija</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Aktivni Korisnik: {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/logout">Izlaz</a></li>
+                            <li><a href="/logout">Odjava</a></li>
                         </ul>
                     </li>
                 @endif
