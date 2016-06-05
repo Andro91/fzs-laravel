@@ -67,14 +67,14 @@
                                 <li {{ (Request::is('*/studijskiProgram') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/studijskiProgram' ) }}">Studijski program</a>
                                 </li>
+                                <li {{ (Request::is('*/prilozenaDokumenta') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/prilozenaDokumenta' ) }}">Priložena dokumenta</a>
+                                </li>
                                 <li {{ (Request::is('*/godinaStudija') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/godinaStudija' ) }}">Godina studija</a>
                                 </li>
                                 <li {{ (Request::is('*sport') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('sport' ) }}">Sportovi</a>
-                                </li>
-                                <li {{ (Request::is('*sportskoAngazovanje') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('sportskoAngazovanje' ) }}">Sportsko angažovanje</a>
                                 </li>
                                 <li {{ (Request::is('*statusStudiranja') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('statusStudiranja' ) }}">Status studiranja</a>

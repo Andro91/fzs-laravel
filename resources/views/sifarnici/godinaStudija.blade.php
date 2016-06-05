@@ -40,7 +40,7 @@
                 @endforeach
             </table>
         </div>
-
+        <br/>
         <form role="form" method="post" action="{{ url('/godinaStudija/unos') }}">
             {{csrf_field()}}
 

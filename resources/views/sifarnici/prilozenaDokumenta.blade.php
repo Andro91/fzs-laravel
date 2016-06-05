@@ -1,6 +1,6 @@
-<title>Tip studija</title>
+<title>Priložena dokumenta</title>
 @extends('layouts.layout')
-@section('page_heading','Tip studija')
+@section('page_heading','Priložena dokumenta')
 @section('section')
 
     <div class="col-md-9">
@@ -8,25 +8,30 @@
             <table id="tabela" class="table">
                 <thead>
                 <th>
+                    Redni broj
+                </th>
+                <th>
                     Naziv
                 </th>
                 <th>
-                    Skraćeni naziv
+                    Godina
                 </th>
                 <th>
                     Akcije
                 </th>
                 </thead>
-                @foreach($tipStudija as $tipStudija)
+
+                @foreach($dokument as $dokument)
                     <tr>
-                        <td>{{$tipStudija->naziv}}</td>
-                        <td>{{$tipStudija->skrNaziv}}</td>
+                        <td>{{$dokument->redniBrojDokumenta}}</td>
+                        <td>{{$dokument->naziv}}</td>
+                        <td>{{$dokument->indGodina}}</td>
                         <td>
                             <div class="btn-group">
-                                <form class="btn" action="tipStudija/{{$tipStudija->id}}/edit">
+                                <form class="btn" action="prilozenaDokumenta/{{$dokument->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form class="btn" action="tipStudija/{{$tipStudija->id}}/delete">
+                                <form class="btn" action="prilozenaDokumenta/{{$dokument->id}}/delete">
                                     <input type="submit" class="btn btn-primary" value="Izbriši">
                                 </form>
                             </div>
@@ -36,26 +41,26 @@
             </table>
         </div>
         <br/>
-        <form role="form" method="post" action="{{ url('/tipStudija/unos') }}">
+        <br/>
+        <form role="form" method="post" action="{{ url('/prilozenaDokumenta/unos') }}">
             {{csrf_field()}}
-
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Tip studija</h3>
+                    <h3 class="panel-title">Priložena dokumenta</h3>
                 </div>
                 <div class="panel-body">
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="redniBrojDokumenta">Redni broj:</label>
+                        <input name="redniBrojDokumenta" type="text" class="form-control">
+                    </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Naziv:</label>
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Skraćeni naziv:</label>
-                        <input name="skrNaziv" type="text" class="form-control">
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Aktivan:</label>
-                        <input name="indikatorAktivan" type="checkbox" class="form-control">
+                        <label for="indGodina">Godina:</label>
+                        <input name="indGodina" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="panel-body">

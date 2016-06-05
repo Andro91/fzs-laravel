@@ -32,6 +32,7 @@
                 @endforeach
             </table>
         </div>
+        <br/>
         <form role="form" method="post" action="{{ url('/sport/unos') }}">
             {{csrf_field()}}
 

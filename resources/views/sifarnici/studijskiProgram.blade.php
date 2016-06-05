@@ -39,7 +39,7 @@
                 @endforeach
             </table>
         </div>
-
+        <br/>
         <form role="form" method="post" action="{{ url('/studijskiProgram/unos') }}">
             {{csrf_field()}}
 

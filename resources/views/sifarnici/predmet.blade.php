@@ -56,6 +56,7 @@
                 @endforeach
             </table>
         </div>
+        <br/>
         <form role="form" method="post" action="{{ url('/predmet/unos') }}">
             {{csrf_field()}}
 

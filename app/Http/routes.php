@@ -42,6 +42,7 @@ Route::get('/krsnaSlava', 'KrsnaSlavaController@index');
 Route::get('/region', 'RegionController@index');
 Route::get('/opstina', 'OpstinaController@index');
 Route::get('/mesto', 'MestoController@index');
+Route::get('/prilozenaDokumenta', 'PrilozenaDokumentaController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
@@ -54,6 +55,7 @@ Route::post('/opstina/unos', 'OpstinaController@unos');
 Route::post('/mesto/unos', 'MestoController@unos');
 Route::post('/statusStudiranja/unos', 'StatusStudiranjaController@unos');
 Route::post('/predmet/unos', 'PredmetController@unos');
+Route::post('/prilozenaDokumenta/unos', 'PrilozenaDokumentaController@unos');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -98,6 +100,10 @@ Route::get('mesto/{mesto}/delete', 'MestoController@delete');
 Route::get('/srednjeSkoleFakulteti/{srednjeSkoleFakulteti}/edit', 'SrednjeSkoleFakultetiController@edit');
 Route::patch('srednjeSkoleFakulteti/{srednjeSkoleFakulteti}', 'SrednjeSkoleFakultetiController@update');
 Route::get('srednjeSkoleFakulteti/{srednjeSkoleFakulteti}/delete', 'SrednjeSkoleFakultetiController@delete');
+
+Route::get('/prilozenaDokumenta/{dokument}/edit', 'PrilozenaDokumentaController@edit');
+Route::patch('prilozenaDokumenta/{dokument}', 'PrilozenaDokumentaController@update');
+Route::get('prilozenaDokumenta/{dokument}/delete', 'PrilozenaDokumentaController@delete');
 
 
 //Dodao Andrija rute za testiranje

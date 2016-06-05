@@ -36,6 +36,7 @@
                 @endforeach
             </table>
         </div>
+        <br/>
         <form role="form" method="post" action="{{ url('/mesto/unos') }}">
             {{csrf_field()}}
 
