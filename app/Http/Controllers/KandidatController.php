@@ -25,6 +25,11 @@ use Illuminate\Support\Facades\Input;
 
 class KandidatController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -267,7 +272,9 @@ class KandidatController extends Controller
      */
     public function show($id)
     {
-        //
+        $kandidat = Kandidat::find($id)->toArray();
+
+        return view('kandidat.details')->with('kandidat',$kandidat);
     }
 
     /**
@@ -307,8 +314,6 @@ class KandidatController extends Controller
 
         $sportskoAngazovanjeKandidata = SportskoAngazovanje::where('kandidat_id',$id)->get();
 
-        //dd($sportskoAngazovanjeKandidata);
-
 
         return view('kandidat.update')->with('kandidat',$kandidat)
             ->with('mestoRodjenja', $mestoRodjenja)
@@ -343,8 +348,6 @@ class KandidatController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        return $request->all();
 
         $kandidat = Kandidat::find($id);
 
@@ -448,7 +451,7 @@ class KandidatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kandidat::destroy($id);
     }
 
 

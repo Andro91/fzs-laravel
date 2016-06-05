@@ -27,7 +27,7 @@ class CreateKandidatTable extends Migration
             $table->string('kontaktTelefonRoditelja')->nullable();
             $table->integer('srednjeSkoleFakulteti_id')->unsigned()->index();
             $table->integer('mestoZavrseneSkoleFakulteta_id')->unsigned()->index();
-            $table->integer('smerZavrseneSkoleFakulteta')->unsigned()->nullable();
+            $table->string('smerZavrseneSkoleFakulteta')->nullable();
             $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
             $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();
             $table->double('srednjaOcenaSrednjaSkola');
