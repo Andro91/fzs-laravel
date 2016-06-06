@@ -242,4 +242,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $.mask.definitions['q'] = '[0-5]';
+        $.mask.definitions['w'] = '[0-9]';
+
+        $('#SrednjaOcena1').mask("q.ww");
+        $('#SrednjaOcena2').mask("q.ww");
+        $('#SrednjaOcena3').mask("q.ww");
+        $('#SrednjaOcena4').mask("q.ww");
+
+        $('#SrednjaOcena4').focusout(function(){
+            var srednja1 = parseFloat($('#SrednjaOcena1').val());
+            var srednja2 = parseFloat($('#SrednjaOcena2').val());
+            var srednja3 = parseFloat($('#SrednjaOcena3').val());
+            var srednja4 = parseFloat($('#SrednjaOcena4').val());
+
+            var suma = srednja1 + srednja2 + srednja3 + srednja4;
+
+            $('#SrednjaOcenaSrednjaSkola').val(Math.round((suma/4) * 100) / 100);
+            $('#BrojBodovaSkola').val(Math.round((suma*4) *100) / 100);
+        });
+    </script>
 @endsection
