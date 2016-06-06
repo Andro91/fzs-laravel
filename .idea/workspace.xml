@@ -42,8 +42,8 @@
       <file leaf-file-name="update.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.230769">
-              <caret line="197" column="55" selection-start-line="197" selection-start-column="55" selection-end-line="197" selection-end-column="55" />
+            <state vertical-scroll-proportion="-16.192308">
+              <caret line="382" column="80" selection-start-line="382" selection-start-column="80" selection-end-line="382" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -52,18 +52,18 @@
       <file leaf-file-name="create_part_1.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.76923">
-              <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="187" selection-end-column="13" />
+            <state vertical-scroll-proportion="-11.615385">
+              <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="70" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_part_2.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create_part_2.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86210895">
-              <caret line="263" column="71" selection-start-line="263" selection-start-column="71" selection-end-line="263" selection-end-column="71" />
+            <state vertical-scroll-proportion="-8.346154">
+              <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="113" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -72,8 +72,8 @@
       <file leaf-file-name="KandidatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.538462">
-              <caret line="136" column="57" selection-start-line="136" selection-start-column="57" selection-end-line="136" selection-end-column="57" />
+            <state vertical-scroll-proportion="-23.384615">
+              <caret line="556" column="61" selection-start-line="556" selection-start-column="61" selection-end-line="556" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -82,9 +82,29 @@
       <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
+              <folding>
+                <element signature="e#545#569#0#HTML" expanded="true" />
+                <element signature="e#1052#1086#0#HTML" expanded="true" />
+                <element signature="e#1283#1307#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sportsko_angazovanje.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/kandidat/sportsko_angazovanje.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6106605">
+              <caret line="34" column="75" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
+              <folding>
+                <element signature="e#1255#1280#0#HTML" expanded="true" />
+                <element signature="e#1952#1971#0#HTML" expanded="true" />
+                <element signature="e#2406#2441#0#HTML" expanded="true" />
+                <element signature="e#2667#2702#0#HTML" expanded="true" />
+                <element signature="e#2936#2971#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/kandidat/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Kandidat.php" />
         <option value="$PROJECT_DIR$/database/seeds/KrsnaSlavaSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/PredmetSeeder.php" />
@@ -142,12 +161,13 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/kandidat/update.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
+        <option value="$PROJECT_DIR$/resources/views/kandidat/update.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/kandidat/sportsko_angazovanje.blade.php" />
       </list>
     </option>
   </component>
@@ -269,6 +289,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="kandidat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -287,6 +329,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fzs-laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -299,7 +395,7 @@
     <property name="FullScreen" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="kandidat&#9;null&#9;null&#10;layou&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;create&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;auth&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/config/auth.php&#10;kandidat_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_12_144040_create_kandidat_table.php&#10;update&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/update.blade.php&#10;kandidatCo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;kandi&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;login&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/auth/login.blade.php&#10;kernel.php&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Kernel.php&#10;kernel&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/vendor/symfony/http-kernel/Kernel.php&#10;rout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;lay&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;seeder&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/seeds/DatabaseSeeder.php&#10;route&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandida&#9;null&#9;null&#10;kandidatCon&#9;null&#9;null&#10;plane&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/plane.blade.php&#10;create_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_2.blade.php&#10;create.bl&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create.blade.php&#10;kreirajt&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_14_122909_KreirajTabeluPredmet.php&#10;routes&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php" />
+    <property name="SearchEverywhereHistoryKey" value="routes&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandidat&#9;null&#9;null&#10;layou&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;create&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;auth&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/config/auth.php&#10;kandidat_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_12_144040_create_kandidat_table.php&#10;update&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/update.blade.php&#10;kandidatCo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;kandi&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;login&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/auth/login.blade.php&#10;kernel.php&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Kernel.php&#10;kernel&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/vendor/symfony/http-kernel/Kernel.php&#10;rout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;lay&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;seeder&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/seeds/DatabaseSeeder.php&#10;route&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandida&#9;null&#9;null&#10;kandidatCon&#9;null&#9;null&#10;plane&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/plane.blade.php&#10;create_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_2.blade.php&#10;create.bl&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create.blade.php&#10;kreirajt&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_14_122909_KreirajTabeluPredmet.php" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
@@ -367,7 +463,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -409,52 +505,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="78" selection-start-line="3" selection-start-column="78" selection-end-line="3" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_121238_create_tip_studija_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6153846">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_14_121602_create_studijski_program_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
@@ -499,6 +549,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -506,6 +557,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -529,6 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -536,6 +589,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -543,6 +597,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.078794904">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -732,21 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05034551">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6140178">
-          <caret line="60" column="110" selection-start-line="60" selection-start-column="110" selection-end-line="60" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -755,43 +795,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/sifarnici/sportskoAngazovanje.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="6.0384617">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.230769">
-          <caret line="197" column="55" selection-start-line="197" selection-start-column="55" selection-end-line="197" selection-end-column="55" />
+        <state vertical-scroll-proportion="1.137891">
+          <caret line="60" column="110" selection-start-line="60" selection-start-column="110" selection-end-line="60" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019698726">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.76923">
-          <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="187" selection-end-column="13" />
+        <state vertical-scroll-proportion="-11.615385">
+          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="70" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
+          <folding>
+            <element signature="e#545#569#0#HTML" expanded="true" />
+            <element signature="e#1052#1086#0#HTML" expanded="true" />
+            <element signature="e#1283#1307#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.538462">
-          <caret line="136" column="57" selection-start-line="136" selection-start-column="57" selection-end-line="136" selection-end-column="57" />
+        <state vertical-scroll-proportion="-23.384615">
+          <caret line="556" column="61" selection-start-line="556" selection-start-column="61" selection-end-line="556" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86210895">
-          <caret line="263" column="71" selection-start-line="263" selection-start-column="71" selection-end-line="263" selection-end-column="71" />
+        <state vertical-scroll-proportion="-8.346154">
+          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="113" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.192308">
+          <caret line="382" column="80" selection-start-line="382" selection-start-column="80" selection-end-line="382" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SportskoAngazovanjeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033492822">
+          <caret line="26" column="84" selection-start-line="26" selection-start-column="84" selection-end-line="26" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/sportsko_angazovanje.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6106605">
+          <caret line="34" column="75" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
+          <folding>
+            <element signature="e#1255#1280#0#HTML" expanded="true" />
+            <element signature="e#1952#1971#0#HTML" expanded="true" />
+            <element signature="e#2406#2441#0#HTML" expanded="true" />
+            <element signature="e#2667#2702#0#HTML" expanded="true" />
+            <element signature="e#2936#2971#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

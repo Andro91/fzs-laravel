@@ -529,6 +529,36 @@ class KandidatController extends Controller
         return redirect('/kandidat/');
     }
 
+    public function sport($id)
+    {
+        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
+        $sport = Sport::all();
+
+        return view('kandidat.sportsko_angazovanje')
+            ->with('sport',$sport)
+            ->with('sportskoAngazovanje',$sportskoAngazovanje)
+            ->with('id',$id);
+    }
+
+    public function sportStore(Request $request,$id)
+    {
+        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
+        $sportovi = Sport::all();
+
+        $sport = new SportskoAngazovanje();
+        $sport->sport_id = $request->sport;
+        $sport->kandidat_id = $id;
+        $sport->nazivKluba = $request->klub;
+        $sport->odDoGodina = $request->uzrast;
+        $sport->ukupnoGodina = $request->godine;
+        $sport->save();
+
+
+        return redirect("/kandidat/{$id}/sportskoangazovanje")
+            ->with('sport',$sportovi)
+            ->with('sportskoAngazovanje',$sportskoAngazovanje)
+            ->with('id',$id);
+    }
 
     public function testPost(Request $request)
     {

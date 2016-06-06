@@ -23,7 +23,8 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::auth();
 	Route::resource('kandidat', 'KandidatController');
-
+	Route::get('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sport');
+	Route::post('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sportStore');
 });
 
 // rute za sifarnike

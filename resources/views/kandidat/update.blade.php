@@ -273,12 +273,14 @@
                                         <thead>
                                         <tr>
                                             <th>Sport</th>
+                                            <th><a class="btn btn-primary" href="/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Dodaj</a></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($sportskoAngazovanjeKandidata as $angazovanje)
                                             <tr>
                                                 <td>{{ $sport->find($angazovanje->sport_id)->naziv  }}</td>
+                                                <td></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -378,7 +380,7 @@
                                     {{--</div>--}}
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-primary btn-lg">Dalje</button>
+                                    <button type="submit" class="btn btn-success btn-lg">Sačuvaj</button>
                                 </div>
 
                             </div>
