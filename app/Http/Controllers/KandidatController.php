@@ -18,6 +18,7 @@ use App\StudijskiProgram;
 use App\TipStudija;
 use App\UspehSrednjaSkola;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -133,10 +134,10 @@ class KandidatController extends Controller
                 $kandidat->save();
             } catch ( \Illuminate\Database\QueryException $e) {
 
-                if (strpos($e->getMessage(), 'jmbg_UNIQUE') !== false) {
+                if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
                     return back()->with('jmbgError','1')->withInput();
                 }else{
-                    dd("nesto je poslo po zlu");
+                    dd("nesto je poslo po zlu" . $e->getMessage());
                 }
             }
 
@@ -183,13 +184,13 @@ class KandidatController extends Controller
             $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
             try {
-            $prviRazred = new UspehSrednjaSkola();
-            $prviRazred->kandidat_id = $request->insertedId;
-            $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
-            $prviRazred->opstiUspeh_id = $request->prviRazred;
-            $prviRazred->srednja_ocena = $request->SrednjaOcena1;
-            $prviRazred->RedniBrojRazreda = 1;
-            $prviRazred->save();
+                $prviRazred = new UspehSrednjaSkola();
+                $prviRazred->kandidat_id = $request->insertedId;
+                $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
+                $prviRazred->opstiUspeh_id = $request->prviRazred;
+                $prviRazred->srednja_ocena = $request->SrednjaOcena1;
+                $prviRazred->RedniBrojRazreda = 1;
+                $prviRazred->save();
             }catch (\Exception $e){
                 return $e;
             }
@@ -325,10 +326,53 @@ class KandidatController extends Controller
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id',$id)->lists('prilozenaDokumenta_id')->toArray();
 
-        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
-        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
-        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
-        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
+
+        try {
+            $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $prviRazred = new UspehSrednjaSkola();
+            $prviRazred->kandidat_id = 0;
+            $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            $prviRazred->opstiUspeh_id = 1;
+            $prviRazred->srednja_ocena = 0;
+            $prviRazred->RedniBrojRazreda = 1;
+        }
+
+        try {
+            $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $drugiRazred = new UspehSrednjaSkola();
+            $drugiRazred->kandidat_id = 0;
+            $drugiRazred->SrednjeSkoleFakulteti_id = 1;
+            $drugiRazred->opstiUspeh_id = 1;
+            $drugiRazred->srednja_ocena = 0;
+            $drugiRazred->RedniBrojRazreda = 1;
+        }
+
+        try {
+            $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $treciRazred = new UspehSrednjaSkola();
+            $treciRazred->kandidat_id = 0;
+            $treciRazred->SrednjeSkoleFakulteti_id = 1;
+            $treciRazred->opstiUspeh_id = 1;
+            $treciRazred->srednja_ocena = 0;
+            $treciRazred->RedniBrojRazreda = 1;
+        }
+
+        try {
+            $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $cetvrtiRazred = new UspehSrednjaSkola();
+            $cetvrtiRazred->kandidat_id = 0;
+            $cetvrtiRazred->SrednjeSkoleFakulteti_id = 1;
+            $cetvrtiRazred->opstiUspeh_id = 1;
+            $cetvrtiRazred->srednja_ocena = 0;
+            $cetvrtiRazred->RedniBrojRazreda = 1;
+        }
+
+
+
 
         $sportskoAngazovanjeKandidata = SportskoAngazovanje::where('kandidat_id',$id)->get();
 

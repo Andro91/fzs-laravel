@@ -179,5 +179,11 @@
         $.mask.definitions['w'] = '[0-9]';
         $.mask.definitions['e'] = '[0-1]';
         $('#DatumRodjenja').mask("qw.ew.9999.");
+
+        $('#JMBG').focusout(function(){
+            var jmbg = $('#JMBG').val();
+            var millenia = jmbg[4] === '0' ? '2' : '1';
+            $('#DatumRodjenja').val(jmbg[0] + jmbg[1] + '.' + jmbg[2] + jmbg[3] + '.' + millenia + jmbg[4] + jmbg[5] + jmbg[6] + '.' );
+        });
     </script>
 @endsection
