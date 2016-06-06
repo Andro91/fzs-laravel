@@ -9,7 +9,7 @@
             {{method_field('PATCH')}}
 
 
-            <div class="panel panel-success col-md-9">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Izmeni status studiranja</h3>
                 </div>

@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 @section('page_heading','Izmena podataka postojećeg kandidata')
 @section('section')
-    <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id) }}">
+
+    <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id)  }}">
         <div class="col-sm-12 col-lg-12">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
@@ -76,7 +77,7 @@
                             <div class="form-group">
                                 <label for="ImeKandidata">Ime Kandidata</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
-                                       value="{{ $kandidat->imeKandidata }}">
+                                       value="{{ (old('ImeKandidata')) ? old('ImeKandidata') : $kandidat->imeKandidata }}">
                             </div>
                             <div class="form-group">
                                 <label for="PrezimeKandidata">Prezime Kandidata</label>
@@ -263,28 +264,37 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Sportsko angazovanje</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <table class="table table-condensed">
-                                        <thead>
-                                        <tr>
-                                            <th>Sport</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($sportskoAngazovanjeKandidata as $angazovanje)
+                            <form role="form" method="post" action="/sportskoAngazovanje">
+                                {{csrf_field()}}
+                                {{method_field('PATCH')}}
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Sportsko angazovanje</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-condensed">
+                                            <thead>
                                             <tr>
-                                                <td>{{ $sport->find($angazovanje->sport_id)->naziv  }}</td>
+                                                <th>Sport</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($sportskoAngazovanjeKandidata as $angazovanje)
+                                                <tr>
+                                                    <td>{{ $sport->find($angazovanje->sport_id)->naziv  }}</td>
+                                                </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-primary btn-lg" type="button" onclick="window.location='{{ url('/sportskoAngazovanje/' . $kandidat->id) }}'">Izmeni</button>
+                                                </td>
+                                                <!--<td><button class="btn btn-primary btn-lg" name="angazovanje">Izmeni</button></td>-->
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -378,7 +388,7 @@
                                     {{--</div>--}}
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-primary btn-lg">Dalje</button>
+                                    <button type="submit" name="dalje" value="1" class="btn btn-primary btn-lg">Dalje</button>
                                 </div>
 
                             </div>
@@ -390,7 +400,6 @@
             </div>
         </div>
     </form>
-
     <script>
         $.mask.definitions['q'] = '[0-3]';
         $.mask.definitions['w'] = '[0-9]';
