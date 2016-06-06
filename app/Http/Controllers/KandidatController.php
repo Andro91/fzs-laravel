@@ -187,6 +187,7 @@ class KandidatController extends Controller
             $prviRazred->kandidat_id = $request->insertedId;
             $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $prviRazred->opstiUspeh_id = $request->prviRazred;
+            $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
             $prviRazred->save();
             }catch (\Exception $e){
@@ -197,6 +198,7 @@ class KandidatController extends Controller
             $drugiRazred->kandidat_id = $request->insertedId;
             $drugiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+            $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
             $drugiRazred->RedniBrojRazreda = 2;
             $drugiRazred->save();
 
@@ -204,6 +206,7 @@ class KandidatController extends Controller
             $treciRazred->kandidat_id = $request->insertedId;
             $treciRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $treciRazred->opstiUspeh_id = $request->treciRazred;
+            $treciRazred->srednja_ocena = $request->SrednjaOcena3;
             $treciRazred->RedniBrojRazreda = 3;
             $treciRazred->save();
 
@@ -211,35 +214,44 @@ class KandidatController extends Controller
             $cetvrtiRazred->kandidat_id = $request->insertedId;
             $cetvrtiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+            $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
+
+
             $cetvrtiRazred->RedniBrojRazreda = 4;
             $cetvrtiRazred->save();
 
             $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
             $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
 
-            $sport1 = new SportskoAngazovanje();
-            $sport1->sport_id = $request->sport1;
-            $sport1->kandidat_id = $request->insertedId;
-            $sport1->nazivKluba = $request->klub1;
-            $sport1->odDoGodina = $request->uzrast1;
-            $sport1->ukupnoGodina = $request->godine1;
-            $sport1->save();
+            if($request->sport1 != 0){
+                $sport1 = new SportskoAngazovanje();
+                $sport1->sport_id = $request->sport1;
+                $sport1->kandidat_id = $request->insertedId;
+                $sport1->nazivKluba = $request->klub1;
+                $sport1->odDoGodina = $request->uzrast1;
+                $sport1->ukupnoGodina = $request->godine1;
+                $sport1->save();
+            }
 
-            $sport2 = new SportskoAngazovanje();
-            $sport2->sport_id = $request->sport2;
-            $sport2->kandidat_id = $request->insertedId;
-            $sport2->nazivKluba = $request->klub2;
-            $sport2->odDoGodina = $request->uzrast2;
-            $sport2->ukupnoGodina = $request->godine2;
-            $sport2->save();
+            if($request->sport2 != 0) {
+                $sport2 = new SportskoAngazovanje();
+                $sport2->sport_id = $request->sport2;
+                $sport2->kandidat_id = $request->insertedId;
+                $sport2->nazivKluba = $request->klub2;
+                $sport2->odDoGodina = $request->uzrast2;
+                $sport2->ukupnoGodina = $request->godine2;
+                $sport2->save();
+            }
 
-            $sport3 = new SportskoAngazovanje();
-            $sport3->sport_id = $request->sport3;
-            $sport3->kandidat_id = $request->insertedId;
-            $sport3->nazivKluba = $request->klub3;
-            $sport3->odDoGodina = $request->uzrast3;
-            $sport3->ukupnoGodina = $request->godine3;
-            $sport3->save();
+            if($request->sport3 != 0) {
+                $sport3 = new SportskoAngazovanje();
+                $sport3->sport_id = $request->sport3;
+                $sport3->kandidat_id = $request->insertedId;
+                $sport3->nazivKluba = $request->klub3;
+                $sport3->odDoGodina = $request->uzrast3;
+                $sport3->ukupnoGodina = $request->godine3;
+                $sport3->save();
+            }
 
             $kandidat->visina = $request->VisinaKandidata;
             $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
@@ -265,7 +277,7 @@ class KandidatController extends Controller
 
             $kandidat->save();
 
-            return $request->all();
+            return redirect('/kandidat/');
 
         }
     }

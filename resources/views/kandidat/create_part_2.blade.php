@@ -102,6 +102,7 @@
                                     <td>1.</td>
                                     <td>
                                         <select class="form-control" id="sport1" name="sport1">
+                                            <option value="0">NEMA</option>
                                             @foreach($sport as $item)
                                                 <option value="{{$item->id}}">{{$item->naziv}}</option>
                                             @endforeach
@@ -115,6 +116,7 @@
                                     <td>2.</td>
                                     <td>
                                         <select class="form-control" id="sport2" name="sport2">
+                                            <option value="0">NEMA</option>
                                             @foreach($sport as $item)
                                                 <option value="{{$item->id}}">{{$item->naziv}}</option>
                                             @endforeach
@@ -128,6 +130,7 @@
                                     <td>3.</td>
                                     <td>
                                         <select class="form-control" id="sport3" name="sport3">
+                                            <option value="0">NEMA</option>
                                             @foreach($sport as $item)
                                                 <option value="{{$item->id}}">{{$item->naziv}}</option>
                                             @endforeach
