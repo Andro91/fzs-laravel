@@ -247,7 +247,7 @@
                                     <hr>
 
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="OpstiUspehSrednjaSkola">OpstiUspehSrednjaSkola:</label>
+                                        <label for="OpstiUspehSrednjaSkola">Opšti Uspeh Srednja Škola &nbsp;&nbsp;</label>
                                         <select class="form-control" id="OpstiUspehSrednjaSkola"
                                                 name="OpstiUspehSrednjaSkola">
                                             @foreach($opstiUspehSrednjaSkola as $item)
@@ -256,7 +256,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcenaSrednjaSkola">SrednjaOcenaSrednjaSkola</label>
+                                        <label for="SrednjaOcenaSrednjaSkola">Srednja Ocena Srednja Škola</label>
                                         <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
                                                id="SrednjaOcenaSrednjaSkola"
                                                value="{{ $kandidat->srednjaOcenaSrednjaSkola }}">
@@ -266,7 +266,7 @@
 
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Sportsko angazovanje</h3>
+                                    <h3 class="panel-title">Sportsko angažovanje</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-condensed">
@@ -294,13 +294,13 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="VisinaKandidata">VisinaKandidata</label>
+                                        <label for="VisinaKandidata">Visina Kandidata</label>
                                         <input class="form-control" type="text" name="VisinaKandidata"
                                                id="VisinaKandidata"
                                                value="{{ $kandidat->visina }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="TelesnaTezinaKandidata">TelesnaTezinaKandidata</label>
+                                        <label for="TelesnaTezinaKandidata">Telesna Težina Kandidata</label>
                                         <input class="form-control" type="text" name="TelesnaTezinaKandidata"
                                                id="TelesnaTezinaKandidata" value="{{ $kandidat->telesnaTezina }}">
                                     </div>
@@ -398,5 +398,15 @@
         $.mask.definitions['w'] = '[0-9]';
         $.mask.definitions['e'] = '[0-1]';
         $('#DatumRodjenja').mask("qw.ew.9999.");
+
+        $.mask.definitions['r'] = '[0-5]';
+        $.mask.definitions['t'] = '[0-9]';
+
+        $('#SrednjaOcena1').mask("r.tt");
+        $('#SrednjaOcena2').mask("r.tt");
+        $('#SrednjaOcena3').mask("r.tt");
+        $('#SrednjaOcena4').mask("r.tt");
+        $('#SrednjaOcenaSrednjaSkola').mask("r.tt");
+
     </script>
 @endsection
