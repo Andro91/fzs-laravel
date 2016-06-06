@@ -3,7 +3,7 @@
 @section('page_heading','Promeni priložena dokumenta')
 @section('section')
 
-
+    <div class="col-md-9">
         <form role="form" method="post" action="/prilozenaDokumenta/{{$dokument->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
@@ -33,6 +33,7 @@
                 </div>
             </div>
         </form>
+    </div>
 
 
 

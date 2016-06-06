@@ -8,8 +8,7 @@
             {{csrf_field()}}
             {{method_field('PATCH')}}
 
-
-            <div class="panel panel-success col-md-9">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Izmena godine studija</h3>
                 </div>
@@ -35,16 +34,17 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                        @if($godinaStudija->indikatorAktivan == 1)
-                            <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
-                        @else
-                            <input name="indikatorAktivan" type="checkbox">
-                        @endif
+                            @if($godinaStudija->indikatorAktivan == 1)
+                                <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
+                            @else
+                                <input name="indikatorAktivan" type="checkbox">
+                            @endif
                             Aktivan</label>
                     </div>
-                <div class="panel-body">
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Izmeni</button>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <button type="submit" class="btn btn-primary">Izmeni</button>
+                        </div>
                     </div>
                 </div>
             </div>

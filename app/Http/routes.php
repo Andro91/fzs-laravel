@@ -32,7 +32,7 @@ Route::get('/tipStudija', 'TipStudijaController@index');
 Route::get('/studijskiProgram', 'StudijskiProgramController@index');
 Route::get('/godinaStudija', 'GodinaStudijaController@index');
 Route::get('/sport', 'SportController@index');
-Route::get('/sportskoAngazovanje', 'SportskoAngazovanjeController@index');
+Route::get('/sportskoAngazovanje/{kandidat}', 'SportskoAngazovanjeController@index');
 Route::get('/statusStudiranja', 'StatusStudiranjaController@index');
 Route::get('/predmet', 'PredmetController@index');
 Route::get('/srednjeSkoleFakulteti', 'SrednjeSkoleFakultetiController@index');
@@ -54,6 +54,7 @@ Route::post('/mesto/unos', 'MestoController@unos');
 Route::post('/statusStudiranja/unos', 'StatusStudiranjaController@unos');
 Route::post('/predmet/unos', 'PredmetController@unos');
 Route::post('/prilozenaDokumenta/unos', 'PrilozenaDokumentaController@unos');
+Route::post('/sportskoAngazovanje/unos', 'SportskoAngazovanjeController@unos');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -102,6 +103,13 @@ Route::get('srednjeSkoleFakulteti/{srednjeSkoleFakulteti}/delete', 'SrednjeSkole
 Route::get('/prilozenaDokumenta/{dokument}/edit', 'PrilozenaDokumentaController@edit');
 Route::patch('prilozenaDokumenta/{dokument}', 'PrilozenaDokumentaController@update');
 Route::get('prilozenaDokumenta/{dokument}/delete', 'PrilozenaDokumentaController@delete');
+
+Route::get('/sportskoAngazovanje/{angazovanje}/edit', 'SportskoAngazovanjeController@edit');
+Route::patch('sportskoAngazovanje/{angazovanje}', 'SportskoAngazovanjeController@update');
+Route::get('sportskoAngazovanje/{angazovanje}/delete', 'SportskoAngazovanjeController@delete');
+
+//Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
+
 
 
 //Dodao Andrija rute za testiranje

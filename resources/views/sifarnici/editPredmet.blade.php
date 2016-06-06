@@ -3,6 +3,7 @@
 @section('page_heading','Izmeni predmet')
 @section('section')
 
+    <div class="col-md-9">
         <form role="form" method="post" action="/predmet/{{$predmet->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
@@ -55,13 +56,14 @@
                         <label for="naziv">ESPB:</label>
                         <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Status:</label>
-                        @if($predmet->statusPredmeta == 1)
-                            <input name="statusPredmeta" type="checkbox" checked="true" class="form-control">
-                        @else
-                            <input name="statusPredmeta" type="checkbox" class="form-control">
-                        @endif
+                    <div class="checkbox">
+                        <label>
+                            @if($predmet->statusPredmeta == 1)
+                                <input name="statusPredmeta" value="1" type="checkbox" checked="true">
+                            @else
+                                <input name="statusPredmeta" type="checkbox">
+                            @endif
+                            Aktivan</label>
                     </div>
                 </div>
                 <div class="panel-body">
