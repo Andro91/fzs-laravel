@@ -65,9 +65,10 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Aktivan:</label>
-                        <input name="indikatorAktivan" type="checkbox" class="form-control checkbox">
+                    <div class="checkbox">
+                        <label>
+                            <input name="indikatorAktivan" type="checkbox">
+                            Aktivan</label>
                     </div>
                 </div>
                 <div class="panel-body">
