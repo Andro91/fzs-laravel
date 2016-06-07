@@ -126,18 +126,11 @@ class KandidatController extends Controller
                 $kandidat->save();
             } catch (\Illuminate\Database\QueryException $e) {
 
-
-                if (strpos($e->getMessage(), 'jmbg_UNIQUE') !== false) {
+                if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
                     return back()->with('jmbgError', '1')->withInput();
                 } else {
-                    dd("nesto je poslo po zlu");
+                    dd("nesto je poslo po zlu" . $e->getMessage());
 
-                    if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
-                        return back()->with('jmbgError', '1')->withInput();
-                    } else {
-                        dd("nesto je poslo po zlu" . $e->getMessage());
-
-                    }
                 }
             }
 
@@ -183,21 +176,15 @@ class KandidatController extends Controller
 
             $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
-            try {
-                $prviRazred = new UspehSrednjaSkola();
-                $prviRazred->kandidat_id = $request->insertedId;
-                $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
-                $prviRazred->opstiUspeh_id = $request->prviRazred;
-                $prviRazred->srednja_ocena = $request->SrednjaOcena1;
-                $prviRazred->RedniBrojRazreda = 1;
-                $prviRazred->save();
 
-            } catch (\Exception $e) {
+            $prviRazred = new UspehSrednjaSkola();
+            $prviRazred->kandidat_id = $request->insertedId;
+            $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            $prviRazred->opstiUspeh_id = $request->prviRazred;
+            $prviRazred->srednja_ocena = $request->SrednjaOcena1;
+            $prviRazred->RedniBrojRazreda = 1;
+            $prviRazred->save();
 
-            }catch (\Exception $e){
-
-                return $e;
-            }
 
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = $request->insertedId;
@@ -412,59 +399,53 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::find($id);
 
-        Session::put('id', $kandidat->id);
 
-        //$kandidat2 = $request;
+        $kandidat->imeKandidata = $request->ImeKandidata;
+        $kandidat->prezimeKandidata = $request->PrezimeKandidata;
+        $kandidat->jmbg = $request->JMBG;
 
-        if ( $request->dalje == 1) {
+        $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
 
+        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->krsnaSlava_id = $request->KrsnaSlava;
+        $kandidat->kontaktTelefon = $request->KontaktTelefon;
+        $kandidat->adresaStanovanja = $request->AdresaStanovanja;
+        $kandidat->email = $request->Email;
+        $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
+        $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
+        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
-            $kandidat->imeKandidata = $request->ImeKandidata;
-            $kandidat->prezimeKandidata = $request->PrezimeKandidata;
-            $kandidat->jmbg = $request->JMBG;
+        $kandidat->tipStudija_id = $request->TipStudija;
+        $kandidat->studijskiProgram_id = $request->StudijskiProgram;
+        $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+        $kandidat->godinaStudija_id = $request->GodinaStudija;
 
-            $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
+        $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
-            $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
-            $kandidat->krsnaSlava_id = $request->KrsnaSlava;
-            $kandidat->kontaktTelefon = $request->KontaktTelefon;
-            $kandidat->adresaStanovanja = $request->AdresaStanovanja;
-            $kandidat->email = $request->Email;
-            $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
-            $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
-            $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
-            $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
-            $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
+        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
+        $prviRazred->opstiUspeh_id = $request->prviRazred;
+        $prviRazred->srednja_ocena = $request->SrednjaOcena1;
+        $prviRazred->save();
 
-            $kandidat->tipStudija_id = $request->TipStudija;
-            $kandidat->studijskiProgram_id = $request->StudijskiProgram;
-            $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
-            $kandidat->godinaStudija_id = $request->GodinaStudija;
+        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
+        $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+        $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
+        $drugiRazred->save();
 
-            $skola_id = $kandidat->srednjeSkoleFakulteti_id;
+        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
+        $treciRazred->opstiUspeh_id = $request->treciRazred;
+        $treciRazred->srednja_ocena = $request->SrednjaOcena3;
+        $treciRazred->save();
 
-            $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
-            $prviRazred->opstiUspeh_id = $request->prviRazred;
-            $prviRazred->srednja_ocena = $request->SrednjaOcena1;
-            $prviRazred->save();
+        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
+        $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+        $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
+        $cetvrtiRazred->save();
 
-            $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
-            $drugiRazred->opstiUspeh_id = $request->drugiRazred;
-            $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
-            $drugiRazred->save();
-
-            $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
-            $treciRazred->opstiUspeh_id = $request->treciRazred;
-            $treciRazred->srednja_ocena = $request->SrednjaOcena3;
-            $treciRazred->save();
-
-            $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
-            $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
-            $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
-            $cetvrtiRazred->save();
-
-            $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
-            $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
+        $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
+        $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
 
 //        $sport1 = new SportskoAngazovanje();
 //        $sport1->sport_id = $request->sport1;
@@ -490,60 +471,36 @@ class KandidatController extends Controller
 //        $sport3->ukupnoGodina = $request->godine3;
 //        $sport3->save();
 
-            $kandidat->visina = $request->VisinaKandidata;
-            $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
+        $kandidat->visina = $request->VisinaKandidata;
+        $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
 
 
-            $dokumenta = PrilozenaDokumenta::all();
+        $dokumenta = PrilozenaDokumenta::all();
 
-            foreach ($dokumenta as $dokument) {
-                if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
-                    $prilozenDokument = new KandidatPrilozenaDokumenta();
-                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                    $prilozenDokument->kandidat_id = $id;
-                    $prilozenDokument->indikatorAktivan = 1;
-                    $prilozenDokument->save();
-                } else {
-                    $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
-                        ->first();
-                    if ($delete != null) {
-                        $delete->delete();
-                    }
+        foreach ($dokumenta as $dokument) {
+            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->kandidat_id = $id;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
+            } else {
+                $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
+                    ->first();
+                if ($delete != null) {
+                    $delete->delete();
                 }
             }
-
-            $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
-            $kandidat->brojBodovaTest = $request->BrojBodovaTest;
-            $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
-            $kandidat->upisniRok = $request->UpisniRok;
-            $kandidat->indikatorAktivan = $request->IndikatorAktivan;
-            $kandidat->save();
-
-            return redirect('/kandidat/');
         }
 
-        else //grana za pozivanje view-a iz iste forme ------ ne koristi se
-        {
-            $sport = Sport::all();
+        $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
+        $kandidat->brojBodovaTest = $request->BrojBodovaTest;
+        $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
+        $kandidat->upisniRok = $request->UpisniRok;
+        $kandidat->indikatorAktivan = $request->IndikatorAktivan;
+        $kandidat->save();
 
-            Session::put('id', $kandidat->id);
-
-            app('App\Http\Controllers\SportskoAngazovanjeContoller')->index($kandidat);
-
-
-
-            //Session::flush('kandidat');
-
-            //Session::put('kandidat', 'nije');
-
-            //Session::put('kandidat2', array($request));
-
-            //$request->session()->flash('kandidat', $request);
-
-            //return view('sifarnici.sportskoAngazovanje ', compact('kandidat', 'sport'));
-
-            //return redirect()->back()->withInput();
-        }
+        return redirect('/kandidat/');
 
     }
 
@@ -658,14 +615,25 @@ class KandidatController extends Controller
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
 
         try {
-            $kandidat->save();
+            $insertedId = $kandidat->save();
         } catch (\Illuminate\Database\QueryException $e) {
 
             if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
                 return back()->with('jmbgError', '1')->withInput();
             } else {
                 dd("nesto je poslo po zlu" . $e->getMessage());
+            }
+        }
 
+        $dokumenta = PrilozenaDokumenta::all();
+
+        foreach ($dokumenta as $dokument) {
+            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->kandidat_id = $insertedId;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
             }
         }
 
