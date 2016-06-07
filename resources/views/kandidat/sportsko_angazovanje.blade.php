@@ -1,6 +1,6 @@
 <title>Sportsko angažovanje</title>
 @extends('layouts.layout')
-@section('page_heading',"Sportsko angažovanje - {$sportskoAngazovanje[0]->kandidat->imeKandidata} {$sportskoAngazovanje[0]->kandidat->prezimeKandidata}")
+@section('page_heading',"Sportsko angažovanje - {$kandidat->imeKandidata} {$kandidat->prezimeKandidata}")
 @section('section')
 
     <div class="col-md-9">
@@ -8,31 +8,30 @@
             <table id="t" class="table">
                 <thead>
                 <th>
+                    Sport
+                </th>
+                <th>
                     Naziv kluba
                 </th>
                 <th>
-                    Period
+                    Uzrast (od - do)
                 </th>
                 <th>
                     Broj godina
                 </th>
                 <th>
-                    Sport
-                </th>
-                <th>
                     Akcije
                 </th>
                 </thead>
-
                 @foreach($sportskoAngazovanje as $angazovanje)
                     <tr>
+                        <td>{{$angazovanje->sport->naziv}}</td>
                         <td>{{$angazovanje->nazivKluba}}</td>
                         <td>{{$angazovanje->odDoGodina}}</td>
                         <td>{{$angazovanje->ukupnoGodina}}</td>
-                        <td>{{$angazovanje->sport->naziv}}</td>
                         <td>
                             <div>
-                                <form class="pull-left" action="/deletesses/{{$angazovanje->id}}" style="margin: 0 0 0 0 ;">
+                                <form class="pull-left" action="/sportskoAngazovanje/{{ $angazovanje->id }}/delete" style="margin: 0 0 0 0 ;">
                                     <input type="submit" class="btn btn-danger" value="Briši">
                                 </form>
                             </div>

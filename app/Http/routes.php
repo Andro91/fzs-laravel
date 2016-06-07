@@ -25,6 +25,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('kandidat', 'KandidatController');
 	Route::get('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sport');
 	Route::post('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sportStore');
+
+	Route::get('/master/create', 'KandidatController@createMaster');
+	Route::get('/master/', 'KandidatController@indexMaster');
+	Route::post('/storeMaster/', 'KandidatController@storeMaster');
 });
 
 // rute za sifarnike
@@ -115,6 +119,7 @@ Route::get('sportskoAngazovanje/{angazovanje}/delete', 'SportskoAngazovanjeContr
 //Dodao Andrija rute za testiranje
 Route::get('/test1', 'KandidatController@test1');
 Route::get('/test2', 'KandidatController@test2');
+Route::get('/test3', 'KandidatController@test3');
 
 Route::post('/testPost', 'KandidatController@testPost');
 

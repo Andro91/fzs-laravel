@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Unos kandidata')
+@section('page_heading','Prijava kandidata za Master studije')
 @section('section')
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
@@ -25,26 +25,19 @@
                     </div>
                 @endif
 
-                <form role="form" method="post" action="{{ url('/kandidat') }}">
+                <form role="form" method="post" action="{{ url('/storeMaster') }}">
                     {{ csrf_field() }}
                     {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
                     <input type="hidden" name="page" id="page" value="1" />
 
                     {{--STUDIJSKI PROGRAM--}}
-                    <div class="panel panel-success">
+                    <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Studijski program</h3>
+                            <h3 class="panel-title">Dokumenta</h3>
                         </div>
                         <div class="panel-body">
-                            {{--<div class="form-group pull-left" style="width: 28%; margin-right: 2%">--}}
-                                {{--<label for="TipStudija">Tip Studija:</label>--}}
-                                {{--<select class="form-control" id="TipStudija" name="TipStudija">--}}
-                                    {{--@foreach($tipStudija as $item)--}}
-                                        {{--<option value="{{$item->id}}">{{$item->naziv}}</option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                            <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
+
+                            <div class="form-group">
                                 <label for="StudijskiProgram">Studijski Program:</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
@@ -52,14 +45,15 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group pull-left" style="width: 20%;">
-                                <label for="SkolskeGodineUpisa">Školska Godina:</label>
-                                <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
-                                    @foreach($skolskeGodineUpisa as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <p><strong>Uz prijavu prilažem:</strong></p>
+                            @foreach($dokumentiPrvaGodina as $dokument)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
+                                        {{ $dokument->naziv }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -77,53 +71,21 @@
                                 <label for="PrezimeKandidata">Prezime Kandidata</label>
                                 <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata" value="{{ old('PrezimeKandidata') }}" >
                             </div>
-
-                            <div class="form-group pull-left" style="width: 60%; margin-right: 2%;">
+                            <div class="form-group">
+                                <label for="AdresaStanovanja">Adresa Stanovanja</label>
+                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja" style="max-width: 80%" value="{{ old('AdresaStanovanja') }}" >
+                            </div>
+                            <div class="form-group" style="width: 70%;">
                                 <label for="JMBG">JMBG</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ old('JMBG') }}" >
-                            </div>
-                            <div class="form-group pull-left" style="width: 38%;">
-                                <label for="DatumRodjenja">Datum Rođenja</label>
-                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja" value="{{ old('DatumRodjenja') }}" >
-                            </div>
-
-                            <div class="form-group">
-                                <label for="MestoRodjenja">Mesto Rođenja:</label>
-                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
-                                    @foreach($mestoRodjenja as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="KrsnaSlava">Krsna Slava:</label>
-                                <select class="form-control" id="KrsnaSlava" name="KrsnaSlava" style="max-width: 50%">
-                                    @foreach($krsnaSlava as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Kontakt Telefon</label>
                                 <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%" value="{{ old('KontaktTelefon') }}" >
                             </div>
                             <div class="form-group">
-                                <label for="AdresaStanovanja">Adresa Stanovanja</label>
-                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja" style="max-width: 80%" value="{{ old('AdresaStanovanja') }}" >
-                            </div>
-                            <div class="form-group">
                                 <label for="Email">Email</label>
                                 <input class="form-control" type="text" name="Email" id="Email" style="max-width: 60%" value="{{ old('Email') }}" >
-                            </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="ImePrezimeJednogRoditelja">Ime i Prezime Jednog Roditelja</label>
-                                <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
-                                       id="ImePrezimeJednogRoditelja" value="{{ old('ImePrezimeJednogRoditelja') }}" >
-                            </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="KontaktTelefonRoditelja">Kontakt Telefon Roditelja</label>
-                                <input class="form-control" type="text" name="KontaktTelefonRoditelja"
-                                       id="KontaktTelefonRoditelja" value="{{ old('KontaktTelefonRoditelja') }}" >
                             </div>
 
                             <div class="clearfix"></div>
@@ -142,7 +104,7 @@
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
                                        id="SmerZavrseneSkoleFakulteta" value="{{ old('SmerZavrseneSkoleFakulteta') }}">
                             </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <div class="form-group" style="width: 48%; margin-right: 2%;">
                                 <label for="MestoZavrseneSkoleFakulteta">Mesto Zavrsene Škole ili Fakulteta:</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
@@ -152,20 +114,27 @@
                                 </select>
                             </div>
 
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="GodinaStudija">Godina Studija:</label>
-                                <select class="form-control" id="GodinaStudija" name="GodinaStudija" style="max-width: 40%">
-                                    @foreach($godinaStudija as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="clearfix"></div>
+                            <hr>
+
+
+                            <div class="form-group" style="width: 48%; margin-right: 2%;">
+                                <label for="ProsecnaOcena">Prosečna Ocena</label>
+                                <input class="form-control" type="text" name="ProsecnaOcena"
+                                       id="ProsecnaOcena" value="{{ old('UpisniRok') }}">
+                            </div>
+
+                            <div class="form-group" style="width: 48%; margin-right: 2%;">
+                                <label for="UpisniRok">Upisni Rok</label>
+                                <input class="form-control" type="text" name="UpisniRok"
+                                       id="UpisniRok" value="{{ old('UpisniRok') }}">
                             </div>
 
                             <div class="clearfix"></div>
                             <hr>
 
                             <div class="form-group text-center">
-                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Dalje</button>
+                                <button type="submit" name="Submit" class="btn btn-primary btn-lg">Sačuvaj</button>
                             </div>
                         </div>
                     </div>
@@ -173,17 +142,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $.mask.definitions['q'] = '[0-3]';
-        $.mask.definitions['w'] = '[0-9]';
-        $.mask.definitions['e'] = '[0-1]';
-        $('#DatumRodjenja').mask("qw.ew.9999.");
-
-        $('#JMBG').focusout(function(){
-            var jmbg = $('#JMBG').val();
-            var millenia = jmbg[4] === '0' ? '2' : '1';
-            $('#DatumRodjenja').val(jmbg[0] + jmbg[1] + '.' + jmbg[2] + jmbg[3] + '.' + millenia + jmbg[4] + jmbg[5] + jmbg[6] + '.' );
-        });
-    </script>
 @endsection

@@ -62,14 +62,17 @@ class SportskoAngazovanjeController extends Controller
 
     public function delete(SportskoAngazovanje $angazovanje)
     {
+        $id = $angazovanje->kandidat_id;
+        $kandidat = Kandidat::find($id);
+        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
+        $sportovi = Sport::all();
+
         $angazovanje->delete();
 
-        //$id = Session::get('id');
-
-        return back();
-        //$kandidat = Kandidat::where('id', $id)->get();
-
-        //return Redirect::to('/kandidat/'. $id .'/edit')->with('kandidat', $kandidat);
+        return redirect("/kandidat/{$id}/sportskoangazovanje")
+            ->with('sport',$sportovi)
+            ->with('kandidat',$kandidat)
+            ->with('sportskoAngazovanje',$sportskoAngazovanje);
     }
 
     public function vrati()

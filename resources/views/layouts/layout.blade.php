@@ -47,13 +47,25 @@
                             {{--<!-- /input-group -->--}}
                         {{--</li>--}}
                         <li >
-                            <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;Kandidati<span class="fa arrow"></span></a>
+                            <a href="#"><i class="glyphicon glyphicon-user"> </i>&nbsp;Kandidati<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('kandidat/create') }}">Dodavanje</a>
                                 </li>
                                 <li {{ (Request::is('*kandidat/') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('kandidat/' ) }}">Pregled</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li >
+                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Master kandidati<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*master/create') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('master/create') }}">Dodavanje</a>
+                                </li>
+                                <li {{ (Request::is('*master/') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('master/' ) }}">Pregled</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
