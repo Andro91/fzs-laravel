@@ -6,6 +6,8 @@ use App\PrilozenaDokumenta;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+use PDF;
 
 class PrilozenaDokumentaController extends Controller
 {

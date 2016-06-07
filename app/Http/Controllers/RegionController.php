@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Region;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
+use View;
+use PDF;
 
 class RegionController extends Controller
 {
@@ -42,9 +44,30 @@ class RegionController extends Controller
 
     public function delete(Region $region)
     {
-        $region->delete();
+        //$region->delete();
 
-        return back();
+        $view = View::make('sifarnici.test', ['ime' => $region->naziv]);
+
+        $contents = $view->render();
+        PDF::SetTitle('Test');
+        PDF::AddPage();
+
+        PDF::Write(0, $contents);
+        PDF::Output('hello_world.pdf');
+
+        //return back();
+    }
+
+    public function test(Request $request)
+    {
+        $view = View::make('sifarnici.tets', ['name' => 'Rishabh']);
+
+        $contents = $view->render();
+        PDF::SetTitle('Test');
+        PDF::AddPage();
+        PDF::Write(0, $contents);
+
+
     }
 
 }
