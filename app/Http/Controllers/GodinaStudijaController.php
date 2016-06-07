@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class GodinaStudijaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $godinaStudija = GodinaStudija::all();

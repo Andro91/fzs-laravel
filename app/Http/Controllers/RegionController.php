@@ -45,14 +45,16 @@ class RegionController extends Controller
     public function delete(Region $region)
     {
         //$region->delete();
-
-        $view = View::make('sifarnici.test', ['ime' => $region->naziv]);
+        $region = Region::all();
+        $view = View::make('sifarnici.test')->with('region', $region);
+        //$ime = $region->naziv;
+        //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
 
         $contents = $view->render();
         PDF::SetTitle('Test');
         PDF::AddPage();
 
-        PDF::Write(0, $contents);
+        PDF::WriteHtml($contents);
         PDF::Output('hello_world.pdf');
 
         //return back();

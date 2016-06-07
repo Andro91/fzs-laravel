@@ -21,15 +21,16 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => ['web']], function () {
 
-	Route::auth();
-	Route::resource('kandidat', 'KandidatController');
-	Route::get('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sport');
-	Route::post('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sportStore');
+    Route::auth();
+    Route::resource('kandidat', 'KandidatController');
+    Route::get('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sport');
+    Route::post('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sportStore');
 
-	Route::get('/master/create', 'KandidatController@createMaster');
-	Route::get('/master/', 'KandidatController@indexMaster');
-	Route::post('/storeMaster/', 'KandidatController@storeMaster');
+    Route::get('/master/create', 'KandidatController@createMaster');
+    Route::get('/master/', 'KandidatController@indexMaster');
+    Route::post('/storeMaster/', 'KandidatController@storeMaster');
 });
+
 
 // rute za sifarnike
 Route::get('/tipStudija', 'TipStudijaController@index');
@@ -112,8 +113,8 @@ Route::get('/sportskoAngazovanje/{angazovanje}/edit', 'SportskoAngazovanjeContro
 Route::patch('sportskoAngazovanje/{angazovanje}', 'SportskoAngazovanjeController@update');
 Route::get('sportskoAngazovanje/{angazovanje}/delete', 'SportskoAngazovanjeController@delete');
 
-//Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 
+//Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 
 
 //Dodao Andrija rute za testiranje
