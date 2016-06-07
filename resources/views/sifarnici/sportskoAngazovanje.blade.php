@@ -46,7 +46,7 @@
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="/sportskoAngazovanje/{{$sportskoAngazovanje->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>

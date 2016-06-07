@@ -21,14 +21,20 @@
                 @foreach($opstina as $opstina)
                     <tr>
                         <td>{{$opstina->naziv}}</td>
-                        <td>{{$opstina->region->naziv}}</td>
+                        <td>
+                            @if($opstina->region)
+                                {{$opstina->region->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="opstina/{{$opstina->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="opstina/{{$opstina->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>

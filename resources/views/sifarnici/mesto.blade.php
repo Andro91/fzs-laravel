@@ -21,14 +21,20 @@
                 @foreach($mesto as $mesto)
                     <tr>
                         <td>{{$mesto->naziv}}</td>
-                        <td>{{$mesto->opstina->naziv}}</td>
+                        <td>
+                            @if($mesto->opstina)
+                                {{$mesto->opstina->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="mesto/{{$mesto->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="mesto/{{$mesto->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>

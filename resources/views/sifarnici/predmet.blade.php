@@ -36,9 +36,27 @@
                 @foreach($predmet as $predmet)
                     <tr>
                         <td>{{$predmet->naziv}}</td>
-                        <td>{{$predmet->tipStudija->naziv}}</td>
-                        <td>{{$predmet->studijskiProgram->naziv}}</td>
-                        <td>{{$predmet->godinaStudija->naziv}}</td>
+                        <td>
+                            @if($predmet->tipStudija)
+                                {{$predmet->tipStudija->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
+                        <td>
+                            @if($predmet->studijskiProgram)
+                                {{$predmet->studijskiProgram->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
+                        <td>
+                            @if($predmet->godinaStudija)
+                                {{$predmet->godinaStudija->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
                         <td>{{$predmet->semestarSlusanjaPredmeta}}</td>
                         <td>{{$predmet->espb}}</td>
                         <td>{{$predmet->statusPredmeta}}</td>
@@ -48,7 +66,7 @@
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="predmet/{{$predmet->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>
@@ -103,8 +121,11 @@
                         <input name="espb" type="number" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Status:</label>
-                        <input name="statusPredmeta" type="checkbox" class="form-control">
+                        <div class="checkbox">
+                            <label>
+                                <input name="statusPredmeta" type="checkbox">
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">

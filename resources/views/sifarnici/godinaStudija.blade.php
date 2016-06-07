@@ -32,7 +32,7 @@
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="godinaStudija/{{$godinaStudija->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>
@@ -66,10 +66,12 @@
                         <label for="naziv">Redosled prikazivanja:</label>
                         <input name="redosledPrikazivanja" type="text" class="form-control">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input name="indikatorAktivan" type="checkbox">
-                            Aktivan</label>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="checkbox">
+                            <label>
+                                <input name="indikatorAktivan" type="checkbox">
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">

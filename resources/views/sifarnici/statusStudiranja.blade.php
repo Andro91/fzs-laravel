@@ -24,7 +24,7 @@
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="statusStudiranja/{{$statusStudiranja->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>
@@ -33,6 +33,7 @@
             </table>
         </div>
         <br/>
+
         <form role="form" method="post" action="{{ url('/statusStudiranja/unos') }}">
             {{csrf_field()}}
 
@@ -46,10 +47,12 @@
                         <label for="naziv">Naziv:</label>
                         <input name="naziv" type="text" class="form-control">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input name="indikatorAktivan" type="checkbox">
-                            Aktivan</label>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="checkbox">
+                            <label>
+                                <input name="indikatorAktivan" type="checkbox">
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">

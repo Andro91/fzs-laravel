@@ -24,14 +24,20 @@
                     <tr>
                         <td>{{$studijskiProgram->naziv}}</td>
                         <td>{{$studijskiProgram->skrNazivStudijskogPrograma}}</td>
-                        <td>{{$studijskiProgram->tipStudija->naziv}}</td>
+                        <td>
+                            @if($studijskiProgram->tipStudija)
+                                {{$studijskiProgram->tipStudija->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>
@@ -65,11 +71,13 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                     <div class="checkbox">
                         <label>
                             <input name="indikatorAktivan" type="checkbox">
                             Aktivan</label>
                     </div>
+                      </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">

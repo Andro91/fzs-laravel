@@ -29,7 +29,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                        <button type="submit" class="btn btn-primary">Izmeni</button>
                     </div>
                 </div>
             </div>

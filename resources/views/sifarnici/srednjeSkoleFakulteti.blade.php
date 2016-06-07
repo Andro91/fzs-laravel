@@ -21,14 +21,21 @@
                 @foreach($srednjeSkoleFakulteti as $srednjeSkoleFakulteti)
                     <tr>
                         <td>{{$srednjeSkoleFakulteti->naziv}}</td>
-                        <td>{{$srednjeSkoleFakulteti->indSkoleFakulteta}}</td>
+                        <!--<td>{{$srednjeSkoleFakulteti->indSkoleFakulteta}}</td>-->
+                        <td>
+                            @if($srednjeSkoleFakulteti->indSkoleFakulteta == 1)
+                                Škola
+                            @else
+                               Fakultet
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>

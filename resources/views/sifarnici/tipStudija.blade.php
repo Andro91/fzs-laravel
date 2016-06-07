@@ -27,7 +27,7 @@
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
                                 <form class="btn" action="tipStudija/{{$tipStudija->id}}/delete">
-                                    <input type="submit" class="btn btn-primary" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
                         </td>
@@ -36,6 +36,7 @@
             </table>
         </div>
         <br/>
+
         <form role="form" method="post" action="{{ url('/tipStudija/unos') }}">
             {{csrf_field()}}
 
@@ -53,10 +54,12 @@
                         <label for="naziv">Skraćeni naziv:</label>
                         <input name="skrNaziv" type="text" class="form-control">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input name="indikatorAktivan" type="checkbox">
-                            Aktivan</label>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="checkbox">
+                            <label>
+                                <input name="indikatorAktivan" type="checkbox">
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">

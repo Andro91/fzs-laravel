@@ -32,14 +32,16 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            @if($studijskiProgram->indikatorAktivan == 1)
-                                <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
-                            @else
-                                <input name="indikatorAktivan" type="checkbox">
-                            @endif
-                            Aktivan</label>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="checkbox">
+                            <label>
+                                @if($tipStudija->indikatorAktivan == 1)
+                                    <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
+                                @else
+                                    <input name="indikatorAktivan" type="checkbox">
+                                @endif
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">

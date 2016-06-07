@@ -50,20 +50,23 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Semestar:</label>
-                        <input name="semestarSlusanjaPredmeta" type="text" class="form-control" value="{{$predmet->semestarSlusanjaPredmeta}}">
+                        <input name="semestarSlusanjaPredmeta" type="text" class="form-control"
+                               value="{{$predmet->semestarSlusanjaPredmeta}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">ESPB:</label>
                         <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            @if($predmet->statusPredmeta == 1)
-                                <input name="statusPredmeta" value="1" type="checkbox" checked="true">
-                            @else
-                                <input name="statusPredmeta" type="checkbox">
-                            @endif
-                            Aktivan</label>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="checkbox">
+                            <label>
+                                @if($predmet->statusPredmeta == 1)
+                                    <input name="statusPredmeta" value="1" type="checkbox" checked="true">
+                                @else
+                                    <input name="statusPredmeta" type="checkbox">
+                                @endif
+                                Aktivan</label>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -75,12 +78,12 @@
         </form>
     </div>
 
-        <script>
-            $(document).ready(function () {
-                $("#tipStudija_id").val($("#tipStudijaHidden").val());
-                $("#studijskiProgram_id").val($("#studijskiProgramHidden").val());
-                $("#godinaStudija_id").val($("#godinaStudijaHidden").val());
-            });
-        </script>
+    <script>
+        $(document).ready(function () {
+            $("#tipStudija_id").val($("#tipStudijaHidden").val());
+            $("#studijskiProgram_id").val($("#studijskiProgramHidden").val());
+            $("#godinaStudija_id").val($("#godinaStudijaHidden").val());
+        });
+    </script>
 
 @endsection
