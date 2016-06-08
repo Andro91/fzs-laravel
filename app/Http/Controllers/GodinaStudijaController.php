@@ -18,7 +18,11 @@ class GodinaStudijaController extends Controller
 
     public function index()
     {
-        $godinaStudija = GodinaStudija::all();
+        try {
+            $godinaStudija = GodinaStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.godinaStudija', compact('godinaStudija'));
     }
@@ -31,14 +35,16 @@ class GodinaStudijaController extends Controller
         $godinaStudija->nazivRimski = $request->nazivRimski;
         $godinaStudija->nazivSlovimaUPadezu = $request->nazivSlovimaUPadezu;
         $godinaStudija->redosledPrikazivanja = $request->redosledPrikazivanja;
-        if($godinaStudija->indikatorAktivan == 'on') {
+        if ($godinaStudija->indikatorAktivan == 'on') {
             $godinaStudija->indikatorAktivan = 1;
-        }
-        else{
+        } else {
             $godinaStudija->indikatorAktivan = 0;
         }
-
-        $godinaStudija->save();
+        try {
+            $godinaStudija->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -54,21 +60,30 @@ class GodinaStudijaController extends Controller
         $godinaStudija->nazivRimski = $request->nazivRimski;
         $godinaStudija->nazivSlovimaUPadezu = $request->nazivSlovimaUPadezu;
         $godinaStudija->redosledPrikazivanja = $request->redosledPrikazivanja;
-        if($godinaStudija->indikatorAktivan == 'on') {
+        if ($godinaStudija->indikatorAktivan == 'on') {
             $godinaStudija->indikatorAktivan = 1;
-        }
-        else{
+        } else {
             $godinaStudija->indikatorAktivan = 0;
         }
 
-        $godinaStudija->update();
+        try {
+            $godinaStudija->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/godinaStudija');
     }
 
     public function delete(GodinaStudija $godinaStudija)
     {
-        $godinaStudija->delete();
+
+        try {
+            $godinaStudija->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
+
 
         return back();
     }

@@ -1,6 +1,6 @@
-<title>Izmeni sport</title>
+<title>?????? ?????</title>
 @extends('layouts.layout')
-@section('page_heading','Izmeni sport')
+@section('page_heading','?????? ?????')
 @section('section')
 
     <div class="col-md-9">
@@ -10,22 +10,22 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Tip studija</h3>
+                    <h3 class="panel-title">?????? ?????a</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">?????:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$sport->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <div class="checkbox">
                             <label>
-                                @if($tipStudija->indikatorAktivan == 1)
+                                @if($sport->indikatorAktivan == 1)
                                     <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
                                 @else
                                     <input name="indikatorAktivan" type="checkbox">
                                 @endif
-                                Aktivan</label>
+                                ???????</label>
                         </div>
                     </div>
                 </div>

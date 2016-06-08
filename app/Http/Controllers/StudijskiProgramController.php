@@ -11,10 +11,19 @@ use Illuminate\Support\Facades\Redirect;
 
 class StudijskiProgramController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $studijskiProgram = StudijskiProgram::all();
-        $tipStudija = TipStudija::all();
+        try {
+            $studijskiProgram = StudijskiProgram::all();
+            $tipStudija = TipStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.studijskiProgram', compact('studijskiProgram', 'tipStudija'));
     }
@@ -32,14 +41,23 @@ class StudijskiProgramController extends Controller
         else{
             $studijskiProgram->indikatorAktivan = 0;
         }
-        $studijskiProgram->save();
+
+        try {
+            $studijskiProgram->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
 
     public function edit(StudijskiProgram $studijskiProgram)
     {
-        $tipStudija = TipStudija::all();
+        try {
+            $tipStudija = TipStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.editStudijskiProgram', compact('studijskiProgram', 'tipStudija'));
     }
@@ -56,14 +74,23 @@ class StudijskiProgramController extends Controller
             $studijskiProgram->indikatorAktivan = 0;
         }
 
-        $studijskiProgram->update();
+        try {
+            $studijskiProgram->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
+
 
         return Redirect::to('/studijskiProgram');
     }
 
     public function delete(StudijskiProgram $studijskiProgram)
     {
-        $studijskiProgram->delete();
+        try {
+            $studijskiProgram->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

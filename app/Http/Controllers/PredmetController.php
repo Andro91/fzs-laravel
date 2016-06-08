@@ -13,12 +13,21 @@ use App\Http\Requests;
 
 class PredmetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $predmet = Predmet::all();
-        $tipStudija = TipStudija::all();
-        $studijskiProgram = StudijskiProgram::all();
-        $godinaStudija = GodinaStudija::all();
+        try {
+            $predmet = Predmet::all();
+            $tipStudija = TipStudija::all();
+            $studijskiProgram = StudijskiProgram::all();
+            $godinaStudija = GodinaStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.predmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
     }
@@ -40,15 +49,23 @@ class PredmetController extends Controller
             $predmet->statusPredmeta = 0;
         }
 
-        $predmet->save();
+        try {
+            $predmet->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
     public function edit(Predmet $predmet)
     {
-        $tipStudija = TipStudija::all();
-        $studijskiProgram = StudijskiProgram::all();
-        $godinaStudija = GodinaStudija::all();
+        try {
+            $tipStudija = TipStudija::all();
+            $studijskiProgram = StudijskiProgram::all();
+            $godinaStudija = GodinaStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
     }
@@ -68,14 +85,22 @@ class PredmetController extends Controller
             $predmet->statusPredmeta = 0;
         }
 
-        $predmet->update();
+        try {
+            $predmet->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/predmet');
     }
 
     public function delete(Predmet $predmet)
     {
-        $predmet->delete();
+        try {
+            $predmet->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

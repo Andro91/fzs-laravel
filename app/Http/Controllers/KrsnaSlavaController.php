@@ -10,9 +10,18 @@ use App\Http\Requests;
 
 class KrsnaSlavaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $krsnaSlava = KrsnaSlava::all();
+        try {
+            $krsnaSlava = KrsnaSlava::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.krsnaSlava', compact('krsnaSlava'));
     }
@@ -29,7 +38,11 @@ class KrsnaSlavaController extends Controller
             $krsnaSlava->indikatorAktivan = 0;
         }
 
-        $krsnaSlava->save();
+        try {
+            $krsnaSlava->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -50,14 +63,22 @@ class KrsnaSlavaController extends Controller
             $krsnaSlava->indikatorAktivan = 0;
         }
 
-        $krsnaSlava->update();
+        try {
+            $krsnaSlava->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/krsnaSlava');
     }
 
     public function delete(KrsnaSlava $krsnaSlava)
     {
-        $krsnaSlava->delete();
+        try {
+            $krsnaSlava->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

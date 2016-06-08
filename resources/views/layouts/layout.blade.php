@@ -71,44 +71,44 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li >
-                            <a href="#"><i class="fa fa-table fa-fw"></i>&nbsp;Šifarnici<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i>&nbsp;Шифарници<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*/tipStudija') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('/tipStudija') }}">Tip studija</a>
+                                    <a href="{{ url ('/tipStudija') }}">Тип студија</a>
                                 </li>
                                 <li {{ (Request::is('*/studijskiProgram') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('/studijskiProgram' ) }}">Studijski program</a>
+                                    <a href="{{ url ('/studijskiProgram' ) }}">Студијски програм</a>
                                 </li>
                                 <li {{ (Request::is('*/prilozenaDokumenta') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('/prilozenaDokumenta' ) }}">Priložena dokumenta</a>
+                                    <a href="{{ url ('/prilozenaDokumenta' ) }}">Приложена документа</a>
                                 </li>
                                 <li {{ (Request::is('*/godinaStudija') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('/godinaStudija' ) }}">Godina studija</a>
+                                    <a href="{{ url ('/godinaStudija' ) }}">Година студија</a>
                                 </li>
                                 <li {{ (Request::is('*sport') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('sport' ) }}">Sportovi</a>
+                                    <a href="{{ url ('sport' ) }}">Спортови</a>
                                 </li>
                                 <li {{ (Request::is('*statusStudiranja') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('statusStudiranja' ) }}">Status studiranja</a>
+                                    <a href="{{ url ('statusStudiranja' ) }}">Статус студирања</a>
                                 </li>
                                 <li {{ (Request::is('*predmet') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('predmet' ) }}">Predmet</a>
+                                    <a href="{{ url ('predmet' ) }}">Предмет</a>
                                 </li>
-                                <li {{ (Request::is('*srednjeSkoleFakulteti') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('srednjeSkoleFakulteti' ) }}">Srednje škole i fakulteti</a>
-                                </li>
+                                <!--<li {{ (Request::is('*srednjeSkoleFakulteti') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('srednjeSkoleFakulteti' ) }}">Средње школе и факултети</a>
+                                </li>-->
                                 <li {{ (Request::is('*krsnaSlava') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('krsnaSlava' ) }}">Krsna slava</a>
+                                    <a href="{{ url ('krsnaSlava' ) }}">Крсна слава</a>
                                 </li>
                                 <li {{ (Request::is('*region') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('region' ) }}">Region</a>
+                                    <a href="{{ url ('region' ) }}">Регион</a>
                                 </li>
                                 <li {{ (Request::is('*opstina') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('opstina' ) }}">Opština</a>
+                                    <a href="{{ url ('opstina' ) }}">Општина</a>
                                 </li>
-                                <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('mesto' ) }}">Mesto</a>
-                                </li>
+                               <!-- <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('mesto' ) }}">Место</a>
+                                </li>-->
                             </ul>
                             <!-- /.nav-second-level -->
                         {{--</li>--}}

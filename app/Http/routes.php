@@ -113,6 +113,8 @@ Route::get('/sportskoAngazovanje/{angazovanje}/edit', 'SportskoAngazovanjeContro
 Route::patch('sportskoAngazovanje/{angazovanje}', 'SportskoAngazovanjeController@update');
 Route::get('sportskoAngazovanje/{angazovanje}/delete', 'SportskoAngazovanjeController@delete');
 
+Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
+
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

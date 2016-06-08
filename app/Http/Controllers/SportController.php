@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class SportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $sport = Sport::all();
+        try {
+            $sport = Sport::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.sport', compact('sport'));
     }
@@ -28,7 +37,11 @@ class SportController extends Controller
             $sport->indikatorAktivan = 0;
         }
 
-        $sport->save();
+        try {
+            $sport->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -48,14 +61,22 @@ class SportController extends Controller
             $sport->indikatorAktivan = 0;
         }
 
-        $sport->update();
+        try {
+            $sport->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/sport');
     }
 
     public function delete(Sport $sport)
     {
-        $sport->delete();
+        try {
+            $sport->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

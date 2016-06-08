@@ -12,4 +12,9 @@ class Kandidat extends Model
     {
         return $this->hasMany(SportskoAngazovanje::class);
     }
+
+    public function program()
+    {
+        return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');
+    }
 }

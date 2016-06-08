@@ -1,6 +1,6 @@
-<title>Izmeni studijski program</title>
+<title>Измени студијски програм</title>
 @extends('layouts.layout')
-@section('page_heading','Izmeni studijski program')
+@section('page_heading','Измени студијски програм')
 @section('section')
 
     <div class="col-md-9">
@@ -10,20 +10,20 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Izmeni studijski program</h3>
+                    <h3 class="panel-title">Измени студијски програм</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$studijskiProgram->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Skraćeni naziv:</label>
+                        <label for="naziv">Скраћени назив:</label>
                         <input name="skrNazivStudijskogPrograma" type="text" class="form-control"
                                value="{{$studijskiProgram->skrNazivStudijskogPrograma}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="tipStudija_id">Tip studijskog programa:</label>
+                        <label for="tipStudija_id">Тип студијског програма:</label>
                         <input type="hidden" id="tipStudijaHidden" name="tipStudijaHidden"
                                value="{{$studijskiProgram->tipStudija_id}}">
                         <select class="form-control" id="tipStudija_id" name="tipStudija_id">
@@ -35,18 +35,18 @@
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <div class="checkbox">
                             <label>
-                                @if($tipStudija->indikatorAktivan == 1)
+                                @if($studijskiProgram->indikatorAktivan == 1)
                                     <input name="indikatorAktivan" value="1" type="checkbox" checked="true">
                                 @else
                                     <input name="indikatorAktivan" type="checkbox">
                                 @endif
-                                Aktivan</label>
+                                Активан</label>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Izmeni</button>
+                        <button type="submit" class="btn btn-primary">Измени</button>
                     </div>
                 </div>
             </div>

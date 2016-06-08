@@ -10,9 +10,18 @@ use App\Http\Requests;
 
 class StatusStudiranjaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $statusStudiranja = StatusStudiranja::all();
+        try {
+            $statusStudiranja = StatusStudiranja::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.statusStudiranja', compact('statusStudiranja'));
     }
@@ -29,7 +38,11 @@ class StatusStudiranjaController extends Controller
             $statusStudiranja->indikatorAktivan = 0;
         }
 
-        $statusStudiranja->save();
+        try {
+            $statusStudiranja->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -49,14 +62,22 @@ class StatusStudiranjaController extends Controller
             $statusStudiranja->indikatorAktivan = 0;
         }
 
-        $statusStudiranja->update();
+        try {
+            $statusStudiranja->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/statusStudiranja');
     }
 
     public function delete(StatusStudiranja $statusStudiranja)
     {
-        $statusStudiranja->delete();
+        try {
+            $statusStudiranja->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

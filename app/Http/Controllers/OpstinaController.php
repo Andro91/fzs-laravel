@@ -10,10 +10,19 @@ use App\Http\Requests;
 
 class OpstinaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $opstina = Opstina::all();
-        $region = Region::all();
+        try {
+            $opstina = Opstina::all();
+            $region = Region::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.opstina', compact('opstina', 'region'));
     }
@@ -25,14 +34,22 @@ class OpstinaController extends Controller
         $opstina->naziv = $request->naziv;
         $opstina->region_id = $request->region_id;
 
-        $opstina->save();
+        try {
+            $opstina->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
 
     public function edit(Opstina $opstina)
     {
-        $region = Region::all();
+        try {
+            $region = Region::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.editOpstina', compact('opstina', 'region'));
     }
@@ -42,14 +59,22 @@ class OpstinaController extends Controller
         $opstina->naziv = $request->naziv;
         $opstina->region_id = $request->region_id;
 
-        $opstina->update();
+        try {
+            $opstina->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/opstina');
     }
 
     public function delete(Opstina $opstina)
     {
-        $opstina->delete();
+        try {
+            $opstina->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

@@ -1,6 +1,6 @@
-<title>Izmena krsne slave</title>
+<title>?????? ????? ?????</title>
 @extends('layouts.layout')
-@section('page_heading','Izmena krsne slave')
+@section('page_heading','?????? ????? ?????')
 @section('section')
 
     <div class="col-md-9">
@@ -10,15 +10,15 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Krsna slava</h3>
+                    <h3 class="panel-title">?????? ????? ?????</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">?????:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$krsnaSlava->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Datum:</label>
+                        <label for="naziv">?????:</label>
                         <input name="datumSlave" type="date" class="form-control" value="{{$krsnaSlava->datumSlave}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -29,13 +29,13 @@
                                 @else
                                     <input name="indikatorAktivan" type="checkbox">
                                 @endif
-                                Aktivan</label>
+                                ???????</label>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Izmeni</button>
+                        <button type="submit" class="btn btn-primary">??????</button>
                     </div>
                 </div>
             </div>

@@ -2,20 +2,20 @@ $(document).ready(function () {
     $('#tabela').dataTable({
         "aaSorting": [],
         "oLanguage": {
-            "sProcessing": "Procesiranje u toku...",
-            "sLengthMenu": "Prikaži _MENU_ elemenata",
-            "sZeroRecords": "Nije pronađen nijedan rezultat",
-            "sInfo": "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
-            "sInfoEmpty": "Prikaz 0 do 0 od ukupno 0 elemenata",
-            "sInfoFiltered": "(filtrirano od ukupno _MAX_ elemenata)",
+            "sProcessing": "Процесирање у току...",
+            "sLengthMenu": "Прикажи _MENU_ елемената",
+            "sZeroRecords": "Није пронађен ниједан резултат",
+            "sInfo": "Приказ _START_ до _END_ од укупно _TOTAL_ елемената",
+            "sInfoEmpty": "Приказ 0 до 0 од укупно 0 елемената",
+            "sInfoFiltered": "(филтрирано од укупно _MAX_ елемената)",
             "sInfoPostFix": "",
-            "sSearch": "Pretraga:",
+            "sSearch": "Претрага:",
             "sUrl": "",
             "oPaginate": {
-                "sFirst": "Početna",
-                "sPrevious": "Prethodna",
-                "sNext": "Sledeća",
-                "sLast": "Poslednja"
+                "sFirst": "Почетна",
+                "sPrevious": "Претходна",
+                "sNext": "Следећа",
+                "sLast": "Последња"
             }
         }
     });

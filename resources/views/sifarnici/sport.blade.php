@@ -1,6 +1,6 @@
-<title>Sportovi</title>
+<title>Спортови</title>
 @extends('layouts.layout')
-@section('page_heading','Sportovi')
+@section('page_heading','Спортови')
 @section('section')
 
     <div class="col-md-9">
@@ -8,10 +8,10 @@
             <table id="tabela" class="table">
                 <thead>
                 <th>
-                    Naziv
+                    Назив
                 </th>
                 <th>
-                    Akcije
+                    Акције
                 </th>
                 </thead>
 
@@ -21,10 +21,10 @@
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="sport/{{$sport->id}}/edit">
-                                    <input type="submit" class="btn btn-primary" value="Promeni">
+                                    <input type="submit" class="btn btn-primary" value="Измени">
                                 </form>
                                 <form class="btn" action="sport/{{$sport->id}}/delete">
-                                    <input type="submit" class="btn btn-danger" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Обриши">
                                 </form>
                             </div>
                         </td>
@@ -39,24 +39,24 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Sport</h3>
+                    <h3 class="panel-title">Спортови</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <div class="checkbox">
                             <label>
                                 <input name="indikatorAktivan" type="checkbox">
-                                Aktivan</label>
+                                Активан</label>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                        <button type="submit" class="btn btn-primary">Додај</button>
                     </div>
                 </div>
             </div>

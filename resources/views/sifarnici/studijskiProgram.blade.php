@@ -1,23 +1,22 @@
-<title>Studijski program</title>
+<title>Студијски програм</title>
 @extends('layouts.layout')
-@section('page_heading','Studijski program')
+@section('page_heading','Студијски програм')
 @section('section')
-
     <div class="col-md-9">
         <div class="table-responsive">
             <table id="tabela" class="table">
                 <thead>
                 <th>
-                    Naziv
+                    Назив
                 </th>
                 <th>
-                    Skraćeni naziv
+                    Скраћени назив
                 </th>
                 <th>
-                    Tip studija
+                    Тип студија
                 </th>
                 <th>
-                    Akcije
+                    Акције
                 </th>
                 </thead>
                 @foreach($studijskiProgram as $studijskiProgram)
@@ -34,10 +33,10 @@
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/edit">
-                                    <input type="submit" class="btn btn-primary" value="Promeni">
+                                    <input type="submit" class="btn btn-primary" value="Измени">
                                 </form>
                                 <form class="btn" action="studijskiProgram/{{$studijskiProgram->id}}/delete">
-                                    <input type="submit" class="btn btn-danger" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger" value="Обриши">
                                 </form>
                             </div>
                         </td>
@@ -52,19 +51,19 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Studijski program</h3>
+                    <h3 class="panel-title">Студијски програм</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Skraćeni naziv:</label>
+                        <label for="naziv">Скраћени назив:</label>
                         <input name="skrNazivStudijskogPrograma" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="tipStudija_id">Tip studijskog programa:</label>
+                        <label for="tipStudija_id">Тип студијског програма:</label>
                         <select class="form-control" id="tipStudija_id" name="tipStudija_id">
                             @foreach($tipStudija as $tipStudija)
                                 <option value="{{$tipStudija->id}}">{{$tipStudija->naziv}}</option>
@@ -75,13 +74,13 @@
                     <div class="checkbox">
                         <label>
                             <input name="indikatorAktivan" type="checkbox">
-                            Aktivan</label>
+                            Активан</label>
                     </div>
                       </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                        <button type="submit" class="btn btn-primary">Додај</button>
                     </div>
                 </div>
             </div>

@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class TipStudijaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $tipStudija = TipStudija::all();
+        try {
+            $tipStudija = TipStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return view('sifarnici.tipStudija', compact('tipStudija'));
     }
@@ -30,7 +39,11 @@ class TipStudijaController extends Controller
             $tipStudija->indikatorAktivan = 0;
         }
 
-        $tipStudija->save();
+        try {
+            $tipStudija->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -51,14 +64,22 @@ class TipStudijaController extends Controller
             $tipStudija->indikatorAktivan = 0;
         }
 
-        $tipStudija->update();
+        try {
+            $tipStudija->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return Redirect::to('/tipStudija');
     }
 
     public function delete(TipStudija $tipStudija)
     {
-        $tipStudija->delete();
+        try {
+            $tipStudija->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+        }
 
         return back();
     }

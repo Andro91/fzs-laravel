@@ -11,9 +11,18 @@ use PDF;
 
 class PrilozenaDokumentaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $dokument = PrilozenaDokumenta::all();
+        try {
+            $dokument = PrilozenaDokumenta::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return view('sifarnici.prilozenaDokumenta', compact('dokument'));
     }
@@ -26,7 +35,11 @@ class PrilozenaDokumentaController extends Controller
         $dokument->naziv = $request->naziv;
         $dokument->indGodina = $request->indGodina;
 
-        $dokument->save();
+        try {
+            $dokument->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -42,14 +55,22 @@ class PrilozenaDokumentaController extends Controller
         $dokument->naziv = $request->naziv;
         $dokument->indGodina = $request->indGodina;
 
-        $dokument->update();
+        try {
+            $dokument->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return Redirect::to('/prilozenaDokumenta');
     }
 
     public function delete(PrilozenaDokumenta $dokument)
     {
-        $dokument->delete();
+        try {
+            $dokument->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return back();
     }

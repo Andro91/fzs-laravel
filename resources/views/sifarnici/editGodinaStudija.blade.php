@@ -1,6 +1,6 @@
-<title>Izmena godine studija</title>
+<title>Измена године студија</title>
 @extends('layouts.layout')
-@section('page_heading','Godina studija')
+@section('page_heading','Измена године студија')
 @section('section')
 
     <div class="col-md-9">
@@ -10,25 +10,25 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Izmena godine studija</h3>
+                    <h3 class="panel-title">Измена године студија</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$godinaStudija->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Rimski naziv:</label>
+                        <label for="naziv">Римски назив:</label>
                         <input name="nazivRimski" type="text" class="form-control"
                                value="{{$godinaStudija->nazivRimski}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Naziv u padežu:</label>
+                        <label for="naziv">Назив у падежу:</label>
                         <input name="nazivSlovimaUPadezu" type="text" class="form-control"
                                value="{{$godinaStudija->nazivSlovimaUPadezu}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Redosled prikazivanja:</label>
+                        <label for="naziv">Редослед приказивања:</label>
                         <input name="redosledPrikazivanja" type="text" class="form-control"
                                value="{{$godinaStudija->redosledPrikazivanja}}">
                     </div>
@@ -40,12 +40,12 @@
                                 @else
                                     <input name="indikatorAktivan" type="checkbox">
                                 @endif
-                                Aktivan</label>
+                                Активан</label>
                         </div>
                     </div>
                     <div class="panel-body">
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                            <button type="submit" class="btn btn-primary">Izmeni</button>
+                            <button type="submit" class="btn btn-primary">Измени</button>
                         </div>
                     </div>
                 </div>

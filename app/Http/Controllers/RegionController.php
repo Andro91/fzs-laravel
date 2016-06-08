@@ -11,9 +11,18 @@ use PDF;
 
 class RegionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $region = Region::all();
+        try {
+            $region = Region::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return view('sifarnici.region', compact('region'));
     }
@@ -23,7 +32,11 @@ class RegionController extends Controller
         $region = new Region();
         $region->naziv = $request->naziv;
 
-        $region->save();
+        try {
+            $region->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return back();
     }
@@ -37,39 +50,24 @@ class RegionController extends Controller
     {
         $region->naziv = $request->naziv;
 
-        $region->update();
+        try {
+            $region->update();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
         return Redirect::to('/region');
     }
 
     public function delete(Region $region)
     {
-        //$region->delete();
-        $region = Region::all();
-        $view = View::make('sifarnici.test')->with('region', $region);
-        //$ime = $region->naziv;
-        //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
+        try {
+            $region->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
 
-        $contents = $view->render();
-        PDF::SetTitle('Test');
-        PDF::AddPage();
-
-        PDF::WriteHtml($contents);
-        PDF::Output('hello_world.pdf');
-
-        //return back();
-    }
-
-    public function test(Request $request)
-    {
-        $view = View::make('sifarnici.tets', ['name' => 'Rishabh']);
-
-        $contents = $view->render();
-        PDF::SetTitle('Test');
-        PDF::AddPage();
-        PDF::Write(0, $contents);
-
-
+        return back();
     }
 
 }
