@@ -105,7 +105,7 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="godinaStudija_id">Регион:</label>
+                        <label for="godinaStudija_id">Година:</label>
                         <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
                             @foreach($godinaStudija as $godinaStudija)
                                 <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>

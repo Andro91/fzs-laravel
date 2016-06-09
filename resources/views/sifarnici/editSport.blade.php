@@ -1,6 +1,6 @@
-<title>?????? ?????</title>
+<title>Измени спорт</title>
 @extends('layouts.layout')
-@section('page_heading','?????? ?????')
+@section('page_heading','Измени спорт')
 @section('section')
 
     <div class="col-md-9">
@@ -10,11 +10,11 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">?????? ?????a</h3>
+                    <h3 class="panel-title">Измени спорт</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">?????:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$sport->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -25,13 +25,13 @@
                                 @else
                                     <input name="indikatorAktivan" type="checkbox">
                                 @endif
-                                ???????</label>
+                                Активан</label>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Izmeni</button>
+                        <button type="submit" class="btn btn-primary">Измени</button>
                     </div>
                 </div>
             </div>

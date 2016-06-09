@@ -1,6 +1,6 @@
-<title>?????? ???????</title>
+<title>Измени предмет</title>
 @extends('layouts.layout')
-@section('page_heading','?????? ???????')
+@section('page_heading','Измени предмет')
 @section('section')
 
     <div class="col-md-9">
@@ -11,15 +11,15 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">?????? ???????</h3>
+                    <h3 class="panel-title">Измени предмет</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">?????:</label>
+                        <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$predmet->naziv}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="tipStudija_id">??? ???????:</label>
+                        <label for="tipStudija_id">Тип студија:</label>
                         <input type="hidden" id="tipStudijaHidden" name="tipStudijaHidden"
                                value="{{$predmet->tipStudija_id}}">
                         <select class="form-control" id="tipStudija_id" name="tipStudija_id">
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="studijskiProgram_id">????????? ???????:</label>
+                        <label for="studijskiProgram_id">Студијски програм:</label>
                         <input type="hidden" id="studijskiProgramHidden" name="studijskiProgramHidden"
                                value="{{$predmet->studijskiProgram_id}}">
                         <select class="form-control" id="studijskiProgram_id" name="studijskiProgram_id">
@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="godinaStudija_id">??????:</label>
+                        <label for="godinaStudija_id">Година:</label>
                         <input type="hidden" id="godinaStudijaHidden" name="godinaStudijaHidden"
                                value="{{$predmet->godinaStudija_id}}">
                         <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
@@ -49,12 +49,12 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">????????:</label>
+                        <label for="naziv">Семестар:</label>
                         <input name="semestarSlusanjaPredmeta" type="text" class="form-control"
                                value="{{$predmet->semestarSlusanjaPredmeta}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">????:</label>
+                        <label for="naziv">ЕСПБ:</label>
                         <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -65,13 +65,13 @@
                                 @else
                                     <input name="statusPredmeta" type="checkbox">
                                 @endif
-                                ???????</label>
+                                Активан</label>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">??????</button>
+                        <button type="submit" class="btn btn-primary">Измени</button>
                     </div>
                 </div>
             </div>
