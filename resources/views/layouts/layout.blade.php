@@ -16,18 +16,18 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img class="pull-left" src="/images/logo_fzs.png" height="30px" style="margin: 10px 0px 10px 10px" >
-                <a class="navbar-brand"  href="{{ url ('') }}"> Fakultet za sport</a>
+                <a class="navbar-brand"  href="{{ url ('') }}"> Факултет за спорт</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
                 @if (Auth::guest())
-                    <li><a href="/login">Prijava</a></li>
-                    <li><a href="/register">Registracija</a></li>
+                    <li><a href="/login">Пријава</a></li>
+                    <li><a href="/register">Регистрација</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Aktivni Korisnik: {{ Auth::user()->name }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Активни корисник: {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/logout">Odjava</a></li>
+                            <li><a href="/logout">Одјава</a></li>
                         </ul>
                     </li>
                 @endif
@@ -47,25 +47,25 @@
                             {{--<!-- /input-group -->--}}
                         {{--</li>--}}
                         <li >
-                            <a href="#"><i class="glyphicon glyphicon-user"> </i>&nbsp;Kandidati<span class="fa arrow"></span></a>
+                            <a href="#"><i class="glyphicon glyphicon-user"> </i>&nbsp;Кандидати<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('kandidat/create') }}">Dodavanje</a>
+                                    <a href="{{ url ('kandidat/create') }}">Додавање</a>
                                 </li>
                                 <li {{ (Request::is('*kandidat/') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('kandidat/' ) }}">Pregled</a>
+                                    <a href="{{ url ('kandidat/' ) }}">Преглед</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li >
-                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Master kandidati<span class="fa arrow"></span></a>
+                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Мастер кандидати<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*master/create') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('master/create') }}">Dodavanje</a>
+                                    <a href="{{ url ('master/create') }}">Додавање</a>
                                 </li>
                                 <li {{ (Request::is('*master/') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('master/' ) }}">Pregled</a>
+                                    <a href="{{ url ('master/' ) }}">Преглед</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

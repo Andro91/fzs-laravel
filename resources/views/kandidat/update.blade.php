@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Izmena podataka postojećeg kandidata')
+@section('page_heading','Измена података постојећег кандидата')
 @section('section')
     <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id) }}">
         <div class="col-sm-12 col-lg-12">
@@ -20,28 +20,23 @@
 
                     @if (Session::get('jmbgError'))
                         <div class="alert alert-dismissable alert-danger">
-                            <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Greška!</h4>
-
-                            <p>JMBG vec postoji u sistemu. Pokusajte da nadjete kandidata u postojecim.</p>
-
+                            <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Грешка!</h4>
+                            <p>ЈМБГ већ постоји у систему.</p>
                             <p>{{ Session::get('status') }}</p>
                         </div>
                     @endif
 
-
                     {{ csrf_field() }}
-                    {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
-                    <input type="hidden" name="page" id="page" value="1"/>
                     <input type="hidden" name="_method" id="_method" value="put"/>
 
                     {{--STUDIJSKI PROGRAM--}}
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Studijski program</h3>
+                            <h3 class="panel-title">Студијски програм</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="TipStudija">TipStudija:</label>
+                                <label for="TipStudija">Тип студија</label>
                                 <select class="form-control" id="TipStudija" name="TipStudija">
                                     @foreach($tipStudija as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->tipStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -49,7 +44,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="StudijskiProgram">Studijski Program:</label>
+                                <label for="StudijskiProgram">Студијски програм</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->studijskiProgram_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -57,7 +52,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="SkolskeGodineUpisa">Skolska Godina:</label>
+                                <label for="SkolskeGodineUpisa">Школска година:</label>
                                 <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
                                     @foreach($skolskeGodineUpisa as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->skolskaGodinaUpisa_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -70,33 +65,33 @@
                     {{--OSNOVNI PODACI--}}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Osnovni podaci</h3>
+                            <h3 class="panel-title">Основни подаци</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="ImeKandidata">Ime Kandidata</label>
+                                <label for="ImeKandidata">Име кандидата</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
                                        value="{{ $kandidat->imeKandidata }}">
                             </div>
                             <div class="form-group">
-                                <label for="PrezimeKandidata">Prezime Kandidata</label>
+                                <label for="PrezimeKandidata">Презиме кандидата</label>
                                 <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata"
                                        value="{{ $kandidat->prezimeKandidata }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="JMBG">JMBG</label>
+                                <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG"
                                        value="{{ $kandidat->jmbg }}">
                             </div>
                             <div class="form-group">
-                                <label for="DatumRodjenja">Datum Rodjenja</label>
+                                <label for="DatumRodjenja">Датум рођења</label>
                                 <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja"
                                        value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="MestoRodjenja">MestoRodjenja:</label>
+                                <label for="MestoRodjenja">Место рођења</label>
                                 <select class="form-control" id="MestoRodjenja" name="MestoRodjenja"
                                         style="max-width: 60%">
                                     @foreach($mestoRodjenja as $item)
@@ -105,7 +100,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="KrsnaSlava">KrsnaSlava:</label>
+                                <label for="KrsnaSlava">Крсна слава</label>
                                 <select class="form-control" id="KrsnaSlava" name="KrsnaSlava" style="max-width: 50%">
                                     @foreach($krsnaSlava as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->krsnaSlava_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -113,12 +108,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="KontaktTelefon">Kontakt Telefon</label>
+                                <label for="KontaktTelefon">Контакт телефон</label>
                                 <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon"
                                        style="max-width: 40%" value="{{ $kandidat->kontaktTelefon }}">
                             </div>
                             <div class="form-group">
-                                <label for="AdresaStanovanja">Adresa Stanovanja</label>
+                                <label for="AdresaStanovanja">Адреса становања</label>
                                 <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja"
                                        style="max-width: 80%" value="{{ $kandidat->adresaStanovanja }}">
                             </div>
@@ -128,13 +123,13 @@
                                        value="{{ $kandidat->email }}">
                             </div>
                             <div class="form-group" style="width: 80%;">
-                                <label for="ImePrezimeJednogRoditelja">Ime i Prezime Jednog Roditelja</label>
+                                <label for="ImePrezimeJednogRoditelja">Име и презиме једног родитеља</label>
                                 <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
                                        id="ImePrezimeJednogRoditelja"
                                        value="{{ $kandidat->imePrezimeJednogRoditelja }}">
                             </div>
                             <div class="form-group" style="width: 80%;">
-                                <label for="KontaktTelefonRoditelja">Kontakt Telefon Roditelja</label>
+                                <label for="KontaktTelefonRoditelja">контакт телефон родитеља</label>
                                 <input class="form-control" type="text" name="KontaktTelefonRoditelja"
                                        id="KontaktTelefonRoditelja" value="{{ $kandidat->kontaktTelefonRoditelja }}">
                             </div>
@@ -143,7 +138,7 @@
                             <hr>
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="NazivSkoleFakulteta">Naziv Skole ili Fakulteta:</label>
+                                <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
                                 <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
                                     @foreach($nazivSkoleFakulteta as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->srednjeSkoleFakulteti_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -151,13 +146,13 @@
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="SmerZavrseneSkoleFakulteta">Smer Zavrsene Skole ili Fakulteta</label>
+                                <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
                                        id="SmerZavrseneSkoleFakulteta"
                                        value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="MestoZavrseneSkoleFakulteta">Mesto Zavrsene Skole ili Fakulteta:</label>
+                                <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
@@ -167,7 +162,7 @@
                             </div>
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="GodinaStudija">Godina Studija:</label>
+                                <label for="GodinaStudija">Година студија</label>
                                 <select class="form-control" id="GodinaStudija" name="GodinaStudija"
                                         style="max-width: 40%">
                                     @foreach($godinaStudija as $item)
@@ -187,11 +182,11 @@
 
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Samo za prvu godinu</h3>
+                                    <h3 class="panel-title">Само за прву годину</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="prviRazred">1. razred</label>
+                                        <label for="prviRazred">1. разред</label>
                                         <select class="form-control" id="prviRazred" name="prviRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($prviRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -199,12 +194,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena1">Srednja Ocena</label>
+                                        <label for="SrednjaOcena1">Средња оцена</label>
                                         <input class="form-control" type="text" name="SrednjaOcena1" id="SrednjaOcena1"
                                                value="{{ $prviRazred->srednja_ocena }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="drugiRazred">2. razred</label>
+                                        <label for="drugiRazred">2. разред</label>
                                         <select class="form-control" id="drugiRazred" name="drugiRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($drugiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -212,12 +207,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena2">Srednja Ocena</label>
+                                        <label for="SrednjaOcena2">Средња оцена</label>
                                         <input class="form-control" type="text" name="SrednjaOcena2" id="SrednjaOcena2"
                                                value="{{ $drugiRazred->srednja_ocena }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="treciRazred">3. razred</label>
+                                        <label for="treciRazred">3. разред</label>
                                         <select class="form-control" id="treciRazred" name="treciRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($treciRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -225,12 +220,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena3">Srednja Ocena</label>
+                                        <label for="SrednjaOcena3">Средња оцена</label>
                                         <input class="form-control" type="text" name="SrednjaOcena3" id="SrednjaOcena3"
                                                value="{{ $treciRazred->srednja_ocena }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="cetvrtiRazred">4. razred</label>
+                                        <label for="cetvrtiRazred">4. разред</label>
                                         <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -238,7 +233,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena4">Srednja Ocena</label>
+                                        <label for="SrednjaOcena4">Средња оцена</label>
                                         <input class="form-control" type="text" name="SrednjaOcena4" id="SrednjaOcena4"
                                                value="{{ $cetvrtiRazred->srednja_ocena }}">
                                     </div>
@@ -247,7 +242,7 @@
                                     <hr>
 
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="OpstiUspehSrednjaSkola">Opšti Uspeh Srednja Škola &nbsp;&nbsp;</label>
+                                        <label for="OpstiUspehSrednjaSkola">Општи успех средња школа &nbsp;&nbsp;</label>
                                         <select class="form-control" id="OpstiUspehSrednjaSkola"
                                                 name="OpstiUspehSrednjaSkola">
                                             @foreach($opstiUspehSrednjaSkola as $item)
@@ -256,7 +251,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcenaSrednjaSkola">Srednja Ocena Srednja Škola</label>
+                                        <label for="SrednjaOcenaSrednjaSkola">Средња оцена средња школа</label>
                                         <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
                                                id="SrednjaOcenaSrednjaSkola"
                                                value="{{ $kandidat->srednjaOcenaSrednjaSkola }}">
@@ -266,13 +261,13 @@
 
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Sportsko angažovanje</h3>
+                                    <h3 class="panel-title">Спортско ангаажовање</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-condensed">
                                         <thead>
                                         <tr>
-                                            <th>Sport</th>
+                                            <th>Спорт</th>
                                             <th><a class="btn btn-primary" href="/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Dodaj</a></th>
                                         </tr>
                                         </thead>
@@ -290,17 +285,17 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Visina i Težina</h3>
+                                    <h3 class="panel-title">Висина и тежина</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="VisinaKandidata">Visina Kandidata</label>
+                                        <label for="VisinaKandidata">Висина кандидата</label>
                                         <input class="form-control" type="text" name="VisinaKandidata"
                                                id="VisinaKandidata"
                                                value="{{ $kandidat->visina }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="TelesnaTezinaKandidata">Telesna Težina Kandidata</label>
+                                        <label for="TelesnaTezinaKandidata">Телесна тежина кандидата</label>
                                         <input class="form-control" type="text" name="TelesnaTezinaKandidata"
                                                id="TelesnaTezinaKandidata" value="{{ $kandidat->telesnaTezina }}">
                                     </div>
@@ -310,7 +305,7 @@
 
                             <div class="panel panel-default pull-left" style="width: 50%;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">DOKUMENTA - za upis na I GODINU STUDIJA</h3>
+                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  I ГОДИНУ СТУДИЈА</h3>
                                 </div>
                                 <div class="panel-body">
                                     @foreach($dokumentiPrvaGodina as $dokument)
@@ -328,9 +323,8 @@
 
                             <div class="panel panel-default pull-left" style="width: 50%;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">DOKUMENTA - za upis na II, III, IV GODINU STUDIJA i prelazak
-                                        sa
-                                        drugog fakulteta</h3>
+                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  II, III и IV ГОДИНУ СТУДИЈА и прелазак
+                                        са другог факултета</h3>
                                 </div>
                                 <div class="panel-body">
                                     @foreach($dokumentiOstaleGodine as $dokument)
@@ -348,7 +342,7 @@
 
                             <div class="panel panel-info pull-left" style="width: 100%;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Ostalo</h3>
+                                    <h3 class="panel-title">Остало</h3>
                                 </div>
                                 <div class="panel-body">
                                     {{--<div class="form-group">--}}
@@ -360,17 +354,17 @@
                                     {{--</select>--}}
                                     {{--</div>--}}
                                     <div class="form-group">
-                                        <label for="BrojBodovaTest">Broj Bodova Test</label>
+                                        <label for="BrojBodovaTest">Број бодова тест</label>
                                         <input class="form-control" type="text" name="BrojBodovaTest"
                                                id="BrojBodovaTest" value="{{ $kandidat->brojBodovaTest }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="BrojBodovaSkola">Broj Bodova Skola</label>
+                                        <label for="BrojBodovaSkola">Број бодова школа</label>
                                         <input class="form-control" type="text" name="BrojBodovaSkola"
                                                id="BrojBodovaSkola" value="{{ $kandidat->brojBodovaSkola }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="UpisniRok">Upisni Rok</label>
+                                        <label for="UpisniRok">Уписни рок</label>
                                         <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
@@ -380,7 +374,7 @@
                                     {{--</div>--}}
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-success btn-lg">Sačuvaj</button>
+                                    <button type="submit" class="btn btn-success btn-lg">Сачувај</button>
                                 </div>
 
                             </div>

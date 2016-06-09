@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Pregled kandidata')
+@section('page_heading','??????? ?????????')
 @section('section')
     <div class="col-sm-12">
         <div class="row">
