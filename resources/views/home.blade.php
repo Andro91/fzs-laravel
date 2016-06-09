@@ -5,7 +5,7 @@
             <div class="col-lg-12 text-center">
                 <img src="images/fzs_image.jpg">
 
-                <h1>Fakultet za sport Beograd</h1>
+                <h1>Факултет за спорт Београд</h1>
             </div>
         </div>
         <hr>

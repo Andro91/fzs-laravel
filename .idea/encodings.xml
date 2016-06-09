@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/database/seeds/SportSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/SrednjeSkoleFakultetiSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StudijskiProgramSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/home.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/kandidat/create_master.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/kandidat/create_part_2.blade.php" charset="UTF-8" />
