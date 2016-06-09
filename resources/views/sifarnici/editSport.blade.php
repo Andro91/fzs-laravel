@@ -4,7 +4,7 @@
 @section('section')
 
     <div class="col-md-9">
-        <form role="form" method="post" action="/sport/{{$sport->id}}">
+        <form role="form" method="post" action="{{$putanja}}/sport/{{$sport->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
 

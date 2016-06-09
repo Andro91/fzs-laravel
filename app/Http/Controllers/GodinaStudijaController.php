@@ -21,7 +21,7 @@ class GodinaStudijaController extends Controller
         try {
             $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.godinaStudija', compact('godinaStudija'));
@@ -35,15 +35,13 @@ class GodinaStudijaController extends Controller
         $godinaStudija->nazivRimski = $request->nazivRimski;
         $godinaStudija->nazivSlovimaUPadezu = $request->nazivSlovimaUPadezu;
         $godinaStudija->redosledPrikazivanja = $request->redosledPrikazivanja;
-        if ($godinaStudija->indikatorAktivan == 'on') {
-            $godinaStudija->indikatorAktivan = 1;
-        } else {
-            $godinaStudija->indikatorAktivan = 0;
-        }
+        $godinaStudija->indikatorAktivan = 1;
+
+
         try {
             $godinaStudija->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
@@ -69,7 +67,7 @@ class GodinaStudijaController extends Controller
         try {
             $godinaStudija->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/godinaStudija');
@@ -81,7 +79,7 @@ class GodinaStudijaController extends Controller
         try {
             $godinaStudija->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
 

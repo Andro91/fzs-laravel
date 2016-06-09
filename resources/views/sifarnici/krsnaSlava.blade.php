@@ -2,7 +2,6 @@
 @extends('layouts.layout')
 @section('page_heading','Крсна слава')
 @section('section')
-
     <div class="col-md-9">
         <div class="table-responsive">
             <table id="tabela" class="table">
@@ -21,7 +20,7 @@
                 @foreach($krsnaSlava as $krsnaSlava)
                     <tr>
                         <td>{{$krsnaSlava->naziv}}</td>
-                        <td>{{$krsnaSlava->datumSlave}}</td>
+                        <td>{{ date('d.m.Y.',strtotime($krsnaSlava->datumSlave)) }}</td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="krsnaSlava/{{$krsnaSlava->id}}/edit">
@@ -51,14 +50,7 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Датум:</label>
-                        <input name="datumSlave" type="date" class="form-control">
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <div class="checkbox">
-                            <label>
-                                <input name="indikatorAktivan" type="checkbox">
-                                Активан</label>
-                        </div>
+                        <input id="datumSlave" name="datumSlave" type="date" class="form-control">
                     </div>
                 </div>
                 <div class="panel-body">
@@ -71,5 +63,13 @@
     </div>
 
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $.mask.definitions['q'] = '[0-3]';
+            $.mask.definitions['w'] = '[0-9]';
+            $.mask.definitions['e'] = '[0-1]';
+            $('#datumSlave').mask("qw.ew.9999.");
+        });
+    </script>
 
 @endsection

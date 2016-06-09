@@ -26,7 +26,7 @@ class PredmetController extends Controller
             $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.predmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
@@ -42,21 +42,18 @@ class PredmetController extends Controller
         $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
-        if($request->statusPredmeta == 'on') {
-            $predmet->statusPredmeta = 1;
-        }
-        else{
-            $predmet->statusPredmeta = 0;
-        }
+        $predmet->statusPredmeta = 1;
+
 
         try {
             $predmet->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
     }
+
     public function edit(Predmet $predmet)
     {
         try {
@@ -64,7 +61,7 @@ class PredmetController extends Controller
             $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
@@ -78,17 +75,16 @@ class PredmetController extends Controller
         $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
-        if($request->statusPredmeta == 'on') {
+        if ($request->statusPredmeta == 'on') {
             $predmet->statusPredmeta = 1;
-        }
-        else{
+        } else {
             $predmet->statusPredmeta = 0;
         }
 
         try {
             $predmet->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/predmet');
@@ -99,7 +95,7 @@ class PredmetController extends Controller
         try {
             $predmet->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

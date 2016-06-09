@@ -3,7 +3,7 @@
 @section('page_heading','Izmeni sportsko angažovanje')
 @section('section')
     <div class="col-md-9">
-        <form role="form" method="post"  action="/sportskoAngazovanje/{{$angazovanje->id}}">
+        <form role="form" method="post"  action="{{$putanja}}/sportskoAngazovanje/{{$angazovanje->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
 

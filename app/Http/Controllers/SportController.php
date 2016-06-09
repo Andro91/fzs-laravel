@@ -19,7 +19,7 @@ class SportController extends Controller
         try {
             $sport = Sport::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.sport', compact('sport'));
@@ -30,17 +30,13 @@ class SportController extends Controller
         $sport = new Sport();
 
         $sport->naziv = $request->naziv;
-        if($request->indikatorAktivan == 'on') {
-            $sport->indikatorAktivan = 1;
-        }
-        else{
-            $sport->indikatorAktivan = 0;
-        }
+        $sport->indikatorAktivan = 1;
+
 
         try {
             $sport->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
@@ -54,17 +50,16 @@ class SportController extends Controller
     public function update(Request $request, Sport $sport)
     {
         $sport->naziv = $request->naziv;
-        if($request->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on') {
             $sport->indikatorAktivan = 1;
-        }
-        else{
+        } else {
             $sport->indikatorAktivan = 0;
         }
 
         try {
             $sport->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/sport');
@@ -75,7 +70,7 @@ class SportController extends Controller
         try {
             $sport->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

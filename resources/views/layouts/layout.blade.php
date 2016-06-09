@@ -3,9 +3,10 @@
 <script type="text/javascript" src="{{ URL::asset('/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/js/jquery.maskedinput.min.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/datatables.min.css') }}"/>
-@section('body')
-    <div id="wrapper">
 
+@section('body')
+
+    <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">

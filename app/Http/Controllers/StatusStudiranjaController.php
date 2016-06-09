@@ -20,7 +20,7 @@ class StatusStudiranjaController extends Controller
         try {
             $statusStudiranja = StatusStudiranja::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.statusStudiranja', compact('statusStudiranja'));
@@ -31,17 +31,13 @@ class StatusStudiranjaController extends Controller
         $statusStudiranja = new StatusStudiranja();
 
         $statusStudiranja->naziv = $request->naziv;
-        if($request->indikatorAktivan == 'on') {
-            $statusStudiranja->indikatorAktivan = 1;
-        }
-        else{
-            $statusStudiranja->indikatorAktivan = 0;
-        }
+        $statusStudiranja->indikatorAktivan = 1;
+
 
         try {
             $statusStudiranja->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
@@ -55,17 +51,13 @@ class StatusStudiranjaController extends Controller
     public function update(Request $request, StatusStudiranja $statusStudiranja)
     {
         $statusStudiranja->naziv = $request->naziv;
-        if($request->indikatorAktivan == 'on') {
-            $statusStudiranja->indikatorAktivan = 1;
-        }
-        else{
-            $statusStudiranja->indikatorAktivan = 0;
-        }
+        $statusStudiranja->indikatorAktivan = 1;
+
 
         try {
             $statusStudiranja->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/statusStudiranja');
@@ -76,7 +68,7 @@ class StatusStudiranjaController extends Controller
         try {
             $statusStudiranja->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

@@ -20,7 +20,7 @@ class KrsnaSlavaController extends Controller
         try {
             $krsnaSlava = KrsnaSlava::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.krsnaSlava', compact('krsnaSlava'));
@@ -30,18 +30,13 @@ class KrsnaSlavaController extends Controller
     {
         $krsnaSlava = new KrsnaSlava();
         $krsnaSlava->naziv = $request->naziv;
-        $krsnaSlava->datumSlave = $request->datumSlave;
-        if($krsnaSlava->indikatorAktivan == 'on') {
-            $krsnaSlava->indikatorAktivan = 1;
-        }
-        else{
-            $krsnaSlava->indikatorAktivan = 0;
-        }
+        $krsnaSlava->datumSlave = date_create_from_format('d.m.Y.', $request->datumSlave);
+        $krsnaSlava->indikatorAktivan = 1;
 
         try {
             $krsnaSlava->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
@@ -55,18 +50,17 @@ class KrsnaSlavaController extends Controller
     public function update(Request $request, KrsnaSlava $krsnaSlava)
     {
         $krsnaSlava->naziv = $request->naziv;
-        $krsnaSlava->datumSlave = $request->datumSlave;
-        if($krsnaSlava->indikatorAktivan == 'on') {
+        $krsnaSlava->datumSlave = date_create_from_format('d.m.Y.', $request->datumSlave);
+        if ($krsnaSlava->indikatorAktivan == 'on') {
             $krsnaSlava->indikatorAktivan = 1;
-        }
-        else{
+        } else {
             $krsnaSlava->indikatorAktivan = 0;
         }
 
         try {
             $krsnaSlava->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/krsnaSlava');
@@ -77,7 +71,7 @@ class KrsnaSlavaController extends Controller
         try {
             $krsnaSlava->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

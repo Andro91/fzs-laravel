@@ -32,12 +32,8 @@ class TipStudijaController extends Controller
 
         $tipStudija->naziv = $request->naziv;
         $tipStudija->skrNaziv = $request->skrNaziv;
-        if($request->indikatorAktivan == 'on') {
-            $tipStudija->indikatorAktivan = 1;
-        }
-        else{
-            $tipStudija->indikatorAktivan = 0;
-        }
+        $tipStudija->indikatorAktivan = 1;
+
 
         try {
             $tipStudija->save();
@@ -57,10 +53,9 @@ class TipStudijaController extends Controller
     {
         $tipStudija->naziv = $request->naziv;
         $tipStudija->skrNaziv = $request->skrNaziv;
-        if($request->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on') {
             $tipStudija->indikatorAktivan = 1;
-        }
-        else{
+        } else {
             $tipStudija->indikatorAktivan = 0;
         }
 

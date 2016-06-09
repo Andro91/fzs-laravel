@@ -21,7 +21,7 @@ class OpstinaController extends Controller
             $opstina = Opstina::all();
             $region = Region::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.opstina', compact('opstina', 'region'));
@@ -37,7 +37,7 @@ class OpstinaController extends Controller
         try {
             $opstina->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();
@@ -48,7 +48,7 @@ class OpstinaController extends Controller
         try {
             $region = Region::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.editOpstina', compact('opstina', 'region'));
@@ -62,7 +62,7 @@ class OpstinaController extends Controller
         try {
             $opstina->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/opstina');
@@ -73,7 +73,7 @@ class OpstinaController extends Controller
         try {
             $opstina->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

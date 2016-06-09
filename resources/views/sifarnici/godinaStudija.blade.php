@@ -66,13 +66,6 @@
                         <label for="naziv">Редослед приказивања:</label>
                         <input name="redosledPrikazivanja" type="text" class="form-control">
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <div class="checkbox">
-                            <label>
-                                <input name="indikatorAktivan" type="checkbox">
-                                Активан</label>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
