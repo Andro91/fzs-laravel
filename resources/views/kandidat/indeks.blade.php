@@ -20,9 +20,9 @@
                 <td>{{$kandidat->prezimeKandidata}}</td>
                 <td>{{$kandidat->jmbg}}</td>
                 <td>
-                    <a class="btn btn-primary pull-left" href="/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                    <a class="btn btn-primary pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
 
-                    <form class="pull-left" style="margin-left: 10px" action="/kandidat/{{ $kandidat->id }}"
+                    <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"
                           method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         {{ csrf_field() }}
@@ -43,34 +43,11 @@
             {{ csrf_field() }}
 
             <div class="form-group pull-left" style="width: 25%;">
-                <a class="btn btn-primary pull-left" href="/izvestaji/spisakPoSmerovima">Студијски програми</a>
+                <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/spisakPoSmerovima">Студијски програми</a>
             </div>
     </div>
 </div>
 
 
-<script>
-    $(document).ready(function () {
-        $('#tabela').dataTable({
-            "aaSorting": [],
-            "oLanguage": {
-                "sProcessing": "Procesiranje u toku...",
-                "sLengthMenu": "Prikaži _MENU_ elemenata",
-                "sZeroRecords": "Nije pronađen nijedan rezultat",
-                "sInfo": "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
-                "sInfoEmpty": "Prikaz 0 do 0 od ukupno 0 elemenata",
-                "sInfoFiltered": "(filtrirano od ukupno _MAX_ elemenata)",
-                "sInfoPostFix": "",
-                "sSearch": "Pretraga:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Početna",
-                    "sPrevious": "Prethodna",
-                    "sNext": "Sledeća",
-                    "sLast": "Poslednja"
-                }
-            }
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection

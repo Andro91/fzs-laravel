@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <form role="form" method="post" action="{{ url('/master/'. $kandidat->id .'/edit') }}">
+                <form role="form" method="post" action="{{$putanja}}/master/{{ $kandidat->id }}/edit">
                     {{ csrf_field() }}
                     {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
                     <input type="hidden" name="page" id="page" value="1" />

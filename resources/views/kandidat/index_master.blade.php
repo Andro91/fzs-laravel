@@ -10,7 +10,7 @@
                 <thead>
                     <th>Име</th>
                     <th>Презиме</th>
-                    <th>ЈЕМГ</th>
+                    <th>ЈМБГ</th>
                     <th>Измена</th>
                 </thead>
                 <tbody>
@@ -19,9 +19,9 @@
                         <td>{{$kandidat->imeKandidata}}</td>
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
-                        <td>
-                            <a class="btn btn-primary pull-left" href="{{ url('/master/' . $kandidat->id . '/edit') }}">Измени</a>
-                            <form class="pull-left" style="margin-left: 10px" action="{{ url('/master/' . $kandidat->id . '/delete') }}" method="post">
+                        <td>                            
+                            <a class="btn btn-primary pull-left" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
+                            <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/master/{{$kandidat->id}}/delete" method="post">
                                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{ csrf_field() }}
                                 <input type="submit" class="btn btn-danger" value="Бриши" >
@@ -33,27 +33,5 @@
             </table>
     </div>
 
-    <script>
-        $( document ).ready(function() {
-            $('#tabela').dataTable({"aaSorting": [],
-                "oLanguage": {
-                    "sProcessing": "Procesiranje u toku...",
-                    "sLengthMenu": "Prikaži _MENU_ elemenata",
-                    "sZeroRecords": "Nije pronađen nijedan rezultat",
-                    "sInfo": "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
-                    "sInfoEmpty": "Prikaz 0 do 0 od ukupno 0 elemenata",
-                    "sInfoFiltered": "(filtrirano od ukupno _MAX_ elemenata)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Pretraga:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "Početna",
-                        "sPrevious": "Prethodna",
-                        "sNext": "Sledeća",
-                        "sLast": "Poslednja"
-                    }
-                }
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection

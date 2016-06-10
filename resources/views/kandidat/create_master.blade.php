@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <form role="form" method="post" action="{{ url('/storeMaster') }}">
+                <form role="form" method="post" action="{{$putanja}}/storeMaster">
                     {{ csrf_field() }}
                     {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
                     <input type="hidden" name="page" id="page" value="1" />
@@ -41,6 +41,14 @@
                                 <label for="StudijskiProgram">Студијски програм</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group pull-left" style="width: 20%;">
+                                <label for="SkolskeGodineUpisa">Школска година:</label>
+                                <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
+                                    @foreach($skolskeGodineUpisa as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
                                 </select>
@@ -78,6 +86,14 @@
                             <div class="form-group" style="width: 70%;">
                                 <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ old('JMBG') }}" >
+                            </div>
+                            <div class="form-group">
+                                <label for="MestoRodjenja">Место рођења</label>
+                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
+                                    @foreach($mestoRodjenja as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Контакт телефон</label>
