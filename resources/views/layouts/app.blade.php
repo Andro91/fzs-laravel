@@ -58,7 +58,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Одјава</a></li>
+                                <li><a href="{{$putanja}}/logout"><i class="fa fa-btn fa-sign-out"></i>Одјава</a></li>
                             </ul>
                         </li>
                     @endif
