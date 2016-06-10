@@ -640,6 +640,91 @@ class KandidatController extends Controller
         return redirect('/master/');
     }
 
+    public function editMaster($id)
+    {
+        $mestoRodjenja = Mesto::all();
+        $krsnaSlava = KrsnaSlava::all();
+        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $opstiUspehSrednjaSkola = OpstiUspeh::all();
+        $uspehSrednjaSkola = UspehSrednjaSkola::all();
+        $sportskoAngazovanje = SportskoAngazovanje::all();
+        $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
+        $statusaUpisaKandidata = StatusStudiranja::all();
+        $studijskiProgram = StudijskiProgram::all();
+        $tipStudija = TipStudija::all();
+        $godinaStudija = GodinaStudija::all();
+        $skolskeGodineUpisa = SkolskaGodUpisa::all();
+
+        $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '3')->get();
+
+        $kandidat = Kandidat::find($id);
+
+        return view('kandidat.create_master')
+            ->with('mestoRodjenja', $mestoRodjenja)
+            ->with('krsnaSlava', $krsnaSlava)
+            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
+            ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
+            ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
+            ->with('sportskoAngazovanje', $sportskoAngazovanje)
+            ->with('prilozeniDokumentPrvaGodina', $prilozeniDokumentPrvaGodina)
+            ->with('statusaUpisaKandidata', $statusaUpisaKandidata)
+            ->with('studijskiProgram', $studijskiProgram)
+            ->with('tipStudija', $tipStudija)
+            ->with('godinaStudija', $godinaStudija)
+            ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
+            ->with('dokumentiPrvaGodina', $dokumentiPrvaGodina)
+            ->with('kandidat',$kandidat);
+    }
+
+
+    public function updateMaster(Request $request, $id)
+    {
+        $kandidat = Kandidat::find();
+        $kandidat->imeKandidata = $request->ImeKandidata;
+        $kandidat->prezimeKandidata = $request->PrezimeKandidata;
+        $kandidat->jmbg = $request->JMBG;
+
+        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->kontaktTelefon = $request->KontaktTelefon;
+        $kandidat->adresaStanovanja = $request->AdresaStanovanja;
+        $kandidat->email = $request->Email;
+
+        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
+
+        $kandidat->tipStudija_id = 2;
+        $kandidat->studijskiProgram_id = $request->StudijskiProgram;
+        $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+
+        try {
+            $insertedId = $kandidat->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
+                return back()->with('jmbgError', '1')->withInput();
+            } else {
+                dd("nesto je poslo po zlu" . $e->getMessage());
+            }
+        }
+
+        $dokumenta = PrilozenaDokumenta::all();
+
+        foreach ($dokumenta as $dokument) {
+            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->kandidat_id = $insertedId;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
+            }
+        }
+
+        return redirect('/master/');
+    }
+
     public function indexMaster()
     {
         $kandidati = Kandidat::where('tipStudija_id',2)->get();

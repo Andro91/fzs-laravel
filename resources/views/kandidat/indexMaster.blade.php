@@ -20,7 +20,7 @@
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
                         <td>
-                            <a class="btn btn-primary pull-left" href="/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                            <a class="btn btn-primary pull-left" href="{{ url('/master/' . $kandidat->id . '/edit') }}">Измени</a>
                             <form class="pull-left" style="margin-left: 10px" action="/kandidat/{{ $kandidat->id }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 {{ csrf_field() }}
