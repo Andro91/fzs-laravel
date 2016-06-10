@@ -21,8 +21,8 @@
                         <td>{{$kandidat->jmbg}}</td>
                         <td>
                             <a class="btn btn-primary pull-left" href="{{ url('/master/' . $kandidat->id . '/edit') }}">Измени</a>
-                            <form class="pull-left" style="margin-left: 10px" action="/kandidat/{{ $kandidat->id }}" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
+                            <form class="pull-left" style="margin-left: 10px" action="{{ url('/master/' . $kandidat->id . '/delete') }}" method="post">
+                                <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{ csrf_field() }}
                                 <input type="submit" class="btn btn-danger" value="Бриши" >
                             </form>

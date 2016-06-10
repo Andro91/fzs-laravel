@@ -558,6 +558,7 @@ class KandidatController extends Controller
         return $request->all();
     }
 
+    // DEO ZA MASTER STUDIJE
     public function createMaster(Request $request)
     {
         $mestoRodjenja = Mesto::all();
@@ -640,6 +641,7 @@ class KandidatController extends Controller
         return redirect('/master/');
     }
 
+
     public function editMaster($id)
     {
         $mestoRodjenja = Mesto::all();
@@ -658,9 +660,11 @@ class KandidatController extends Controller
 
         $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '3')->get();
 
+        $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
+
         $kandidat = Kandidat::find($id);
 
-        return view('kandidat.create_master')
+        return view('kandidat.update_master')
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
             ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
@@ -675,13 +679,14 @@ class KandidatController extends Controller
             ->with('godinaStudija', $godinaStudija)
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
             ->with('dokumentiPrvaGodina', $dokumentiPrvaGodina)
+            ->with('prilozenaDokumenta',$prilozenaDokumenta)
             ->with('kandidat',$kandidat);
     }
 
 
     public function updateMaster(Request $request, $id)
     {
-        $kandidat = Kandidat::find();
+        $kandidat = Kandidat::find($id);
         $kandidat->imeKandidata = $request->ImeKandidata;
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
@@ -695,20 +700,12 @@ class KandidatController extends Controller
         $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
-        $kandidat->tipStudija_id = 2;
+        $kandidat->tipStudija_id = $request->TipStudija;
         $kandidat->studijskiProgram_id = $request->StudijskiProgram;
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
 
-        try {
-            $insertedId = $kandidat->save();
-        } catch (\Illuminate\Database\QueryException $e) {
+        $insertedId = $kandidat->save();
 
-            if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
-                return back()->with('jmbgError', '1')->withInput();
-            } else {
-                dd("nesto je poslo po zlu" . $e->getMessage());
-            }
-        }
 
         $dokumenta = PrilozenaDokumenta::all();
 
@@ -716,9 +713,15 @@ class KandidatController extends Controller
             if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
                 $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                $prilozenDokument->kandidat_id = $insertedId;
+                $prilozenDokument->kandidat_id = $id;
                 $prilozenDokument->indikatorAktivan = 1;
                 $prilozenDokument->save();
+            } else {
+                $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
+                    ->first();
+                if ($delete != null) {
+                    $delete->delete();
+                }
             }
         }
 
@@ -729,6 +732,14 @@ class KandidatController extends Controller
     {
         $kandidati = Kandidat::where('tipStudija_id',2)->get();
 
-        return view("kandidat.indeks")->with('kandidati', $kandidati);
+        return view("kandidat.index_master")->with('kandidati', $kandidati);
+    }
+
+
+    public function destroyMaster($id)
+    {
+        Kandidat::destroy($id);
+
+        return redirect('/master/');
     }
 }

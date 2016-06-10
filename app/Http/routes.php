@@ -28,7 +28,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/master/create', 'KandidatController@createMaster');
     Route::get('/master/', 'KandidatController@indexMaster');
+    Route::get('/master/{id}/edit', 'KandidatController@editMaster');
+    Route::post('/master/{id}/edit', 'KandidatController@updateMaster');
     Route::post('/storeMaster/', 'KandidatController@storeMaster');
+    Route::post('/master/{id}/delete', 'KandidatController@destroyMaster');
 });
 
 

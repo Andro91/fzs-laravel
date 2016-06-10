@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <form role="form" method="post" action="{{ url('/storeMaster') }}">
+                <form role="form" method="post" action="{{ url('/master/'. $kandidat->id .'/edit') }}">
                     {{ csrf_field() }}
                     {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
                     <input type="hidden" name="page" id="page" value="1" />
@@ -36,7 +36,6 @@
                             <h3 class="panel-title">Документа</h3>
                         </div>
                         <div class="panel-body">
-
                             <div class="form-group">
                                 <label for="TipStudija">Тип студија</label>
                                 <select class="form-control" id="TipStudija" name="TipStudija">
@@ -55,12 +54,14 @@
                             </div>
                             <p><strong>Уз пријаву прилажем:</strong></p>
                             @foreach($dokumentiPrvaGodina as $dokument)
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
-                                        {{ $dokument->naziv }}
-                                    </label>
-                                </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="{{ $dokument->naziv }}"
+                                                       value="{{$dokument->id}}"
+                                                        {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
+                                                {{ $dokument->naziv }}
+                                            </label>
+                                        </div>
                             @endforeach
                         </div>
                     </div>
@@ -103,21 +104,22 @@
                                 <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
                                 <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
                                     @foreach($nazivSkoleFakulteta as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                        <option value="{{ $item->id }}" {{ ($kandidat->srednjeSkoleFakulteti_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
-                                       id="SmerZavrseneSkoleFakulteta" value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
+                                       id="SmerZavrseneSkoleFakulteta"
+                                       value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
                             </div>
-                            <div class="form-group" style="width: 48%; margin-right: 2%;">
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
                                 <select class="form-control" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                        <option value="{{ $item->id }}" {{ ($kandidat->mestoZavrseneSkoleFakulteta_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                     @endforeach
                                 </select>
                             </div>
