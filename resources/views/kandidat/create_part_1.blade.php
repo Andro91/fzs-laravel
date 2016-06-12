@@ -84,7 +84,7 @@
                             </div>
                             <div class="form-group pull-left" style="width: 38%;">
                                 <label for="DatumRodjenja">Датум рођења</label>
-                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja" value="{{ old('DatumRodjenja') }}" >
+                                <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja" value="{{ old('DatumRodjenja') }}" >
                             </div>
 
                             <div class="form-group">
