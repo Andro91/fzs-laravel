@@ -37,7 +37,7 @@
                         </div>
                         <div class="panel-body">
 
-                            <div class="form-group">
+                            <div class="form-group pull-left" style="width: 60%">
                                 <label for="StudijskiProgram">Студијски програм</label>
                                 <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                     @foreach($studijskiProgram as $item)
@@ -45,7 +45,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group pull-left" style="width: 20%;">
+                            <div class="form-group pull-left" style="width: 30%; margin-left: 10%">
                                 <label for="SkolskeGodineUpisa">Школска година:</label>
                                 <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
                                     @foreach($skolskeGodineUpisa as $item)
