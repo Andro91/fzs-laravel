@@ -21,9 +21,15 @@
                         <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$dokument->naziv}}">
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="indGodina">Година:</label>
-                        <input name="indGodina" type="text" class="form-control" value="{{$dokument->indGodina}}">
+                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
+                        <label for="skolskaGodina_id">Школска година:</label>
+                        <input type="hidden" id="godinaStudijaHidden" name="godinaStudijaHidden"
+                               value="{{$dokument->skolskaGodina_id}}">
+                        <select class="form-control" id="skolskaGodina_id" name="skolskaGodina_id">
+                            @foreach($godinaStudija as $godinaStudija)
+                                <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -35,6 +41,12 @@
         </form>
     </div>
 
+<script>
+        $(document).ready(function () {
+            //alert($("#godinaStudijaHidden").val());
+            $("#skolskaGodina_id").val($("#godinaStudijaHidden").val());
+        });
+    </script>
 
 
 @endsection

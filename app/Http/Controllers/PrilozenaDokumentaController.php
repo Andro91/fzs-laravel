@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PrilozenaDokumenta;
+use App\GodinaStudija;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -20,11 +21,12 @@ class PrilozenaDokumentaController extends Controller
     {
         try {
             $dokument = PrilozenaDokumenta::all();
+            $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.prilozenaDokumenta', compact('dokument'));
+        return view('sifarnici.prilozenaDokumenta', compact('dokument', 'godinaStudija'));
     }
 
     public function unos(Request $request)
@@ -33,7 +35,7 @@ class PrilozenaDokumentaController extends Controller
 
         $dokument->redniBrojDokumenta = $request->redniBrojDokumenta;
         $dokument->naziv = $request->naziv;
-        $dokument->indGodina = $request->indGodina;
+        $dokument->skolskaGodina_id = $request->skolskaGodina_id;
 
         try {
             $dokument->save();
@@ -46,14 +48,16 @@ class PrilozenaDokumentaController extends Controller
 
     public function edit(PrilozenaDokumenta $dokument)
     {
-        return view('sifarnici.editPrilozenaDokumenta', compact('dokument'));
+        $godinaStudija = GodinaStudija::all();
+
+        return view('sifarnici.editPrilozenaDokumenta', compact('dokument', 'godinaStudija'));
     }
 
     public function update(Request $request, PrilozenaDokumenta $dokument)
     {
         $dokument->redniBrojDokumenta = $request->redniBrojDokumenta;
         $dokument->naziv = $request->naziv;
-        $dokument->indGodina = $request->indGodina;
+        $dokument->skolskaGodina_id = $request->skolskaGodina_id;
 
         try {
             $dokument->update();

@@ -14,7 +14,7 @@ class CreatePrilozenaDokumentaTable extends Migration
     {
         Schema::create('prilozena_dokumenta', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('indGodina');
+            $table->string('skolskaGodina_id');
             $table->string('naziv');
             $table->integer('redniBrojDokumenta')->unsigned();
             $table->timestamps();

@@ -19,7 +19,7 @@ class PrilozenaDokumentaSeeder extends Seeder
             $dokument = new PrilozenaDokumenta();
 
             $dokument->naziv = $dok;
-            $dokument->indGodina = "1";
+            $dokument->skolskaGodina_id = "1";
             $dokument->redniBrojDokumenta = 1;
 
             $dokument->save();
@@ -29,7 +29,7 @@ class PrilozenaDokumentaSeeder extends Seeder
             $dokument = new PrilozenaDokumenta();
 
             $dokument->naziv = $dok;
-            $dokument->indGodina = "2";
+            $dokument->skolskaGodina_id = "2";
             $dokument->redniBrojDokumenta = 1;
 
             $dokument->save();

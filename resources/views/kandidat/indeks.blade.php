@@ -43,7 +43,7 @@
             {{ csrf_field() }}
 
             <div class="form-group pull-left" style="width: 25%;">
-                <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/spisakPoSmerovima">Студијски програми</a>
+                <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/spisakPoSmerovima">Студијски програми</a>
             </div>
     </div>
 </div>
