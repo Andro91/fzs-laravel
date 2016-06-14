@@ -131,11 +131,13 @@
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
-                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
+                                <input class="form-control" type="text" name="NazivSkoleFakulteta"
+                                       id="NazivSkoleFakulteta" value="{{ old('NazivSkoleFakulteta') }}">
+                                <!-- <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
                                     @foreach($nazivSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
-                                </select>
+                                </select> -->
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
@@ -184,6 +186,15 @@
             var jmbg = $('#JMBG').val();
             var millenia = jmbg[4] === '0' ? '2' : '1';
             $('#DatumRodjenja').val(jmbg[0] + jmbg[1] + '.' + jmbg[2] + jmbg[3] + '.' + millenia + jmbg[4] + jmbg[5] + jmbg[6] + '.' );
+        });
+
+        $(document).ready(function() {
+          $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
         });
     </script>
 @endsection

@@ -172,7 +172,7 @@
 
                     <div class="panel panel-default pull-left" style="width: 50%">
                         <div class="panel-heading">
-                            <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  I ГОДИНУ СТУДИЈА</h3>
+                            <h3 class="panel-title">ДОКУМЕНТА - за упис на  I ГОДИНУ СТУДИЈА</h3>
                         </div>
                         <div class="panel-body">
                             @foreach($dokumentiPrvaGodina as $dokument)
@@ -188,7 +188,7 @@
 
                     <div class="panel panel-default pull-left" style="width: 50%;">
                         <div class="panel-heading">
-                            <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  II, III и IV ГОДИНУ СТУДИЈА и прелазак
+                            <h3 class="panel-title">ДОКУМЕНТА - за упис на  II, III и IV ГОДИНУ СТУДИЈА и прелазак
                                 са другог факултета</h3>
                         </div>
                         <div class="panel-body">
