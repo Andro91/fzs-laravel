@@ -149,8 +149,8 @@ class KandidatController extends Controller
             $godinaStudija = GodinaStudija::all();
             $skolskeGodineUpisa = SkolskaGodUpisa::all();
             $sport = Sport::all();
-            $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '1')->get();
-            $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina', '2')->get();
+            $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '1')->get();
+            $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
 
             return view("kandidat.create_part_2")
                 //->with('mestoRodjenja', $mestoRodjenja)
@@ -311,8 +311,8 @@ class KandidatController extends Controller
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
         $sport = Sport::all();
-        $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '1')->get();
-        $dokumentiOstaleGodine = PrilozenaDokumenta::where('indGodina', '2')->get();
+        $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '1')->get();
+        $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
@@ -575,7 +575,7 @@ class KandidatController extends Controller
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
-        $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '3')->get();
+        $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
         return view('kandidat.create_master')
             ->with('mestoRodjenja', $mestoRodjenja)
@@ -658,7 +658,7 @@ class KandidatController extends Controller
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
-        $dokumentiPrvaGodina = PrilozenaDokumenta::where('indGodina', '3')->get();
+        $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
