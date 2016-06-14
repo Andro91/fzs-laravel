@@ -20,7 +20,7 @@
                 @foreach($krsnaSlava as $krsnaSlava)
                     <tr>
                         <td>{{$krsnaSlava->naziv}}</td>
-                        <td>{{ date('d.m.Y.',strtotime($krsnaSlava->datumSlave)) }}</td>
+                        <td>{{$krsnaSlava->datumSlave}}</td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="krsnaSlava/{{$krsnaSlava->id}}/edit">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Датум:</label>
-                        <input id="datumSlave" name="datumSlave" type="date" class="form-control">
+                        <input id="datumSlave" name="datumSlave" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="panel-body">
@@ -68,7 +68,7 @@
             $.mask.definitions['q'] = '[0-3]';
             $.mask.definitions['w'] = '[0-9]';
             $.mask.definitions['e'] = '[0-1]';
-            $('#datumSlave').mask("qw.ew.9999.");
+            $('#datumSlave').mask("qw.ew.");
         });
     </script>
 

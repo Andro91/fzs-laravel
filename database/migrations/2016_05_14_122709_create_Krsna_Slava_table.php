@@ -15,7 +15,7 @@ class CreateKrsnaSlavaTable extends Migration
         Schema::create('krsna_slava', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naziv');
-            $table->dateTime('datumSlave');
+            $table->string('datumSlave');
             $table->integer('indikatorAktivan');
             $table->timestamps();
         });

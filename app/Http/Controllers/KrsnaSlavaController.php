@@ -30,7 +30,7 @@ class KrsnaSlavaController extends Controller
     {
         $krsnaSlava = new KrsnaSlava();
         $krsnaSlava->naziv = $request->naziv;
-        $krsnaSlava->datumSlave = date_create_from_format('d.m.Y.', $request->datumSlave);
+        $krsnaSlava->datumSlave = $request->datumSlave;
         $krsnaSlava->indikatorAktivan = 1;
 
         try {
@@ -50,7 +50,7 @@ class KrsnaSlavaController extends Controller
     public function update(Request $request, KrsnaSlava $krsnaSlava)
     {
         $krsnaSlava->naziv = $request->naziv;
-        $krsnaSlava->datumSlave = date_create_from_format('d.m.Y.', $request->datumSlave);
+        $krsnaSlava->datumSlave = $request->datumSlave;
         if ($krsnaSlava->indikatorAktivan == 'on') {
             $krsnaSlava->indikatorAktivan = 1;
         } else {
