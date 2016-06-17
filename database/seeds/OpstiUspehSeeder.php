@@ -11,7 +11,7 @@ class OpstiUspehSeeder extends Seeder
      */
     public function run()
     {
-        $opstiUspeh = array('Odličan','Vrlo dobar', 'Dobar','Dovoljan','Nedovoljan');
+        $opstiUspeh = array('Одличан','Врло добар', 'Добар','Довољан','Недовољан');
 
         foreach($opstiUspeh as $element){
             $uspeh = new \App\OpstiUspeh();

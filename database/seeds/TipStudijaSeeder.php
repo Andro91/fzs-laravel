@@ -12,7 +12,7 @@ class TipStudijaSeeder extends Seeder
      */
     public function run()
     {
-        $tipoviStudija = array('Osnovne studije', 'Master Studije', 'Doktorske Studije');
+        $tipoviStudija = array('Основне студије', 'Мастер Студије', 'Докторске Студије');
 
         foreach ($tipoviStudija as $tip) {
             $tipStudija = new TipStudija();

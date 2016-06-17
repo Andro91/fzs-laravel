@@ -11,7 +11,7 @@ class MestoSeeder extends Seeder
      */
     public function run()
     {
-        $gradoviSrbije = array('Beograd', 'Novi Sad', 'Niš', 'Priština', 'Kragujevac', 'Leskovac', 'Subotica', 'Zrenjanin', 'Pancevo', 'Cacak', 'Novi Pazar', 'Kraljevo', 'Smederevo', 'Valjevo', 'Kruševac', 'Vranje', 'Šabac', 'Užice', 'Sombor', 'Požarevac', 'Zajecar', 'Sremska Mitrovica', 'Jagodina', 'Loznica');
+        $gradoviSrbije = array('Београд', 'Нови Сад', 'Ниш', 'Приштина', 'Крагујевац', 'Лесковац', 'Суботица', 'Зрењанин', 'Панчево', 'Чачак', 'Нови Пазар', 'Краљево', 'Смедерево', 'Ваљево', 'Крушевац', 'Врање', 'Шабац', 'Ужице', 'Сомбор', 'Пожаревац', 'Зајечар', 'Сремска Митровица', 'Јагодина', 'Лозница');
 
         foreach ($gradoviSrbije as $grad) {
             $mesto = new \App\Mesto();

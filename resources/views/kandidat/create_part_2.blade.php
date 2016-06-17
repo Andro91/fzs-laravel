@@ -263,5 +263,14 @@
             $('#SrednjaOcenaSrednjaSkola').val(Math.round((suma/4) * 100) / 100);
             $('#BrojBodovaSkola').val(Math.round((suma*4) *100) / 100);
         });
+
+        $(document).ready(function() {
+          $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+          });
+        });
     </script>
 @endsection

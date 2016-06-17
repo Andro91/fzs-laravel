@@ -11,7 +11,7 @@ class StudijskiProgramSeeder extends Seeder
      */
     public function run()
     {
-        $studijskiProgrami = array('Menadžment u sportu','Trener u sportu','Sportsko novinarstvo');
+        $studijskiProgrami = array('Менаџмент у спорту','Тренер у спорту','Спортско новинарство');
 
 
         foreach ($studijskiProgrami as $program) {

@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 
         \Illuminate\Database\Eloquent\Model::unguard();
 
-        $this->call(KrsnaSlavaSeeder::class);
+        // $this->call(KrsnaSlavaSeeder::class);
         $this->call(MestoSeeder::class);
         $this->call(PredmetSeeder::class);
         $this->call(SportSeeder::class);
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipStudijaSeeder::class);
         $this->call(PrilozenaDokumentaSeeder::class);
         $this->call(OpstiUspehSeeder::class);
-        $this->call(RegionSeeder::class);
+        // $this->call(RegionSeeder::class);
         $this->call(SkolskaGodinaSeeder::class);
         $this->call(GodinaStudijaSeeder::class);
 
