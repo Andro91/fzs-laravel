@@ -14,10 +14,10 @@ class CreateKandidatTable extends Migration
     {
         Schema::create('kandidat', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('imeKandidata');
-            $table->string('prezimeKandidata');
+            $table->string('imeKandidata')->nullable();
+            $table->string('prezimeKandidata')->nullable();
             $table->string('jmbg')->unique();
-            $table->dateTime('datumRodjenja');
+            $table->dateTime('datumRodjenja')->nullable();
             $table->integer('mestoRodjenja_id')->unsigned()->index();
             $table->integer('krsnaSlava_id')->unsigned()->index();
             $table->string('kontaktTelefon')->nullable();
@@ -30,14 +30,15 @@ class CreateKandidatTable extends Migration
             $table->string('smerZavrseneSkoleFakulteta')->nullable();
             $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
             $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();
-            $table->double('srednjaOcenaSrednjaSkola');
+            $table->double('srednjaOcenaSrednjaSkola')->nullable();
             $table->integer('sportskoAngazovanje_id')->unsigned()->nullable();
-            $table->double('telesnaTezina');
-            $table->double('visina');
+            $table->double('telesnaTezina')->nullable();
+            $table->double('visina')->nullable();
             $table->integer('prilozenaDokumentaPrvaGodina_id')->unsigned()->nullable();
             $table->integer('statusUpisa_id')->unsigned()->nullable();
             $table->double('brojBodovaTest')->nullable();
-            $table->double('brojBodovaSkola');
+            $table->double('brojBodovaSkola')->nullable();
+            $table->double('prosecnaOcena')->nullable();
             $table->string('upisniRok')->nullable();
             $table->integer('skolskaGodinaUpisa_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();

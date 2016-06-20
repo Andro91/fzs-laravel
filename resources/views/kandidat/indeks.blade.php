@@ -23,7 +23,7 @@
                     <a class="btn btn-primary pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
 
                     <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"
-                          method="post">
+                          method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
                         <input type="hidden" name="_method" value="DELETE">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger" value="Бриши">

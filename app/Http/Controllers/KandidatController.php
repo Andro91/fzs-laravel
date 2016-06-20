@@ -243,8 +243,8 @@ class KandidatController extends Controller
                 $sport3->save();
             }
 
-            $kandidat->visina = $request->VisinaKandidata;
-            $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
+            $kandidat->visina = str_replace(",", ".", $request->VisinaKandidata);
+            $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
 
             $dokumenta = PrilozenaDokumenta::all();
@@ -425,22 +425,22 @@ class KandidatController extends Controller
 
         $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
         $prviRazred->opstiUspeh_id = $request->prviRazred;
-        $prviRazred->srednja_ocena = $request->SrednjaOcena1;
+        $prviRazred->srednja_ocena = floatval($request->SrednjaOcena1);
         $prviRazred->save();
 
         $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
         $drugiRazred->opstiUspeh_id = $request->drugiRazred;
-        $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
+        $drugiRazred->srednja_ocena = floatval($request->SrednjaOcena2);
         $drugiRazred->save();
 
         $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
         $treciRazred->opstiUspeh_id = $request->treciRazred;
-        $treciRazred->srednja_ocena = $request->SrednjaOcena3;
+        $treciRazred->srednja_ocena = floatval($request->SrednjaOcena3);
         $treciRazred->save();
 
         $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
         $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
-        $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
+        $cetvrtiRazred->srednja_ocena = floatval($request->SrednjaOcena4);
         $cetvrtiRazred->save();
 
         $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
@@ -470,8 +470,8 @@ class KandidatController extends Controller
 //        $sport3->ukupnoGodina = $request->godine3;
 //        $sport3->save();
 
-        $kandidat->visina = $request->VisinaKandidata;
-        $kandidat->telesnaTezina = $request->TelesnaTezinaKandidata;
+        $kandidat->visina = str_replace(",", ".", $request->VisinaKandidata);
+        $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
 
         $dokumenta = PrilozenaDokumenta::all();
@@ -614,6 +614,9 @@ class KandidatController extends Controller
         $kandidat->studijskiProgram_id = $request->StudijskiProgram;
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
 
+        $kandidat->prosecnaOcena = str_replace(",", ".", $request->ProsecnaOcena);
+        $kandidat->upisniRok = $request->UpisniRok;
+
         try {
             $insertedId = $kandidat->save();
         } catch (\Illuminate\Database\QueryException $e) {
@@ -702,6 +705,9 @@ class KandidatController extends Controller
         $kandidat->tipStudija_id = $request->TipStudija;
         $kandidat->studijskiProgram_id = $request->StudijskiProgram;
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+
+        $kandidat->prosecnaOcena = str_replace(",", ".", $request->ProsecnaOcena);
+        $kandidat->upisniRok = $request->UpisniRok;
 
         $insertedId = $kandidat->save();
 

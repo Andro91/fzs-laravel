@@ -394,11 +394,11 @@
         $.mask.definitions['r'] = '[0-5]';
         $.mask.definitions['t'] = '[0-9]';
 
-        $('#SrednjaOcena1').mask("r.tt");
-        $('#SrednjaOcena2').mask("r.tt");
-        $('#SrednjaOcena3').mask("r.tt");
-        $('#SrednjaOcena4').mask("r.tt");
-        $('#SrednjaOcenaSrednjaSkola').mask("r.tt");
+        // $('#SrednjaOcena1').mask("r.tt");
+        // $('#SrednjaOcena2').mask("r.tt");
+        // $('#SrednjaOcena3').mask("r.tt");
+        // $('#SrednjaOcena4').mask("r.tt");
+        // $('#SrednjaOcenaSrednjaSkola').mask("r.tt");
 
     </script>
 @endsection

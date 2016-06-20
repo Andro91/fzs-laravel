@@ -81,15 +81,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="AdresaStanovanja">Адреса становања</label>
-                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja" style="max-width: 80%" value="{{ old('AdresaStanovanja') }}" >
+                                <input class="form-control" type="text" name="AdresaStanovanja" 
+                                id="AdresaStanovanja" style="max-width: 80%" value="{{ old('AdresaStanovanja') }}" >
                             </div>
                             <div class="form-group" style="width: 70%;">
                                 <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ old('JMBG') }}" >
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="width: 70%;">
                                 <label for="MestoRodjenja">Место рођења</label>
-                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
+                                <select class="form-control auto-combobox" id="MestoRodjenja" 
+                                name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
                                     @foreach($mestoRodjenja as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -97,7 +99,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Контакт телефон</label>
-                                <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%" value="{{ old('KontaktTelefon') }}" >
+                                <input class="form-control" type="text" name="KontaktTelefon" 
+                                id="KontaktTelefon" style="max-width: 40%" value="{{ old('KontaktTelefon') }}" >
                             </div>
                             <div class="form-group">
                                 <label for="Email">Email</label>
@@ -109,11 +112,8 @@
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
-                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
-                                    @foreach($nazivSkoleFakulteta as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" name="NazivSkoleFakulteta"
+                                       id="NazivSkoleFakulteta" value="{{ old('NazivSkoleFakulteta') }}">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="form-group" style="width: 48%; margin-right: 2%;">
                                 <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <select class="form-control" id="MestoZavrseneSkoleFakulteta"
+                                <select class="form-control auto-combobox" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>

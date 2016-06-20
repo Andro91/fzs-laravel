@@ -21,7 +21,8 @@
                         <td>{{$kandidat->jmbg}}</td>
                         <td>                            
                             <a class="btn btn-primary pull-left" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
-                            <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/master/{{$kandidat->id}}/delete" method="post">
+                            <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/master/{{$kandidat->id}}/delete" 
+                            method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
                                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{ csrf_field() }}
                                 <input type="submit" class="btn btn-danger" value="Бриши" >
