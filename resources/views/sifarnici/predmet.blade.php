@@ -65,7 +65,7 @@
                                 <form class="btn" action="predmet/{{$predmet->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Измени">
                                 </form>
-                                <form class="btn" action="predmet/{{$predmet->id}}/delete">
+                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');" class="btn" action="predmet/{{$predmet->id}}/delete">
                                     <input type="submit" class="btn btn-danger" value="Обриши">
                                 </form>
                             </div>

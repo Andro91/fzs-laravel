@@ -33,7 +33,7 @@
                                 <form class="btn" action="mesto/{{$mesto->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form class="btn" action="mesto/{{$mesto->id}}/delete">
+                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');" class="btn" action="mesto/{{$mesto->id}}/delete">
                                     <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>
