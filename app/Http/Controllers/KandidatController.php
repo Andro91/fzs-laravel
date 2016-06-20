@@ -56,7 +56,7 @@ class KandidatController extends Controller
     {
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Mesto::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -71,7 +71,7 @@ class KandidatController extends Controller
         return view("kandidat.create_part_1")
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -113,7 +113,7 @@ class KandidatController extends Controller
             $kandidat->email = $request->Email;
             $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
             $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
-            $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+            $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
             $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
             $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
@@ -138,7 +138,6 @@ class KandidatController extends Controller
 
             $insertedId = $kandidat->id;
 
-            $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
             $mestoZavrseneSkoleFakulteta = Mesto::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
             $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -155,7 +154,6 @@ class KandidatController extends Controller
             return view("kandidat.create_part_2")
                 //->with('mestoRodjenja', $mestoRodjenja)
                 //->with('krsnaSlava', $krsnaSlava)
-                ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
                 ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
                 ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
                 ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -174,12 +172,12 @@ class KandidatController extends Controller
 
             $kandidat = Kandidat::find($request->insertedId);
 
-            $skola_id = $kandidat->srednjeSkoleFakulteti_id;
+            //$skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
 
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = $request->insertedId;
-            $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            // $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $prviRazred->opstiUspeh_id = $request->prviRazred;
             $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
@@ -188,7 +186,7 @@ class KandidatController extends Controller
 
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = $request->insertedId;
-            $drugiRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            // $drugiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $drugiRazred->opstiUspeh_id = $request->drugiRazred;
             $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
             $drugiRazred->RedniBrojRazreda = 2;
@@ -196,7 +194,7 @@ class KandidatController extends Controller
 
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = $request->insertedId;
-            $treciRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            // $treciRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $treciRazred->opstiUspeh_id = $request->treciRazred;
             $treciRazred->srednja_ocena = $request->SrednjaOcena3;
             $treciRazred->RedniBrojRazreda = 3;
@@ -204,7 +202,7 @@ class KandidatController extends Controller
 
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = $request->insertedId;
-            $cetvrtiRazred->SrednjeSkoleFakulteti_id = $skola_id;
+            // $cetvrtiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
             $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
 
@@ -300,7 +298,7 @@ class KandidatController extends Controller
 
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Mesto::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -322,7 +320,7 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = 0;
-            $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
             $prviRazred->opstiUspeh_id = 1;
             $prviRazred->srednja_ocena = 0;
             $prviRazred->RedniBrojRazreda = 1;
@@ -333,7 +331,7 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = 0;
-            $drugiRazred->SrednjeSkoleFakulteti_id = 1;
+            // $drugiRazred->SrednjeSkoleFakulteti_id = 1;
             $drugiRazred->opstiUspeh_id = 1;
             $drugiRazred->srednja_ocena = 0;
             $drugiRazred->RedniBrojRazreda = 1;
@@ -344,7 +342,7 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = 0;
-            $treciRazred->SrednjeSkoleFakulteti_id = 1;
+            // $treciRazred->SrednjeSkoleFakulteti_id = 1;
             $treciRazred->opstiUspeh_id = 1;
             $treciRazred->srednja_ocena = 0;
             $treciRazred->RedniBrojRazreda = 1;
@@ -355,7 +353,7 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = 0;
-            $cetvrtiRazred->SrednjeSkoleFakulteti_id = 1;
+            // $cetvrtiRazred->SrednjeSkoleFakulteti_id = 1;
             $cetvrtiRazred->opstiUspeh_id = 1;
             $cetvrtiRazred->srednja_ocena = 0;
             $cetvrtiRazred->RedniBrojRazreda = 1;
@@ -367,7 +365,7 @@ class KandidatController extends Controller
         return view('kandidat.update')->with('kandidat', $kandidat)
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -413,7 +411,8 @@ class KandidatController extends Controller
         $kandidat->email = $request->Email;
         $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
         $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
-        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+
+        $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
         $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
@@ -422,7 +421,7 @@ class KandidatController extends Controller
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
         $kandidat->godinaStudija_id = $request->GodinaStudija;
 
-        $skola_id = $kandidat->srednjeSkoleFakulteti_id;
+        // $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
         $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
         $prviRazred->opstiUspeh_id = $request->prviRazred;
@@ -563,7 +562,7 @@ class KandidatController extends Controller
     {
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Mesto::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -580,7 +579,7 @@ class KandidatController extends Controller
         return view('kandidat.create_master')
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -607,7 +606,7 @@ class KandidatController extends Controller
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
         $kandidat->email = $request->Email;
 
-        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+        $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
         $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
@@ -646,7 +645,7 @@ class KandidatController extends Controller
     {
         $mestoRodjenja = Mesto::all();
         $krsnaSlava = KrsnaSlava::all();
-        $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
+        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Mesto::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -667,7 +666,7 @@ class KandidatController extends Controller
         return view('kandidat.update_master')
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
+            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -696,7 +695,7 @@ class KandidatController extends Controller
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
         $kandidat->email = $request->Email;
 
-        $kandidat->srednjeSkoleFakulteti_id = $request->NazivSkoleFakulteta;
+        $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
         $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 

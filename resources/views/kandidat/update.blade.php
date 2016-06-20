@@ -139,11 +139,9 @@
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
-                                <select class="form-control" id="NazivSkoleFakulteta" name="NazivSkoleFakulteta">
-                                    @foreach($nazivSkoleFakulteta as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->srednjeSkoleFakulteti_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                    @endforeach
-                                </select>
+                                <input class="form-control" type="text" name="NazivSkoleFakulteta"
+                                       id="NazivSkoleFakulteta"
+                                       value="{{ $kandidat->srednjeSkoleFakulteti }}">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
