@@ -424,25 +424,66 @@ class KandidatController extends Controller
 
         // $skola_id = $kandidat->srednjeSkoleFakulteti_id;
 
-        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
-        $prviRazred->opstiUspeh_id = $request->prviRazred;
-        $prviRazred->srednja_ocena = floatval($request->SrednjaOcena1);
-        $prviRazred->save();
+        try {
+            $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $prviRazred = new UspehSrednjaSkola();
+            $prviRazred->kandidat_id = $id;
+            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            $prviRazred->opstiUspeh_id = 1;
+            $prviRazred->srednja_ocena = 0;
+            $prviRazred->RedniBrojRazreda = 1;
+        }
+        try {
+            $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $drugiRazred = new UspehSrednjaSkola();
+            $drugiRazred->kandidat_id = $id;
+            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            $drugiRazred->opstiUspeh_id = 1;
+            $drugiRazred->srednja_ocena = 0;
+            $drugiRazred->RedniBrojRazreda = 2;
+        }
+        try {
+            $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $treciRazred = new UspehSrednjaSkola();
+            $treciRazred->kandidat_id = $id;
+            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            $treciRazred->opstiUspeh_id = 1;
+            $treciRazred->srednja_ocena = 0;
+            $treciRazred->RedniBrojRazreda = 3;
+        }
+        try {
+            $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
+        }catch (ModelNotFoundException $e){
+            $cetvrtiRazred = new UspehSrednjaSkola();
+            $cetvrtiRazred->kandidat_id = $id;
+            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
+            $cetvrtiRazred->opstiUspeh_id = 1;
+            $cetvrtiRazred->srednja_ocena = 0;
+            $cetvrtiRazred->RedniBrojRazreda = 4;
+        }
 
-        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
-        $drugiRazred->opstiUspeh_id = $request->drugiRazred;
-        $drugiRazred->srednja_ocena = floatval($request->SrednjaOcena2);
-        $drugiRazred->save();
-
-        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
-        $treciRazred->opstiUspeh_id = $request->treciRazred;
-        $treciRazred->srednja_ocena = floatval($request->SrednjaOcena3);
-        $treciRazred->save();
-
-        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
-        $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
-        $cetvrtiRazred->srednja_ocena = floatval($request->SrednjaOcena4);
-        $cetvrtiRazred->save();
+//        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
+//        $prviRazred->opstiUspeh_id = $request->prviRazred;
+//        $prviRazred->srednja_ocena = floatval($request->SrednjaOcena1);
+//        $prviRazred->save();
+//
+//        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
+//        $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+//        $drugiRazred->srednja_ocena = floatval($request->SrednjaOcena2);
+//        $drugiRazred->save();
+//
+//        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
+//        $treciRazred->opstiUspeh_id = $request->treciRazred;
+//        $treciRazred->srednja_ocena = floatval($request->SrednjaOcena3);
+//        $treciRazred->save();
+//
+//        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
+//        $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+//        $cetvrtiRazred->srednja_ocena = floatval($request->SrednjaOcena4);
+//        $cetvrtiRazred->save();
 
         $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
         $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
