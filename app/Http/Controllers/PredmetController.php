@@ -51,7 +51,7 @@ class PredmetController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/predmet');
     }
 
     public function edit(Predmet $predmet)
@@ -65,6 +65,19 @@ class PredmetController extends Controller
         }
 
         return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
+    }
+
+    public function add()
+    {
+        try {
+            $tipStudija = TipStudija::all();
+            $studijskiProgram = StudijskiProgram::all();
+            $godinaStudija = GodinaStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.addPredmet', compact('tipStudija', 'studijskiProgram', 'godinaStudija'));
     }
 
     public function update(Request $request, Predmet $predmet)

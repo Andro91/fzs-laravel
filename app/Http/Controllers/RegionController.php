@@ -38,12 +38,17 @@ class RegionController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/region');
     }
 
     public function edit(Region $region)
     {
         return view('sifarnici.editRegion', compact('region'));
+    }
+
+    public function add()
+    {
+        return view('sifarnici.addRegion');
     }
 
     public function update(Request $request, Region $region)

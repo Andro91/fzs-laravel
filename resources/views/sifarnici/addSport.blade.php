@@ -1,15 +1,15 @@
-<title>Измени регион</title>
+<title>Додавање спорта</title>
 @extends('layouts.layout')
-@section('page_heading','Измени регион')
+@section('page_heading','Додавање спорта')
 @section('section')
 
     <div class="col-md-9">
-        <form role="form" method="post" action="{{ url('/region/unos') }}">
+        <form role="form" method="post" action="{{ url('/sport/unos') }}">
             {{csrf_field()}}
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Регион</h3>
+                    <h3 class="panel-title">Спортови</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -25,5 +25,6 @@
             </div>
         </form>
     </div>
+
 
 @endsection

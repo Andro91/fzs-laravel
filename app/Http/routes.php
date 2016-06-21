@@ -64,6 +64,20 @@ Route::post('/predmet/unos', 'PredmetController@unos');
 Route::post('/prilozenaDokumenta/unos', 'PrilozenaDokumentaController@unos');
 Route::post('/sportskoAngazovanje/unos', 'SportskoAngazovanjeController@unos');
 
+Route::get('/tipStudija/add', 'TipStudijaController@add');
+Route::get('/studijskiProgram/add', 'StudijskiProgramController@add');
+Route::get('/godinaStudija/add', 'GodinaStudijaController@add');
+Route::get('/sport/add', 'SportController@add');
+Route::get('/srednjeSkoleFakulteti/add', 'SrednjeSkoleFakultetiController@add');
+Route::get('/krsnaSlava/add', 'KrsnaSlavaController@add');
+Route::get('/region/add', 'RegionController@add');
+Route::get('/opstina/add', 'OpstinaController@add');
+Route::get('/mesto/add', 'MestoController@add');
+Route::get('/statusStudiranja/add', 'StatusStudiranjaController@add');
+Route::get('/predmet/add', 'PredmetController@add');
+Route::get('/prilozenaDokumenta/add', 'PrilozenaDokumentaController@add');
+Route::get('/sportskoAngazovanje/add', 'SportskoAngazovanjeController@add');
+
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
 Route::get('sport/{sport}/delete', 'SportController@delete');

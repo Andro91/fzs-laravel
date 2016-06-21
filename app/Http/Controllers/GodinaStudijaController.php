@@ -44,12 +44,17 @@ class GodinaStudijaController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/godinaStudija');
     }
 
     public function edit(GodinaStudija $godinaStudija)
     {
         return view('sifarnici.editGodinaStudija', compact('godinaStudija'));
+    }
+
+    public function add()
+    {
+        return view('sifarnici.addGodinaStudija');
     }
 
     public function update(Request $request, GodinaStudija $godinaStudija)

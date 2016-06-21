@@ -39,12 +39,17 @@ class SportController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/sport');
     }
 
     public function edit(Sport $sport)
     {
         return view('sifarnici.editSport', compact('sport'));
+    }
+
+    public function add()
+    {
+        return view('sifarnici.addSport');
     }
 
     public function update(Request $request, Sport $sport)

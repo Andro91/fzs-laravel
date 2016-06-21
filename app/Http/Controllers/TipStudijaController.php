@@ -20,7 +20,7 @@ class TipStudijaController extends Controller
         try {
             $tipStudija = TipStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.tipStudija', compact('tipStudija'));
@@ -38,15 +38,20 @@ class TipStudijaController extends Controller
         try {
             $tipStudija->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/tipStudija');
     }
 
     public function edit(TipStudija $tipStudija)
     {
         return view('sifarnici.editTipStudija', compact('tipStudija'));
+    }
+
+    public function add()
+    {
+        return view('sifarnici.addTipStudija');
     }
 
     public function update(Request $request, TipStudija $tipStudija)
@@ -62,7 +67,7 @@ class TipStudijaController extends Controller
         try {
             $tipStudija->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/tipStudija');
@@ -73,7 +78,7 @@ class TipStudijaController extends Controller
         try {
             $tipStudija->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

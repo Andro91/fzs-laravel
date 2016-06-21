@@ -40,7 +40,7 @@ class OpstinaController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/opstina');
     }
 
     public function edit(Opstina $opstina)
@@ -52,6 +52,17 @@ class OpstinaController extends Controller
         }
 
         return view('sifarnici.editOpstina', compact('opstina', 'region'));
+    }
+
+     public function add()
+    {
+        try {
+            $region = Region::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.addOpstina', compact('region'));
     }
 
     public function update(Request $request, Opstina $opstina)

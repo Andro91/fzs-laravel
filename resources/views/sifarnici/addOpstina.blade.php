@@ -1,6 +1,6 @@
-<title>Додавање општине</title>
+<title>Додавање општинe</title>
 @extends('layouts.layout')
-@section('page_heading','Додавање општине')
+@section('page_heading','Додавање општинe')
 @section('section')
 
     <form role="form" method="post" action="{{ url('/opstina/unos') }}">

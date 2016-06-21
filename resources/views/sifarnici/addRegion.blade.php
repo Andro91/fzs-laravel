@@ -1,6 +1,6 @@
-<title>Измени регион</title>
+<title>Додавање региона</title>
 @extends('layouts.layout')
-@section('page_heading','Измени регион')
+@section('page_heading','Додавање региона')
 @section('section')
 
     <div class="col-md-9">

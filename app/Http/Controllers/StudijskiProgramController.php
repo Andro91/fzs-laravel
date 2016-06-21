@@ -22,7 +22,7 @@ class StudijskiProgramController extends Controller
             $studijskiProgram = StudijskiProgram::all();
             $tipStudija = TipStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.studijskiProgram', compact('studijskiProgram', 'tipStudija'));
@@ -41,10 +41,10 @@ class StudijskiProgramController extends Controller
         try {
             $studijskiProgram->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/studijskiProgram');
     }
 
     public function edit(StudijskiProgram $studijskiProgram)
@@ -52,10 +52,21 @@ class StudijskiProgramController extends Controller
         try {
             $tipStudija = TipStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.editStudijskiProgram', compact('studijskiProgram', 'tipStudija'));
+    }
+
+    public function add()
+    {
+        try {
+            $tipStudija = TipStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.addStudijskiProgram', compact('tipStudija'));
     }
 
     public function update(Request $request, StudijskiProgram $studijskiProgram)
@@ -72,7 +83,7 @@ class StudijskiProgramController extends Controller
         try {
             $studijskiProgram->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
 
@@ -84,7 +95,7 @@ class StudijskiProgramController extends Controller
         try {
             $studijskiProgram->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

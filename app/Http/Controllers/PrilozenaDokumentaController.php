@@ -43,7 +43,7 @@ class PrilozenaDokumentaController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/prilozenaDokumenta');
     }
 
     public function edit(PrilozenaDokumenta $dokument)
@@ -51,6 +51,13 @@ class PrilozenaDokumentaController extends Controller
         $godinaStudija = GodinaStudija::all();
 
         return view('sifarnici.editPrilozenaDokumenta', compact('dokument', 'godinaStudija'));
+    }
+
+    public function add()
+    {
+        $godinaStudija = GodinaStudija::all();
+
+        return view('sifarnici.addPrilozenaDokumenta', compact('godinaStudija'));
     }
 
     public function update(Request $request, PrilozenaDokumenta $dokument)

@@ -3,6 +3,13 @@
 @section('page_heading','Приложена документа')
 @section('section')
 
+    <div>
+        <form class="btn" method="GET" action="prilozenaDokumenta/add">
+            <input type="submit" class="btn btn-primary" value="Додавање">
+        </form>
+    </div>
+
+    <br/>
     <div class="col-md-9">
         <div class="table-responsive">
             <table id="tabela" class="table">
@@ -42,38 +49,6 @@
         </div>
         <br/>
         <br/>
-        <form role="form" method="post" action="{{ url('/prilozenaDokumenta/unos') }}">
-            {{csrf_field()}}
-
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Приложена документа</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="redniBrojDokumenta">Редни број:</label>
-                        <input name="redniBrojDokumenta" type="text" class="form-control">
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Назив:</label>
-                        <input name="naziv" type="text" class="form-control">
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="skolskaGodina_id">Школска година:</label>
-                        <select class="form-control" id="skolskaGodina_id" name="skolskaGodina_id">
-                            @foreach($godinaStudija as $godinaStudija)
-                                <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Додај</button>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>

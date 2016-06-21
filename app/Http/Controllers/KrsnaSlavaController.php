@@ -39,12 +39,17 @@ class KrsnaSlavaController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return back();
+        return Redirect::to('/krsnaSlava');
     }
 
     public function edit(KrsnaSlava $krsnaSlava)
     {
         return view('sifarnici.editKrsnaSlava', compact('krsnaSlava'));
+    }
+
+    public function add()
+    {
+        return view('sifarnici.addKrsnaSlava');
     }
 
     public function update(Request $request, KrsnaSlava $krsnaSlava)
