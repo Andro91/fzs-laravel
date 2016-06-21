@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
-    <title>Fakultet za sport Beograd</title>
+    <title>Факултет за спорт Београд</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="{{$putanja}}/images/logo_fzs_favicon.png">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>

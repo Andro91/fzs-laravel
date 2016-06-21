@@ -63,7 +63,7 @@ class KandidatController extends Controller
         $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
+        $studijskiProgram = StudijskiProgram::where('tipStudija_id','1')->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
@@ -569,7 +569,7 @@ class KandidatController extends Controller
         $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
+        $studijskiProgram = StudijskiProgram::where('tipStudija_id','2')->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
