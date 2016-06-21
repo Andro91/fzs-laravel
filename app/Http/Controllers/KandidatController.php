@@ -8,6 +8,7 @@ use App\KandidatPrilozenaDokumenta;
 use App\KrsnaSlava;
 use App\Mesto;
 use App\OpstiUspeh;
+use App\Opstina;
 use App\PrilozenaDokumenta;
 use App\SkolskaGodUpisa;
 use App\Sport;
@@ -54,10 +55,10 @@ class KandidatController extends Controller
      */
     public function create()
     {
-        $mestoRodjenja = Mesto::all();
+        $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
@@ -138,7 +139,7 @@ class KandidatController extends Controller
 
             $insertedId = $kandidat->id;
 
-            $mestoZavrseneSkoleFakulteta = Mesto::all();
+            $mestoZavrseneSkoleFakulteta = Opstina::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
             $uspehSrednjaSkola = UspehSrednjaSkola::all();
             $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
@@ -296,10 +297,10 @@ class KandidatController extends Controller
         $kandidat = Kandidat::find($id);
 
 
-        $mestoRodjenja = Mesto::all();
+        $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
@@ -560,10 +561,10 @@ class KandidatController extends Controller
     // DEO ZA MASTER STUDIJE
     public function createMaster(Request $request)
     {
-        $mestoRodjenja = Mesto::all();
+        $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
@@ -646,10 +647,10 @@ class KandidatController extends Controller
 
     public function editMaster($id)
     {
-        $mestoRodjenja = Mesto::all();
+        $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Mesto::all();
+        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();

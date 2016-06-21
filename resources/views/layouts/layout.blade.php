@@ -3,7 +3,7 @@
 <script type="text/javascript" src="{{ URL::asset('/js/datatables.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/js/jquery.maskedinput.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/js/jquery-ui.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('/js/kandidat-create-part-1.js') }}"></script>
+<script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/datatables.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/jquery-ui.min.css') }}"/>
 
@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img class="pull-left" src="/images/logo_fzs.png" height="30px" style="margin: 10px 0px 10px 10px" >
+                <img class="pull-left" src="{{ $putanja }}/images/logo_fzs.png" height="30px" style="margin: 10px 0px 10px 10px" >
                 <a class="navbar-brand"  href="{{ url ('') }}"> Факултет за спорт</a>
             </div>
             <!-- /.navbar-header -->

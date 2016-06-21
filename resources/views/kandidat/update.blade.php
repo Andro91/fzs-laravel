@@ -21,7 +21,9 @@
                     @if (Session::get('jmbgError'))
                         <div class="alert alert-dismissable alert-danger">
                             <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Грешка!</h4>
+
                             <p>ЈМБГ већ постоји у систему.</p>
+
                             <p>{{ Session::get('status') }}</p>
                         </div>
                     @endif
@@ -173,10 +175,9 @@
 
                 </div>
 
-
-                <div class="col-sm-12 col-lg-6" style="margin-bottom: 5%">
+                <div class="col-sm-12 col-lg-6">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
 
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
@@ -240,7 +241,8 @@
                                     <hr>
 
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="OpstiUspehSrednjaSkola">Општи успех средња школа &nbsp;&nbsp;</label>
+                                        <label for="OpstiUspehSrednjaSkola">Општи успех средња школа
+                                            &nbsp;&nbsp;</label>
                                         <select class="form-control" id="OpstiUspehSrednjaSkola"
                                                 name="OpstiUspehSrednjaSkola">
                                             @foreach($opstiUspehSrednjaSkola as $item)
@@ -266,7 +268,9 @@
                                         <thead>
                                         <tr>
                                             <th>Спорт</th>
-                                            <th><a class="btn btn-primary" href="{{ $putanja }}/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Dodaj</a></th>
+                                            <th><a class="btn btn-primary"
+                                                   href="{{ $putanja }}/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Додај</a>
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -303,7 +307,7 @@
 
                             <div class="panel panel-default pull-left" style="width: 50%;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  I ГОДИНУ СТУДИЈА</h3>
+                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на I ГОДИНУ СТУДИЈА</h3>
                                 </div>
                                 <div class="panel-body">
                                     @foreach($dokumentiPrvaGodina as $dokument)
@@ -321,7 +325,8 @@
 
                             <div class="panel panel-default pull-left" style="width: 50%;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на  II, III и IV ГОДИНУ СТУДИЈА и прелазак
+                                    <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на II, III и IV ГОДИНУ СТУДИЈА и
+                                        прелазак
                                         са другог факултета</h3>
                                 </div>
                                 <div class="panel-body">
@@ -371,16 +376,25 @@
                                     {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}
                                     {{--</div>--}}
                                 </div>
-                                <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-success btn-lg">Сачувај</button>
-                                </div>
-
                             </div>
 
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12" style="margin-bottom: 5%">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Сачувај</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success btn-lg">Сачувај</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

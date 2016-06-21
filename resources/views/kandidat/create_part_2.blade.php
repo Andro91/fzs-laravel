@@ -88,6 +88,11 @@
                         </div>
                         <div class="panel-body">
                             <table class="table table-bordered table-condensed">
+                            <col width="10%">
+                            <col width="25%">
+                            <col width="40%">
+                            <col width="15%">
+                            <col width="10%">
                                 <thead>
                                 <tr>
                                     <th>р.б.</th>
