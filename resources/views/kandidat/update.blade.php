@@ -266,7 +266,7 @@
                                         <thead>
                                         <tr>
                                             <th>Спорт</th>
-                                            <th><a class="btn btn-primary" href="/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Dodaj</a></th>
+                                            <th><a class="btn btn-primary" href="{{ $putanja }}/kandidat/{{ $kandidat->id }}/sportskoangazovanje">Dodaj</a></th>
                                         </tr>
                                         </thead>
                                         <tbody>
