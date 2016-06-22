@@ -539,10 +539,16 @@ class KandidatController extends Controller
         $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->indikatorAktivan = $request->IndikatorAktivan;
-        $kandidat->save();
 
-        return redirect('/kandidat/');
+        $saved = $kandidat->save();
 
+        if($saved){
+            Session::flash('flash-success', 'update');
+            return redirect('/kandidat/');
+        }else{
+            Session::flash('flash-error', 'update');
+            return redirect('/kandidat/');
+        }
     }
 
     /**
@@ -553,9 +559,17 @@ class KandidatController extends Controller
      */
     public function destroy($id)
     {
-        Kandidat::destroy($id);
+        $deleted = Kandidat::destroy($id);
 
-        return redirect('/kandidat/');
+        if($deleted){
+            Session::flash('flash-success', 'delete');
+            return redirect('/kandidat/');
+        }else{
+            Session::flash('flash-error', 'delete');
+            return redirect('/kandidat/');
+        }
+
+//        return redirect('/kandidat/');
     }
 
     public function sport($id)
@@ -772,7 +786,15 @@ class KandidatController extends Controller
             }
         }
 
-        return redirect('/master/');
+        if($insertedId){
+            Session::flash('flash-success', 'update');
+            return redirect('/master/');
+        }else{
+            Session::flash('flash-error', 'update');
+            return redirect('/master/');
+        }
+
+        //return redirect('/master/');
     }
 
     public function indexMaster()
@@ -785,8 +807,14 @@ class KandidatController extends Controller
 
     public function destroyMaster($id)
     {
-        Kandidat::destroy($id);
+        $deleted = Kandidat::destroy($id);
 
-        return redirect('/master/');
+        if($deleted){
+            Session::flash('flash-success', 'delete');
+            return redirect('/master/');
+        }else{
+            Session::flash('flash-error', 'delete');
+            return redirect('/master/');
+        }
     }
 }
