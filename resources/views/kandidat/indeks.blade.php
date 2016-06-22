@@ -6,6 +6,7 @@
 <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>-->
 
 <div class="col-sm-12 col-lg-10">
+    <div id="messages">
     @if (Session::get('flash-error'))
         <div class="alert alert-dismissible alert-danger">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -27,6 +28,7 @@
             @endif
         </div>
     @endif
+    </div>
     <table id="tabela" class="table">
         <thead>
         <th>Име</th>

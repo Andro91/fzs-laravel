@@ -569,7 +569,7 @@ class KandidatController extends Controller
             return redirect('/kandidat/');
         }
 
-        return redirect('/kandidat/');
+//        return redirect('/kandidat/');
     }
 
     public function sport($id)
@@ -786,7 +786,15 @@ class KandidatController extends Controller
             }
         }
 
-        return redirect('/master/');
+        if($insertedId){
+            Session::flash('flash-success', 'update');
+            return redirect('/master/');
+        }else{
+            Session::flash('flash-error', 'update');
+            return redirect('/master/');
+        }
+
+        //return redirect('/master/');
     }
 
     public function indexMaster()
@@ -799,8 +807,14 @@ class KandidatController extends Controller
 
     public function destroyMaster($id)
     {
-        Kandidat::destroy($id);
+        $deleted = Kandidat::destroy($id);
 
-        return redirect('/master/');
+        if($deleted){
+            Session::flash('flash-success', 'delete');
+            return redirect('/master/');
+        }else{
+            Session::flash('flash-error', 'delete');
+            return redirect('/master/');
+        }
     }
 }
