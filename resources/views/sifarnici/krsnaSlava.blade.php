@@ -3,7 +3,7 @@
 @section('page_heading','Крсна слава')
 @section('section')
     <div>
-        <form class="btn" method="GET" action="krsnaSlava/add">
+        <form class="btn" method="GET" action="{{$putanja}}/krsnaSlava/add">
             <input type="submit" class="btn btn-primary" value="Додавање">
         </form>
     </div>

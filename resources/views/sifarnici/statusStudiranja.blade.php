@@ -3,7 +3,7 @@
 @section('page_heading','Статус студирања')
 @section('section')
     <div>
-        <form class="btn" method="GET" action="statusStudiranja/add">
+        <form class="btn" method="GET" action="{{$putanja}}/statusStudiranja/add">
             <input type="submit" class="btn btn-primary" value="Додавање">
         </form>
     </div>

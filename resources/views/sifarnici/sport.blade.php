@@ -4,7 +4,7 @@
 @section('section')
 
     <div>
-        <form class="btn" method="GET" action="sport/add">
+        <form class="btn" method="GET" action="{{$putanja}}/sport/add">
             <input type="submit" class="btn btn-primary" value="Додавање">
         </form>
     </div>
