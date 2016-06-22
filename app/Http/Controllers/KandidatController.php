@@ -539,10 +539,16 @@ class KandidatController extends Controller
         $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->indikatorAktivan = $request->IndikatorAktivan;
-        $kandidat->save();
 
-        return redirect('/kandidat/');
+        $saved = $kandidat->save();
 
+        if($saved){
+            Session::flash('flash-success', 'update');
+            return redirect('/kandidat/');
+        }else{
+            Session::flash('flash-error', 'update');
+            return redirect('/kandidat/');
+        }
     }
 
     /**
@@ -553,7 +559,15 @@ class KandidatController extends Controller
      */
     public function destroy($id)
     {
-        Kandidat::destroy($id);
+        $deleted = Kandidat::destroy($id);
+
+        if($deleted){
+            Session::flash('flash-success', 'delete');
+            return redirect('/kandidat/');
+        }else{
+            Session::flash('flash-error', 'delete');
+            return redirect('/kandidat/');
+        }
 
         return redirect('/kandidat/');
     }
