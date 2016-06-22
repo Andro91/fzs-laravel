@@ -11,7 +11,7 @@ class SrednjeSkoleFakultetiSeeder extends Seeder
      */
     public function run()
     {
-        $skole = array('skola1','skola2','skola3','skola4','skola5');
+        $skole = array('Школа 1','Школа 2','Школа 3','Школа 4','Школа 5');
 
         foreach ($skole as $skola) {
             $srednjeSkoleFakulteti = new \App\SrednjeSkoleFakulteti();

@@ -12,10 +12,10 @@ class SportSeeder extends Seeder
      */
     public function run()
     {
-        $sportovi = array('Američki fudbal', 'Australijski fudbal', 'Bejzbol', 'Baskijska pelota', 'Kanadski fudbal',
-            'Kriket', 'Karling', 'Košarka', 'Odbojka', 'Peintbol', 'Petanque', 'Polo', 'Rukomet', 'Ragbi', 'Softbol',
-            'Faustbal', 'Florbol', 'Fudbal', 'Futsal', 'Hokej', 'Hokej na travi', 'Hurling', 'Hokej na ledu',
-            'Hokej na rolerima');
+        $sportovi = array('Амерички фудбал', 'Аустралијски фудбал', 'Бејзбол', 'Баскијска пелота', 'Канадски фудбал',
+            'Крикет', 'Карлинг', 'Кошарка', 'Одбојка', 'Пејнтбол', 'Пентак', 'Поло', 'Рукомет', 'Рагби', 'Софтбол',
+            'Фаутсал', 'Флорбол', 'Фудбал', 'Футсал', 'Хокеј', 'Хокеј на трави', 'Хурлинг', 'Хокеј на леду',
+            'Хокеј на ролерима');
 
         foreach ($sportovi as $s) {
             $sport = new Sport();
