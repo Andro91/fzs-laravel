@@ -16,7 +16,7 @@
                         <div class="panel-body">
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="prviRazred">1. разред</label>
-                                <select class="form-control" id="prviRazred" name="prviRazred">
+                                <select class="form-control" id="prviRazred" name="prviRazred" disabled="">
                                     @foreach($opstiUspehSrednjaSkola as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="drugiRazred">2. разред</label>
-                                <select class="form-control" id="drugiRazred" name="drugiRazred">
+                                <select class="form-control" id="drugiRazred" name="drugiRazred" disabled="">
                                     @foreach($opstiUspehSrednjaSkola as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="treciRazred">3. разред</label>
-                                <select class="form-control" id="treciRazred" name="treciRazred">
+                                <select class="form-control" id="treciRazred" name="treciRazred" disabled="">
                                     @foreach($opstiUspehSrednjaSkola as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="cetvrtiRazred">4. разред</label>
-                                <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred">
+                                <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred" disabled="">
                                     @foreach($opstiUspehSrednjaSkola as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -247,21 +247,47 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript" src="{{ $putanja }}/js/my-utility-functions.js"></script>
     <script>
         $.mask.definitions['q'] = '[0-5]';
         $.mask.definitions['w'] = '[0-9]';
 
-        $('#SrednjaOcena1').mask("q.ww");
-        $('#SrednjaOcena2').mask("q.ww");
-        $('#SrednjaOcena3').mask("q.ww");
-        $('#SrednjaOcena4').mask("q.ww");
+        var srednjaOcena1 = $('#SrednjaOcena1');
+        var srednjaOcena2 = $('#SrednjaOcena2');
+        var srednjaOcena3 = $('#SrednjaOcena3');
+        var srednjaOcena4 = $('#SrednjaOcena4');
 
-        $('#SrednjaOcena4').focusout(function(){
-            var srednja1 = parseFloat($('#SrednjaOcena1').val());
-            var srednja2 = parseFloat($('#SrednjaOcena2').val());
-            var srednja3 = parseFloat($('#SrednjaOcena3').val());
-            var srednja4 = parseFloat($('#SrednjaOcena4').val());
+        srednjaOcena1.mask("q.ww");
+        srednjaOcena2.mask("q.ww");
+        srednjaOcena3.mask("q.ww");
+        srednjaOcena4.mask("q.ww");
+
+        srednjaOcena1.focusout(function(){
+            var srednja = parseFloat(srednjaOcena1.val());
+            var uspehId = uspeh(srednja);
+            $('#prviRazred').val(uspehId);
+        });
+        srednjaOcena2.focusout(function(){
+            var srednja = parseFloat(srednjaOcena2.val());
+            var uspehId = uspeh(srednja);
+            $('#drugiRazred').val(uspehId);
+        });
+        srednjaOcena3.focusout(function(){
+            var srednja = parseFloat(srednjaOcena3.val());
+            var uspehId = uspeh(srednja);
+            $('#treciRazred').val(uspehId);
+        });
+        srednjaOcena4.focusout(function(){
+            var srednja = parseFloat(srednjaOcena4.val());
+            var uspehId = uspeh(srednja);
+            $('#cetvrtiRazred').val(uspehId);
+        });
+
+        srednjaOcena4.focusout(function(){
+            var srednja1 = parseFloat(srednjaOcena1.val());
+            var srednja2 = parseFloat(srednjaOcena2.val());
+            var srednja3 = parseFloat(srednjaOcena3.val());
+            var srednja4 = parseFloat(srednjaOcena4.val());
 
             var suma = srednja1 + srednja2 + srednja3 + srednja4;
 
