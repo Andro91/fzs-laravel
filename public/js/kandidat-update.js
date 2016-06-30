@@ -1,3 +1,6 @@
+/**
+ * Created by Andrija on 30-Jun-16.
+ */
 $.mask.definitions['q'] = '[0-5]';
 $.mask.definitions['w'] = '[0-9]';
 

@@ -4,7 +4,7 @@
 <script type="text/javascript" src="{{ URL::asset('/js/jquery.maskedinput.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/js/jquery-ui.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
+<script type="text/javascript" src="{{ $putanja }}/js/my-utility-functions.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/datatables.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/jquery-ui.min.css') }}"/>
 

@@ -170,4 +170,5 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
 @endsection
