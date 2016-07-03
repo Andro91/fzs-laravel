@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
         \Illuminate\Database\Eloquent\Model::unguard();
 
         // $this->call(KrsnaSlavaSeeder::class);
-        $this->call(MestoSeeder::class);
+        //$this->call(MestoSeeder::class);
         $this->call(PredmetSeeder::class);
         $this->call(SportSeeder::class);
-        $this->call(SrednjeSkoleFakultetiSeeder::class);
+        //$this->call(SrednjeSkoleFakultetiSeeder::class);
         $this->call(StatusStudiranjaSeeder::class);
         $this->call(StudijskiProgramSeeder::class);
         $this->call(TipStudijaSeeder::class);
@@ -28,7 +28,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(RegionSeeder::class);
         $this->call(SkolskaGodinaSeeder::class);
         $this->call(GodinaStudijaSeeder::class);
-
-
+        $this->call(SemestarSeeder::class);
+        $this->call(IspitniRokSeeder::class);
+        $this->call(OblikNastaveSeeder::class);
+        $this->call(TipPredmetaSeeder::class);
+        $this->call(BodovanjeSeeder::class);
     }
 }

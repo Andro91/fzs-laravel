@@ -49,6 +49,11 @@ Route::get('/region', 'RegionController@index');
 Route::get('/opstina', 'OpstinaController@index');
 Route::get('/mesto', 'MestoController@index');
 Route::get('/prilozenaDokumenta', 'PrilozenaDokumentaController@index');
+Route::get('/semestar', 'SemestarController@index');
+Route::get('/ispitniRok', 'IspitniRokController@index');
+Route::get('/oblikNastave', 'OblikNastaveController@index');
+Route::get('/tipPredmeta', 'TipPredmetaController@index');
+Route::get('/bodovanje', 'BodovanjeController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
@@ -63,6 +68,11 @@ Route::post('/statusStudiranja/unos', 'StatusStudiranjaController@unos');
 Route::post('/predmet/unos', 'PredmetController@unos');
 Route::post('/prilozenaDokumenta/unos', 'PrilozenaDokumentaController@unos');
 Route::post('/sportskoAngazovanje/unos', 'SportskoAngazovanjeController@unos');
+Route::post('/semestar/unos', 'SemestarController@unos');
+Route::post('/ispitniRok/unos', 'IspitniRokController@unos');
+Route::post('/oblikNastave/unos', 'OblikNastaveController@unos');
+Route::post('/tipPredmeta/unos', 'TipPredmetaController@unos');
+Route::post('/bodovanje/unos', 'BodovanjeController@unos');
 
 Route::get('/tipStudija/add', 'TipStudijaController@add');
 Route::get('/studijskiProgram/add', 'StudijskiProgramController@add');
@@ -77,6 +87,11 @@ Route::get('/statusStudiranja/add', 'StatusStudiranjaController@add');
 Route::get('/predmet/add', 'PredmetController@add');
 Route::get('/prilozenaDokumenta/add', 'PrilozenaDokumentaController@add');
 Route::get('/sportskoAngazovanje/add', 'SportskoAngazovanjeController@add');
+Route::get('/semestar/add', 'SemestarController@add');
+Route::get('/ispitniRok/add', 'IspitniRokController@add');
+Route::get('/oblikNastave/add', 'OblikNastaveController@add');
+Route::get('/tipPredmeta/add', 'TipPredmetaController@add');
+Route::get('/bodovanje/add', 'BodovanjeController@add');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -129,6 +144,26 @@ Route::get('prilozenaDokumenta/{dokument}/delete', 'PrilozenaDokumentaController
 Route::get('/sportskoAngazovanje/{angazovanje}/edit', 'SportskoAngazovanjeController@edit');
 Route::patch('sportskoAngazovanje/{angazovanje}', 'SportskoAngazovanjeController@update');
 Route::get('sportskoAngazovanje/{angazovanje}/delete', 'SportskoAngazovanjeController@delete');
+
+Route::get('/semestar/{semestar}/edit', 'SemestarController@edit');
+Route::patch('semestar/{semestar}', 'SemestarController@update');
+Route::get('semestar/{semestar}/delete', 'SemestarController@delete');
+
+Route::get('/ispitniRok/{ispitniRok}/edit', 'IspitniRokController@edit');
+Route::patch('ispitniRok/{ispitniRok}', 'IspitniRokController@update');
+Route::get('ispitniRok/{ispitniRok}/delete', 'IspitniRokController@delete');
+
+Route::get('/oblikNastave/{oblikNastave}/edit', 'OblikNastaveController@edit');
+Route::patch('oblikNastave/{oblikNastave}', 'OblikNastaveController@update');
+Route::get('oblikNastave/{oblikNastave}/delete', 'OblikNastaveController@delete');
+
+Route::get('/tipPredmeta/{tipPredmeta}/edit', 'TipPredmetaController@edit');
+Route::patch('tipPredmeta/{tipPredmeta}', 'TipPredmetaController@update');
+Route::get('tipPredmeta/{tipPredmeta}/delete', 'TipPredmetaController@delete');
+
+Route::get('/bodovanje/{bodovanje}/edit', 'BodovanjeController@edit');
+Route::patch('bodovanje/{bodovanje}', 'BodovanjeController@update');
+Route::get('bodovanje/{bodovanje}/delete', 'BodovanjeController@delete');
 
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
 

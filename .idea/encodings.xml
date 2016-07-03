@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/BodovanjeController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/GodinaStudijaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/IzvestajiController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/KrsnaSlavaController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/OblikNastaveController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/OpstinaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/PredmetController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/PrilozenaDokumentaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/RegionController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/SemestarController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/SportController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StatusStudiranjaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StudijskiProgramController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/TipPredmetaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/TipStudijaController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/BodovanjeSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/IspitniRokSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/MestoSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/OblikNastaveSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/OpstiUspehSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/RegionSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/SemestarSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/SportSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/SrednjeSkoleFakultetiSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StudijskiProgramSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/TipPredmetaSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/login.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/password.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/auth/register.blade.php" charset="UTF-8" />
@@ -29,24 +38,39 @@
     <file url="file://$PROJECT_DIR$/resources/views/kandidat/sportsko_angazovanje.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/kandidat/update.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addBodovanje.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addGodinaStudija.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addIspitniRok.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addKrsnaSlava.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addOblikNastave.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addOpstina.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addPredmet.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addPrilozenaDokumenta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addRegion.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addSemestar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addSport.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStatusStudiranja.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStudijskiProgram.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addTipPredmeta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addTipStudija.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/bodovanje.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editBodovanje.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editIspitniRok.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editKrsnaSlava.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editOblikNastave.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editPredmet.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editPrilozenaDokumenta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editRegion.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editSemestar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editSport.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editStatusStudiranja.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipPredmeta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipStudija.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/ispitniRok.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/oblikNasatve.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/prilozenaDokumenta.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/semestar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/test.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/tipPredmeta.blade.php" charset="UTF-8" />
   </component>
 </project>
