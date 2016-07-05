@@ -116,6 +116,9 @@
                                 <li {{ (Request::is('*bodovanje') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('bodovanje' ) }}">Бодовање</a>
                                 </li>
+                                <li {{ (Request::is('*statusKandidata') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('statusKandidata' ) }}">Статус кандидата</a>
+                                </li>
                                 <!-- <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('mesto' ) }}">Место</a>
                                 </li>-->

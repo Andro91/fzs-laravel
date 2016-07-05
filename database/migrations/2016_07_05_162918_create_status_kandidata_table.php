@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBodovanjeTable extends Migration
+class CreateStatusKandidataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateBodovanjeTable extends Migration
      */
     public function up()
     {
-        Schema::create('bodovanje', function (Blueprint $table) {
+        Schema::create('status_kandidata', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('poeniMax')->nullable();
-            $table->integer('poeniMin')->nullable();
-            $table->integer('ocena')->nullable();
-            $table->string('opisnaOcena')->nullable();
+            $table->string('naziv')->nullable();
+            $table->dateTime('datum')->nullable();
             $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateBodovanjeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bodovanje');
+        Schema::drop('status_kandidata');
     }
 }

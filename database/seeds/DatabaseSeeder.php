@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OblikNastaveSeeder::class);
         $this->call(TipPredmetaSeeder::class);
         $this->call(BodovanjeSeeder::class);
+        $this->call(StatusKandidataSeeder::class);
     }
 }
