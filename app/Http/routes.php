@@ -34,6 +34,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/master/{id}/delete', 'KandidatController@destroyMaster');
 });
 
+Route::group(['middleware' => ['web', 'admin']], function () {
+    Route::get('/admintest','HomeController@adminTest');
+});
+
 
 // rute za sifarnike
 Route::get('/tipStudija', 'TipStudijaController@index');

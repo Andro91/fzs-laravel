@@ -67,7 +67,6 @@
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipPredmeta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipStudija.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/ispitniRok.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/oblikNasatve.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/prilozenaDokumenta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/semestar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/test.blade.php" charset="UTF-8" />
