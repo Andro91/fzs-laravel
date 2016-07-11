@@ -1,26 +1,22 @@
-<title>Измени статус кандидата</title>
+<title>Промена статуса испита</title>
 @extends('layouts.layout')
-@section('page_heading','Измени статус кандидата')
+@section('page_heading','Промена статуса испита')
 @section('section')
 
     <div class="col-md-9">
-        <form role="form" method="post" action="{{$putanja}}/statusKandidata/{{$status->id}}">
+        <form role="form" method="post" action="{{$putanja}}/statusIspita/{{$status->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Измени статус кандидата</h3>
+                    <h3 class="panel-title">Промена статуса испита</h3>
                 </div>
                 <div class="panel-body">
 
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$status->naziv}}">
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="datum">Датум промене:</label>
-                        <input required="" id="datum" name="datum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}." type="date" class="form-control" value="{{ date('d.m.Y.',strtotime($status->datum)) }}">
                     </div>
 
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -38,7 +34,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Измени</button>
+                        <button type="submit" class="btn btn-primary">Промени</button>
                     </div>
                 </div>
             </div>
@@ -49,9 +45,8 @@
         $(document).ready(function() {
             $.mask.definitions['q'] = '[0-3]';
             $.mask.definitions['w'] = '[0-9]';
-            $.mask.definitions['z'] = '[0-2]';
             $.mask.definitions['e'] = '[0-1]';
-            $('#datum').mask("qw.ez.9999.");
+            $('#datum').mask("qw.ew.9999.");
         });
     </script>
 

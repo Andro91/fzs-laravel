@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TipPredmetaSeeder extends Seeder
+class TipSemestraSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,10 +11,10 @@ class TipPredmetaSeeder extends Seeder
      */
     public function run()
     {
-        $tip = array('обавезан', 'изборни', 'практични');
+        $tip = array('летњи', 'зимски');
 
         foreach ($tip as $t) {
-            $tip= new \App\TipPredmeta();
+            $tip= new \App\TipSemestra();
 
             $tip->naziv = $t;
             $tip->indikatorAktivan = 1;

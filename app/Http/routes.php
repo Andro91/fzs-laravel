@@ -59,6 +59,7 @@ Route::get('/oblikNastave', 'OblikNastaveController@index');
 Route::get('/tipPredmeta', 'TipPredmetaController@index');
 Route::get('/bodovanje', 'BodovanjeController@index');
 Route::get('/statusKandidata', 'StatusKandidataController@index');
+Route::get('/statusIspita', 'StatusIspitaController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
@@ -79,6 +80,7 @@ Route::post('/oblikNastave/unos', 'OblikNastaveController@unos');
 Route::post('/tipPredmeta/unos', 'TipPredmetaController@unos');
 Route::post('/bodovanje/unos', 'BodovanjeController@unos');
 Route::post('/statusKandidata/unos', 'StatusKandidataController@unos');
+Route::post('/statusIspita/unos', 'StatusIspitaController@unos');
 
 Route::get('/tipStudija/add', 'TipStudijaController@add');
 Route::get('/studijskiProgram/add', 'StudijskiProgramController@add');
@@ -99,6 +101,7 @@ Route::get('/oblikNastave/add', 'OblikNastaveController@add');
 Route::get('/tipPredmeta/add', 'TipPredmetaController@add');
 Route::get('/bodovanje/add', 'BodovanjeController@add');
 Route::get('/statusKandidata/add', 'StatusKandidataController@add');
+Route::get('/statusIspita/add', 'StatusIspitaController@add');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -175,6 +178,10 @@ Route::get('bodovanje/{bodovanje}/delete', 'BodovanjeController@delete');
 Route::get('/statusKandidata/{status}/edit', 'StatusKandidataController@edit');
 Route::patch('statusKandidata/{status}', 'StatusKandidataController@update');
 Route::get('statusKandidata/{status}/delete', 'StatusKandidataController@delete');
+
+Route::get('/statusIspita/{status}/edit', 'StatusIspitaController@edit');
+Route::patch('statusIspita/{status}', 'StatusIspitaController@update');
+Route::get('statusIspita/{status}/delete', 'StatusIspitaController@delete');
 
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
 

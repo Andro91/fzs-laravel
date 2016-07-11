@@ -34,5 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipPredmetaSeeder::class);
         $this->call(BodovanjeSeeder::class);
         $this->call(StatusKandidataSeeder::class);
+        $this->call(StatusIspitaSeeder::class);
+        $this->call(TipSemestraSeeder::class);
     }
 }

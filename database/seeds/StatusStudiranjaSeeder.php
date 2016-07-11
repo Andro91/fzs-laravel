@@ -11,11 +11,16 @@ class StatusStudiranjaSeeder extends Seeder
      */
     public function run()
     {
-        $statusStudiranja = new \App\StatusStudiranja();
+        $statusi = array('самогинансирајући', 'буџет', 'стипендија');
 
-        $statusStudiranja->naziv = str_random(10);
-        $statusStudiranja->indikatorAktivan = 1;
+        foreach ($statusi as $s) {
+            $status= new \App\StatusStudiranja();
 
-        $statusStudiranja->save();
+            $status->naziv = $s;
+
+            $status->indikatorAktivan = 1;
+
+            $status->save();
+        }
     }
 }

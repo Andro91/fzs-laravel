@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSkolskaGodUpisaTable extends Migration
+class CreateTipSemestraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateSkolskaGodUpisaTable extends Migration
      */
     public function up()
     {
-        Schema::create('skolska_god_upisa', function (Blueprint $table) {
+        Schema::create('tip_semestra', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('naziv');
+            $table->string('naziv')->nullable();
+            $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateSkolskaGodUpisaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('skolska_god_upisa');
+        Schema::drop('tip_semestra');
     }
 }

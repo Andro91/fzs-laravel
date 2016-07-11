@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StatusKandidataSeeder extends Seeder
+class StatusIspitaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,10 +11,10 @@ class StatusKandidataSeeder extends Seeder
      */
     public function run()
     {
-        $statusi = array('уписан', 'одустао', 'није уписан');
+        $statusi = array('положио', 'није положио', 'одложио', 'није изашао', 'признат');
 
         foreach ($statusi as $s) {
-            $status= new \App\StatusKandidata();
+            $status= new \App\StatusIspita();
 
             $status->naziv = $s;
 

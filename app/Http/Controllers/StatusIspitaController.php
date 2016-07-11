@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\StatusKandidata;
+use App\StatusIspita;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
-
-class StatusKandidataController extends Controller
+class StatusIspitaController extends Controller
 {
     public function __construct()
     {
@@ -18,20 +16,19 @@ class StatusKandidataController extends Controller
     public function index()
     {
         try {
-            $status = StatusKandidata::all();
+            $status = StatusIspita::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.statusKandidata', compact('status'));
+        return view('sifarnici.statusIspita', compact('status'));
     }
 
     public function unos(Request $request)
     {
-        $status = new StatusKandidata();
+        $status = new StatusIspita();
 
         $status->naziv = $request->naziv;
-        $status->datum = date_create_from_format('d.m.Y.', $request->datum);
         $status->indikatorAktivan = 1;
 
 
@@ -41,28 +38,24 @@ class StatusKandidataController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return Redirect::to('/statusKandidata');
+        return Redirect::to('/statusIspita');
     }
 
-    public function edit(StatusKandidata $status)
+    public function edit(StatusIspita $status)
     {
-        return view('sifarnici.editStatusKandidata', compact('status'));
+        return view('sifarnici.editStatusIspita', compact('status'));
     }
 
     public function add()
     {
-        return view('sifarnici.addStatusKandidata');
+        return view('sifarnici.addStatusIspita');
     }
 
-    public function update(Request $request, StatusKandidata $status)
+    public function update(Request $request, StatusIspita $status)
     {
         $status->naziv = $request->naziv;
-        $status->datum = date_create_from_format('d.m.Y.', $request->datum);
-        if ($status->indikatorAktivan == 'on') {
-            $status->indikatorAktivan = 1;
-        } else {
-            $status->indikatorAktivan = 0;
-        }
+        $status->indikatorAktivan = 1;
+
 
         try {
             $status->update();
@@ -70,10 +63,10 @@ class StatusKandidataController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return Redirect::to('/statusKandidata');
+        return Redirect::to('/statusIspita');
     }
 
-    public function delete(StatusKandidata $status)
+    public function delete(StatusIspita $status)
     {
         try {
             $status->delete();

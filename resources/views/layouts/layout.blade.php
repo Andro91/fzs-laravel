@@ -120,6 +120,9 @@
                                 <li {{ (Request::is('*statusKandidata') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('statusKandidata' ) }}">Статус кандидата</a>
                                 </li>
+                                <li {{ (Request::is('*statusIspita') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('statusIspita' ) }}">Статус испита</a>
+                                </li>
                                 <!-- <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('mesto' ) }}">Место</a>
                                 </li>-->
