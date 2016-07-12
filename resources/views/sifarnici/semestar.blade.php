@@ -25,6 +25,8 @@
                 <th>
                     Акције
                 </th>
+                </thead>
+                @foreach($semestar as $semestar)
                     <tr>
                         <td>{{$semestar->naziv}}</td>
                         <td>{{$semestar->nazivRimski}}</td>

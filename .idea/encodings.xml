@@ -26,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/database/seeds/MestoSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/OblikNastaveSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/OpstiUspehSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/PrilozenaDokumentaSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/RegionSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/SemestarSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/SportSeeder.php" charset="UTF-8" />
