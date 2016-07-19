@@ -126,6 +126,9 @@
                                 <li {{ (Request::is('*statusProfesora') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('statusProfesora' ) }}">Статус професора</a>
                                 </li>
+                                <li {{ (Request::is('*tipPrijave') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('tipPrijave' ) }}">Тип пријаве</a>
+                                </li>
                                 <!-- <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('mesto' ) }}">Место</a>
                                 </li>-->
