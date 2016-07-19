@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/SportController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StatusIspitaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StatusKandidataController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/StatusProfesoraController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StatusStudiranjaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/StudijskiProgramController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/TipPredmetaController.php" charset="UTF-8" />
@@ -33,6 +34,7 @@
     <file url="file://$PROJECT_DIR$/database/seeds/SrednjeSkoleFakultetiSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StatusIspitaSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StatusKandidataSeeder.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/seeds/StatusProfesoraSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StatusStudiranjaSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/StudijskiProgramSeeder.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/seeds/TipPredmetaSeeder.php" charset="UTF-8" />
@@ -61,6 +63,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addSport.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStatusIspita.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStatusKandidata.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStatusProfesora.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStatusStudiranja.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addStudijskiProgram.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/addTipPredmeta.blade.php" charset="UTF-8" />
@@ -77,6 +80,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editSport.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editStatusIspita.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editStatusKandidata.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editStatusProfesora.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editStatusStudiranja.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipPredmeta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/editTipStudija.blade.php" charset="UTF-8" />
@@ -85,6 +89,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/semestar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/statusIspita.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/statusKandidata.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/sifarnici/statusProfesora.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/test.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/tipPredmeta.blade.php" charset="UTF-8" />
   </component>

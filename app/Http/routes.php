@@ -60,6 +60,7 @@ Route::get('/tipPredmeta', 'TipPredmetaController@index');
 Route::get('/bodovanje', 'BodovanjeController@index');
 Route::get('/statusKandidata', 'StatusKandidataController@index');
 Route::get('/statusIspita', 'StatusIspitaController@index');
+Route::get('/statusProfesora', 'StatusProfesoraController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
@@ -81,6 +82,7 @@ Route::post('/tipPredmeta/unos', 'TipPredmetaController@unos');
 Route::post('/bodovanje/unos', 'BodovanjeController@unos');
 Route::post('/statusKandidata/unos', 'StatusKandidataController@unos');
 Route::post('/statusIspita/unos', 'StatusIspitaController@unos');
+Route::post('/statusProfesora/unos', 'StatusProfesoraController@unos');
 
 Route::get('/tipStudija/add', 'TipStudijaController@add');
 Route::get('/studijskiProgram/add', 'StudijskiProgramController@add');
@@ -102,6 +104,7 @@ Route::get('/tipPredmeta/add', 'TipPredmetaController@add');
 Route::get('/bodovanje/add', 'BodovanjeController@add');
 Route::get('/statusKandidata/add', 'StatusKandidataController@add');
 Route::get('/statusIspita/add', 'StatusIspitaController@add');
+Route::get('/statusProfesora/add', 'StatusProfesoraController@add');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -182,6 +185,10 @@ Route::get('statusKandidata/{status}/delete', 'StatusKandidataController@delete'
 Route::get('/statusIspita/{status}/edit', 'StatusIspitaController@edit');
 Route::patch('statusIspita/{status}', 'StatusIspitaController@update');
 Route::get('statusIspita/{status}/delete', 'StatusIspitaController@delete');
+
+Route::get('/statusProfesora/{status}/edit', 'StatusProfesoraController@edit');
+Route::patch('statusProfesora/{status}', 'StatusProfesoraController@update');
+Route::get('statusProfesora/{status}/delete', 'StatusProfesoraController@delete');
 
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
 

@@ -1,16 +1,16 @@
-<title>Промена статуса испита</title>
+<title>Промена статуса професора</title>
 @extends('layouts.layout')
-@section('page_heading','Промена статуса испита')
+@section('page_heading','Промена статуса професора')
 @section('section')
 
     <div class="col-md-9">
-        <form role="form" method="post" action="{{$putanja}}/statusIspita/{{$status->id}}">
+        <form role="form" method="post" action="{{$putanja}}/statusProfesora/{{$status->id}}">
             {{csrf_field()}}
             {{method_field('PATCH')}}
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Промена статуса испита</h3>
+                    <h3 class="panel-title">Промена статуса професора</h3>
                 </div>
                 <div class="panel-body">
 
