@@ -121,7 +121,7 @@
                                        id="ImePrezimeJednogRoditelja" value="{{ old('ImePrezimeJednogRoditelja') }}" >
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="KontaktTelefonRoditelja">контакт телефон родитеља</label>
+                                <label for="KontaktTelefonRoditelja">Контакт телефон родитеља</label>
                                 <input class="form-control" type="text" name="KontaktTelefonRoditelja"
                                        id="KontaktTelefonRoditelja" value="{{ old('KontaktTelefonRoditelja') }}" >
                             </div>
@@ -171,4 +171,5 @@
         </div>
     </div>
     <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection
