@@ -93,6 +93,16 @@ class KandidatController extends Controller
      */
     public function store(Request $request)
     {
+
+        $messages = [
+            'required' => ':attribute је обавезно поље.',
+            'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.'
+        ];
+
+        $this->validate($request, [
+            'JMBG' => 'unique:kandidat|max:13',
+        ], $messages);
+
         if ($request->page == 1) {
 
             $kandidat = new Kandidat();
@@ -123,19 +133,7 @@ class KandidatController extends Controller
             $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
             $kandidat->godinaStudija_id = $request->GodinaStudija;
 
-            try {
-                $kandidat->save();
-            } catch (\Illuminate\Database\QueryException $e) {
-
-                if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
-                    return back()->with('jmbgError', '1')->withInput();
-                } else {
-                    dd("nesto je poslo po zlu" . $e->getMessage());
-
-                }
-            }
-
-            //$kandidat->save();
+            $kandidat->save();
 
             $insertedId = $kandidat->id;
 
