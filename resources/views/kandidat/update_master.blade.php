@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Пријава кандидата за мастер студије')
+@section('page_heading','Измена података кандидата за мастер студије')
 @section('section')
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
@@ -27,8 +27,6 @@
 
                 <form role="form" method="post" action="{{$putanja}}/master/{{ $kandidat->id }}/edit">
                     {{ csrf_field() }}
-                    {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
-                    <input type="hidden" name="page" id="page" value="1" />
 
                     {{--STUDIJSKI PROGRAM--}}
                     <div class="panel panel-warning">
@@ -53,10 +51,10 @@
                                 </select>
                             </div>
                             <p><strong>Уз пријаву прилажем:</strong></p>
-                            @foreach($dokumentiPrvaGodina as $dokument)
+                            @foreach($dokumentaMaster as $i=>$dokument)
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="{{ $dokument->naziv }}"
+                                                <input type="checkbox" name="dokumentaMaster[{{ $i }}]"
                                                        value="{{$dokument->id}}"
                                                         {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
                                                 {{ $dokument->naziv }}
@@ -88,6 +86,15 @@
                                 <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ $kandidat->jmbg }}" >
                             </div>
+                            <div class="form-group" style="width: 70%;">
+                                <label for="MestoRodjenja">Место рођења</label>
+                                <select class="form-control auto-combobox" id="MestoRodjenja"
+                                        name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
+                                    @foreach($mestoRodjenja as $item)
+                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Контакт телефон</label>
                                 <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%" value="{{ $kandidat->kontaktTelefon }}" >
@@ -115,7 +122,7 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <select class="form-control" id="MestoZavrseneSkoleFakulteta"
+                                <select class="form-control auto-combobox" id="MestoZavrseneSkoleFakulteta"
                                         name="MestoZavrseneSkoleFakulteta">
                                     @foreach($mestoZavrseneSkoleFakulteta as $item)
                                         <option value="{{ $item->id }}" {{ ($kandidat->mestoZavrseneSkoleFakulteta_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
@@ -151,4 +158,15 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection

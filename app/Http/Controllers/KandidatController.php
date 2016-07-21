@@ -100,7 +100,7 @@ class KandidatController extends Controller
         ];
 
         $this->validate($request, [
-            'JMBG' => 'unique:kandidat|max:13',
+            'JMBG' => 'unique:kandidat|max:13|required',
         ], $messages);
 
         if ($request->page == 1) {
@@ -151,8 +151,6 @@ class KandidatController extends Controller
             $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
 
             return view("kandidat.create_part_2")
-                //->with('mestoRodjenja', $mestoRodjenja)
-                //->with('krsnaSlava', $krsnaSlava)
                 ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
                 ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
                 ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -246,20 +244,24 @@ class KandidatController extends Controller
             $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
 
-            foreach ($request->dokumentiPrva as $dokument) {
-                $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument;
-                $prilozenDokument->kandidat_id = $request->insertedId;
-                $prilozenDokument->indikatorAktivan = 1;
-                $prilozenDokument->save();
+            if($request->has('dokumentiPrva')) {
+                foreach ($request->dokumentiPrva as $dokument) {
+                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+                    $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                    $prilozenDokument->kandidat_id = $request->insertedId;
+                    $prilozenDokument->indikatorAktivan = 1;
+                    $prilozenDokument->save();
+                }
             }
 
-            foreach ($request->dokumentiDruga as $dokument) {
-                $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument;
-                $prilozenDokument->kandidat_id = $request->insertedId;
-                $prilozenDokument->indikatorAktivan = 1;
-                $prilozenDokument->save();
+            if($request->has('dokumentiDruga')) {
+                foreach ($request->dokumentiDruga as $dokument) {
+                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+                    $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                    $prilozenDokument->kandidat_id = $request->insertedId;
+                    $prilozenDokument->indikatorAktivan = 1;
+                    $prilozenDokument->save();
+                }
             }
 
 //            foreach ($dokumenta as $dokument) {
@@ -378,7 +380,6 @@ class KandidatController extends Controller
         return view('kandidat.update')->with('kandidat', $kandidat)
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
             ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
@@ -604,7 +605,7 @@ class KandidatController extends Controller
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
-        $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
+        $dokumentaMaster = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
         return view('kandidat.create_master')
             ->with('mestoRodjenja', $mestoRodjenja)
@@ -620,12 +621,22 @@ class KandidatController extends Controller
             ->with('tipStudija', $tipStudija)
             ->with('godinaStudija', $godinaStudija)
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
-            ->with('dokumentiPrvaGodina', $dokumentiPrvaGodina);
+            ->with('dokumentaMaster', $dokumentaMaster);
 
     }
 
     public function storeMaster(Request $request)
     {
+        $messages = [
+            'required' => ':attribute је обавезно поље.',
+            'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.',
+            'JMBG.max' => 'ЈМБГ не може имати више од 13 цифара.'
+        ];
+
+        $this->validate($request, [
+            'JMBG' => 'unique:kandidat|max:13|required',
+        ], $messages);
+
         $kandidat = new Kandidat();
         $kandidat->imeKandidata = $request->ImeKandidata;
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
@@ -647,23 +658,18 @@ class KandidatController extends Controller
         $kandidat->prosecnaOcena = str_replace(",", ".", $request->ProsecnaOcena);
         $kandidat->upisniRok = $request->UpisniRok;
 
-        try {
-            $insertedId = $kandidat->save();
-        } catch (\Illuminate\Database\QueryException $e) {
+        $kandidat->save();
 
-            if (strpos($e->getMessage(), 'jmbg_unique') !== false) {
-                return back()->with('jmbgError', '1')->withInput();
-            } else {
-                dd("nesto je poslo po zlu" . $e->getMessage());
-            }
-        }
+        $insertedId = $kandidat->id;
 
-        $dokumenta = PrilozenaDokumenta::all();
+        //Brisanje svih dokumenata za datog kandidata
+        KandidatPrilozenaDokumenta::where('kandidat_id',$insertedId)->delete();
 
-        foreach ($dokumenta as $dokument) {
-            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+        //Dodavanje dokumenata za master
+        if($request->has('dokumentaMaster')) {
+            foreach ($request->dokumentaMaster as $dokument) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
                 $prilozenDokument->kandidat_id = $insertedId;
                 $prilozenDokument->indikatorAktivan = 1;
                 $prilozenDokument->save();
@@ -690,7 +696,7 @@ class KandidatController extends Controller
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
 
-        $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
+        $dokumentaMaster = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
@@ -710,7 +716,7 @@ class KandidatController extends Controller
             ->with('tipStudija', $tipStudija)
             ->with('godinaStudija', $godinaStudija)
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
-            ->with('dokumentiPrvaGodina', $dokumentiPrvaGodina)
+            ->with('dokumentaMaster', $dokumentaMaster)
             ->with('prilozenaDokumenta',$prilozenaDokumenta)
             ->with('kandidat',$kandidat);
     }
@@ -741,22 +747,17 @@ class KandidatController extends Controller
 
         $insertedId = $kandidat->save();
 
+        //Brisanje svih dokumenata za datog kandidata
+        KandidatPrilozenaDokumenta::where('kandidat_id',$id)->delete();
 
-        $dokumenta = PrilozenaDokumenta::all();
-
-        foreach ($dokumenta as $dokument) {
-            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+        //Dodavanje dokumenata za master
+        if($request->has('dokumentaMaster')) {
+            foreach ($request->dokumentaMaster as $dokument) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
                 $prilozenDokument->kandidat_id = $id;
                 $prilozenDokument->indikatorAktivan = 1;
                 $prilozenDokument->save();
-            } else {
-                $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
-                    ->first();
-                if ($delete != null) {
-                    $delete->delete();
-                }
             }
         }
 

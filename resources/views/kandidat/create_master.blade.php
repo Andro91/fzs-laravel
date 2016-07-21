@@ -54,10 +54,10 @@
                                 </select>
                             </div>
                             <p><strong>Уз пријаву прилажем:</strong></p>
-                            @foreach($dokumentiPrvaGodina as $dokument)
+                            @foreach($dokumentaMaster as $i=>$dokument)
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="{{ $dokument->naziv }}" value="{{$dokument->id}}">
+                                        <input type="checkbox" name="dokumentaMaster[{{ $i }}]" value="{{$dokument->id}}">
                                         {{ $dokument->naziv }}
                                     </label>
                                 </div>
@@ -91,7 +91,7 @@
                             <div class="form-group" style="width: 70%;">
                                 <label for="MestoRodjenja">Место рођења</label>
                                 <select class="form-control auto-combobox" id="MestoRodjenja" 
-                                name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
+                                name="MestoRodjenja" style="max-width: 60%" >
                                     @foreach($mestoRodjenja as $item)
                                         <option value="{{$item->id}}">{{$item->naziv}}</option>
                                     @endforeach
@@ -168,4 +168,5 @@
           });
         });
     </script>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection
