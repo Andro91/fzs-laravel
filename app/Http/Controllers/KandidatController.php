@@ -519,6 +519,7 @@ class KandidatController extends Controller
 
         foreach ($dokumenta as $dokument) {
             if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+                //Mozda bi umesto $dokument->id moglo da bude $request->str_replace(' ', '_', $dokument->naziv)
                 if(KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
                         ->first() == null)
                 {
@@ -529,7 +530,6 @@ class KandidatController extends Controller
                     $prilozenDokument->save();
                 }
             } else {
-                //dd("dokument -> " . $dokument->id . " " . $dokument->naziv );
                 $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
                     ->first();
                 if ($delete != null) {
