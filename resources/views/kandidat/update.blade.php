@@ -310,10 +310,10 @@
                                     <h3 class="panel-title">ДОКУМЕНТА - ѕа упис на I ГОДИНУ СТУДИЈА</h3>
                                 </div>
                                 <div class="panel-body">
-                                    @foreach($dokumentiPrvaGodina as $dokument)
+                                    @foreach($dokumentiPrvaGodina as $i=>$dokument)
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="{{ $dokument->naziv }}"
+                                                <input type="checkbox" name="dokumentiPrva[{{ $i }}]"
                                                        value="{{$dokument->id}}"
                                                         {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
                                                 {{ $dokument->naziv }}
@@ -330,10 +330,10 @@
                                         са другог факултета</h3>
                                 </div>
                                 <div class="panel-body">
-                                    @foreach($dokumentiOstaleGodine as $dokument)
+                                    @foreach($dokumentiOstaleGodine as $i=>$dokument)
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="{{ $dokument->naziv }}"
+                                                <input type="checkbox" name="dokumentiDruga[{{ $i }}]"
                                                        value="{{$dokument->id}}"
                                                         {{ (in_array($dokument->id,$prilozenaDokumenta) ? "checked":"") }}>
                                                 {{ $dokument->naziv }}

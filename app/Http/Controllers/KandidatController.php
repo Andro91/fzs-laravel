@@ -93,10 +93,10 @@ class KandidatController extends Controller
      */
     public function store(Request $request)
     {
-
         $messages = [
             'required' => ':attribute је обавезно поље.',
-            'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.'
+            'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.',
+            'JMBG.max' => 'ЈМБГ не може имати више од 13 цифара.'
         ];
 
         $this->validate($request, [
@@ -246,17 +246,31 @@ class KandidatController extends Controller
             $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
 
-            $dokumenta = PrilozenaDokumenta::all();
-
-            foreach ($dokumenta as $dokument) {
-                if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
-                    $prilozenDokument = new KandidatPrilozenaDokumenta();
-                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                    $prilozenDokument->kandidat_id = $request->insertedId;
-                    $prilozenDokument->indikatorAktivan = 1;
-                    $prilozenDokument->save();
-                }
+            foreach ($request->dokumentiPrva as $dokument) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                $prilozenDokument->kandidat_id = $request->insertedId;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
             }
+
+            foreach ($request->dokumentiDruga as $dokument) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                $prilozenDokument->kandidat_id = $request->insertedId;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
+            }
+
+//            foreach ($dokumenta as $dokument) {
+//                if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
+//                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+//                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+//                    $prilozenDokument->kandidat_id = $request->insertedId;
+//                    $prilozenDokument->indikatorAktivan = 1;
+//                    $prilozenDokument->save();
+//                }
+//            }
 
             //$kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
             $kandidat->brojBodovaTest = $request->BrojBodovaTest;
@@ -463,78 +477,34 @@ class KandidatController extends Controller
             $cetvrtiRazred->RedniBrojRazreda = 4;
         }
 
-//        $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->first();
-//        $prviRazred->opstiUspeh_id = $request->prviRazred;
-//        $prviRazred->srednja_ocena = floatval($request->SrednjaOcena1);
-//        $prviRazred->save();
-//
-//        $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->first();
-//        $drugiRazred->opstiUspeh_id = $request->drugiRazred;
-//        $drugiRazred->srednja_ocena = floatval($request->SrednjaOcena2);
-//        $drugiRazred->save();
-//
-//        $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->first();
-//        $treciRazred->opstiUspeh_id = $request->treciRazred;
-//        $treciRazred->srednja_ocena = floatval($request->SrednjaOcena3);
-//        $treciRazred->save();
-//
-//        $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->first();
-//        $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
-//        $cetvrtiRazred->srednja_ocena = floatval($request->SrednjaOcena4);
-//        $cetvrtiRazred->save();
-
         $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
         $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
-
-//        $sport1 = new SportskoAngazovanje();
-//        $sport1->sport_id = $request->sport1;
-//        $sport1->kandidat_id = $request->insertedId;
-//        $sport1->nazivKluba = $request->klub1;
-//        $sport1->odDoGodina = $request->uzrast1;
-//        $sport1->ukupnoGodina = $request->godine1;
-//        $sport1->save();
-//
-//        $sport2 = new SportskoAngazovanje();
-//        $sport2->sport_id = $request->sport2;
-//        $sport2->kandidat_id = $request->insertedId;
-//        $sport2->nazivKluba = $request->klub2;
-//        $sport2->odDoGodina = $request->uzrast2;
-//        $sport2->ukupnoGodina = $request->godine2;
-//        $sport2->save();
-//
-//        $sport3 = new SportskoAngazovanje();
-//        $sport3->sport_id = $request->sport3;
-//        $sport3->kandidat_id = $request->insertedId;
-//        $sport3->nazivKluba = $request->klub3;
-//        $sport3->odDoGodina = $request->uzrast3;
-//        $sport3->ukupnoGodina = $request->godine3;
-//        $sport3->save();
 
         $kandidat->visina = str_replace(",", ".", $request->VisinaKandidata);
         $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
+        //Brisanje svih dokumenata za datog kandidata
+        KandidatPrilozenaDokumenta::where('kandidat_id',$id)->delete();
 
-        $dokumenta = PrilozenaDokumenta::all();
+        //Dodavanje dokumenata iz prve godine
+        if($request->has('dokumentiPrva')) {
+            foreach ($request->dokumentiPrva as $dokument) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                $prilozenDokument->kandidat_id = $id;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
+            }
+        }
 
-
-        foreach ($dokumenta as $dokument) {
-            if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
-                //Mozda bi umesto $dokument->id moglo da bude $request->str_replace(' ', '_', $dokument->naziv)
-                if(KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
-                        ->first() == null)
-                {
-                    $prilozenDokument = new KandidatPrilozenaDokumenta();
-                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                    $prilozenDokument->kandidat_id = $id;
-                    $prilozenDokument->indikatorAktivan = 1;
-                    $prilozenDokument->save();
-                }
-            } else {
-                $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
-                    ->first();
-                if ($delete != null) {
-                    $delete->delete();
-                }
+        //Dodavanje dokumenata za ostale godine
+        if($request->has('dokumentiDruga')){
+            foreach ($request->dokumentiDruga as $dokument) {
+                $prilozenDokument = new KandidatPrilozenaDokumenta();
+                $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                $prilozenDokument->kandidat_id = $id;
+                $prilozenDokument->indikatorAktivan = 1;
+                $prilozenDokument->save();
             }
         }
 
