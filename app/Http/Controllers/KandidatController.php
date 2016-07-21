@@ -516,14 +516,20 @@ class KandidatController extends Controller
 
         $dokumenta = PrilozenaDokumenta::all();
 
+
         foreach ($dokumenta as $dokument) {
             if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
-                $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-                $prilozenDokument->kandidat_id = $id;
-                $prilozenDokument->indikatorAktivan = 1;
-                $prilozenDokument->save();
+                if(KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
+                        ->first() == null)
+                {
+                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
+                    $prilozenDokument->kandidat_id = $id;
+                    $prilozenDokument->indikatorAktivan = 1;
+                    $prilozenDokument->save();
+                }
             } else {
+                //dd("dokument -> " . $dokument->id . " " . $dokument->naziv );
                 $delete = KandidatPrilozenaDokumenta::where(['prilozenaDokumenta_id' => $dokument->id, 'kandidat_id' => $id])
                     ->first();
                 if ($delete != null) {
