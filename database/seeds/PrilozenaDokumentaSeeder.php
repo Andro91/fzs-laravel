@@ -12,8 +12,10 @@ class PrilozenaDokumentaSeeder extends Seeder
      */
     public function run()
     {
-        $dokumentaPrva = array('Документ за прву годину 1','Документ за прву годину 2','Документ за прву годину 3');
-        $dokumentaDruga = array('Документ за прву годину 1','Документ за прву годину 2','Документ за прву годину 3');
+        $dokumentaPrva = array('Диплома о завршено средњој школи','Сведочанства из средње школе (све четири године)',
+            'Извод из матичне књиге рођених', '3 фотографије');
+        $dokumentaDruga = array('Диплома о завршеној високој школи','Уверење о положеним испитима','Извод из матичне књиге рођених',
+            '3 фотографије');
 
         foreach($dokumentaPrva as $dok){
             $dokument = new PrilozenaDokumenta();

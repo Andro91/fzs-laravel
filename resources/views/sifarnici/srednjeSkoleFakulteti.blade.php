@@ -34,7 +34,7 @@
                                 <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Promeni">
                                 </form>
-                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');" class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/delete">
+                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');" class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/delete">
                                     <input type="submit" class="btn btn-danger" value="Izbriši">
                                 </form>
                             </div>

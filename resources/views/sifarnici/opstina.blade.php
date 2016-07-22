@@ -39,7 +39,7 @@
                                 <form class="btn" action="opstina/{{$opstina->id}}/edit">
                                     <input type="submit" class="btn btn-primary" value="Измени">
                                 </form>
-                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');" class="btn" action="opstina/{{$opstina->id}}/delete">
+                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');" class="btn" action="opstina/{{$opstina->id}}/delete">
                                     <input type="submit" class="btn btn-danger" value="Обриши">
                                 </form>
                             </div>

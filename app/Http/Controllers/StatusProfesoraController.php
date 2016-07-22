@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\statusProfesora;
+use App\StatusProfesora;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
