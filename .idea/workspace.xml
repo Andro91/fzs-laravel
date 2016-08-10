@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56ab9f7a-6ef2-4b24-a091-3463921042e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/npm.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css.map" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/npm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" />
     </list>
     <ignored path="fzs-laravel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +42,8 @@
       <file leaf-file-name="KandidatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.346153">
-              <caret line="834" column="45" selection-start-line="834" selection-start-column="45" selection-end-line="834" selection-end-column="45" />
+            <state vertical-scroll-proportion="-31.384615">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="e#40#62#0#PHP" expanded="true" />
               </folding>
@@ -51,26 +51,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index_master.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/kandidat/index_master.blade.php">
+      <file leaf-file-name="StudentController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13325608">
-              <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+            <state vertical-scroll-proportion="-15.038462">
+              <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
               <folding>
-                <element signature="e#2870#2891#0#HTML" expanded="true" />
+                <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indeks.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.961538">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="31" selection-end-column="18" />
-              <folding>
-                <element signature="e#2469#2491#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-18.307692">
+              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.576923">
+              <caret line="90" column="95" selection-start-line="90" selection-start-column="95" selection-end-line="90" selection-end-column="95" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indeks.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/student/indeks.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6500579">
+              <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,8 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/seeds/SkolskaGodinaSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/OblikNastaveSeeder.php" />
         <option value="$PROJECT_DIR$/app/TipSemestra.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_07_11_161053_create_tip_semestra_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/TipPredmetaSeeder.php" />
@@ -114,7 +130,6 @@
         <option value="$PROJECT_DIR$/resources/views/sifarnici/tipPrijave.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sifarnici/addTipPrijave.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sifarnici/editTipPrijave.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TipPrijaveController.php" />
         <option value="$PROJECT_DIR$/public/js/jquery-ui-autocomplete.js" />
         <option value="$PROJECT_DIR$/public/js/kandidat-create-part-1.js" />
@@ -133,7 +148,6 @@
         <option value="$PROJECT_DIR$/resources/views/sifarnici/studijskiProgram.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/sifarnici/tipStudija.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_12_144040_create_kandidat_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/update.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_part_1.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/create_master.blade.php" />
@@ -141,6 +155,10 @@
         <option value="$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/KandidatController.php" />
         <option value="$PROJECT_DIR$/resources/views/kandidat/index_master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" />
+        <option value="$PROJECT_DIR$/resources/views/student/indeks.blade.php" />
       </list>
     </option>
   </component>
@@ -208,7 +226,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -263,7 +280,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sifarnici" />
+              <option name="myItemId" value="student" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -303,22 +320,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fzs-laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fzs-laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -328,7 +332,7 @@
     <property name="FullScreen" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="routes&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandidat&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;create_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;lay&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;layout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;homecont&#9;null&#9;null&#10;layo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;utilit&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/public/js/my-utility-functions.js&#10;update&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/update.blade.php&#10;create-part-1&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/public/js/kandidat-create-part-1.js&#10;layou&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;part1&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;servicepro&#9;null&#9;null&#10;connection&#9;null&#9;null&#10;sportsko_a&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/sportsko_angazovanje.blade.php&#10;create&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;auth&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/config/auth.php&#10;kandidat_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_12_144040_create_kandidat_table.php&#10;kandidatCo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;kandi&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;login&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/auth/login.blade.php&#10;kernel.php&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Kernel.php&#10;kernel&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/vendor/symfony/http-kernel/Kernel.php&#10;rout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;seeder&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/seeds/DatabaseSeeder.php&#10;route&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandida&#9;null&#9;null&#10;kandidatCon&#9;null&#9;null&#10;plane&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/plane.blade.php&#10;create.bl&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create.blade.php&#10;kreirajt&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_14_122909_KreirajTabeluPredmet.php" />
+    <property name="SearchEverywhereHistoryKey" value="layo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;rou&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kand&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;stude&#9;null&#9;null&#10;routes&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandidat&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;create_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;lay&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;layout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;homecont&#9;null&#9;null&#10;utilit&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/public/js/my-utility-functions.js&#10;update&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/update.blade.php&#10;create-part-1&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/public/js/kandidat-create-part-1.js&#10;layou&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/layout.blade.php&#10;part1&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;servicepro&#9;null&#9;null&#10;connection&#9;null&#9;null&#10;sportsko_a&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/sportsko_angazovanje.blade.php&#10;create&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create_part_1.blade.php&#10;auth&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/config/auth.php&#10;kandidat_&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_12_144040_create_kandidat_table.php&#10;kandidatCo&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;kandi&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Controllers/KandidatController.php&#10;login&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/auth/login.blade.php&#10;kernel.php&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/Kernel.php&#10;kernel&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/vendor/symfony/http-kernel/Kernel.php&#10;rout&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;seeder&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/seeds/DatabaseSeeder.php&#10;route&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/app/Http/routes.php&#10;kandida&#9;null&#9;null&#10;kandidatCon&#9;null&#9;null&#10;plane&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/layouts/plane.blade.php&#10;create.bl&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/resources/views/kandidat/create.blade.php&#10;kreirajt&#9;FILE&#9;file://C:/wamp64/www/fzs-laravel/database/migrations/2016_05_14_122909_KreirajTabeluPredmet.php" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
@@ -396,7 +400,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -438,20 +442,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/TipStudijaSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5465313">
-          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70558375">
-          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/BodovanjeSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34517765">
@@ -505,13 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="87" selection-start-line="172" selection-start-column="87" selection-end-line="172" selection-end-column="87" />
         </state>
       </provider>
     </entry>
@@ -729,7 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.2909093">
           <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -737,9 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.1923075">
           <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="68" selection-end-column="34" />
-          <folding>
-            <element signature="e#3565#3602#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -747,9 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.0">
           <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
-          <folding>
-            <element signature="e#1778#1796#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -757,7 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8667439">
           <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -765,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19698726">
           <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="67" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -777,18 +751,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/index_master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13325608">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.576923">
+          <caret line="90" column="95" selection-start-line="90" selection-start-column="95" selection-end-line="90" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51216686">
-          <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/KandidatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.346153">
-          <caret line="834" column="45" selection-start-line="834" selection-start-column="45" selection-end-line="834" selection-end-column="45" />
+        <state vertical-scroll-proportion="-31.384615">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
@@ -797,21 +787,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/kandidat/indeks.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.961538">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="31" selection-end-column="18" />
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
           <folding>
-            <element signature="e#2469#2491#0#HTML" expanded="true" />
+            <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/kandidat/index_master.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/student/indeks.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13325608">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-          <folding>
-            <element signature="e#2870#2891#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.6500579">
+          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

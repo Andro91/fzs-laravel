@@ -81,6 +81,19 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Активни студенти<span
+                                        class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*student/index/1') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('student/index/1') }}">Основне студије</a>
+                                </li>
+                                <li {{ (Request::is('*student/index/2') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('student/index/2' ) }}">Мастер студије</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="#"><i class="glyphicon glyphicon-book"></i>&nbsp;Админ шифарници<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

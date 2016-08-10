@@ -34,6 +34,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/master/{id}/delete', 'KandidatController@destroyMaster');
 
     Route::get('/kandidat/{id}/upis', 'KandidatController@upisKandidata');
+
+    Route::get('/student/index/{tipStudijaId}/', 'StudentController@index');
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {
