@@ -32,6 +32,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/master/{id}/edit', 'KandidatController@updateMaster');
     Route::post('/storeMaster/', 'KandidatController@storeMaster');
     Route::post('/master/{id}/delete', 'KandidatController@destroyMaster');
+
+    Route::get('/kandidat/{id}/upis', 'KandidatController@upisKandidata');
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

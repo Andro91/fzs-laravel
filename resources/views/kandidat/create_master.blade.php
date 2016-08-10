@@ -53,6 +53,13 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="uplata">
+                                    <input type="checkbox" id="uplata" name="uplata">
+                                    Уплата (да ли је кандидат платио школарину)</label>
+                            </div>
+
                             <p><strong>Уз пријаву прилажем:</strong></p>
                             @foreach($dokumentaMaster as $i=>$dokument)
                                 <div class="checkbox">

@@ -60,6 +60,12 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="uplata">
+                                    <input type="checkbox" id="uplata" name="uplata">
+                                    Уплата (да ли је кандидат платио школарину)</label>
+                            </div>
                         </div>
                     </div>
 

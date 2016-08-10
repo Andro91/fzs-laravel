@@ -15,6 +15,8 @@
                         Дошло је до грешке при чувању података! Молимо вас покушајте поново.
                     @elseif(Session::get('flash-error') === 'delete')
                         Дошло је до грешке при брисању података! Молимо вас покушајте поново.
+                    @elseif(Session::get('flash-error') === 'upis')
+                        Дошло је до грешке при упису кандидата! Молимо вас проверите да ли је кандидат уплатио школарину и покушајте поново.
                     @endif
                 </div>
             @elseif(Session::get('flash-success'))
@@ -25,6 +27,8 @@
                         Подаци о кандидату су успешно сачувани.
                     @elseif(Session::get('flash-success') === 'delete')
                         Подаци о кандидату су успешно обрисани.
+                    @elseif(Session::get('flash-success') === 'upis')
+                        Упис кандидата је успешно извршен.
                     @endif
                 </div>
             @endif
@@ -34,6 +38,7 @@
                     <th>Име</th>
                     <th>Презиме</th>
                     <th>ЈМБГ</th>
+                    <th>Школарина</th>
                     <th>Измена</th>
                 </thead>
                 <tbody>
@@ -42,14 +47,17 @@
                         <td>{{$kandidat->imeKandidata}}</td>
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
+                        <td>{{ $kandidat->uplata ? 'Уплатио' : 'Није уплатио'}}</td>
                         <td>                            
                             <a class="btn btn-primary pull-left" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
-                            <form class="pull-left" style="margin-left: 10px" action="{{$putanja}}/master/{{$kandidat->id}}/delete" 
+                            <form class="pull-left" style="margin: 0 5px" action="{{$putanja}}/master/{{$kandidat->id}}/delete"
                             method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
                                 <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                 {{ csrf_field() }}
                                 <input type="submit" class="btn btn-danger" value="Бриши" >
                             </form>
+                            <a class="btn btn-success pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis"
+                                    {{ $kandidat->uplata ? '' : 'disabled=disabled' }}>Упис кандидата</a>
                         </td>
                     </tr>
                 @endforeach

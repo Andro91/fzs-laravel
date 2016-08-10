@@ -43,7 +43,7 @@ class KandidatController extends Controller
      */
     public function index()
     {
-        $kandidati = Kandidat::where('tipStudija_id',1)->get();
+        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0])->get();
 
         return view("kandidat.indeks")->with('kandidati', $kandidati);
     }
@@ -109,6 +109,11 @@ class KandidatController extends Controller
             $kandidat->imeKandidata = $request->ImeKandidata;
             $kandidat->prezimeKandidata = $request->PrezimeKandidata;
             $kandidat->jmbg = $request->JMBG;
+
+            if(isset($request->uplata)){
+                $kandidat->uplata = 1;
+            }
+
 
             //$dateArray = explode('.', ); date()
             if (date_create_from_format('d.m.Y.', $request->DatumRodjenja)) {
@@ -416,6 +421,10 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
+        if(isset($request->uplata)){
+            $kandidat->uplata = 1;
+        }
+
         $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
 
         $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
@@ -642,6 +651,10 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
+        if(isset($request->uplata)){
+            $kandidat->uplata = 1;
+        }
+
         $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
         $kandidat->kontaktTelefon = $request->KontaktTelefon;
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
@@ -729,6 +742,10 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
+        if(isset($request->uplata)){
+            $kandidat->uplata = 1;
+        }
+
         $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
         $kandidat->kontaktTelefon = $request->KontaktTelefon;
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
@@ -774,7 +791,7 @@ class KandidatController extends Controller
 
     public function indexMaster()
     {
-        $kandidati = Kandidat::where('tipStudija_id',2)->get();
+        $kandidati = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 0])->get();
 
         return view("kandidat.index_master")->with('kandidati', $kandidati);
     }
@@ -790,6 +807,34 @@ class KandidatController extends Controller
         }else{
             Session::flash('flash-error', 'delete');
             return redirect('/master/');
+        }
+    }
+
+    public function upisKandidata($id)
+    {
+
+        $kandidat = Kandidat::find($id);
+
+        if($kandidat->uplata == 0){
+            Session::flash('flash-error', 'upis');
+            if($kandidat->tipStudija_id == 1){
+                return redirect('/kandidat/');
+            }else if($kandidat->tipStudija_id == 2){
+                return redirect('/master/');
+            }
+        }else{
+            $kandidat->upisan = 1;
+            $saved = $kandidat->save();
+            if($saved){
+                Session::flash('flash-success', 'upis');
+            }else{
+                Session::flash('flash-error', 'upis');
+            }
+            if($kandidat->tipStudija_id == 1){
+                return redirect('/kandidat/');
+            }else if($kandidat->tipStudija_id == 2){
+                return redirect('/master/');
+            }
         }
     }
 }
