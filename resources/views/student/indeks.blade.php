@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Активни студенти основних студија')
+@section('page_heading',$tipStudija == 1 ? 'Активни студенти основних студија'  : "Активни студенти мастер студија")
 @section('section')
 
         <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->

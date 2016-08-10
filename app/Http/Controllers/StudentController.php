@@ -18,10 +18,10 @@ class StudentController extends Controller
     {
         if($tipStudijaId == 1){
             $studenti = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 1])->get();
-            return view("student.indeks")->with('studenti', $studenti);
+            return view("student.indeks")->with('studenti', $studenti)->with('tipStudija', 1);
         }else if($tipStudijaId == 2){
             $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1])->get();
-            return view("student.indeks")->with('studenti', $studenti);
+            return view("student.indeks")->with('studenti', $studenti)->with('tipStudija', 2);
         }
         return null;
     }
