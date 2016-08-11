@@ -33,6 +33,13 @@
             </div>
         @endif
     </div>
+    <ul class="nav nav-pills">
+        <li role="presentation" {{ (Request::input('godina') == '1' || Request::input('godina') == null) ? 'class=active' : '' }}><a href="?godina=1">Прва година</a></li>
+        <li role="presentation" {{ Request::input('godina') == '2' ? 'class=active' : '' }}><a href="?godina=2">Друга година</a></li>
+        <li role="presentation" {{ Request::input('godina') == '3' ? 'class=active' : '' }}><a href="?godina=3">Трећа година</a></li>
+        <li role="presentation" {{ Request::input('godina') == '4' ? 'class=active' : '' }}><a href="?godina=4">Четврта година</a></li>
+    </ul>
+    <hr>
     <table id="tabela" class="table">
         <thead>
         <th>Име</th>

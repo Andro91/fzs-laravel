@@ -41,9 +41,13 @@ class KandidatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0])->get();
+        $godinaStudija = $request->godina;
+        if($godinaStudija == null || $godinaStudija > 4 || $godinaStudija < 1){
+            $godinaStudija = 1;
+        }
+        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0, 'godinaStudija_id' =>  $godinaStudija])->get();
 
         return view("kandidat.indeks")->with('kandidati', $kandidati);
     }
