@@ -166,6 +166,9 @@
                                 <li {{ (Request::is('*opstina') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('opstina' ) }}">Општина</a>
                                 </li>
+                                <li {{ (Request::is('*profesor') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('profesor' ) }}">Професор</a>
+                                </li>
                                 <!-- <li {{ (Request::is('*mesto') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('mesto' ) }}">Место</a>
                                 </li>-->

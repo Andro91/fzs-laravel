@@ -66,6 +66,7 @@ Route::get('/statusKandidata', 'StatusKandidataController@index');
 Route::get('/statusIspita', 'StatusIspitaController@index');
 Route::get('/statusProfesora', 'StatusProfesoraController@index');
 Route::get('/tipPrijave', 'TipPrijaveController@index');
+Route::get('/profesor', 'ProfesorController@index');
 
 Route::post('/tipStudija/unos', 'TipStudijaController@unos');
 Route::post('/studijskiProgram/unos', 'StudijskiProgramController@unos');
@@ -89,6 +90,7 @@ Route::post('/statusKandidata/unos', 'StatusKandidataController@unos');
 Route::post('/statusIspita/unos', 'StatusIspitaController@unos');
 Route::post('/statusProfesora/unos', 'StatusProfesoraController@unos');
 Route::post('/tipPrijave/unos', 'TipPrijaveController@unos');
+Route::post('/profesor/unos', 'ProfesorController@unos');
 
 Route::get('/tipStudija/add', 'TipStudijaController@add');
 Route::get('/studijskiProgram/add', 'StudijskiProgramController@add');
@@ -112,6 +114,7 @@ Route::get('/statusKandidata/add', 'StatusKandidataController@add');
 Route::get('/statusIspita/add', 'StatusIspitaController@add');
 Route::get('/statusProfesora/add', 'StatusProfesoraController@add');
 Route::get('/tipPrijave/add', 'TipPrijaveController@add');
+Route::get('/profesor/add', 'ProfesorController@add');
 
 Route::get('/sport/{sport}/edit', 'SportController@edit');
 Route::patch('sport/{sport}', 'SportController@update');
@@ -200,6 +203,10 @@ Route::get('statusProfesora/{status}/delete', 'StatusProfesoraController@delete'
 Route::get('/tipPrijave/{tip}/edit', 'TipPrijaveController@edit');
 Route::patch('tipPrijave/{tip}', 'TipPrijaveController@update');
 Route::get('tipPrijave/{tip}/delete', 'TipPrijaveController@delete');
+
+Route::get('/profesor/{profesor}/edit', 'ProfesorController@edit');
+Route::patch('profesor/{profesor}', 'ProfesorController@update');
+Route::get('profesor/{profesor}/delete', 'ProfesorController@delete');
 
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
 

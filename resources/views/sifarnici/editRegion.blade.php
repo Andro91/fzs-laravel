@@ -4,8 +4,9 @@
 @section('section')
 
     <div class="col-md-9">
-        <form role="form" method="post" action="{{ url('/region/unos') }}">
+        <form role="form" method="post" action="{{$putanja}}/region/{{$region->id}}">
             {{csrf_field()}}
+            {{method_field('PATCH')}}
 
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -14,12 +15,12 @@
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">Назив:</label>
-                        <input name="naziv" type="text" class="form-control">
+                        <input name="naziv" type="text" class="form-control" value="{{$region->naziv}}">
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Додај</button>
+                        <button type="submit" class="btn btn-primary">Измени</button>
                     </div>
                 </div>
             </div>
