@@ -12,4 +12,9 @@ class Profesor extends Model
     {
         return $this->belongsTo(StatusProfesora::class, 'status_id');
     }
+
+    public function angazovanja()
+    {
+        return $this->hasMany(ProfesorPredmet::class);
+    }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Profesor;
+use App\ProfesorPredmet;
 use App\StatusProfesora;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 
@@ -54,11 +56,12 @@ class ProfesorController extends Controller
     {
         try {
             $status = StatusProfesora::all();
+            $predmeti = ProfesorPredmet::where('profesor_id', $profesor->id)->get();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.editProfesor', compact('profesor', 'status'));
+        return view('sifarnici.editProfesor', compact('profesor', 'status', 'predmeti'));
     }
 
     public function add()
