@@ -46,8 +46,8 @@ class CreateKandidatTable extends Migration
             $table->integer('tipStudija_id')->unsigned()->index();
             $table->integer('godinaStudija_id')->unsigned()->index();
             $table->integer('mesto_id')->unsigned()->index();
-            $table->boolean('uplata')->nullable();
-            $table->boolean('upisan')->nullable();
+            $table->boolean('uplata')->default(0)->nullable();
+            $table->boolean('upisan')->default(0)->nullable();
             $table->timestamps();
         });
     }

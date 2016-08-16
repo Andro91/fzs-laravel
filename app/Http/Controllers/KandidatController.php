@@ -17,6 +17,7 @@ use App\SrednjeSkoleFakulteti;
 use App\StatusStudiranja;
 use App\StudijskiProgram;
 use App\TipStudija;
+use App\UpisGodine;
 use App\UspehSrednjaSkola;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -43,11 +44,7 @@ class KandidatController extends Controller
      */
     public function index(Request $request)
     {
-        $godinaStudija = $request->godina;
-        if($godinaStudija == null || $godinaStudija > 4 || $godinaStudija < 1){
-            $godinaStudija = 1;
-        }
-        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0, 'godinaStudija_id' =>  $godinaStudija])->get();
+        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0])->get();
 
         return view("kandidat.indeks")->with('kandidati', $kandidati);
     }
@@ -116,8 +113,11 @@ class KandidatController extends Controller
 
             if(isset($request->uplata)){
                 $kandidat->uplata = 1;
+            }else{
+                $kandidat->uplata = 0;
             }
 
+            $kandidat->upisan = 0;
 
             //$dateArray = explode('.', ); date()
             if (date_create_from_format('d.m.Y.', $request->DatumRodjenja)) {
@@ -145,6 +145,8 @@ class KandidatController extends Controller
             $kandidat->save();
 
             $insertedId = $kandidat->id;
+
+            UpisGodine::registrujKandidata($insertedId, $kandidat->uplata);
 
             $mestoZavrseneSkoleFakulteta = Opstina::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
@@ -188,7 +190,6 @@ class KandidatController extends Controller
             $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
             $prviRazred->save();
-
 
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = $request->insertedId;
@@ -288,6 +289,18 @@ class KandidatController extends Controller
             $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
             $kandidat->upisniRok = $request->UpisniRok;
             //$kandidat->indikatorAktivan = $request->IndikatorAktivan;
+
+//            if($kandidat->uplata == 1){
+//                $upisGodine = new UpisGodine();
+//                $upisGodine->kandidat_id = $request->insertedId;
+//                $upisGodine->godina = 1;
+//                $upisGodine->skolarina = 1;
+//                $upisGodine->upisan = 0;
+//                $upisGodine->save();
+//
+//                UpisGodine::upisiGodinu($request->insertedId, $kandidat->uplata);
+//            }
+
 
             $kandidat->save();
 
@@ -816,7 +829,6 @@ class KandidatController extends Controller
 
     public function upisKandidata($id)
     {
-
         $kandidat = Kandidat::find($id);
 
         if($kandidat->uplata == 0){
@@ -828,6 +840,10 @@ class KandidatController extends Controller
             }
         }else{
             $kandidat->upisan = 1;
+
+            UpisGodine::uplatiGodinu($id, 1);
+            UpisGodine::upisiGodinu($id, 1);
+
             $saved = $kandidat->save();
             if($saved){
                 Session::flash('flash-success', 'upis');

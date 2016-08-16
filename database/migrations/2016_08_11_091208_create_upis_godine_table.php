@@ -14,7 +14,7 @@ class CreateUpisGodineTable extends Migration
     {
         Schema::create('upis_godine', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studentId');
+            $table->integer('kandidat_id');
             $table->integer('godina');
             $table->boolean('skolarina');
             $table->boolean('upisan');

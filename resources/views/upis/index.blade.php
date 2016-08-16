@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading',"???? ????????? ?? ???????")
+@section('page_heading',"Упис студента у следећу школску годину")
 @section('section')
 
 
@@ -14,7 +14,7 @@
                 @elseif(Session::get('flash-error') === 'delete')
                     Дошло је до грешке при брисању података! Молимо вас покушајте поново.
                 @elseif(Session::get('flash-error') === 'upis')
-                    Дошло је до грешке при упису кандидата! Молимо вас проверите да ли је кандидат уплатио школарину и покушајте поново.
+                    Дошло је до грешке при упису студента! Молимо вас проверите да ли је студент уплатио школарину и покушајте поново.
                 @endif
             </div>
         @elseif(Session::get('flash-success'))
@@ -22,41 +22,73 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>Успех!</strong>
             @if(Session::get('flash-success') === 'update')
-                Подаци о кандидату су успешно сачувани.
+                Подаци о студенту су успешно сачувани.
             @elseif(Session::get('flash-success') === 'delete')
-                Подаци о кандидату су успешно обрисани.
+                Подаци о студенту су успешно обрисани.
             @elseif(Session::get('flash-success') === 'upis')
-                Упис кандидата је успешно извршен.
+                Упис студента је успешно извршен.
             @endif
+            </div>
+        @endif
     </div>
-    <table class="table">
-        <thead>
-        <th>Име</th>
-        <th>Презиме</th>
-        <th>ЈМБГ</th>
-        <th>Школарина</th>
-        <th>Измена</th>
-        </thead>
-        <tbody>
+    <div>
+        <h4>Подаци о студенту</h4>
+        <ul class="list-group">
+            <li class="list-group-item">Име и презиме:
+                <strong>
+                    {{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata }}
+                </strong>
+            </li>
+            <li class="list-group-item">ЈМБГ:
+                <strong>
+                    {{ $kandidat->jmbg }}
+                </strong>
+            </li>
+            <li class="list-group-item">Датум рођења:
+                <strong>
+                    {{ $kandidat->datumRodjenja }}
+                </strong>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
             <tr>
-                <td></td>
-                <td>{{ $kandidat->uplata ? 'Уплатио' : 'Није уплатио'}}</td>
-                <td>{{ $item->godina }}</td>
-                <td>
-                    <a class="btn btn-primary pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">??????</a>
-                    <form class="pull-left" style="margin: 0 5px;" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"
-                          method="post" onsubmit="return confirm('');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger" value="submit">
-                    </form>
-                </td>
+                <th>Година</th>
+                <th>Школарина</th>
+                <th>Уписан</th>
             </tr>
-        </tbody>
-    </table>
-    <br/>
-
-
-
-    <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+            </thead>
+            <tbody>
+                @foreach($upisaneGodine as $godina)
+                    <?php
+                        $rowClass = "";
+                        if($godina->skolarina == 1 && $godina->upisan == 0){
+                            $rowClass = "info";
+                        }else if($godina->skolarina == 0 && $godina->upisan == 0){
+                            $rowClass = "danger";
+                        }else{
+                            $rowClass = "success";
+                        }
+                    ?>
+                    <tr class="{{ $rowClass }}">
+                        <td>{{ $godina->godina }}</td>
+                        <td>{{ $godina->skolarina == 1 ? "Уплатио" : "Није уплатио" }}</td>
+                        <td>{{ $godina->upisan == 1 ? "Уписан" : "Није уписан" }}</td>
+                        <td>
+                            <a class="btn btn-primary" {{ $godina->skolarina == 1 ? "disabled" : "" }}
+                                href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}">Уплатио школарину
+                            </a>
+                            <a class="btn btn-success" {{ ($godina->upisan == 1 || $godina->skolarina == 0) ? "disabled" : "" }}
+                                href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}">Уписао годину
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection

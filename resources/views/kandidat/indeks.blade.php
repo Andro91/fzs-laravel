@@ -2,9 +2,6 @@
 @section('page_heading','Преглед кандидата за основне студије')
 @section('section')
 
-        <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>-->
-
 <div class="col-sm-12 col-lg-10">
     <div id="messages">
     @if (Session::get('flash-error'))
@@ -33,12 +30,6 @@
         </div>
     @endif
     </div>
-    <ul class="nav nav-pills">
-        <li role="presentation" {{ (Request::input('godina') == '1' || Request::input('godina') == null) ? 'class=active' : '' }}><a href="?godina=1">Прва година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '2' ? 'class=active' : '' }}><a href="?godina=2">Друга година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '3' ? 'class=active' : '' }}><a href="?godina=3">Трећа година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '4' ? 'class=active' : '' }}><a href="?godina=4">Четврта година</a></li>
-    </ul>
     <hr>
     <table id="tabela" class="table">
         <thead>
@@ -71,6 +62,7 @@
         </tbody>
     </table>
     <br/>
+    <hr>
 
 <div class="panel panel-primary">
     <div class="panel-heading">

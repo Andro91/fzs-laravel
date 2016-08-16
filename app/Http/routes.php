@@ -35,6 +35,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/kandidat/{id}/upis', 'KandidatController@upisKandidata');
 
+    Route::get('/student/{id}/upis', 'StudentController@upisStudenta');
+
+    Route::get('/student/{id}/uplataSkolarine', 'StudentController@uplataSkolarine');
+    Route::get('/student/{id}/upisiStudenta', 'StudentController@upisiStudenta');
+
     Route::get('/student/index/{tipStudijaId}/', 'StudentController@index');
 });
 

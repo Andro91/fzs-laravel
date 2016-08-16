@@ -17,4 +17,9 @@ class Kandidat extends Model
     {
         return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');
     }
+
+    public function upisaneGodine()
+    {
+        return $this->hasMany(UpisGodine::class);
+    }
 }

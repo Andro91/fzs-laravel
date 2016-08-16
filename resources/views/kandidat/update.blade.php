@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Измена података постојећег кандидата')
+@section('page_heading',$kandidat->upisan == 0 ? "Измена података постојећег кандидата" : "Измена података активног студента")
 @section('section')
     <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id) }}">
         <div class="col-sm-12 col-lg-12">
@@ -62,11 +62,13 @@
                                 </select>
                             </div>
 
+                            @if($kandidat->upisan == 0)
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="uplata">
                                     <input type="checkbox" id="uplata" name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
                                     Уплата (да ли је кандидат платио школарину)</label>
                             </div>
+                            @endif
                         </div>
                     </div>
 

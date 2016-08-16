@@ -42,11 +42,12 @@
     <hr>
     <table id="tabela" class="table">
         <thead>
-        <th>Име</th>
-        <th>Презиме</th>
-        <th>ЈМБГ</th>
-        <th>Школарина</th>
-        <th>Измена</th>
+        <tr>
+            <th>Име</th>
+            <th>Презиме</th>
+            <th>ЈМБГ</th>
+            <th>Измена</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($studenti as $kandidat)
@@ -54,15 +55,15 @@
                 <td>{{$kandidat->imeKandidata}}</td>
                 <td>{{$kandidat->prezimeKandidata}}</td>
                 <td>{{$kandidat->jmbg}}</td>
-                <td>{{ $kandidat->uplata ? 'Уплатио' : 'Није уплатио'}}</td>
                 <td>
                     <a class="btn btn-primary pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
                     <form class="pull-left" style="margin: 0 5px;" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"
-                          method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
+                          method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">
                         <input type="hidden" name="_method" value="DELETE">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger" value="Бриши">
                     </form>
+                    <a class="btn btn-success pull-left" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">Школарина и упис</a>
                 </td>
             </tr>
         @endforeach
