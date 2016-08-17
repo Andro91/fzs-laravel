@@ -44,9 +44,18 @@ class KandidatController extends Controller
      */
     public function index(Request $request)
     {
-        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0])->get();
+        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 1])->first()->id;
+        if( !empty($request->studijskiProgramId )){
+            $studijskiProgramId = $request->studijskiProgramId;
+        }
 
-        return view("kandidat.indeks")->with('kandidati', $kandidati);
+        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 1])->get();
+
+        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0, 'studijskiProgram_id' => $studijskiProgramId])->get();
+
+        return view("kandidat.indeks")
+            ->with('kandidati', $kandidati)
+            ->with('studijskiProgrami', $studijskiProgrami);
     }
 
     /**
@@ -668,6 +677,8 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
+        $kandidat->upisan = 0;
+
         if(isset($request->uplata)){
             $kandidat->uplata = 1;
         }
@@ -806,11 +817,20 @@ class KandidatController extends Controller
         //return redirect('/master/');
     }
 
-    public function indexMaster()
+    public function indexMaster(Request $request)
     {
-        $kandidati = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 0])->get();
+        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 2])->first()->id;
+        if( !empty($request->studijskiProgramId )){
+            $studijskiProgramId = $request->studijskiProgramId;
+        }
 
-        return view("kandidat.index_master")->with('kandidati', $kandidati);
+        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2])->get();
+
+        $kandidati = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 0, 'studijskiProgram_id' => $studijskiProgramId])->get();
+
+        return view("kandidat.index_master")
+            ->with('kandidati', $kandidati)
+            ->with('studijskiProgrami', $studijskiProgrami);
     }
 
 
@@ -856,5 +876,55 @@ class KandidatController extends Controller
                 return redirect('/master/');
             }
         }
+    }
+
+    public function masovnaUplata(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $kandidat->uplata = 1;
+            $kandidat->save();
+
+            UpisGodine::uplatiGodinu($kandidatId, 1);
+        }
+        return redirect('/kandidat/');
+    }
+
+    public function masovniUpis(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $kandidat->upisan = 1;
+            $kandidat->save();
+
+            UpisGodine::upisiGodinu($kandidatId, 1);
+        }
+        return redirect('/kandidat/');
+    }
+
+    public function masovnaUplataMaster(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $kandidat->uplata = 1;
+            $kandidat->save();
+
+        }
+        return redirect('/master/');
+    }
+
+    public function masovniUpisMaster(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $kandidat->upisan = 1;
+            $kandidat->save();
+
+        }
+        return redirect('/master/');
     }
 }

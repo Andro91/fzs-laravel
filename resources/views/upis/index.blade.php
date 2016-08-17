@@ -74,7 +74,7 @@
                     ?>
                     <tr class="{{ $rowClass }}">
                         <td>{{ $godina->godina }}</td>
-                        <td>{{ $godina->skolarina == 1 ? "Уплатио" : "Није уплатио" }}</td>
+                        <td>{{ $godina->skolarina == 1 ? "Уплаћена" : "Није уплаћена" }}</td>
                         <td>{{ $godina->upisan == 1 ? "Уписан" : "Није уписан" }}</td>
                         <td>
                             <a class="btn btn-primary" {{ $godina->skolarina == 1 ? "disabled" : "" }}

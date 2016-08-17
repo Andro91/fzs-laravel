@@ -104,6 +104,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/tipPredmeta.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/sifarnici/tipPrijave.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/student/indeks.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/student/index_master.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/upis/index.blade.php" charset="UTF-8" />
   </component>
 </project>

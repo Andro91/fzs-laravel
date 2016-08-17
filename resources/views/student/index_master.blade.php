@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Активни студенти основних студија')
+@section('page_heading',"Активни студенти мастер студија")
 @section('section')
 
         <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->
@@ -33,21 +33,6 @@
             </div>
         @endif
     </div>
-    <ul class="nav nav-pills">
-        <li role="presentation" {{ (Request::input('godina') == '1' || Request::input('godina') == null) ? 'class=active' : '' }}><a href="?godina=1">Прва година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '2' ? 'class=active' : '' }}><a href="?godina=2">Друга година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '3' ? 'class=active' : '' }}><a href="?godina=3">Трећа година</a></li>
-        <li role="presentation" {{ Request::input('godina') == '4' ? 'class=active' : '' }}><a href="?godina=4">Четврта година</a></li>
-    </ul>
-    <br>
-    <ul class="nav nav-pills">
-        @foreach($studijskiProgrami as $program)
-            <li role="presentation"
-                    {{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>
-                <a href="?godina={{ Request::input('godina') }}&studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>
-            </li>
-        @endforeach
-    </ul>
     <hr>
     <table id="tabela" class="table">
         <thead>

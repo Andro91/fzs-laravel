@@ -84,8 +84,8 @@
                             <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Активни студенти<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*student/index/1') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('student/index/1') }}">Основне студије</a>
+                                <li {{ (Request::is('*student/index/1*') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('student/index/1?godina=1&studijskiProgramId=1') }}">Основне студије</a>
                                 </li>
                                 <li {{ (Request::is('*student/index/2') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('student/index/2' ) }}">Мастер студије</a>

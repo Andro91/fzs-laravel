@@ -5,7 +5,7 @@
     <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->
     <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>-->
 
-    <div class="col-sm-12 col-lg-10">
+<div class="col-sm-12 col-lg-10" xmlns="http://www.w3.org/1999/html">
         <div id="messages">
             @if (Session::get('flash-error'))
                 <div class="alert alert-dismissible alert-danger">
@@ -33,8 +33,20 @@
                 </div>
             @endif
         </div>
+        <ul class="nav nav-pills">
+            @foreach($studijskiProgrami as $program)
+                <li role="presentation"
+                        {{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>
+                    <a href="?studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>
+                </li>
+            @endforeach
+        </ul>
+        <hr>
+    <form id="formaKandidatiOdabir" action="" method="post">
+        {{ csrf_field() }}
         <table id="tabela" class="table">
             <thead>
+                <th>Одабир</th>
                 <th>Име</th>
                 <th>Презиме</th>
                 <th>ЈМБГ</th>
@@ -42,28 +54,50 @@
                 <th>Измена</th>
             </thead>
             <tbody>
-            @foreach($kandidati as $kandidat)
+            @foreach($kandidati as $index => $kandidat)
                 <tr>
+                    <td><input type="checkbox" id="odabir" name="odabir[{{ $index }}]" value="{{ $kandidat->id }}"></td>
                     <td>{{$kandidat->imeKandidata}}</td>
                     <td>{{$kandidat->prezimeKandidata}}</td>
                     <td>{{$kandidat->jmbg}}</td>
-                    <td>{{ $kandidat->uplata ? 'Уплатио' : 'Није уплатио'}}</td>
+                    <td>{{ $kandidat->uplata ? 'Уплаћена' : 'Није уплаћена'}}</td>
                     <td>
-                        <a class="btn btn-primary pull-left" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
-                        <form class="pull-left" style="margin: 0 5px" action="{{$putanja}}/master/{{$kandidat->id}}/delete"
-                        method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
-                            <!-- <input type="hidden" name="_method" value="DELETE"> -->
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-danger" value="Бриши" >
-                        </form>
-                        <a class="btn btn-success pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis"
+                        <a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-danger" href="{{$putanja}}/master/{{ $kandidat->id }}/delete"
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
+                        <a class="btn btn-success" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis"
                                 {{ $kandidat->uplata ? '' : 'disabled=disabled' }}>Упис кандидата</a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-    </div>
+    </form>
+    <br/>
+    <hr>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">За одабране кандидате</h3>
+        </div>
+        <div class="panel-body">
+            <div id="masovnaUplata" class="btn btn-primary">Уплатили школарину</div>
+            <div id="masovniUpis" class="btn btn-success">Изврши упис</div>
+        </div>
+    </div>
+</div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+    <script>
+        var forma = $('#formaKandidatiOdabir');
+
+        $('#masovnaUplata').click(function(){
+            forma.attr("action", "{{ $putanja }}/master/masovnaUplata");
+            forma.submit();
+        });
+
+        $('#masovniUpis').click(function(){
+            forma.attr("action", "{{ $putanja }}/master/masovniUpis");
+            forma.submit();
+        });
+    </script>
 @endsection

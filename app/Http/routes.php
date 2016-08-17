@@ -26,12 +26,21 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sport');
     Route::post('/kandidat/{id}/sportskoangazovanje', 'KandidatController@sportStore');
 
+    Route::get('/kandidat/{id}/delete', 'KandidatController@destroy');
+
+    Route::post('/kandidat/masovnaUplata', 'KandidatController@masovnaUplata');
+    Route::post('/kandidat/masovniUpis', 'KandidatController@masovniUpis');
+
+
     Route::get('/master/create', 'KandidatController@createMaster');
     Route::get('/master/', 'KandidatController@indexMaster');
     Route::get('/master/{id}/edit', 'KandidatController@editMaster');
     Route::post('/master/{id}/edit', 'KandidatController@updateMaster');
     Route::post('/storeMaster/', 'KandidatController@storeMaster');
-    Route::post('/master/{id}/delete', 'KandidatController@destroyMaster');
+    Route::get('/master/{id}/delete', 'KandidatController@destroyMaster');
+
+    Route::post('/master/masovnaUplata', 'KandidatController@masovnaUplataMaster');
+    Route::post('/master/masovniUpis', 'KandidatController@masovniUpisMaster');
 
     Route::get('/kandidat/{id}/upis', 'KandidatController@upisKandidata');
 

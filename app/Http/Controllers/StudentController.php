@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\StudijskiProgram;
 use App\UpisGodine;
 use Illuminate\Http\Request;
 use App\Kandidat;
@@ -22,14 +23,31 @@ class StudentController extends Controller
             $godinaStudija = 1;
         }
 
-        if($tipStudijaId == 1){
-            $studenti = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija])->get();
-            return view("student.indeks")->with('studenti', $studenti)->with('tipStudija', 1);
-        }else if($tipStudijaId == 2){
-            $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija])->get();
-            return view("student.indeks")->with('studenti', $studenti)->with('tipStudija', 2);
+        $studijskiProgramId = 1;
+        if( !empty($request->studijskiProgramId )){
+            $studijskiProgramId = $request->studijskiProgramId;
         }
-        return null;
+
+        if($tipStudijaId == 1){
+
+            $studenti = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija, 'studijskiProgram_id' => $studijskiProgramId])->get();
+            $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 1])->get();
+
+            return view("student.indeks")
+                ->with('studenti', $studenti)->with('tipStudija', 1)
+                ->with('studijskiProgrami',$studijskiProgrami);
+
+        }else if($tipStudijaId == 2){
+
+            $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija, 'studijskiProgram_id' => $studijskiProgramId])->get();
+            $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2])->get();
+
+            return view("student.index_master")->with('studenti', $studenti)
+                ->with('tipStudija', 2)
+                ->with('studijskiProgrami',$studijskiProgrami);
+        }
+
+        return "????? ?? ?? ??????????? ??????. ?????? ??? ????????? ??????.";
     }
 
     public function upisStudenta($id)
