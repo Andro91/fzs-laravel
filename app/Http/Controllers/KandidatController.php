@@ -573,10 +573,10 @@ class KandidatController extends Controller
 
         if($deleted){
             Session::flash('flash-success', 'delete');
-            return redirect('/kandidat/');
+            return \Redirect::back();
         }else{
             Session::flash('flash-error', 'delete');
-            return redirect('/kandidat/');
+            return \Redirect::back();
         }
 
 //        return redirect('/kandidat/');

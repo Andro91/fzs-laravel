@@ -57,5 +57,9 @@ class UpisGodine extends Model
         $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
         $upis->upisan = 1;
         $upis->save();
+
+        $kandidat = Kandidat::find($id);
+        $kandidat->godinaStudija_id = $godina;
+        $kandidat->save();
     }
 }

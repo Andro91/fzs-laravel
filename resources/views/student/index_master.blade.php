@@ -33,39 +33,41 @@
             </div>
         @endif
     </div>
-    <hr>
-    <table id="tabela" class="table">
-        <thead>
-        <tr>
-            <th>Име</th>
-            <th>Презиме</th>
-            <th>ЈМБГ</th>
-            <th>Измена</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($studenti as $kandidat)
-            <tr>
-                <td>{{$kandidat->imeKandidata}}</td>
-                <td>{{$kandidat->prezimeKandidata}}</td>
-                <td>{{$kandidat->jmbg}}</td>
-                <td>
-                    <a class="btn btn-primary pull-left" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
-                    <form class="pull-left" style="margin: 0 5px;" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"
-                          method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-danger" value="Бриши">
-                    </form>
-                    <a class="btn btn-success pull-left" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">Школарина и упис</a>
-                </td>
-            </tr>
+    <ul class="nav nav-pills">
+        @foreach($studijskiProgrami as $program)
+            <li role="presentation"
+                    {{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>
+                <a href="?studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>
+            </li>
         @endforeach
-        </tbody>
-    </table>
-    <br/>
-
-
-
+    </ul>
+    <hr>
+        <table id="tabela" class="table">
+            <thead>
+            <tr>
+                <th>Име</th>
+                <th>Презиме</th>
+                <th>ЈМБГ</th>
+                <th>Измена</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($studenti as $index => $kandidat)
+                <tr>
+                    <td>{{$kandidat->imeKandidata}}</td>
+                    <td>{{$kandidat->prezimeKandidata}}</td>
+                    <td>{{$kandidat->jmbg}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    <br>
+    <br>
+</div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection

@@ -39,7 +39,7 @@ class StudentController extends Controller
 
         }else if($tipStudijaId == 2){
 
-            $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija, 'studijskiProgram_id' => $studijskiProgramId])->get();
+            $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1, 'studijskiProgram_id' => $studijskiProgramId])->get();
             $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2])->get();
 
             return view("student.index_master")->with('studenti', $studenti)
@@ -47,7 +47,7 @@ class StudentController extends Controller
                 ->with('studijskiProgrami',$studijskiProgrami);
         }
 
-        return "????? ?? ?? ??????????? ??????. ?????? ??? ????????? ??????.";
+        return "Дошло је до грешке. Молимо вас покушајте поново.";
     }
 
     public function upisStudenta($id)
@@ -87,5 +87,28 @@ class StudentController extends Controller
         $kandidat->save();
 
         return redirect("student/{$id}/upis");
+    }
+
+    public function masovnaUplata(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $godina = $kandidat->godinaStudija_id + 1;
+            UpisGodine::uplatiGodinu($kandidatId, $godina);
+        }
+        return redirect('/student/index/1');
+    }
+
+    public function masovniUpis(Request $request)
+    {
+        foreach ($request->odabir as $kandidatId) {
+
+            $kandidat = Kandidat::find($kandidatId);
+            $godina = $kandidat->godinaStudija_id + 1;
+
+            UpisGodine::upisiGodinu($kandidatId, $godina);
+        }
+        return redirect('/student/index/1');
     }
 }

@@ -13,7 +13,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/metisMenu.css') }}"/>
     <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
 </head>
 <body>
