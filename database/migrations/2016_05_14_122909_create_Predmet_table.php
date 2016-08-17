@@ -20,6 +20,7 @@ class CreatePredmetTable extends Migration
             $table->integer('godinaStudija_id')->unsigned()->index();
             $table->integer('semestarSlusanjaPredmeta')->unsigned()->index();
             $table->integer('espb');
+            $table->integer('tipPredmeta_id');
             $table->integer('statusPredmeta');
             $table->timestamps();
         });

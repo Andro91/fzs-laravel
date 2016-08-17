@@ -39,6 +39,16 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
+                        <label for="tipPredmeta_id">Тип предмета:</label>
+                        <input type="hidden" id="tipPredmetaHidden" name="tipPredmetaHidden"
+                               value="{{$predmet->tipPredmeta_id}}">
+                        <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
+                            @foreach($tipPredmeta as $tipPredmeta)
+                                <option value="{{$tipPredmeta->id}}">{{$tipPredmeta->naziv}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="godinaStudija_id">Година:</label>
                         <input type="hidden" id="godinaStudijaHidden" name="godinaStudijaHidden"
                                value="{{$predmet->godinaStudija_id}}">
@@ -83,6 +93,7 @@
             $("#tipStudija_id").val($("#tipStudijaHidden").val());
             $("#studijskiProgram_id").val($("#studijskiProgramHidden").val());
             $("#godinaStudija_id").val($("#godinaStudijaHidden").val());
+            $("#tipPredmeta_id").val($("#tipPredmetaHidden").val());
         });
     </script>
 

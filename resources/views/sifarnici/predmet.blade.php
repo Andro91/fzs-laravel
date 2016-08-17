@@ -23,6 +23,9 @@
                     Студијски програм
                 </th>
                 <th>
+                    Тип предмета
+                </th>
+                <th>
                     Година студија
                 </th>
                 <th>
@@ -52,6 +55,13 @@
                         <td>
                             @if($predmet->studijskiProgram)
                                 {{$predmet->studijskiProgram->naziv}}
+                            @else
+                                Prazno
+                            @endif
+                        </td>
+                        <td>
+                            @if($predmet->tipPredmeta)
+                                {{$predmet->tipPredmeta->naziv}}
                             @else
                                 Prazno
                             @endif

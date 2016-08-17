@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\GodinaStudija;
 use App\Predmet;
 use App\StudijskiProgram;
+use App\TipPredmeta;
 use App\TipStudija;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -23,13 +24,14 @@ class PredmetController extends Controller
         try {
             $predmet = Predmet::all();
             $tipStudija = TipStudija::all();
+            $tipPredmeta = TipPredmeta::all();
             $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.predmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
+        return view('sifarnici.predmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija', 'tipPredmeta'));
     }
 
     public function unos(Request $request)
@@ -41,6 +43,7 @@ class PredmetController extends Controller
         $predmet->godinaStudija_id = $request->godinaStudija_id;
         $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
+        $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         $predmet->espb = $request->espb;
         $predmet->statusPredmeta = 1;
 
@@ -60,11 +63,12 @@ class PredmetController extends Controller
             $tipStudija = TipStudija::all();
             $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
+            $tipPredmeta = TipPredmeta::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija'));
+        return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija', 'tipPredmeta'));
     }
 
     public function add()
@@ -73,11 +77,12 @@ class PredmetController extends Controller
             $tipStudija = TipStudija::all();
             $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
+            $tipPredmeta = TipPredmeta::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addPredmet', compact('tipStudija', 'studijskiProgram', 'godinaStudija'));
+        return view('sifarnici.addPredmet', compact('tipStudija', 'studijskiProgram', 'godinaStudija', 'tipPredmeta'));
     }
 
     public function update(Request $request, Predmet $predmet)
@@ -88,6 +93,7 @@ class PredmetController extends Controller
         $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
+        $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         if ($request->statusPredmeta == 'on') {
             $predmet->statusPredmeta = 1;
         } else {
