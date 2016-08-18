@@ -22,6 +22,7 @@ use App\UspehSrednjaSkola;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\SportskoAngazovanjeContoller;
 
@@ -569,17 +570,22 @@ class KandidatController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = Kandidat::destroy($id);
+        DB::transaction(function() use ($id){
+            KandidatPrilozenaDokumenta::where(['kandidat_id' => $id])->delete();
+            UpisGodine::where(['kandidat_id' => $id])->delete();
 
-        if($deleted){
-            Session::flash('flash-success', 'delete');
-            return \Redirect::back();
-        }else{
-            Session::flash('flash-error', 'delete');
-            return \Redirect::back();
-        }
+            $deleted = Kandidat::destroy($id);
 
-//        return redirect('/kandidat/');
+            if($deleted){
+                Session::flash('flash-success', 'delete');
+                return \Redirect::back();
+            }else {
+                Session::flash('flash-error', 'delete');
+                return \Redirect::back();
+            }
+        });
+
+        return \Redirect::back();
     }
 
     public function sport($id)

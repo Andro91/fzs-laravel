@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\GodinaStudija;
+use App\IspitniRok;
+use App\Predmet;
+use App\PrijavaIspita;
+use App\Profesor;
 use App\StudijskiProgram;
+use App\TipPredmeta;
+use App\TipStudija;
 use App\UpisGodine;
 use Illuminate\Http\Request;
 use App\Kandidat;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -110,5 +119,48 @@ class StudentController extends Controller
             UpisGodine::upisiGodinu($kandidatId, $godina);
         }
         return redirect('/student/index/1');
+    }
+
+    public function prijavaIspita($id)
+    {
+        $kandidat = Kandidat::find($id);
+        $prijave = $kandidat->prijaveIspita()
+            ->join('predmet', 'prijava_ispitas.predmet_id', '=', 'predmet.id')
+            ->join('ispitni_rok', 'prijava_ispitas.rok_id', '=', 'ispitni_rok.id')
+            ->select('predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
+        return view('prijava.index', compact('kandidat','prijave'));
+    }
+
+    public function createPrijavaIspita($id)
+    {
+        $kandidat = Kandidat::find($id);
+        $predmeti = Predmet::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' =>  $kandidat->studijskiProgram_id,
+            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
+        ])->get();
+        $studijskiProgram = StudijskiProgram::where(['id' => $kandidat->studijskiProgram_id])->get();
+        $godinaStudija = GodinaStudija::all();
+        $tipPredmeta = TipPredmeta::all();
+        $tipStudija = TipStudija::all();
+        $ispitniRok = IspitniRok::all();
+        $profesor = Profesor::all();
+
+        return view('prijava.create', compact('kandidat', 'predmeti', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor'));
+
+    }
+
+    public function storePrijavaIspita(Request $request)
+    {
+        $prijava = new PrijavaIspita($request->all());
+        $saved = $prijava->save();
+
+        if($saved){
+            return redirect("/prijava/{$request->kandidat_id}");
+        }else{
+            Session::flash('flash-error', 'create');
+            return Redirect::back();
+        }
+
     }
 }

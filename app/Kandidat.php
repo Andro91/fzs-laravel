@@ -22,4 +22,9 @@ class Kandidat extends Model
     {
         return $this->hasMany(UpisGodine::class);
     }
+
+    public function prijaveIspita()
+    {
+        return $this->hasMany(PrijavaIspita::class);
+    }
 }

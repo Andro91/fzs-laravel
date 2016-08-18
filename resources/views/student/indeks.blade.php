@@ -58,6 +58,7 @@
                 <th>Име</th>
                 <th>Презиме</th>
                 <th>ЈМБГ</th>
+                <th>Број Индекса</th>
                 <th>Измена</th>
             </tr>
             </thead>
@@ -68,17 +69,25 @@
                     <td>{{$kandidat->imeKandidata}}</td>
                     <td>{{$kandidat->prezimeKandidata}}</td>
                     <td>{{$kandidat->jmbg}}</td>
+                    <td>{{$kandidat->brojIndeksa}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
+                            <div title="Измена">
+                                <span class="fa fa-edit"></span>
+                            </div>
+                        </a>
                         <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
-                        {{--<form class="pull-left" style="margin: 0 5px;" action="{{$putanja}}/kandidat/{{ $kandidat->id }}"--}}
-                              {{--method="post" onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">--}}
-                            {{--<input type="hidden" name="_method" value="DELETE">--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--<input type="submit" class="btn btn-danger" value="Бриши">--}}
-                        {{--</form>--}}
-                        <a class="btn btn-success" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">Школарина и упис</a>
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
+                            <div title="Брисање">
+                                <span class="fa fa-trash"></span>
+                            </div>
+                        </a>
+                        <a class="btn btn-primary" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
+                            Школарина и упис
+                        </a>
+                        <a class="btn btn-primary" href="{{$putanja}}/prijava/create/{{ $kandidat->id }}">
+                            Пријава испита
+                        </a>
                     </td>
                 </tr>
             @endforeach

@@ -53,6 +53,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/student/masovniUpis', 'StudentController@masovniUpis');
 
     Route::get('/student/index/{tipStudijaId}/', 'StudentController@index');
+
+    Route::get('/prijava/{kandidatId}', 'StudentController@prijavaIspita');
+    Route::get('/prijava/create/{kandidatId}', 'StudentController@createPrijavaIspita');
+
+    Route::post('/prijava/', 'StudentController@storePrijavaIspita');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

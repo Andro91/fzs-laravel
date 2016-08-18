@@ -1,8 +1,7 @@
 @extends('layouts.layout')
-@section('page_heading',"Активни студенти мастер студија")
+@section('page_heading','Пријава испита')
 @section('section')
-
-<div class="col-sm-12 col-lg-10">
+    <a href="{{$putanja}}/prijava/create/{{$kandidat->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава</a>
     <div id="messages">
         @if (Session::get('flash-error'))
             <div class="alert alert-dismissible alert-danger">
@@ -30,43 +29,41 @@
             </div>
         @endif
     </div>
-    <ul class="nav nav-pills">
-        @foreach($studijskiProgrami as $program)
-            <li role="presentation"
-                    {{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>
-                <a href="?studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>
-            </li>
-        @endforeach
-    </ul>
     <hr>
-        <table id="tabela" class="table">
-            <thead>
+    <table id="tabela" class="table">
+        <thead>
+        <tr>
+            <th>Кандидат</th>
+            <th>Број Индекса</th>
+            <th>Предмет</th>
+            <th>Рок</th>
+            <th>Број Полагања</th>
+            <th>Датум</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($prijave as $index => $prijava)
             <tr>
-                <th>Име</th>
-                <th>Презиме</th>
-                <th>ЈМБГ</th>
-                <th>Број Индекса</th>
-                <th>Измена</th>
+                <td>{{$kandidat->imeKandidata . " " . $kandidat->prezimeKandidata}}</td>
+                <td>{{$kandidat->brojIndeksa}}</td>
+                <td>{{$prijava->predmet}}</td>
+                <td>{{$prijava->rok}}</td>
+                <td>{{$prijava->brojPolaganja}}</td>
+                <td>{{$prijava->datum}}</td>
+                <td>
+                    {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
+                    {{--<a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"--}}
+                       {{--onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>--}}
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach($studenti as $index => $kandidat)
-                <tr>
-                    <td>{{$kandidat->imeKandidata}}</td>
-                    <td>{{$kandidat->prezimeKandidata}}</td>
-                    <td>{{$kandidat->jmbg}}</td>
-                    <td>{{$kandidat->brojIndeksa}}</td>
-                    <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
-                        <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        @endforeach
+        </tbody>
+    </table>
     <br>
     <br>
-</div>
-    <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection
+
+
+
