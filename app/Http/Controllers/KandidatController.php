@@ -861,8 +861,10 @@ class KandidatController extends Controller
         }else{
             $kandidat->upisan = 1;
 
-            UpisGodine::uplatiGodinu($id, 1);
-            UpisGodine::upisiGodinu($id, 1);
+            if($kandidat->tipStudija_id == 1){
+                UpisGodine::uplatiGodinu($id, 1);
+                UpisGodine::upisiGodinu($id, 1);
+            }
 
             $saved = $kandidat->save();
             if($saved){
@@ -888,6 +890,7 @@ class KandidatController extends Controller
 
             UpisGodine::uplatiGodinu($kandidatId, 1);
         }
+        return \Redirect::back();
         return redirect('/kandidat/');
     }
 
@@ -901,6 +904,7 @@ class KandidatController extends Controller
 
             UpisGodine::upisiGodinu($kandidatId, 1);
         }
+        return \Redirect::back();
         return redirect('/kandidat/');
     }
 
@@ -913,6 +917,7 @@ class KandidatController extends Controller
             $kandidat->save();
 
         }
+        return \Redirect::back();
         return redirect('/master/');
     }
 
@@ -924,7 +929,9 @@ class KandidatController extends Controller
             $kandidat->upisan = 1;
             $kandidat->save();
 
+            UpisGodine::generisiBrojIndeksa($kandidatId);
         }
+        return \Redirect::back();
         return redirect('/master/');
     }
 }

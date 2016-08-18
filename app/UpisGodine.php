@@ -52,6 +52,7 @@ class UpisGodine extends Model
         $upis->save();
     }
 
+
     public static function upisiGodinu($id, $godina)
     {
         $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
@@ -60,6 +61,41 @@ class UpisGodine extends Model
 
         $kandidat = Kandidat::find($id);
         $kandidat->godinaStudija_id = $godina;
+        $kandidat->save();
+
+        if($godina == 1){
+            UpisGodine::generisiBrojIndeksa($kandidat->id);
+        }
+    }
+
+    public static function generisiBrojIndeksa($kandidatId)
+    {
+        $kandidat = Kandidat::find($kandidatId);
+        $arhivIndeksa = ArhivIndeksa::where(['tipStudija_id' => $kandidat->tipStudija_id, 'skolskaGodinaUpisa_id' => $kandidat->skolskaGodinaUpisa_id ])->first();
+        if($arhivIndeksa == null){
+            $prviZapis = new ArhivIndeksa();
+            $prviZapis->tipStudija_id = 1;
+            $prviZapis->skolskaGodinaUpisa_id = $kandidat->skolskaGodinaUpisa_id;
+            $prviZapis->indeks = 1;
+            $prviZapis->save();
+            $poslednjiBrojIndeksa = 1;
+        }else{
+            $poslednjiBrojIndeksa = $arhivIndeksa->indeks;
+            $arhivIndeksa->indeks++;
+            $arhivIndeksa->save();
+        }
+
+        $noviBrojIndeksa = $poslednjiBrojIndeksa + 1;
+
+        switch(strlen($noviBrojIndeksa)){
+            case 1 : $noviBrojIndeksa = '00' . $noviBrojIndeksa; break;
+            case 2 : $noviBrojIndeksa = '0' .  $noviBrojIndeksa; break;
+            case 3 : break;
+        }
+
+        $skolskaGodina = SkolskaGodUpisa::find($kandidat->skolskaGodinaUpisa_id)->naziv;
+        $brojIndeksa = 1 . $noviBrojIndeksa . '/' . substr($skolskaGodina,0,4);
+        $kandidat->brojIndeksa = $brojIndeksa;
         $kandidat->save();
     }
 }

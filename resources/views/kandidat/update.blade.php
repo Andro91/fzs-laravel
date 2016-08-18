@@ -78,6 +78,12 @@
                             <h3 class="panel-title">Основни подаци</h3>
                         </div>
                         <div class="panel-body">
+                            @if(!empty($kandidat->brojIndeksa))
+                                <div class="form-group">
+                                    <label for="ImeKandidata">Број Индекса</label>
+                                    <strong>{{ $kandidat->brojIndeksa }}</strong>
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label for="ImeKandidata">Име кандидата</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"

@@ -58,7 +58,7 @@
                     <td>{{$kandidat->prezimeKandidata}}</td>
                     <td>{{$kandidat->jmbg}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
                         <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
                            onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
                     </td>

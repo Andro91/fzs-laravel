@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Измена података кандидата за мастер студије')
+@section('page_heading',$kandidat->upisan == 0 ? 'Измена података кандидата за мастер студије' : "Измена података активног студента мастер студија")
 @section('section')
     <div class="col-sm-12" style="margin-bottom: 5%">
         <div class="row">
@@ -50,6 +50,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="SkolskeGodineUpisa">Школска година:</label>
+                                <select class="form-control" id="SkolskeGodineUpisa" name="SkolskeGodineUpisa">
+                                    @foreach($skolskeGodineUpisa as $item)
+                                        <option value="{{ $item->id }}" {{ ($kandidat->skolskaGodinaUpisa_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="form-group">
                                 <label for="uplata">
@@ -76,6 +84,12 @@
                             <h3 class="panel-title">Основни подаци</h3>
                         </div>
                         <div class="panel-body">
+                            @if(!empty($kandidat->brojIndeksa))
+                                <div class="form-group">
+                                    <label for="ImeKandidata">Број Индекса</label>
+                                    <strong>{{ $kandidat->brojIndeksa }}</strong>
+                                </div>
+                            @endif
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="ImeKandidata">Име кандидата</label>
                                 <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata" value="{{ $kandidat->imeKandidata }}">
