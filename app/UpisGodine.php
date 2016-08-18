@@ -74,7 +74,7 @@ class UpisGodine extends Model
         $arhivIndeksa = ArhivIndeksa::where(['tipStudija_id' => $kandidat->tipStudija_id, 'skolskaGodinaUpisa_id' => $kandidat->skolskaGodinaUpisa_id ])->first();
         if($arhivIndeksa == null){
             $prviZapis = new ArhivIndeksa();
-            $prviZapis->tipStudija_id = 1;
+            $prviZapis->tipStudija_id = $kandidat->tipStudija_id;
             $prviZapis->skolskaGodinaUpisa_id = $kandidat->skolskaGodinaUpisa_id;
             $prviZapis->indeks = 1;
             $prviZapis->save();
@@ -94,7 +94,7 @@ class UpisGodine extends Model
         }
 
         $skolskaGodina = SkolskaGodUpisa::find($kandidat->skolskaGodinaUpisa_id)->naziv;
-        $brojIndeksa = 1 . $noviBrojIndeksa . '/' . substr($skolskaGodina,0,4);
+        $brojIndeksa = $kandidat->tipStudija_id . $noviBrojIndeksa . '/' . substr($skolskaGodina,0,4);
         $kandidat->brojIndeksa = $brojIndeksa;
         $kandidat->save();
     }

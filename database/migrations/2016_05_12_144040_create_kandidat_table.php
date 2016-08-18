@@ -40,7 +40,7 @@ class CreateKandidatTable extends Migration
             $table->double('brojBodovaSkola')->nullable();
             $table->double('prosecnaOcena')->nullable();
             $table->string('upisniRok')->nullable();
-            $table->string('brojIndeksa')->nullable();
+            $table->string('brojIndeksa')->nullable()->unique();
             $table->integer('skolskaGodinaUpisa_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();
             $table->integer('studijskiProgram_id')->unsigned()->index();

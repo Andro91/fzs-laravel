@@ -870,6 +870,8 @@ class KandidatController extends Controller
             if($kandidat->tipStudija_id == 1){
                 UpisGodine::uplatiGodinu($id, 1);
                 UpisGodine::upisiGodinu($id, 1);
+            }else if($kandidat->tipStudija_id == 2){
+                UpisGodine::generisiBrojIndeksa($kandidat->id);
             }
 
             $saved = $kandidat->save();
