@@ -230,8 +230,15 @@ Route::get('tipPrijave/{tip}/delete', 'TipPrijaveController@delete');
 Route::get('/profesor/{profesor}/edit', 'ProfesorController@edit');
 Route::patch('profesor/{profesor}', 'ProfesorController@update');
 Route::get('profesor/{profesor}/delete', 'ProfesorController@delete');
+Route::get('profesor/{predmet}/deletePredmet', 'ProfesorController@deletePredmet');
+Route::get('/profesor/{profesor}/addPredmet', 'ProfesorController@addPredmet');
+Route::post('profesor/addPredmetUnos', 'ProfesorController@addPredmetUnos');
+
+///izvestaji
 
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
+Route::get('/izvestaji/spiskoviStudenti', 'IzvestajiController@spiskoviStudenti');
+Route::post('izvestaji/spisakZaSmer', 'IzvestajiController@spisakZaSmer');
 
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');

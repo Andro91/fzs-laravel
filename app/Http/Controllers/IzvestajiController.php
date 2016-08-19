@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GodinaStudija;
 use App\Kandidat;
 use App\StudijskiProgram;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class IzvestajiController extends Controller
         {
 
         }*/
-        $view = View::make('sifarnici.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat);
+        $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat);
         //$ime = $region->naziv;
         //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
 
@@ -51,4 +52,45 @@ class IzvestajiController extends Controller
 
         //return back();
     }
+
+    public function spisakZaSmer(Request $request)
+    {
+        try {
+            //$kandidat = Kandidat::all();
+            //$program = StudijskiProgram::all();
+            $studenti = Kandidat::where(['upisan' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
+            if($studenti->first()) {
+                $program = $studenti->first()->program->naziv;
+            }
+            else {
+                $program = '';
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        //return $studenti;
+
+        $view = View::make('izvestaji.spisakSmer')->with('studenti', $studenti)->with('program', $program);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак кандидата');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
+    public function spiskoviStudenti()
+    {
+        try {
+            $program = StudijskiProgram::all();
+            $godina = GodinaStudija::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('izvestaji.spiskoviStudenti', compact('program', 'godina'));
+    }
+
 }

@@ -13,7 +13,7 @@ class PredmetSeeder extends Seeder
     {
         $predmet = new \App\Predmet();
 
-        $predmet->naziv = '???????????? ???????';
+        $predmet->naziv = 'Социологија';
         $predmet->semestarSlusanjaPredmeta = 1;
         $predmet->tipStudija_id = 1;
         $predmet->studijskiProgram_id = 1;

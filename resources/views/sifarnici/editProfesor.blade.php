@@ -67,19 +67,32 @@
             </form>
         </div>
         <div id="tabs-2">
+            <div class="btn-group">
+                <form class="btn" action="/profesor/{{$profesor->id}}/addPredmet">
+                    <input type="submit" class="btn btn-danger" value="Додај">
+                </form>
+            </div>
             <table id="tabela" class="table">
                 <thead>
                 <th>
                     Назив
                 </th>
+                <th>
+                    Облик наставе
+                </th>
+                <th>
+                    Семестар
+                </th>
                 </thead>
                 @foreach($predmeti as $predmet)
                     <tr>
                         <td>{{$predmet->predmet->naziv}}</td>
+                        <td>{{$predmet->oblik_nastave->naziv}}</td>
+                        <td>{{$predmet->semestar->naziv}}</td>
                         <td>
                             <div class="btn-group">
                                 <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"
-                                      class="btn" action="profesor/{{$profesor->id}}/delete">
+                                      class="btn" action="/profesor/{{$predmet->id}}/deletePredmet">
                                     <input type="submit" class="btn btn-danger" value="Обриши">
                                 </form>
                             </div>
