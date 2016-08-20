@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\GodinaStudija;
 use App\Kandidat;
+use App\Predmet;
 use App\StudijskiProgram;
 use Illuminate\Http\Request;
 use App\Region;
@@ -86,11 +87,25 @@ class IzvestajiController extends Controller
         try {
             $program = StudijskiProgram::all();
             $godina = GodinaStudija::all();
+            $predmeti = Predmet::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.spiskoviStudenti', compact('program', 'godina'));
+        return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti'));
+    }
+
+    public function potvrdeStudent(Kandidat $student)
+    {
+        try {
+            $program = StudijskiProgram::all();
+            $godina = GodinaStudija::all();
+            $predmeti = Predmet::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('izvestaji.potvrdeStudent', compact('program', 'godina', 'predmeti', 'student'));
     }
 
 }

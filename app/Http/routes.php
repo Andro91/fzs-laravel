@@ -244,6 +244,7 @@ Route::post('profesor/addPredmetUnos', 'ProfesorController@addPredmetUnos');
 Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima');
 Route::get('/izvestaji/spiskoviStudenti', 'IzvestajiController@spiskoviStudenti');
 Route::post('izvestaji/spisakZaSmer', 'IzvestajiController@spisakZaSmer');
+Route::get('izvestaji/potvrdeStudent/{student}', 'IzvestajiController@potvrdeStudent');
 
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
