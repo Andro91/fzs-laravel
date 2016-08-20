@@ -77,7 +77,7 @@
                             </div>
                         </a>
                         <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">
                             <div title="Брисање">
                                 <span class="fa fa-trash"></span>
                             </div>

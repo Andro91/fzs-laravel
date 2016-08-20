@@ -23,6 +23,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\SportskoAngazovanjeContoller;
 
@@ -555,9 +556,15 @@ class KandidatController extends Controller
 
         if($saved){
             Session::flash('flash-success', 'update');
+            if($kandidat->upisan == 1){
+                return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
+            }
             return redirect('/kandidat/');
         }else{
             Session::flash('flash-error', 'update');
+            if($kandidat->upisan == 1){
+                return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
+            }
             return redirect('/kandidat/');
         }
     }
@@ -814,9 +821,15 @@ class KandidatController extends Controller
 
         if($insertedId){
             Session::flash('flash-success', 'update');
+            if($kandidat->upisan == 1){
+                return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
+            }
             return redirect('/master/');
         }else{
             Session::flash('flash-error', 'update');
+            if($kandidat->upisan == 1){
+                return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
+            }
             return redirect('/master/');
         }
 
@@ -846,10 +859,10 @@ class KandidatController extends Controller
 
         if($deleted){
             Session::flash('flash-success', 'delete');
-            return redirect('/master/');
+            return \Redirect::back();
         }else{
             Session::flash('flash-error', 'delete');
-            return redirect('/master/');
+            return \Redirect::back();
         }
     }
 

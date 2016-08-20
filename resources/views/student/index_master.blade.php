@@ -57,9 +57,17 @@
                     <td>{{$kandidat->jmbg}}</td>
                     <td>{{$kandidat->brojIndeksa}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-warning" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">
+                            <div title="Измена">
+                                <span class="fa fa-edit"></span>
+                            </div>
+                        </a>
                         <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">
+                            <div title="Брисање">
+                                <span class="fa fa-trash"></span>
+                            </div>
+                        </a>
                     </td>
                 </tr>
             @endforeach

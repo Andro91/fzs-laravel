@@ -11,5 +11,5 @@ $(document).ready(function() {
     $.mask.definitions['q'] = '[0-3]';
     $.mask.definitions['w'] = '[0-9]';
     $.mask.definitions['e'] = '[0-1]';
-    $('#datum').mask("qw.ew.9999.");
+    $('.dateMask').mask("qw.ew.9999.");
 });

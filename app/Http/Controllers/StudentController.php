@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AktivniIpsitniRokovi;
 use App\GodinaStudija;
 use App\IspitniRok;
 use App\Predmet;
@@ -143,7 +144,8 @@ class StudentController extends Controller
         $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::all();
         $tipStudija = TipStudija::all();
-        $ispitniRok = IspitniRok::all();
+        //$ispitniRok = IspitniRok::all();
+        $ispitniRok = AktivniIpsitniRokovi::where(['indikatorAktivan' => 1])->get();
         $profesor = Profesor::all();
 
         return view('prijava.create', compact('kandidat', 'predmeti', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor'));

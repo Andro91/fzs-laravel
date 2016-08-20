@@ -10,11 +10,14 @@
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/bootstrap.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/datatables.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/jquery-ui.min.css') }}"/>
-<style>
-    .ui-accordion .ui-accordion-content{
-        padding: 0 0px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/jquery-ui.theme.min.css') }}"/>
+
+{{--FullCalendar plugin--}}
+<link rel='stylesheet' href="{{ URL::asset('/css/fullcalendar.min.css') }}" />
+<script src="{{ URL::asset('/js/moment.min.js') }}"></script>
+<script src="{{ URL::asset('/js/fullcalendar.min.js') }}"></script>
+<script src="{{ URL::asset('/js/lang/sr-cyrl.js') }}"></script>
+
 @section('body')
 
     <div id="wrapper">
@@ -51,7 +54,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-user"> </i>&nbsp;Кандидати<span
+                            <a href="#"><span class="fa fa-user"></span>&nbsp;Кандидати<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
@@ -64,7 +67,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Мастер кандидати<span
+                            <a href="#"><span class="fa fa-book"></span>&nbsp;Мастер кандидати<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*master/create') ? 'class="active"' : '') }}>
@@ -77,7 +80,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-education"> </i>&nbsp;Активни студенти<span
+                            <a href="#"><span class="fa fa-graduation-cap"></span>&nbsp;Активни студенти<span
                                         class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*student/index/1*') ? 'class="active"' : '') }}>
@@ -88,6 +91,16 @@
                                 </li>
                                 <li {{ (Request::is('*/izvestaji/spiskoviStudenti*') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/izvestaji/spiskoviStudenti' ) }}">Извештаји</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-calendar"></span>&nbsp;Испити<span
+                                        class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*kalendar/') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/kalendar/') }}">Календар</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

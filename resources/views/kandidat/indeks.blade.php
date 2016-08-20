@@ -59,9 +59,17 @@
                     <td>{{$kandidat->jmbg}}</td>
                     <td>{{ $kandidat->uplata ? 'Уплаћена' : 'Није уплаћена'}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">Измени</a>
+                        <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
+                            <div title="Измена">
+                                <span class="fa fa-edit"></span>
+                            </div>
+                        </a>
                         <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">
+                            <div title="Брисање">
+                                <span class="fa fa-trash"></span>
+                            </div>
+                        </a>
                         <a class="btn btn-success" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis"
                                 {{ $kandidat->uplata ? '' : 'disabled=disabled' }}>Упис кандидата</a>
                     </td>

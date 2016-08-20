@@ -128,9 +128,11 @@
                     </div>
 
                     <div class="form-group" style="width: 30%;">
-                        <label for="datum">Датум</label>
-                        <input id="datum" class="form-control" type="text" name="datum" value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}" />
+                        <label for="formatDatum">Датум</label>
+                        <input id="formatDatum" class="form-control dateMask" type="text" name="formatDatum" value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}" />
                     </div>
+
+                    <input type="hidden" name="datum" id="datum" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <div class="clearfix"></div>
                     <hr>
@@ -143,5 +145,21 @@
             </div>
         </div>
 </div>
+<script>
+    $( function() {
+        var formatDatum = $("#formatDatum");
+        formatDatum.datepicker({
+            dateFormat: 'dd.mm.yy.',
+            altField : "#datum",
+            altFormat: "yy-mm-dd"
+        });
+
+        formatDatum.on('input', function() {
+            var date = moment(formatDatum.val(), "dd.mm.yy");
+            $("#datum").val(date.format('YYYY-MM-DD'));
+        });
+    } );
+
+</script>
 <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
 @endsection

@@ -59,6 +59,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/prijava/', 'StudentController@storePrijavaIspita');
 
+    Route::get('/kalendar/', 'KalendarController@index');
+    Route::get('/kalendar/createRok/', 'KalendarController@createRok');
+    Route::post('/kalendar/storeRok/', 'KalendarController@storeRok');
+    Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {
