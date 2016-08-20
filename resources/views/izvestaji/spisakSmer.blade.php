@@ -14,13 +14,13 @@
         <thead>
         <tr>
             <th style="border: 1px solid black;">
-                Име
+                <b>Име</b>
             </th>
             <th style="border: 1px solid black;">
-                Презиме
+                <b>Презиме</b>
             </th>
             <th style="border: 1px solid black;">
-                Број бодова
+                <b>Број бодова</b>
             </th>
         </tr>
         </thead>
@@ -43,18 +43,18 @@
 <br/>
 <br/>
 <div>
-    <!--<table>
+    <table>
         <tr>
             <td></td>
             <td></td>
-            <td>Председник комисије</td>
+            <td>Одговорно лице</td>
         </tr>
         <tr>
             <td></td>
             <td style="padding-bottom: 10px;"></td>
             <td style="border-bottom: 1px solid black;"></td>
         </tr>
-    </table>-->
+    </table>
 </div>
 
 

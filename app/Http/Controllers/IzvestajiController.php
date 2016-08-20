@@ -54,6 +54,26 @@ class IzvestajiController extends Controller
         //return back();
     }
 
+    public function spisakPoSmerovimaAktivni()
+    {
+        //$region->delete();
+        try {
+            $kandidat = Kandidat::where(['upisan' => 1])->get();
+            $program = StudijskiProgram::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.spisakSvihStudenata')->with('studijskiProgram', $program)->with('kandidat', $kandidat);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената по модулима');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
     public function spisakZaSmer(Request $request)
     {
         try {
@@ -106,6 +126,30 @@ class IzvestajiController extends Controller
         }
 
         return view('izvestaji.potvrdeStudent', compact('program', 'godina', 'predmeti', 'student'));
+    }
+
+    public function uverenjeOstecenomObrazovanju(Request $request)
+    {
+        try {
+            //$kandidat = Kandidat::all();
+            //$program = StudijskiProgram::all();
+            $student = Kandidat::where(['id' => $request->id])->get();
+            $program = $student->program->naziv;
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        //return $studenti;
+
+        $view = View::make('izvestaji.spisakSmer')->with('student', $student)->with('program', $program);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак кандидата');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
     }
 
 }

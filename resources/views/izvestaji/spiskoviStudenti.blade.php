@@ -6,7 +6,7 @@
     <div class="col-sm-12 col-lg-12">
 
         <div class="col-sm-12 col-lg-4">
-            <form role="form" method="post" action="{{ url('/izvestaji/spisakZaSmer/') }}">
+            <form role="form" target="_blank" method="post" action="{{ url('/izvestaji/spisakZaSmer/') }}">
                 {{csrf_field()}}
 
                 <div class="panel panel-success">
@@ -37,13 +37,16 @@
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
+                        <div class="form-group pull-left" style="width: 25%;">
+                            <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/spisakPoSmerovimaAktivni">Сви</a>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
 
         <div class="col-sm-12 col-lg-4">
-            <form role="form" method="post" action="{{ url('/izvestaji/spisakZaPredmet/') }}">
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakZaPredmet/') }}">
                 {{csrf_field()}}
 
                 <div class="panel panel-success">

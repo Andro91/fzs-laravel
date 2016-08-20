@@ -4,7 +4,7 @@
 <hr>
 
 <div>
-    <h1 style="padding-bottom: 100px;">Списак кандидата</h1>
+    <h1 style="padding-bottom: 100px;">Списак студената</h1>
     <br/>
     <br/>
 
@@ -50,7 +50,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td>Председник комисије</td>
+            <td>Одговорно лице</td>
         </tr>
         <tr>
             <td></td>
