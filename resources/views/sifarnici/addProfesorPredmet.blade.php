@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="predmet_id">Предмет:</label>
-                        <select class="form-control" id="predmet_id" name="predmet_id">
+                        <select class="form-control auto-combobox" id="predmet_id" name="predmet_id">
                             @foreach($predmet as $predmet)
                                 <option value="{{$predmet->id}}">{{$predmet->naziv}}</option>
                             @endforeach
@@ -46,5 +46,8 @@
             </div>
         </form>
     </div>
+
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
+
 
 @endsection

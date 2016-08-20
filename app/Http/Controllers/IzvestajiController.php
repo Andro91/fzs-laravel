@@ -80,10 +80,9 @@ class IzvestajiController extends Controller
             //$kandidat = Kandidat::all();
             //$program = StudijskiProgram::all();
             $studenti = Kandidat::where(['upisan' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
-            if($studenti->first()) {
+            if ($studenti->first()) {
                 $program = $studenti->first()->program->naziv;
-            }
-            else {
+            } else {
                 $program = '';
             }
         } catch (\Illuminate\Database\QueryException $e) {
@@ -151,5 +150,32 @@ class IzvestajiController extends Controller
         PDF::WriteHtml($contents);
         PDF::Output('Spisak.pdf');
     }
+
+    public function spisakPoPredmetima(Request $request)
+    {
+        //$region->delete();
+        try {
+            $predmet = Predmet::where(['id' => $request->predmet])->get();
+
+            //return $predmet->id;
+
+            $studenti = Kandidat::where(['upisan' => 1, 'studijskiProgram_id' => $predmet->first()->studijskiProgram_id])->get();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+
+
+        $view = View::make('izvestaji.spisakPoPredmetima')->with('studenti', $studenti)->with('predmet', $predmet->first()->naziv);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената по предмету');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
 
 }

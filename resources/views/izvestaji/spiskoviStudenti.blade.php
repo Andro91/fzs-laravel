@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-sm-12 col-lg-4">
-            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakZaPredmet/') }}">
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoPredmetima/') }}">
                 {{csrf_field()}}
 
                 <div class="panel panel-success">
