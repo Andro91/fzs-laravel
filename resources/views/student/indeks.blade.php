@@ -85,7 +85,7 @@
                         <a class="btn btn-primary" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
                             Школарина и упис
                         </a>
-                        <a class="btn btn-primary" href="{{$putanja}}/prijava/create/{{ $kandidat->id }}">
+                        <a class="btn btn-primary" href="{{$putanja}}/prijava/{{ $kandidat->id }}">
                             Пријава испита
                         </a>
                         <a class="btn btn-primary" href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">

@@ -102,6 +102,9 @@
                                 <li {{ (Request::is('*kalendar/') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/kalendar/') }}">Календар</a>
                                 </li>
+                                <li {{ (Request::is('*predmeti/') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/predmeti/') }}">Предмети</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
