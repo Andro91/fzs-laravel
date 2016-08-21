@@ -385,6 +385,9 @@
                                         <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
+                                    <div class="form-group" style="width: 25%;">
+                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за диплому</a>
+                                    </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
                                     {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}
