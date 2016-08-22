@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Diploma;
 use App\GodinaStudija;
 use App\Kandidat;
 use App\Predmet;
@@ -125,6 +126,36 @@ class IzvestajiController extends Controller
         }
 
         return view('izvestaji.potvrdeStudent', compact('program', 'godina', 'predmeti', 'student'));
+    }
+
+    public function diplomaUnos(Kandidat $student)
+    {
+        try {
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('izvestaji.diplomaUnos', compact('student'));
+    }
+
+    public function diplomaAdd(Request $request)
+    {
+        $diploma = new Diploma();
+        $diploma->kandidat_id = $request->id;
+        $diploma->broj = $request->broj;
+        $diploma->datumOdbrane = $request->datumOdbrane;
+        $diploma->ocenaOpis = $request->ocenaOpis;
+        $diploma->ocenaBroj = $request->ocenaBroj;
+        $diploma->lice = $request->lice;
+        $diploma->funkcija = $request->funkcija;
+
+        try {
+            $diploma->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return Redirect::to('/kandidat/' . $request->id . '/edit');
     }
 
     public function uverenjeOstecenomObrazovanju(Request $request)
