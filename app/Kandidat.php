@@ -27,4 +27,19 @@ class Kandidat extends Model
     {
         return $this->hasMany(PrijavaIspita::class);
     }
+
+    public function mestoRodjenja()
+    {
+        return $this->belongsTo(Opstina::class, 'mestoRodjenja_id');
+    }
+
+    public function godinaUpisa()
+    {
+        return $this->belongsTo(SkolskaGodUpisa::class, 'skolskaGodinaUpisa_id');
+    }
+
+    public function godinaStudija()
+    {
+        return $this->belongsTo(GodinaStudija::class, 'godinaStudija_id');
+    }
 }
