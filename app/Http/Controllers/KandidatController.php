@@ -71,7 +71,7 @@ class KandidatController extends Controller
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Region::all();
+        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
