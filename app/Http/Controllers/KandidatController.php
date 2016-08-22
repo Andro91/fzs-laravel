@@ -68,7 +68,7 @@ class KandidatController extends Controller
      */
     public function create()
     {
-        $mestoRodjenja = Region::all();
+        $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Region::all();
