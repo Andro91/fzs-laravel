@@ -32,6 +32,9 @@
             Република Србија, уписан школске {{$student->godinaUpisa->naziv}} у {{$student->godinaStudija->nazivSlovimaUPadezu}} годину, тип студија {{$student->program->tipStudija->naziv}}.
         </p>
 
+        <p>
+            ТЕСТ
+        </p>
 
         <br/>
         <br/>
