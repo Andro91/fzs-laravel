@@ -30,24 +30,46 @@
                 <form role="form" method="post" action="{{ url('/prijava') }}">
                     {{ csrf_field() }}
 
+                    <div class="form-group" style="width: 50%;">
+                        <label for="tipPrijave_id">Тип пријаве</label>
+                        <select class="form-control" id="tipPrijave_id" name="tipPrijave_id">
+                            @foreach($tipPrijave as $item)
+                                <option value="{{ $item->id }}">{{ $item->naziv }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     @if(!empty($kandidat))
                         <input type="hidden" name="kandidat_id" value="{{ $kandidat->id }}">
 
-                        <div class="form-group" style="width: 30%;">
+                        {{--<div class="form-group" style="width: 30%;">--}}
+                            {{--<label for="brojIndeksa">Број Индекса</label>--}}
+                            {{--<input id="brojIndeksa" class="form-control" type="text" name="brojIndeksa"--}}
+                                   {{--value="{{ $kandidat->brojIndeksa }}" />--}}
+                        {{--</div>--}}
+
+                        <div class="form-group pull-left" style="width: 30%;">
                             <label for="brojIndeksa">Број Индекса</label>
-                            <input id="brojIndeksa" class="form-control" type="text" name="brojIndeksa"
-                                   value="{{ $kandidat->brojIndeksa }}"/>
+                            <select class="form-control auto-combobox" id="brojIndeksa" name="brojIndeksa">
+                                @foreach($brojeviIndeksa as $item)
+                                    <option value="{{ $item->id }}" {{ ($kandidat->studijskiProgram_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group pull-left">
+                            <label for="asdasd">&nbsp;</label><br>
+                            <button type="button" name="" id="asdasd" class="btn btn-success"><span style="font-size: 20px" class="fa fa-check"></span></button>
                         </div>
 
-                        <div class="form-group" style="width: 30%;">
+                        <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                             <label for="jmbg">ЈМБГ</label>
                             <input id="jmbg" class="form-control" type="text" name="jmbg"
-                                   value="{{ $kandidat->jmbg }}"/>
+                                   value="{{ $kandidat->jmbg }}" disabled/>
                         </div>
 
-                        <div class="form-group" style="width: 50%;">
+                        <div class="form-group pull-left" style="width: 50%;">
                             <label for="StudijskiProgram">Студијски програм</label>
-                            <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
+                            <select class="form-control" id="StudijskiProgram" name="StudijskiProgram" disabled>
                                 @foreach($studijskiProgram as $item)
                                     <option value="{{ $item->id }}" {{ ($kandidat->studijskiProgram_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
@@ -57,19 +79,19 @@
                         <div class="form-group pull-left" style="width: 40%; margin-right: 2%">
                             <label for="imeKandidata">Име</label>
                             <input id="imeKandidata" class="form-control" type="text" name="imeKandidata"
-                                   value="{{ $kandidat->imeKandidata }}"/>
+                                   value="{{ $kandidat->imeKandidata }}" disabled/>
                         </div>
 
                         <div class="form-group pull-left" style="width: 40%;">
                             <label for="prezimeKandidata">Презиме</label>
                             <input id="prezimeKandidata" class="form-control" type="text" name="prezimeKandidata"
-                                   value="{{ $kandidat->prezimeKandidata }}"/>
+                                   value="{{ $kandidat->prezimeKandidata }}" disabled/>
                         </div>
 
                         <div class="clearfix"></div>
                         <hr>
 
-                        <div class="form-group" style="width: 80%;">
+                        <div class="form-group" style="width: 50%;">
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
                                 @foreach($predmeti as $item)
@@ -78,28 +100,27 @@
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 48%;  margin-right: 2%">
+                        <div class="form-group pull-left" style="width:30%;  margin-right: 2%">
                             <label for="tipPredmeta_id">Тип предмета:</label>
-                            <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
+                            <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id" disabled>
                                 @foreach($tipPredmeta as $tip)
                                     <option value="{{$tip->id}}">{{$tip->naziv}}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 48%; margin-right: 2%;">
+                        <div class="form-group pull-left" style="width: 10%; margin-right: 2%;">
                             <label for="godinaStudija_id">Година студија</label>
-                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id"
-                                    style="max-width: 40%">
+                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id" disabled>
                                 @foreach($godinaStudija as $item)
                                     <option value="{{ $item->id }}" {{ ($kandidat->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 50%;">
+                        <div class="form-group pull-left" style="width: 40%;">
                             <label for="tipStudija_id">Тип студија:</label>
-                            <select class="form-control" id="tipStudija_id" name="tipStudija_id">
+                            <select class="form-control" id="tipStudija_id" name="tipStudija_id" disabled>
                                 @foreach($tipStudija as $tip)
                                     <option value="{{$tip->id}}" {{ ($kandidat->tipStudija_id == $tip->id ? "selected":"") }}>{{$tip->naziv}}</option>
                                 @endforeach
@@ -111,9 +132,9 @@
 
                         <div class="form-group" style="width: 80%;">
                             <label for="profesor_id">Професор</label>
-                            <select class="form-control" id="tipStudija_id" name="tipStudija_id">
+                            <select class="form-control" id="profesor_id" name="profesor_id">
                                 @foreach($profesor as $tip)
-                                    <option value="{{$tip->id}}">{{$tip->naziv}}</option>
+                                    <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -141,12 +162,12 @@
                             <button type="button" name="" id="asdasd" class="btn btn-success"><span style="font-size: 20px" class="fa fa-check"></span></button>
                         </div>
 
-                        <div class="form-group" style="width: 30%;">
+                        <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                             <label for="jmbg">ЈМБГ</label>
                             <input id="jmbg" class="form-control" type="text" name="jmbg" value="" />
                         </div>
 
-                        <div class="form-group" style="width: 50%;">
+                        <div class="form-group pull-left" style="width: 50%;">
                             <label for="StudijskiProgram">Студијски програм</label>
                             <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
                                 @foreach($studijskiProgram as $item)
@@ -175,24 +196,23 @@
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 48%;  margin-right: 2%">
+                        <div class="form-group pull-left" style="width: 40%;  margin-right: 2%">
                             <label for="tipPredmeta_id">Тип предмета:</label>
                             <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
                                     <option value="{{$tipPredmeta->id}}" >{{$tipPredmeta->naziv}}</option>
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 48%; margin-right: 2%;">
+                        <div class="form-group pull-left" style="width: 10%; margin-right: 2%;">
                             <label for="godinaStudija_id">Година студија</label>
-                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id"
-                                    style="max-width: 40%">
+                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
                                 @foreach($godinaStudija as $item)
                                     <option value="{{ $item->id }}" {{ ($predmet->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="form-group" style="width: 50%;">
+                        <div class="form-group pull-left" style="width: 40%;">
                             <label for="tipStudija_id">Тип студија:</label>
                             <select class="form-control" id="tipStudija_id" name="tipStudija_id">
                                     <option value="{{$predmet->tipStudija->id}}" >{{$predmet->tipStudija->naziv}}</option>
@@ -213,7 +233,7 @@
                     @endif
 
 
-                    <div class="form-group pull-left" style="width: 40%; margin-right: 10%">
+                    <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="rok_id">Испитни рок</label>
                         <select class="form-control" id="rok_id" name="rok_id">
                             @foreach($ispitniRok as $tip)
@@ -222,12 +242,12 @@
                         </select>
                     </div>
 
-                    <div class="form-group pull-left" style="width: 30%;">
+                    <div class="form-group pull-left" style="width: 25%; margin-right: 2%">
                         <label for="brojPolaganja">Ипит полажем (редни број полагања)</label>
-                        <input id="brojPolaganja" class="form-control" type="text" name="brojPolaganja" value="" />
+                        <input id="brojPolaganja" class="form-control" type="text" name="brojPolaganja" value="" style="max-width: 30%" />
                     </div>
 
-                    <div class="form-group" style="width: 30%;">
+                    <div class="form-group pull-left" style="width: 20%;">
                         <label for="formatDatum">Датум</label>
                         <input id="formatDatum" class="form-control dateMask" type="text" name="formatDatum" value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}" />
                     </div>
@@ -246,6 +266,13 @@
             </div>
         </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <script>
     $(function(){
         var formatDatum = $("#formatDatum");

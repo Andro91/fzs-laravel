@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PrijavaIspita extends Model
 {
+    protected $table = 'prijava_ispita';
+
     protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum'];
 
     public function kandidat()
@@ -20,6 +22,6 @@ class PrijavaIspita extends Model
 
     public function rok()
     {
-        return $this->belongsTo(AktivniIpsitniRokovi::class, 'rok_id');
+        return $this->belongsTo(AktivniIspitniRokovi::class, 'rok_id');
     }
 }

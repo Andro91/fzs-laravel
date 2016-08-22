@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AktivniIpsitniRokovi;
+use App\AktivniIspitniRokovi;
 use App\GodinaStudija;
 use App\IspitniRok;
 use App\Predmet;
@@ -11,6 +11,7 @@ use App\Profesor;
 use App\ProfesorPredmet;
 use App\StudijskiProgram;
 use App\TipPredmeta;
+use App\TipPrijave;
 use App\TipStudija;
 use App\UpisGodine;
 use Illuminate\Http\Request;
@@ -147,6 +148,7 @@ class StudentController extends Controller
     public function createPrijavaIspita($id)
     {
         $kandidat = Kandidat::find($id);
+        $brojeviIndeksa = Kandidat::select('id','BrojIndeksa as naziv')->get();
         $predmeti = Predmet::where([
             'tipStudija_id' => $kandidat->tipStudija_id,
             'studijskiProgram_id' =>  $kandidat->studijskiProgram_id,
@@ -156,11 +158,12 @@ class StudentController extends Controller
         $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::all();
         $tipStudija = TipStudija::all();
-        //$ispitniRok = IspitniRok::all();
-        $ispitniRok = AktivniIpsitniRokovi::where(['indikatorAktivan' => 1])->get();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+        $tipPrijave = TipPrijave::all();
         $profesor = Profesor::all();
 
-        return view('prijava.create', compact('kandidat', 'predmeti', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor'));
+        return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmeti', 'studijskiProgram', 'godinaStudija',
+            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
 
     }
 
@@ -182,7 +185,6 @@ class StudentController extends Controller
 
     }
 
-
     public function prijavaIspitaPredmet(Request $request)
     {
         $tipStudija = TipStudija::all();
@@ -200,7 +202,7 @@ class StudentController extends Controller
         $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::find($predmet->tipPredmeta_id);
         $tipStudija = TipStudija::all();
-        $ispitniRok = AktivniIpsitniRokovi::where(['indikatorAktivan' => 1])->get();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
         $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first()->profesor_id;
         $profesor = Profesor::where(['id' => $profesorPredmet])->get();
         return view('prijava.create', compact('kandidat', 'predmet', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'brojeviIndeksa'));

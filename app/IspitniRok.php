@@ -10,6 +10,6 @@ class IspitniRok extends Model
 
     public function aktivniRokovi()
     {
-        return $this->hasMany(AktivniIpsitniRokovi::class);
+        return $this->hasMany(AktivniIspitniRokovi::class);
     }
 }

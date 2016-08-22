@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAktivniIpsitniRokovisTable extends Migration
+class CreateAktivniIspitniRokoviTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateAktivniIpsitniRokovisTable extends Migration
      */
     public function up()
     {
-        Schema::create('aktivni_ipsitni_rokovis', function (Blueprint $table) {
+        Schema::create('aktivni_ispitni_rokovi', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('rok_id');
             $table->string('naziv');
@@ -32,6 +32,6 @@ class CreateAktivniIpsitniRokovisTable extends Migration
      */
     public function down()
     {
-        Schema::drop('aktivni_ipsitni_rokovis');
+        Schema::drop('aktivni_ispitni_rokovi');
     }
 }

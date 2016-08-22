@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrijavaIspitasTable extends Migration
+class CreatePrijavaIspitaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePrijavaIspitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('prijava_ispitas', function (Blueprint $table) {
+        Schema::create('prijava_ispita', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kandidat_id');
             $table->integer('predmet_id');
@@ -20,6 +20,7 @@ class CreatePrijavaIspitasTable extends Migration
             $table->integer('rok_id');
             $table->integer('brojPolaganja');
             $table->date('datum');
+            $table->integer('tipPrijave_id');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreatePrijavaIspitasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('prijava_ispitas');
+        Schema::drop('prijava_ispita');
     }
 }
