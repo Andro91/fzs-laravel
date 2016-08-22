@@ -8,6 +8,7 @@ use App\IspitniRok;
 use App\Predmet;
 use App\PrijavaIspita;
 use App\Profesor;
+use App\ProfesorPredmet;
 use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\TipStudija;
@@ -57,7 +58,7 @@ class StudentController extends Controller
                 ->with('studijskiProgrami',$studijskiProgrami);
         }
 
-        return "Дошло је до грешке. Молимо вас покушајте поново.";
+        return "Дошло је до грешке. Молимо ва�? покушајте поново.";
     }
 
     public function upisStudenta($id)
@@ -132,6 +133,17 @@ class StudentController extends Controller
         return view('prijava.index', compact('kandidat','prijave'));
     }
 
+    public function svePrijaveIspitaZaPredmet($id)
+    {
+        $predmet = Predmet::find($id);
+        $prijave = $predmet->prijaveIspita()->get();
+//            ->join('predmet', 'prijava_ispitas.predmet_id', '=', 'predmet.id')
+//            ->join('ispitni_rok', 'prijava_ispitas.rok_id', '=', 'ispitni_rok.id')
+//            ->select('predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
+//        dd($predmet->prijaveIspita()->get());
+        return view('prijava.indexPredmet', compact('predmet','prijave'));
+    }
+
     public function createPrijavaIspita($id)
     {
         $kandidat = Kandidat::find($id);
@@ -158,11 +170,50 @@ class StudentController extends Controller
         $saved = $prijava->save();
 
         if($saved){
-            return redirect("/prijava/{$request->kandidat_id}");
+            if(!empty($request->prijava_za_predmet)){
+                return redirect("/prijava/zapredmet/{$request->predmet_id}");
+            }else{
+                return redirect("/prijava/{$request->kandidat_id}");
+            }
         }else{
             Session::flash('flash-error', 'create');
             return Redirect::back();
         }
 
     }
+
+
+    public function prijavaIspitaPredmet(Request $request)
+    {
+        $tipStudija = TipStudija::all();
+        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => $request->tipStudijaId, 'indikatorAktivan' => 1])->get();
+        $predmeti = Predmet::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
+        return view('prijava.predmeti', compact('tipStudija','studijskiProgrami','predmeti'));
+    }
+
+    public function prijavaIspitaZaPredmet($id)
+    {
+        $kandidat = null;
+        $brojeviIndeksa = Kandidat::select('id','BrojIndeksa as naziv')->get();
+        $predmet = Predmet::find($id);
+        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
+        $godinaStudija = GodinaStudija::all();
+        $tipPredmeta = TipPredmeta::find($predmet->tipPredmeta_id);
+        $tipStudija = TipStudija::all();
+        $ispitniRok = AktivniIpsitniRokovi::where(['indikatorAktivan' => 1])->get();
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first()->profesor_id;
+        $profesor = Profesor::where(['id' => $profesorPredmet])->get();
+        return view('prijava.create', compact('kandidat', 'predmet', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'brojeviIndeksa'));
+    }
+
+    public function vratiKandidataPrijava(Request $request)
+    {
+        return Kandidat::find($request->id);
+    }
+
+    public function vratiPredmetPrijava(Request $request)
+    {
+        return Kandidat::find($request->id);
+    }
+
 }

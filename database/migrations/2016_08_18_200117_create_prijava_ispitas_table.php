@@ -16,6 +16,7 @@ class CreatePrijavaIspitasTable extends Migration
             $table->increments('id');
             $table->integer('kandidat_id');
             $table->integer('predmet_id');
+            $table->integer('profesor_id');
             $table->integer('rok_id');
             $table->integer('brojPolaganja');
             $table->date('datum');

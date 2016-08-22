@@ -7,4 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class PrijavaIspita extends Model
 {
     protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum'];
+
+    public function kandidat()
+    {
+        return $this->belongsTo(Kandidat::class, 'kandidat_id');
+    }
+
+    public function predmet()
+    {
+        return $this->belongsTo(Predmet::class, 'predmet_id');
+    }
+
+    public function rok()
+    {
+        return $this->belongsTo(AktivniIpsitniRokovi::class, 'rok_id');
+    }
 }

@@ -27,4 +27,9 @@ class Predmet extends Model
     {
         return $this->belongsTo(TipPredmeta::class, 'tipPredmeta_id');
     }
+
+    public function prijaveIspita()
+    {
+        return $this->hasMany(PrijavaIspita::class);
+    }
 }

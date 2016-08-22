@@ -64,6 +64,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/kalendar/storeRok/', 'KalendarController@storeRok');
     Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
 
+    Route::get('/predmeti/', 'StudentController@prijavaIspitaPredmet');
+    Route::get('/prijava/predmet/{predmetId}', 'StudentController@prijavaIspitaZaPredmet');
+    Route::get('/prijava/zapredmet/{predmetId}', 'StudentController@svePrijaveIspitaZaPredmet');
+
+
+    Route::post('/prijava/vratiKandidataPrijava', 'StudentController@vratiKandidataPrijava');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

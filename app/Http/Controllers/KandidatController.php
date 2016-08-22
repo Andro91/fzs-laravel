@@ -10,6 +10,7 @@ use App\Mesto;
 use App\OpstiUspeh;
 use App\Opstina;
 use App\PrilozenaDokumenta;
+use App\Region;
 use App\SkolskaGodUpisa;
 use App\Sport;
 use App\SportskoAngazovanje;
@@ -67,10 +68,10 @@ class KandidatController extends Controller
      */
     public function create()
     {
-        $mestoRodjenja = Opstina::all();
+        $mestoRodjenja = Region::all();
         $krsnaSlava = KrsnaSlava::all();
         // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Opstina::all();
+        $mestoZavrseneSkoleFakulteta = Region::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
