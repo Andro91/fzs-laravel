@@ -60,7 +60,7 @@ class SemestarController extends Controller
         $semestar->naziv = $request->naziv;
         $semestar->nazivRimski = $request->nazivRimski;
         $semestar->nazivBrojcano = $request->nazivBrojcano;
-        if ($semestar->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $semestar->indikatorAktivan = 1;
         } else {
             $semestar->indikatorAktivan = 0;

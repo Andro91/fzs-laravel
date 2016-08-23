@@ -11,7 +11,7 @@ class StatusStudiranjaSeeder extends Seeder
      */
     public function run()
     {
-        $statusi = array('самогинансирајући', 'буџет', 'стипендија');
+        $statusi = array('самофинансирајући', 'буџет', 'стипендија');
 
         foreach ($statusi as $s) {
             $status= new \App\StatusStudiranja();

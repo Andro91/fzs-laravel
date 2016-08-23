@@ -94,7 +94,7 @@ class PredmetController extends Controller
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
         $predmet->tipPredmeta_id = $request->tipPredmeta_id;
-        if ($request->statusPredmeta == 'on') {
+        if ($request->statusPredmeta == 'on' || $request->statusPredmeta == 1) {
             $predmet->statusPredmeta = 1;
         } else {
             $predmet->statusPredmeta = 0;

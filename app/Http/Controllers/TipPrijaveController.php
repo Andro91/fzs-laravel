@@ -55,7 +55,11 @@ class TipPrijaveController extends Controller
     public function update(Request $request, TipPrijave $tip)
     {
         $tip->naziv = $request->naziv;
-        $tip->indikatorAktivan = 1;
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
+            $tip->indikatorAktivan = 1;
+        } else {
+            $tip->indikatorAktivan = 0;
+        }
 
         try {
             $tip->update();

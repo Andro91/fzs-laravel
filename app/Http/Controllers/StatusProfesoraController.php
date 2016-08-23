@@ -56,7 +56,11 @@ class StatusProfesoraController extends Controller
     public function update(Request $request, statusProfesora $status)
     {
         $status->naziv = $request->naziv;
-        $status->indikatorAktivan = 1;
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
+            $status->indikatorAktivan = 1;
+        } else {
+            $status->indikatorAktivan = 0;
+        }
 
 
         try {

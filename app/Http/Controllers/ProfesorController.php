@@ -88,7 +88,7 @@ class ProfesorController extends Controller
         $profesor->zvanje = $request->zvanje;
         $profesor->kabinet = $request->kabinet;
         $profesor->status_id = $request->status_id;
-        if ($request->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $profesor->indikatorAktivan = 1;
         } else {
             $profesor->indikatorAktivan = 0;

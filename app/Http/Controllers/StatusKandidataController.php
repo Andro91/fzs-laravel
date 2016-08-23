@@ -58,7 +58,7 @@ class StatusKandidataController extends Controller
     {
         $status->naziv = $request->naziv;
         $status->datum = date_create_from_format('d.m.Y.', $request->datum);
-        if ($status->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $status->indikatorAktivan = 1;
         } else {
             $status->indikatorAktivan = 0;

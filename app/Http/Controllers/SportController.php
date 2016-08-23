@@ -55,7 +55,7 @@ class SportController extends Controller
     public function update(Request $request, Sport $sport)
     {
         $sport->naziv = $request->naziv;
-        if ($request->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $sport->indikatorAktivan = 1;
         } else {
             $sport->indikatorAktivan = 0;

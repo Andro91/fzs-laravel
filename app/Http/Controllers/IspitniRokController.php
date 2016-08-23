@@ -19,7 +19,7 @@ class IspitniRokController extends Controller
         try {
             $ispitniRok = IspitniRok::all();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('sifarnici.ispitniRok', compact('ispitniRok'));
@@ -36,7 +36,7 @@ class IspitniRokController extends Controller
         try {
             $ispitniRok->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/ispitniRok');
@@ -64,7 +64,7 @@ class IspitniRokController extends Controller
         try {
             $ispitniRok->update();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return Redirect::to('/ispitniRok');
@@ -75,7 +75,7 @@ class IspitniRokController extends Controller
         try {
             $ispitniRok->delete();
         } catch (\Illuminate\Database\QueryException $e) {
-            dd('????? ?? ?? ???????????? ??????.' . $e->getMessage());
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return back();

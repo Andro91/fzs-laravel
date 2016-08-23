@@ -61,7 +61,7 @@ class BodovanjeController extends Controller
         $bodovanje->poeniMin = $request->poeniMin;
         $bodovanje->poeniMax = $request->poeniMax;
         $bodovanje->ocena = $request->ocena;
-        if ($bodovanje->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $bodovanje->indikatorAktivan = 1;
         } else {
             $bodovanje->indikatorAktivan = 0;

@@ -57,7 +57,7 @@ class OblikNastaveController extends Controller
     {
         $oblikNastave->naziv = $request->naziv;
         $oblikNastave->skrNaziv = $request->skrNaziv;
-        if ($oblikNastave->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $oblikNastave->indikatorAktivan = 1;
         } else {
             $oblikNastave->indikatorAktivan = 0;

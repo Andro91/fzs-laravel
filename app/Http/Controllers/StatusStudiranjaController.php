@@ -56,7 +56,11 @@ class StatusStudiranjaController extends Controller
     public function update(Request $request, StatusStudiranja $statusStudiranja)
     {
         $statusStudiranja->naziv = $request->naziv;
-        $statusStudiranja->indikatorAktivan = 1;
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
+            $statusStudiranja->indikatorAktivan = 1;
+        } else {
+            $statusStudiranja->indikatorAktivan = 0;
+        }
 
 
         try {

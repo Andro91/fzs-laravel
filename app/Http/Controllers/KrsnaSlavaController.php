@@ -56,7 +56,7 @@ class KrsnaSlavaController extends Controller
     {
         $krsnaSlava->naziv = $request->naziv;
         $krsnaSlava->datumSlave = $request->datumSlave;
-        if ($krsnaSlava->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $krsnaSlava->indikatorAktivan = 1;
         } else {
             $krsnaSlava->indikatorAktivan = 0;

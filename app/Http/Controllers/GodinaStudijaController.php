@@ -63,7 +63,7 @@ class GodinaStudijaController extends Controller
         $godinaStudija->nazivRimski = $request->nazivRimski;
         $godinaStudija->nazivSlovimaUPadezu = $request->nazivSlovimaUPadezu;
         $godinaStudija->redosledPrikazivanja = $request->redosledPrikazivanja;
-        if ($godinaStudija->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $godinaStudija->indikatorAktivan = 1;
         } else {
             $godinaStudija->indikatorAktivan = 0;

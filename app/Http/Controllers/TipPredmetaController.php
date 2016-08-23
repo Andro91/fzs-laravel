@@ -57,7 +57,7 @@ class TipPredmetaController extends Controller
     {
         $tipPredmeta->naziv = $request->naziv;
         $tipPredmeta->skrNaziv = $request->skrNaziv;
-        if ($tipPredmeta->indikatorAktivan == 'on') {
+        if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $tipPredmeta->indikatorAktivan = 1;
         } else {
             $tipPredmeta->indikatorAktivan = 0;
