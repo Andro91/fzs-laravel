@@ -230,7 +230,6 @@ class StudentController extends Controller
     {
         $predmet = Predmet::find($request->id);
         $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first();
-        echo $profesorPredmet->profesor_id;
         if($profesorPredmet == null){
             $profesori = Profesor::all();
         }else{
@@ -238,10 +237,10 @@ class StudentController extends Controller
         }
         $stringProfesori = "";
         foreach ($profesori as $item) {
-            //<option value='{$item->id}'>" . $item->zvanje . " " .$item->ime . " " . $item->prezime . "</option>
-            $stringProfesori .= "asdasd";
+            $stringProfesori .= "<option value='{$item->id}'>" . $item->zvanje . " " .$item->ime . " " . $item->prezime . "</option>";
         }
-        return ['predmet' => $predmet, 'profesor' => $stringProfesori];
+
+        return ['predmet' => $predmet, 'profesori' => $stringProfesori];
     }
 
 }

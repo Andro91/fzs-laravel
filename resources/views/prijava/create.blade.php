@@ -320,6 +320,9 @@
                     if(pathname.indexOf('/prijava/predmet/') == -1){
                         $('#predmet_id').html(result['predmeti']);
                     }
+                },
+                error: function(jqXHR, textStatus,errorThrown) {
+                    alert(errorThrown);
                 }
             });
         });
@@ -333,10 +336,10 @@
                     _token: $('input[name=_token]').val()
                 },
                 success: function(result){
-//                    $('#tipPredmeta_id').val(result['predmet'].tipPredmeta_id);
-//                    $('#godinaStudija_id').val(result['predmet'].godinaStudija_id);
-//                    $('#tipStudija_id').val(result['predmet'].tipStudija_id);
-//                    $('#profesor_id').html(result['profesori']);
+                    $('#tipPredmeta_id').val(result['predmet'].tipPredmeta_id);
+                    $('#godinaStudija_id').val(result['predmet'].godinaStudija_id);
+                    $('#tipStudija_id').val(result['predmet'].tipStudija_id);
+                    $('#profesor_id').html(result['profesori']);
                 },
                 error: function(jqXHR, textStatus,errorThrown) {
                     alert(errorThrown);
