@@ -54,22 +54,27 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/student/index/{tipStudijaId}/', 'StudentController@index');
 
-    Route::get('/prijava/{kandidatId}', 'StudentController@prijavaIspita');
-    Route::get('/prijava/create/{kandidatId}', 'StudentController@createPrijavaIspita');
-
-    Route::post('/prijava/', 'StudentController@storePrijavaIspita');
-
     Route::get('/kalendar/', 'KalendarController@index');
     Route::get('/kalendar/createRok/', 'KalendarController@createRok');
     Route::post('/kalendar/storeRok/', 'KalendarController@storeRok');
     Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
 
-    Route::get('/predmeti/', 'StudentController@prijavaIspitaPredmet');
-    Route::get('/prijava/predmet/{predmetId}', 'StudentController@prijavaIspitaZaPredmet');
+    //Spisak predmeta za prijavu ispita
+    Route::get('/predmeti/', 'StudentController@spisakPredmeta');
+
+    //Prijava za ispit preko studenta (INDEX i CREATE Student-Prijava)
+    Route::get('/prijava/zastudenta/{kandidatId}', 'StudentController@svePrijaveIspitaZaStudenta');
+    Route::get('/prijava/student/{kandidatId}', 'StudentController@createPrijavaIspitaStudent');
+
+    //(INDEX i CREATE Predmet-Prijava)
     Route::get('/prijava/zapredmet/{predmetId}', 'StudentController@svePrijaveIspitaZaPredmet');
+    Route::get('/prijava/predmet/{predmetId}', 'StudentController@createPrijavaIspitaPredmet');
 
+    Route::post('/prijava/', 'StudentController@storePrijavaIspita');
 
+    //AJAX pozivi sa prijave
     Route::post('/prijava/vratiKandidataPrijava', 'StudentController@vratiKandidataPrijava');
+    Route::post('/prijava/vratiPredmetPrijava', 'StudentController@vratiPredmetPrijava');
 
 });
 

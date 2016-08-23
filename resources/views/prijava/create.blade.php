@@ -56,7 +56,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group pull-left">
+                        <div class="form-group pull-left" style="margin-right: 50%">
                             <label for="asdasd">&nbsp;</label><br>
                             <button type="button" name="" id="asdasd" class="btn btn-success"><span style="font-size: 20px" class="fa fa-check"></span></button>
                         </div>
@@ -157,19 +157,19 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group pull-left">
+                        <div class="form-group pull-left"  style="margin-right: 50%">
                             <label for="asdasd">&nbsp;</label><br>
                             <button type="button" name="" id="asdasd" class="btn btn-success"><span style="font-size: 20px" class="fa fa-check"></span></button>
                         </div>
 
                         <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                             <label for="jmbg">ЈМБГ</label>
-                            <input id="jmbg" class="form-control" type="text" name="jmbg" value="" />
+                            <input id="jmbg" class="form-control" type="text" name="jmbg" value="" disabled/>
                         </div>
 
                         <div class="form-group pull-left" style="width: 50%;">
                             <label for="StudijskiProgram">Студијски програм</label>
-                            <select class="form-control" id="StudijskiProgram" name="StudijskiProgram">
+                            <select class="form-control" id="StudijskiProgram" name="StudijskiProgram" disabled>
                                 @foreach($studijskiProgram as $item)
                                     <option value="{{ $item->id }}" {{ ($predmet->studijskiProgram_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
@@ -178,18 +178,18 @@
 
                         <div class="form-group pull-left" style="width: 40%; margin-right: 2%">
                             <label for="imeKandidata">Име</label>
-                            <input id="imeKandidata" class="form-control" type="text" name="imeKandidata" value="" />
+                            <input id="imeKandidata" class="form-control" type="text" name="imeKandidata" value="" disabled/>
                         </div>
 
                         <div class="form-group pull-left" style="width: 40%;">
                             <label for="prezimeKandidata">Презиме</label>
-                            <input id="prezimeKandidata" class="form-control" type="text" name="prezimeKandidata" value="" />
+                            <input id="prezimeKandidata" class="form-control" type="text" name="prezimeKandidata" value="" disabled/>
                         </div>
 
                         <div class="clearfix"></div>
                         <hr>
 
-                        <div class="form-group" style="width: 80%;">
+                        <div class="form-group" style="width: 50%;">
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
                                     <option value="{{ $predmet->id }}">{{ $predmet->naziv }}</option>
@@ -198,14 +198,16 @@
 
                         <div class="form-group pull-left" style="width: 40%;  margin-right: 2%">
                             <label for="tipPredmeta_id">Тип предмета:</label>
-                            <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
-                                    <option value="{{$tipPredmeta->id}}" >{{$tipPredmeta->naziv}}</option>
+                            <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id" disabled>
+                                @foreach($tipPredmeta as $tip)
+                                    <option value="{{$tip->id}}" {{ ($predmet->tipPredmeta_id == $tip->id ? "selected":"") }}>{{$tip->naziv}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group pull-left" style="width: 10%; margin-right: 2%;">
                             <label for="godinaStudija_id">Година студија</label>
-                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
+                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id" disabled>
                                 @foreach($godinaStudija as $item)
                                     <option value="{{ $item->id }}" {{ ($predmet->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
@@ -214,7 +216,7 @@
 
                         <div class="form-group pull-left" style="width: 40%;">
                             <label for="tipStudija_id">Тип студија:</label>
-                            <select class="form-control" id="tipStudija_id" name="tipStudija_id">
+                            <select class="form-control" id="tipStudija_id" name="tipStudija_id" disabled>
                                     <option value="{{$predmet->tipStudija->id}}" >{{$predmet->tipStudija->naziv}}</option>
                             </select>
                         </div>
@@ -297,6 +299,7 @@
     });
 
     $(document).ready(function(){
+        var pathname = window.location.pathname;
         $('#asdasd').click(function () {
             $.ajax({
                 url: '{{$putanja}}/prijava/vratiKandidataPrijava',
@@ -306,16 +309,39 @@
                     _token: $('input[name=_token]').val()
                 },
                 success: function(result){
-                    $('#kandidat_id').val(result.id);
-                    $('#jmbg').val(result.jmbg);
-                    $('#imeKandidata').val(result.imeKandidata);
-                    $('#prezimeKandidata').val(result.prezimeKandidata);
+                    //Azuriranje Studenta
+                    $('#kandidat_id').val(result['student'].id);
+                    $('#jmbg').val(result['student'].jmbg);
+                    $('#imeKandidata').val(result['student'].imeKandidata);
+                    $('#prezimeKandidata').val(result['student'].prezimeKandidata);
+                    $('#studijskiProgram_id').val(result['student'].studijskiProgram_id);
+
+                    //Azuriranje Liste Predmeta
+                    if(pathname.indexOf('/prijava/predmet/') == -1){
+                        $('#predmet_id').html(result['predmeti']);
+                    }
                 }
             });
         });
 
         $('#predmet_id').change(function () {
-
+            $.ajax({
+                url: '{{$putanja}}/prijava/vratiPredmetPrijava',
+                type: 'post',
+                data:{
+                    id: $('#predmet_id').val(),
+                    _token: $('input[name=_token]').val()
+                },
+                success: function(result){
+//                    $('#tipPredmeta_id').val(result['predmet'].tipPredmeta_id);
+//                    $('#godinaStudija_id').val(result['predmet'].godinaStudija_id);
+//                    $('#tipStudija_id').val(result['predmet'].tipStudija_id);
+//                    $('#profesor_id').html(result['profesori']);
+                },
+                error: function(jqXHR, textStatus,errorThrown) {
+                    alert(errorThrown);
+                }
+            });
         });
     });
 </script>

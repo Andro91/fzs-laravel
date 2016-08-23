@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Пријава испита')
 @section('section')
-    <a href="{{$putanja}}/prijava/create/{{$kandidat->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава</a>
+    <a href="{{$putanja}}/prijava/student/{{$kandidat->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава</a>
     <div id="messages">
         @if (Session::get('flash-error'))
             <div class="alert alert-dismissible alert-danger">

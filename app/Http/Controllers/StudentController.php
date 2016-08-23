@@ -124,12 +124,12 @@ class StudentController extends Controller
         return redirect('/student/index/1');
     }
 
-    public function prijavaIspita($id)
+    public function svePrijaveIspitaZaStudenta($id)
     {
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()
-            ->join('predmet', 'prijava_ispitas.predmet_id', '=', 'predmet.id')
-            ->join('ispitni_rok', 'prijava_ispitas.rok_id', '=', 'ispitni_rok.id')
+            ->join('predmet', 'prijava_ispita.predmet_id', '=', 'predmet.id')
+            ->join('ispitni_rok', 'prijava_ispita.rok_id', '=', 'ispitni_rok.id')
             ->select('predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
         return view('prijava.index', compact('kandidat','prijave'));
     }
@@ -138,14 +138,10 @@ class StudentController extends Controller
     {
         $predmet = Predmet::find($id);
         $prijave = $predmet->prijaveIspita()->get();
-//            ->join('predmet', 'prijava_ispitas.predmet_id', '=', 'predmet.id')
-//            ->join('ispitni_rok', 'prijava_ispitas.rok_id', '=', 'ispitni_rok.id')
-//            ->select('predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
-//        dd($predmet->prijaveIspita()->get());
         return view('prijava.indexPredmet', compact('predmet','prijave'));
     }
 
-    public function createPrijavaIspita($id)
+    public function createPrijavaIspitaStudent($id)
     {
         $kandidat = Kandidat::find($id);
         $brojeviIndeksa = Kandidat::select('id','BrojIndeksa as naziv')->get();
@@ -159,12 +155,36 @@ class StudentController extends Controller
         $tipPredmeta = TipPredmeta::all();
         $tipStudija = TipStudija::all();
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
-        $tipPrijave = TipPrijave::all();
         $profesor = Profesor::all();
+        $tipPrijave = TipPrijave::all();
 
         return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmeti', 'studijskiProgram', 'godinaStudija',
             'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
 
+    }
+
+    public function createPrijavaIspitaPredmet($id)
+    {
+        $predmet = Predmet::find($id);
+        $kandidat = null;
+        $brojeviIndeksa = Kandidat::where([
+            'tipStudija_id' => $predmet->tipStudija_id,
+            'studijskiProgram_id' => $predmet->studijskiProgram_id])->select('id','BrojIndeksa as naziv')->get();
+        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
+        $godinaStudija = GodinaStudija::all();
+        $tipPredmeta = TipPredmeta::all();
+        $tipStudija = TipStudija::all();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first();
+        if($profesorPredmet == null){
+            $profesor = Profesor::all();
+        }else{
+            $profesor = Profesor::where(['id' => $profesorPredmet->profesor_id])->get();
+        }
+        $tipPrijave = TipPrijave::all();
+
+        return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmet', 'studijskiProgram', 'godinaStudija',
+            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
     }
 
     public function storePrijavaIspita(Request $request)
@@ -185,7 +205,7 @@ class StudentController extends Controller
 
     }
 
-    public function prijavaIspitaPredmet(Request $request)
+    public function spisakPredmeta(Request $request)
     {
         $tipStudija = TipStudija::all();
         $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => $request->tipStudijaId, 'indikatorAktivan' => 1])->get();
@@ -193,29 +213,35 @@ class StudentController extends Controller
         return view('prijava.predmeti', compact('tipStudija','studijskiProgrami','predmeti'));
     }
 
-    public function prijavaIspitaZaPredmet($id)
-    {
-        $kandidat = null;
-        $brojeviIndeksa = Kandidat::select('id','BrojIndeksa as naziv')->get();
-        $predmet = Predmet::find($id);
-        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
-        $godinaStudija = GodinaStudija::all();
-        $tipPredmeta = TipPredmeta::find($predmet->tipPredmeta_id);
-        $tipStudija = TipStudija::all();
-        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first()->profesor_id;
-        $profesor = Profesor::where(['id' => $profesorPredmet])->get();
-        return view('prijava.create', compact('kandidat', 'predmet', 'studijskiProgram', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'brojeviIndeksa'));
-    }
-
     public function vratiKandidataPrijava(Request $request)
     {
-        return Kandidat::find($request->id);
+        $kandidat = Kandidat::find($request->id);
+        $predmeti = Predmet::where(['tipStudija_id' => $kandidat->tipStudija_id, 'studijskiProgram_id' => $kandidat->studijskiProgram_id])->get();
+
+        $stringPredmeti = "";
+        foreach ($predmeti as $item) {
+            $stringPredmeti .= "<option value='{$item->id}'>{$item->naziv}</option>";
+        }
+
+        return ['student' => $kandidat, 'predmeti' => $stringPredmeti];
     }
 
     public function vratiPredmetPrijava(Request $request)
     {
-        return Kandidat::find($request->id);
+        $predmet = Predmet::find($request->id);
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first();
+        echo $profesorPredmet->profesor_id;
+        if($profesorPredmet == null){
+            $profesori = Profesor::all();
+        }else{
+            $profesori = Profesor::where(['id' => $profesorPredmet->profesor_id])->get();
+        }
+        $stringProfesori = "";
+        foreach ($profesori as $item) {
+            //<option value='{$item->id}'>" . $item->zvanje . " " .$item->ime . " " . $item->prezime . "</option>
+            $stringProfesori .= "asdasd";
+        }
+        return ['predmet' => $predmet, 'profesor' => $stringProfesori];
     }
 
 }
