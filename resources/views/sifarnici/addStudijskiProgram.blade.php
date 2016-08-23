@@ -18,8 +18,12 @@
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Скраћени назив:</label>
+                        <label for="skrNazivStudijskogPrograma">Скраћени назив:</label>
                         <input name="skrNazivStudijskogPrograma" type="text" class="form-control">
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="zvanje">Звање:</label>
+                        <input name="zvanje" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="tipStudija_id">Тип студијског програма:</label>

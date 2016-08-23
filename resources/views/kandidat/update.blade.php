@@ -386,13 +386,13 @@
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
                                     <div class="form-group" style="width: 15%;">
-                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за диплому</a>
+                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за уверење</a>
                                     </div>
                                     <br/>
                                     <br/>
                                     <div class="form-group" style="width: 15%;">
                                         <input type="hidden" value="{{$kandidat->id}}">
-                                        <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/diplomaStampa/">Штампа дипломе</a>
+                                        <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа уверења</a>
                                     </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}

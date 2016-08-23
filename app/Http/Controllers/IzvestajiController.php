@@ -199,11 +199,12 @@ class IzvestajiController extends Controller
         $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first());
 
         $contents = $view->render();
-        PDF::SetTitle('Диплома');
+        PDF::SetTitle('Уверење');
+        PDF::SetMargins(12,2,12,true);
         PDF::AddPage();
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
-        PDF::Output('Diploma.pdf');
+        PDF::Output('Uverenje.pdf');
     }
 
 

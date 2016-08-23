@@ -16,6 +16,7 @@ class CreateStudijskiProgramTable extends Migration
             $table->increments('id');
             $table->string('naziv');
             $table->string('skrNazivStudijskogPrograma');
+            $table->string('zvanje');
             $table->integer('tipStudija_id')->unsigned()->index();
             $table->integer('indikatorAktivan')->unsigned();
             $table->timestamps();

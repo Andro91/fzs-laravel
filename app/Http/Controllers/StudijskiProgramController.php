@@ -35,6 +35,7 @@ class StudijskiProgramController extends Controller
         $studijskiProgram->naziv = $request->naziv;
         $studijskiProgram->tipStudija_id = $request->tipStudija_id;
         $studijskiProgram->skrNazivStudijskogPrograma = $request->skrNazivStudijskogPrograma;
+        $studijskiProgram->zvanje = $request->zvanje;
         $studijskiProgram->indikatorAktivan = 1;
 
 
@@ -74,6 +75,7 @@ class StudijskiProgramController extends Controller
         $studijskiProgram->naziv = $request->naziv;
         $studijskiProgram->tipStudija_id = $request->tipStudija_id;
         $studijskiProgram->skrNazivStudijskogPrograma = $request->skrNazivStudijskogPrograma;
+        $studijskiProgram->zvanje = $request->zvanje;
         if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $studijskiProgram->indikatorAktivan = 1;
         } else {
