@@ -6,6 +6,7 @@ use App\Diploma;
 use App\GodinaStudija;
 use App\Kandidat;
 use App\Predmet;
+use App\Profesor;
 use App\StudijskiProgram;
 use Illuminate\Http\Request;
 use App\Region;
@@ -207,5 +208,18 @@ class IzvestajiController extends Controller
         PDF::Output('Uverenje.pdf');
     }
 
+    public function diplomskiUnos(Kandidat $student)
+    {
+        try {
+            $profesori = Profesor::all();
+            $predmeti = Predmet::all();
+            $programi = StudijskiProgram::where(['id' => $student->id])->get();
+            $program = $programi->first();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('izvestaji.diplomskiUnos', compact('profesori', 'predmeti', 'student', 'program'));
+    }
 
 }

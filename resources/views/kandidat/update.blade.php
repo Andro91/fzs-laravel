@@ -394,6 +394,11 @@
                                         <input type="hidden" value="{{$kandidat->id}}">
                                         <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа уверења</a>
                                     </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group" style="width: 15%;">
+                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Пријава дипломског</a>
+                                    </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
                                     {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}

@@ -262,6 +262,7 @@ Route::post('izvestaji/spisakPoPredmetima', 'IzvestajiController@spisakPoPredmet
 Route::get('izvestaji/{student}/diplomaUnos', 'IzvestajiController@diplomaUnos');
 Route::post('izvestaji/diplomaAdd', 'IzvestajiController@diplomaAdd');
 Route::get('izvestaji/diplomaStampa/{student}', 'IzvestajiController@diplomaStampa');
+Route::get('izvestaji/diplomskiUnos/{student}', 'IzvestajiController@diplomskiUnos');
 
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
