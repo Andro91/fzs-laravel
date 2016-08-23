@@ -23,29 +23,51 @@
                                 @endforeach
                             </select>
                         </div>
-                        <!--<div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+
+                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="naziv">Оцена описно:</label>
                             <input name="naziv" type="text" class="form-control">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="ocenaBroj">Оцена бројчано:</label>
                             <input name="ocenaBroj" type="text" class="form-control">
-                        </div>-->
+                        </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="naziv">Тема:</label>
                             <input name="naziv" type="text" class="form-control">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="mentor_id">Ментор:</label>
-                            <select class="form-control auto-combobox" id="mentor_id" name="predmet">
+                            <select class="form-control auto-combobox" id="mentor_id" name="mentor_id">
                                 @foreach($profesori as $profesori)
                                     <option value="{{$profesori->id}}">{{$profesori->ime}} {{$profesori->prezime}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <label for="clan_id">Члан комисије:</label>
+                            <select class="form-control auto-combobox" id="mentor_id" name="mentor_id">
+                                @foreach($clan as $clan)
+                                    <option value="{{$clan->id}}">{{$clan->ime}} {{$clan->prezime}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <label for="predsednik_id">Председник комисије:</label>
+                            <select class="form-control auto-combobox" id="predsednik_id" name="predsednik_id">
+                                @foreach($predsednik as $predsednik)
+                                    <option value="{{$predsednik->id}}">{{$predsednik->ime}} {{$predsednik->prezime}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumPrijave">Датум пријаве:</label>
                             <input name="datumPrijave" type="text" class="form-control">
+                        </div>
+                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                            <label for="datumOdbrane">Датум одбране:</label>
+                            <input name="datumOdbrane" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="panel-body">

@@ -212,6 +212,8 @@ class IzvestajiController extends Controller
     {
         try {
             $profesori = Profesor::all();
+            $clan = $profesori;
+            $predsednik = $profesori;
             $predmeti = Predmet::all();
             $programi = StudijskiProgram::where(['id' => $student->id])->get();
             $program = $programi->first();
@@ -219,7 +221,7 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.diplomskiUnos', compact('profesori', 'predmeti', 'student', 'program'));
+        return view('izvestaji.diplomskiUnos', compact('profesori', 'predmeti', 'student', 'program', 'clan', 'predsednik'));
     }
 
 }
