@@ -103,7 +103,10 @@
                                     <a href="{{ url ('/kalendar/') }}">Календар</a>
                                 </li>
                                 <li {{ (Request::is('*predmeti/') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('/predmeti/') }}">Предмети</a>
+                                    <a href="{{ url ('/predmeti/') }}">Пријава испита</a>
+                                </li>
+                                <li {{ (Request::is('*zapisnik/') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('/zapisnik/') }}">Записник о полагању испита</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
