@@ -9,6 +9,7 @@ use App\KrsnaSlava;
 use App\Mesto;
 use App\OpstiUspeh;
 use App\Opstina;
+use App\PrijavaIspita;
 use App\PrilozenaDokumenta;
 use App\Region;
 use App\SkolskaGodUpisa;
@@ -352,7 +353,7 @@ class KandidatController extends Controller
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
+        $studijskiProgram = StudijskiProgram::where(['tipStudija_id' => 1, 'indikatorAktivan' => 1])->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
@@ -580,6 +581,8 @@ class KandidatController extends Controller
         DB::transaction(function() use ($id){
             KandidatPrilozenaDokumenta::where(['kandidat_id' => $id])->delete();
             UpisGodine::where(['kandidat_id' => $id])->delete();
+            SportskoAngazovanje::where(['kandidat_id' => $id])->delete();
+            PrijavaIspita::where(['kandidat_id' => $id])->delete();
 
             $deleted = Kandidat::destroy($id);
 
@@ -745,7 +748,7 @@ class KandidatController extends Controller
         $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::all();
+        $studijskiProgram = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();

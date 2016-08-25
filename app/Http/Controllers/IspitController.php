@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\AktivniIspitniRokovi;
 use App\Kandidat;
+use App\PolozeniIspiti;
 use App\Predmet;
 use App\PrijavaIspita;
+use App\StatusIspita;
 use App\ZapisnikOPolaganju_Student;
+use App\ZapisnikOPolaganju_StudijskiProgram;
 use App\ZapisnikOPolaganjuIspita;
 use Illuminate\Http\Request;
 
@@ -69,6 +72,28 @@ class IspitController extends Controller
 
         return redirect('/zapisnik/');
 
+    }
+
+    public function deleteZapisnik($id)
+    {
+        ZapisnikOPolaganjuIspita::destroy($id);
+        ZapisnikOPolaganju_Student::where(['zapisnik_id' => $id])->delete();
+        ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $id])->delete();
+
+        return \Redirect::back();
+    }
+
+    public function pregledZapisnik($id)
+    {
+        $zapisnik = ZapisnikOPolaganjuIspita::find($id);
+        $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $id])->get();
+        $ids = array_map(function(ZapisnikOPolaganju_Student $o) { return $o->kandidat_id; }, $zapisnikStudent->all());
+        $studenti = Kandidat::whereIn('id', $ids)->get();
+        $studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $id])->get();
+        $statusIspita = StatusIspita::all();
+        $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $id])->get();
+
+        return view('ispit.pregledZapisnik', compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti'));
     }
 
 }
