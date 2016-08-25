@@ -13,6 +13,11 @@
             this._createShowAllButton();
         },
 
+        autocomplete : function(value) {
+            this.element.val(value);
+            this.input.val(value);
+        },
+
         _createAutocomplete: function() {
             var selected = this.element.children( ":selected" ),
                 value = selected.val() ? selected.text() : "";

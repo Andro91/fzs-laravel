@@ -17,9 +17,7 @@ class CreateDiplomaTable extends Migration
             $table->integer('kandidat_id');
             $table->string('datumOdbrane')->nullable();
             $table->string('broj')->nullable();
-            $table->string('ocenaOpis')->nullable();
-            $table->double('ocenaBroj')->nullable();
-            $table->string('lice')->nullable();
+            $table->integer('lice')->nullable();
             $table->string('funkcija')->nullable();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateDiplomaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('diploma');
+
     }
 }

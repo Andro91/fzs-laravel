@@ -20,7 +20,6 @@ class CreateDiplomskiRadTableCreate extends Migration
             $table->integer('mentor_id');
             $table->integer('predsednik_id');
             $table->integer('clan_id');
-            $table->integer('studijskiProgram_id')->nullable();
             $table->string('ocenaOpis')->nullable();
             $table->double('ocenaBroj')->nullable();
             $table->string('datumPrijave')->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Diploma;
+use App\DiplomskiRad;
 use App\GodinaStudija;
 use App\Kandidat;
 use App\Predmet;
@@ -131,24 +132,47 @@ class IzvestajiController extends Controller
 
     public function diplomaUnos(Kandidat $student)
     {
+        $diplome = Diploma::where(['kandidat_id' => $student->id])->get();
+        $diploma = $diplome->first();
+        $profesori = Profesor::all();
+
+        //return $diploma;
+
         try {
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.diplomaUnos', compact('student'));
+        return view('izvestaji.diplomaUnos', compact('student', 'diploma', 'profesori'));
     }
 
     public function diplomaAdd(Request $request)
     {
-        $diploma = new Diploma();
+        $diplome = Diploma::where(['kandidat_id' => $request->id])->get();
+
+        if($diplome)
+        {
+            $diploma = $diplome->first();
+        }
+        else {
+            $diploma = new Diploma();
+        }
+
+        //return $request->id;
+
         $diploma->kandidat_id = $request->id;
         $diploma->broj = $request->broj;
         $diploma->datumOdbrane = $request->datumOdbrane;
-        $diploma->ocenaOpis = $request->ocenaOpis;
-        $diploma->ocenaBroj = $request->ocenaBroj;
         $diploma->lice = $request->lice;
         $diploma->funkcija = $request->funkcija;
+
+        if($request->lice) {
+            $diploma->lice = $request->lice;
+        }
+        else
+        {
+            $diploma->lice = $request->liceIdHidden;
+        }
 
         try {
             $diploma->save();
@@ -156,7 +180,7 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return Redirect::to('/kandidat/' . $request->id . '/edit');
+        return Redirect::to('/izvestaji/' . 'diplomaUnos/' . $request->id);
     }
 
     public function spisakPoPredmetima(Request $request)
@@ -190,14 +214,15 @@ class IzvestajiController extends Controller
         try {
             $studenti = Kandidat::where(['id' => $student->id])->get();
             $diplome = Diploma::where(['kandidat_id' => $student->id])->get();
-
+            $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
+            //$diplomski = $diplomski_radovi->first();
             //return $studenti->first();
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first());
+        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first())->with('diplomski', $diplomski_radovi->first());
 
         $contents = $view->render();
         PDF::SetTitle('Уверење');
@@ -214,14 +239,73 @@ class IzvestajiController extends Controller
             $profesori = Profesor::all();
             $clan = $profesori;
             $predsednik = $profesori;
-            $predmeti = Predmet::all();
-            $programi = StudijskiProgram::where(['id' => $student->id])->get();
+            $programi = StudijskiProgram::where(['id' => $student->studijskiProgram_id])->get();
             $program = $programi->first();
+            $predmeti = Predmet::where(['studijskiProgram_id' => $program->id])->get();
+            //return $predmeti;
+            $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
+            $diplomski = $diplomski_radovi->first();
+            //return $diplomski->mentor_id;
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.diplomskiUnos', compact('profesori', 'predmeti', 'student', 'program', 'clan', 'predsednik'));
+        return view('izvestaji.diplomskiUnos', compact('profesori', 'predmeti', 'student', 'program', 'clan', 'predsednik', 'diplomski'));
+    }
+
+    public function diplomskiAdd(Request $request)
+    {
+        $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $request->id])->get();
+        if($diplomski_radovi)
+        {$diplomski = $diplomski_radovi->first();}
+        else {
+            $diplomski = new DiplomskiRad();
+        }
+        $diplomski->kandidat_id = $request->id;
+        $diplomski->ocenaOpis = $request->ocenaOpis;
+        $diplomski->ocenaBroj = $request->ocenaBroj;
+
+        if($request->predmet) {
+            $diplomski->predmet_id = $request->predmet;
+        }
+        else
+        {
+            $diplomski->clan_id = $request->predmetIdHidden;
+        }
+
+        if($request->clan_id) {
+            $diplomski->clan_id = $request->clan_id;
+        }
+        else
+        {
+            $diplomski->clan_id = $request->clanIdHidden;
+        }
+
+        if($request->predsednik_id) {
+            $diplomski->predsednik_id = $request->predsednik_id;
+        }
+        else
+        {
+            $diplomski->predsednik_id = $request->predsednikIdHidden;
+        }
+
+        if($request->mentor_id) {
+            $diplomski->mentor_id = $request->mentor_id;
+        }
+        else
+        {
+            $diplomski->mentor_id = $request->mentorIdHidden;
+        }
+        $diplomski->datumPrijave = $request->datumPrijave;
+        $diplomski->datumOdbrane = $request->datumOdbrane;
+
+        try {
+            $diplomski->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return Redirect::to('/izvestaji/' . 'diplomskiUnos/' . $request->id);
     }
 
 }

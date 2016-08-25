@@ -12,4 +12,9 @@ class Diploma extends Model
     {
         return $this->belongsTo(Kandidat::class, 'kandidat_id');
     }
+
+    public function potpis()
+    {
+        return $this->belongsTo(Profesor::class, 'lice');
+    }
 }

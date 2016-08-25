@@ -63,11 +63,12 @@
                             </div>
 
                             @if($kandidat->upisan == 0)
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="uplata">
-                                    <input type="checkbox" id="uplata" name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
-                                    Уплата (да ли је кандидат платио школарину)</label>
-                            </div>
+                                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                    <label for="uplata">
+                                        <input type="checkbox" id="uplata"
+                                               name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
+                                        Уплата (да ли је кандидат платио школарину)</label>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -200,7 +201,7 @@
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="prviRazred">1. разред</label>
-                                        <select class="form-control" id="prviRazred" name="prviRazred" >
+                                        <select class="form-control" id="prviRazred" name="prviRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($prviRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -213,7 +214,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="drugiRazred">2. разред</label>
-                                        <select class="form-control" id="drugiRazred" name="drugiRazred" >
+                                        <select class="form-control" id="drugiRazred" name="drugiRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($drugiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -226,7 +227,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="treciRazred">3. разред</label>
-                                        <select class="form-control" id="treciRazred" name="treciRazred" >
+                                        <select class="form-control" id="treciRazred" name="treciRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($treciRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -239,7 +240,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="cetvrtiRazred">4. разред</label>
-                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred" >
+                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -258,7 +259,7 @@
                                         <label for="OpstiUspehSrednjaSkola">Општи успех средња школа
                                             &nbsp;&nbsp;</label>
                                         <select class="form-control" id="OpstiUspehSrednjaSkola"
-                                                name="OpstiUspehSrednjaSkola" >
+                                                name="OpstiUspehSrednjaSkola">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($kandidat->opstiUspehSrednjaSkola_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -386,18 +387,24 @@
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
                                     <div class="form-group" style="width: 15%;">
-                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за уверење</a>
+                                        <a class="btn btn-primary form-group"
+                                           href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
+                                            уверење</a>
                                     </div>
-                                    <br/>
-                                    <br/>
+
+
                                     <div class="form-group" style="width: 15%;">
                                         <input type="hidden" value="{{$kandidat->id}}">
-                                        <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа уверења</a>
+                                        <a class="btn btn-primary form-group" target="_blank"
+                                           href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа
+                                            уверења</a>
                                     </div>
-                                    <br/>
-                                    <br/>
+
+
                                     <div class="form-group" style="width: 15%;">
-                                        <a class="btn btn-primary pull-left" href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Пријава дипломског</a>
+                                        <a class="btn btn-primary form-group"
+                                           href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Пријава
+                                            дипломског</a>
                                     </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
@@ -428,13 +435,13 @@
     </form>
     <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-2.js"></script>
     <script>
-//        $.mask.definitions['q'] = '[0-3]';
-//        $.mask.definitions['w'] = '[0-9]';
-//        $.mask.definitions['e'] = '[0-1]';
-//        $('#DatumRodjenja').mask("qw.ew.9999.");
-//
-//        $.mask.definitions['r'] = '[0-5]';
-//        $.mask.definitions['t'] = '[0-9]';
+        //        $.mask.definitions['q'] = '[0-3]';
+        //        $.mask.definitions['w'] = '[0-9]';
+        //        $.mask.definitions['e'] = '[0-1]';
+        //        $('#DatumRodjenja').mask("qw.ew.9999.");
+        //
+        //        $.mask.definitions['r'] = '[0-5]';
+        //        $.mask.definitions['t'] = '[0-9]';
 
         // $('#SrednjaOcena1').mask("r.tt");
         // $('#SrednjaOcena2').mask("r.tt");

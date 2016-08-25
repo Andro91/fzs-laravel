@@ -30,7 +30,7 @@
             студија {{$student->program->tipStudija->naziv}}.
         </p>
 
-        <p style="text-align: justify;">Студент је положио све испите прописане Статутом факултета и наставним планом и програмом и дана <b>14.05.2016</b>
+        <p style="text-align: justify;">Студент је положио све испите прописане Статутом факултета и наставним планом и програмом и дана <b>{{$diplomski->datumOdbrane}}</b>
             године завршио {{$student->program->tipStudija->naziv}}
             првог степена на Факултету за спорт у Београду, на студијском програму <b>{{$student->program->naziv}}</b> у
             трајању од четири године, обима <b>240</b> ЕСПБ (двестотинечетрдесет бодова),
@@ -43,8 +43,10 @@
         <p style="text-align: center;"><h1>{{$student->program->zvanje}}
         </h1></p>
 
-        <p>Ово уверење служи као доказ о стеченом образовању и може се користити до издавања дипломе.
-        </p>
+        <p>Ово уверење служи као доказ о стеченом образовању и може се користити до издавања дипломе.</p>
+
+        <p>Уверење се издаје без наплате таксе, сходно члану 19. Закона о административним таксама (''Сл. гласник РС'',
+             бр. 43/2003, 51/2003 и 61/2005)</p>
 
         <br/>
         <br/>
@@ -57,19 +59,13 @@
 
 
 <br/>
-<br/>
-<br/>
+
 <div>
     <table>
         <tr>
             <td></td>
             <td></td>
-            <td>Одговорно лице</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td style="padding-bottom: 10px;"></td>
-            <td style="border-bottom: 1px solid black;"></td>
+            <td style="border-top: 1px solid black;">{{$diploma->potpis->zvanje}} {{$diploma->potpis->ime}} {{$diploma->potpis->prezime}}, {{$diploma->funkcija}}</td>
         </tr>
     </table>
 </div>
