@@ -76,6 +76,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/prijava/vratiKandidataPrijava', 'StudentController@vratiKandidataPrijava');
     Route::post('/prijava/vratiPredmetPrijava', 'StudentController@vratiPredmetPrijava');
 
+    //Zapisnik o polaganju ispita
+    Route::get('/zapisnik', 'IspitController@indexZapisnik');
+    Route::get('/zapisnik/create', 'IspitController@createZapisnik');
+    Route::post('/zapisnik/podaci', 'IspitController@podaci');
+    Route::post('/zapisnik/storeZapisnik', 'IspitController@storeZapisnik');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

@@ -12,4 +12,9 @@ $(document).ready(function() {
     $.mask.definitions['w'] = '[0-9]';
     $.mask.definitions['e'] = '[0-1]';
     $('.dateMask').mask("qw.ew.9999.");
+
+    $.mask.definitions['r'] = '[0-2]';
+    $.mask.definitions['t'] = '[0-5]';
+    $('.timeMask').mask("rw:tw");
+
 });
