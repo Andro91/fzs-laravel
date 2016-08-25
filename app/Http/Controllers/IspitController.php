@@ -63,7 +63,8 @@ class IspitController extends Controller
         foreach ($request->odabir as $id) {
             $zapisStudent = new ZapisnikOPolaganju_Student();
             $zapisStudent->zapisnik_id = $zapisnik->id;
-            $zapisStudent->student_id = $id;
+            $zapisStudent->kandidat_id = $id;
+            $zapisStudent->save();
         }
 
         return redirect('/zapisnik/');

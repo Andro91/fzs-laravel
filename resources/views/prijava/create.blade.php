@@ -27,7 +27,7 @@
             <h3 class="panel-title">Пријава за полагање испита</h3>
         </div>
             <div class="panel-body">
-                <form role="form" method="post" action="{{ url('/prijava') }}">
+                <form role="form" method="post" action="{{ url('/prijava/') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group" style="width: 50%;">
@@ -40,7 +40,7 @@
                     </div>
 
                     @if(!empty($kandidat))
-                        <input type="hidden" name="kandidat_id" value="{{ $kandidat->id }}">
+                        <input type="hidden" name="kandidat_id" id="kandidat_id" value="{{ $kandidat->id }}">
 
                         {{--<div class="form-group" style="width: 30%;">--}}
                             {{--<label for="brojIndeksa">Број Индекса</label>--}}

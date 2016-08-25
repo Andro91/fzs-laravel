@@ -14,7 +14,7 @@ class CreateZapisnikOPolaganjuStudentTable extends Migration
     {
         Schema::create('zapisnik_o_polaganju__student', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
+            $table->integer('kandidat_id');
             $table->integer('zapisnik_id');
             $table->timestamps();
         });

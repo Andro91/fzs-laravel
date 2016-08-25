@@ -130,7 +130,7 @@ class StudentController extends Controller
         $prijave = $kandidat->prijaveIspita()
             ->join('predmet', 'prijava_ispita.predmet_id', '=', 'predmet.id')
             ->join('ispitni_rok', 'prijava_ispita.rok_id', '=', 'ispitni_rok.id')
-            ->select('predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
+            ->select('prijava_ispita.id as id','predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
         return view('prijava.index', compact('kandidat','prijave'));
     }
 
@@ -196,13 +196,27 @@ class StudentController extends Controller
             if(!empty($request->prijava_za_predmet)){
                 return redirect("/prijava/zapredmet/{$request->predmet_id}");
             }else{
-                return redirect("/prijava/{$request->kandidat_id}");
+                return redirect("/prijava/zastudenta/{$request->kandidat_id}");
             }
         }else{
             Session::flash('flash-error', 'create');
             return Redirect::back();
         }
 
+    }
+
+    public function deletePrijavaIspita($id, Request $request)
+    {
+        $prijava = PrijavaIspita::find($id);
+        $kandidat = $prijava->kandidat_id;
+        $predmet = $prijava->predmet_id;
+        PrijavaIspita::destroy($id);
+
+        if($request->prijava == 'predmet'){
+            return redirect("/prijava/zapredmet/{$predmet}");
+        }else{
+            return redirect("/prijava/zastudenta/{$kandidat}");
+        }
     }
 
     public function spisakPredmeta(Request $request)

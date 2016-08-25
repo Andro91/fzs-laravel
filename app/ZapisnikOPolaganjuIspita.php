@@ -8,7 +8,7 @@ class ZapisnikOPolaganjuIspita extends Model
 {
     protected $table = 'zapisnik_o_polaganju_ispita';
 
-    protected $fillable = ['student_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum', 'vreme', 'ucionica', 'prijavaIspita_id', 'profesor_id'];
+    protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum', 'vreme', 'ucionica', 'prijavaIspita_id', 'profesor_id'];
 
     public function predmet()
     {

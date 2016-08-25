@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @section('page_heading','Пријава испита')
 @section('section')
+    <h3>Студент: {{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . " " . $kandidat->brojIndeksa }}</h3>
+    <br>
     <a href="{{$putanja}}/prijava/student/{{$kandidat->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава</a>
     <div id="messages">
         @if (Session::get('flash-error'))
@@ -53,8 +55,8 @@
                 <td>{{$prijava->datum}}</td>
                 <td>
                     {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
-                    {{--<a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"--}}
-                       {{--onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>--}}
+                    <a class="btn btn-danger" href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"
+                       onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог кандидата?');">Бриши</a>
                 </td>
             </tr>
         @endforeach

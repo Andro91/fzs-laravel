@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Пријава испита')
+@section('page_heading','Записник о полагању испита')
 @section('section')
     <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов записник</a>
     <div id="messages">

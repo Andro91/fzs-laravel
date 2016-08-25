@@ -71,6 +71,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/prijava/predmet/{predmetId}', 'StudentController@createPrijavaIspitaPredmet');
 
     Route::post('/prijava/', 'StudentController@storePrijavaIspita');
+    Route::get('/prijava/delete/{id}', 'StudentController@deletePrijavaIspita');
 
     //AJAX pozivi sa prijave
     Route::post('/prijava/vratiKandidataPrijava', 'StudentController@vratiKandidataPrijava');

@@ -20,7 +20,7 @@ class CreateZapisnikOPolaganjuIspitaTable extends Migration
             $table->time('vreme');
             $table->string('ucionica');
             $table->integer('profesor_id');
-            $table->integer('student_id');
+            $table->integer('kandidat_id');
             $table->integer('prijavaIspita_id');
             $table->timestamps();
         });
