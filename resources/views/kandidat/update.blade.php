@@ -386,25 +386,38 @@
                                         <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
-                                    <div class="form-group" style="width: 15%;">
-                                        <a class="btn btn-primary form-group"
-                                           href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
-                                            уверење</a>
-                                    </div>
 
 
-                                    <div class="form-group" style="width: 15%;">
-                                        <input type="hidden" value="{{$kandidat->id}}">
-                                        <a class="btn btn-primary form-group" target="_blank"
-                                           href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа
-                                            уверења</a>
-                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                            <a class="btn btn-primary form-group"
+                                               href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
+                                                уверење</a>
+                                        </div>
+                                        <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
+                                            <input type="hidden" value="{{$kandidat->id}}">
+                                            <a class="btn btn-primary form-group" target="_blank"
+                                               href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа
+                                                уверења</a>
+                                        </div>
 
+                                        <div class="form-group pull-left" style="width: 48%;">
+                                            <a class="btn btn-primary form-group"
+                                               href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
+                                                уверење</a>
+                                        </div>
 
-                                    <div class="form-group" style="width: 15%;">
-                                        <a class="btn btn-primary form-group"
-                                           href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Пријава
-                                            дипломског</a>
+                                        <div class="form-group pull-left" style="width: 48%; margin-left: 4%;">
+                                            <a class="btn btn-primary" href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
+                                                Потврде
+                                            </a>
+                                        </div>
+
+                                        <div class="form-group pull-left" style="width: 48%;">
+                                            <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/komisijaStampa/{{$kandidat->id}}">
+                                                Комисија
+                                            </a>
+                                        </div>
                                     </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
