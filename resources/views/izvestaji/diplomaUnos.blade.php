@@ -21,8 +21,8 @@
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumOdbrane">Датум:</label>
-                            <input value="{{$diploma->datumOdbrane}}" name="datumOdbrane" type="text"
-                                   class="form-control">
+                            <input id="datumOdbrane" value="{{ date('d.m.Y.',strtotime($diploma->datumOdbrane)) }}" name="datumOdbrane" type="text"
+                                   class="form-control dateMask">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="lice">Ментор:</label>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumOdbrane">Датум:</label>
-                            <input name="datumOdbrane" type="text" class="form-control">
+                            <input id="datumOdbrane" name="datumOdbrane" type="text" class="form-control dateMask">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="lice">Ментор:</label>
@@ -91,9 +91,16 @@
     @endif
 
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#lice').combobox('autocomplete', $("#liceHidden").val());
+
+            $("#datumOdbrane").datepicker({
+                dateFormat: 'dd.mm.yy.'
+            });
+
         });
     </script>
 

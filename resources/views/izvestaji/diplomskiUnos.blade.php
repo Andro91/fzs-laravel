@@ -72,11 +72,11 @@
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumPrijave">Датум пријаве:</label>
-                            <input name="datumPrijave" value="{{$diplomski->datumPrijave}}" type="text" class="form-control">
+                            <input name="datumPrijave" id="datumPrijave" value="{{ date('d.m.Y.',strtotime($diplomski->datumPrijave)) }}" type="text" class="form-control dateMask">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumOdbrane">Датум одбране:</label>
-                            <input name="datumOdbrane" value="{{$diplomski->datumOdbrane}}" type="text" class="form-control">
+                            <input name="datumOdbrane" id="datumOdbrane" value="{{ date('d.m.Y.',strtotime($diplomski->datumOdbrane)) }}" type="text" class="form-control dateMask">
                         </div>
                     </div>
                     <div class="panel-body">
@@ -152,11 +152,11 @@
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="datumPrijave">Датум пријаве:</label>
-                                <input name="datumPrijave" type="text" class="form-control">
+                                <input id="datumPrijave" name="datumPrijave" type="text" class="form-control dateMask">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                 <label for="datumOdbrane">Датум одбране:</label>
-                                <input name="datumOdbrane" type="text" class="form-control">
+                                <input id="datumOdbrane" name="datumOdbrane" type="text" class="form-control dateMask">
                             </div>
                         </div>
                         <div class="panel-body">
@@ -172,12 +172,27 @@
         @endif
 
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#mentor_id').combobox('autocomplete', $("#mentorHidden").val());
             $('#clan_id').combobox('autocomplete', $("#clanHidden").val());
             $('#predsednik_id').combobox('autocomplete', $("#predsednikHidden").val());
             $('#predmet').combobox('autocomplete', $("#predmetHidden").val());
+
+            var formatDatum = $("#datumOdbrane");
+            formatDatum.datepicker({
+                dateFormat: 'dd.mm.yy.',
+                altFormat: "yy-mm-dd"
+            });
+
+            var formatDatum = $("#datumPrijave");
+            formatDatum.datepicker({
+                dateFormat: 'dd.mm.yy.',
+                altFormat: "yy-mm-dd"
+            });
+
         });
     </script>
 

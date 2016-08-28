@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Redirect;
 use View;
 use PDF;
 
+use DateTime;
+
 use App\Http\Requests;
 
 class IzvestajiController extends Controller
@@ -150,7 +152,7 @@ class IzvestajiController extends Controller
     {
         $diplome = Diploma::where(['kandidat_id' => $request->id])->get();
 
-        if($diplome)
+        if($diplome != '[]')
         {
             $diploma = $diplome->first();
         }
@@ -162,7 +164,12 @@ class IzvestajiController extends Controller
 
         $diploma->kandidat_id = $request->id;
         $diploma->broj = $request->broj;
-        $diploma->datumOdbrane = $request->datumOdbrane;
+
+        //return $request->datumOdbrane;
+        $datum = new DateTime($request->datumOdbrane);
+        //$datum = $request->datumOdbrane;
+        $diploma->datumOdbrane = $datum;
+
         $diploma->lice = $request->lice;
         $diploma->funkcija = $request->funkcija;
 
@@ -256,7 +263,7 @@ class IzvestajiController extends Controller
     public function diplomskiAdd(Request $request)
     {
         $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $request->id])->get();
-        if($diplomski_radovi)
+        if($diplomski_radovi != '[]')
         {$diplomski = $diplomski_radovi->first();}
         else {
             $diplomski = new DiplomskiRad();
@@ -264,6 +271,7 @@ class IzvestajiController extends Controller
         $diplomski->kandidat_id = $request->id;
         $diplomski->ocenaOpis = $request->ocenaOpis;
         $diplomski->ocenaBroj = $request->ocenaBroj;
+        $diplomski->naziv = $request->naziv;
 
         if($request->predmet) {
             $diplomski->predmet_id = $request->predmet;
@@ -296,8 +304,10 @@ class IzvestajiController extends Controller
         {
             $diplomski->mentor_id = $request->mentorIdHidden;
         }
-        $diplomski->datumPrijave = $request->datumPrijave;
-        $diplomski->datumOdbrane = $request->datumOdbrane;
+        $datum1 = new DateTime($request->datumPrijave);
+        $datum2 = new DateTime($request->datumOdbrane);
+        $diplomski->datumPrijave = $datum1;
+        $diplomski->datumOdbrane = $datum2;
 
         try {
             $diplomski->save();

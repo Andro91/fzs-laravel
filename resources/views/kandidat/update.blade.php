@@ -403,8 +403,8 @@
 
                                         <div class="form-group pull-left" style="width: 48%;">
                                             <a class="btn btn-primary form-group"
-                                               href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
-                                                уверење</a>
+                                               href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Унос података за
+                                                дипломски</a>
                                         </div>
 
                                         <div class="form-group pull-left" style="width: 48%; margin-left: 4%;">
