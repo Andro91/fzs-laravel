@@ -21,6 +21,7 @@ class CreatePolozeniIspitiTable extends Migration
             $table->integer('ocenaPismeni');
             $table->integer('ocenaUsmeni');
             $table->integer('konacnaOcena');
+            $table->integer('brojBodova');
             $table->integer('statusIspita');
             $table->integer('odluka_id');
             $table->boolean('indikatorAktivan');

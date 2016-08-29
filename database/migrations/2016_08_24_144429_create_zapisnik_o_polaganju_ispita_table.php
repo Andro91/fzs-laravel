@@ -21,7 +21,6 @@ class CreateZapisnikOPolaganjuIspitaTable extends Migration
             $table->string('ucionica');
             $table->integer('profesor_id');
             $table->integer('kandidat_id');
-            $table->integer('prijavaIspita_id');
             $table->timestamps();
         });
     }

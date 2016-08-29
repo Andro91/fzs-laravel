@@ -34,7 +34,7 @@
                         <select class="form-control" id="rok_id" name="rok_id" {{ empty($rok_id) ? '' : 'disabled' }}>
                             @if(!empty($aktivniIspitniRok))
                                 @foreach($aktivniIspitniRok as $tip)
-                                    <option value="{{$tip->id}}" {{ (empty($rok_id) && $rok_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
+                                    <option value="{{$tip->id}}" {{ (!empty($rok_id) && $rok_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -43,9 +43,10 @@
                         <label for="predmet_id">Предмет</label>
                         <select class="form-control" id="predmet_id" name="predmet_id" {{ empty($predmet_id) ? '' : 'disabled' }}>
                             @foreach($predmeti as $tip)
-                                <option value="{{$tip->id}}" {{ (empty($rok_id) && $rok_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
+                                <option value="{{$tip->id}}" {{ (!empty($predmet_id) && $predmet_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
                             @endforeach
                         </select>
+
                     </div>
                     <div class="form-group pull-left" style="width: 5%;">
                         <label for="submitPredpodaci">&nbsp;</label><br>
@@ -104,6 +105,9 @@
                                     <td>{{$kandidat->prezimeKandidata}}</td>
                                     <td>{{$kandidat->jmbg}}</td>
                                     <td>{{$kandidat->brojIndeksa}}</td>
+                                        @if(!empty($prijavaIds))
+                                            <input type="hidden" name="odabir2[{{ $kandidat->id }}]" value="{{$prijavaIds[$kandidat->id]}}">
+                                        @endif
                                 </tr>
                             @endforeach
                         @endif

@@ -29,69 +29,76 @@
         @endif
     </div>
     <hr>
-    @if(!empty($studenti))
-        @foreach($studenti as $index => $kandidat)
+    @if(!empty($polozeniIspiti))
+        @foreach($polozeniIspiti as $index => $ispit)
+            <form action="{{ $putanja }}/zapisnik/polozeniIspit" method="post">
+                {{ csrf_field() }}
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata }}</h3>
+                    <h3 class="panel-title">{{ $ispit->kandidat->imeKandidata . " " . $ispit->kandidat->prezimeKandidata }}</h3>
                 </div>
                 <div class="panel-body">
-                    <input type="hidden" id="zapisnik_id" name="zapisnik_id[{{ $kandidat->id }}]" value="{{ $zapisnik->id }}">
-                    <input type="hidden" id="prijava_id" name="prijava_id[{{ $kandidat->id }}]" value="{{ $zapisnik->prijava_id }}">
-                    <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
-                    <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
-                    <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
+                    <input type="hidden" id="ispit_id" name="ispit_id[{{ $index }}]" value="{{ $ispit->id }}">
+                    <input type="hidden" id="zapisnik_id" name="zapisnik_id[{{ $index }}]" value="{{ $zapisnik->id }}">
+                    <input type="hidden" id="prijava_id" name="prijava_id[{{ $index }}]" value="{{ $prijavaIds[$ispit->kandidat->id] }}">
+                    <input type="hidden" id="kandidat_id" name="kandidat_id[{{ $index }}]" value="{{ $ispit->kandidat->id }}">
+                    <input type="hidden" id="predmet_id" name="predmet_id" value="{{ $zapisnik->predmet_id }}">
                     <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="ocenaPismeni">Оцена писмени</label>
-                        <input type="text" id="ocenaPismeni" name="ocenaPismeni" class="form-control">
+                        <input type="text" id="ocenaPismeni" name="ocenaPismeni[{{ $index }}]" value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaPismeni : "" }}" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="ocenaUsmeni">Оцена усмени</label>
-                        <input type="text" id="ocenaUsmeni" name="ocenaUsmeni" class="form-control">
+                        <input type="text" id="ocenaUsmeni" name="ocenaUsmeni[{{ $index }}]" value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaUsmeni : "" }}" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="brojBodova">Број бодова</label>
-                        <input type="text" id="brojBodova" name="brojBodova" class="form-control">
+                        <input type="text" id="brojBodova" name="brojBodova[{{ $index }}]" value="{{ $ispit->indikatorAktivan == 1 ? $ispit->brojBodova : "" }}" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="konacnaOcena">Коначна оцена</label>
-                        <select class="form-control" id="konacnaOcena" name="konacnaOcena">
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                        <select class="form-control konacnaOcena" data-index="{{ $index }}" name="konacnaOcena[{{ $index }}]">
+                            <option value="5" {{ $ispit->konacnaOcena == 5 ? 'selected' : "" }}>5</option>
+                            <option value="6" {{ $ispit->konacnaOcena == 6 ? 'selected' : "" }}>6</option>
+                            <option value="7" {{ $ispit->konacnaOcena == 7 ? 'selected' : "" }}>7</option>
+                            <option value="8" {{ $ispit->konacnaOcena == 8 ? 'selected' : "" }}>8</option>
+                            <option value="9" {{ $ispit->konacnaOcena == 9 ? 'selected' : "" }}>9</option>
+                            <option value="10" {{ $ispit->konacnaOcena == 10 ? 'selected' : "" }}>10</option>
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                         <label for="konacnaOcenaSlovima">Коначна оцена словима</label>
-                        <select class="form-control" id="konacnaOcenaSlovima" name="konacnaOcenaSlovima" disabled>
-                            <option value="5">пет</option>
-                            <option value="6">шест</option>
-                            <option value="7">седам</option>
-                            <option value="8">осам</option>
-                            <option value="9">девет</option>
-                            <option value="10">десет</option>
+                        <select class="form-control konacnaOcenaSlovima" data-index="{{ $index }}" name="konacnaOcenaSlovima" disabled>
+                            <option value="5" {{ $ispit->konacnaOcena == 5 ? 'selected' : "" }}>пет</option>
+                            <option value="6" {{ $ispit->konacnaOcena == 6 ? 'selected' : "" }}>шест</option>
+                            <option value="7" {{ $ispit->konacnaOcena == 7 ? 'selected' : "" }}>седам</option>
+                            <option value="8" {{ $ispit->konacnaOcena == 8 ? 'selected' : "" }}>осам</option>
+                            <option value="9" {{ $ispit->konacnaOcena == 9 ? 'selected' : "" }}>девет</option>
+                            <option value="10" {{ $ispit->konacnaOcena == 10 ? 'selected' : "" }}>десет</option>
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 30%;">
                         <label for="statusIspita">Статус испита</label>
-                        <select class="form-control" id="statusIspita" name="statusIspita">
+                        <select class="form-control" id="statusIspita" name="statusIspita[{{ $index }}]">
                             @foreach($statusIspita as $item)
                                 <option value="{{ $item->id }}">{{ $item->naziv }}</option>
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group text-center">
+                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span class="fa fa-save"></span> Сачувај</button>
+                    </div>
                 </div>
             </div>
+            </form>
         @endforeach
     @endif
     <br>
     <br>
     <script>
-        $('#konacnaOcena').change(function () {
-            $('#konacnaOcenaSlovima').val($('#konacnaOcena').val());
+        $('.konacnaOcena').change(function () {
+            var indeks = $(this).data('index');
+            $('.konacnaOcenaSlovima[data-index=' + indeks + ']').val($('.konacnaOcena[data-index=' + indeks + ']').val());
         });
     </script>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>

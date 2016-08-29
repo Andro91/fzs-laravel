@@ -85,6 +85,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/zapisnik/delete/{id}', 'IspitController@deleteZapisnik');
     Route::get('/zapisnik/pregled/{id}', 'IspitController@pregledZapisnik');
 
+    Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

@@ -112,11 +112,13 @@ class KandidatController extends Controller
             'JMBG.max' => 'ЈМБГ не може имати више од 13 цифара.'
         ];
 
-        $this->validate($request, [
-            'JMBG' => 'unique:kandidat|max:13|required',
-        ], $messages);
+
 
         if ($request->page == 1) {
+
+            $this->validate($request, [
+                'JMBG' => 'unique:kandidat|max:13|required',
+            ], $messages);
 
             $kandidat = new Kandidat();
             $kandidat->imeKandidata = $request->ImeKandidata;
