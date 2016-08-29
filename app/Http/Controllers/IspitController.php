@@ -68,6 +68,16 @@ class IspitController extends Controller
             $zapisStudent->zapisnik_id = $zapisnik->id;
             $zapisStudent->kandidat_id = $id;
             $zapisStudent->save();
+
+            $kandidat = Kandidat::find($id);
+            $prijava = $kandidat->prijaveIspita()->where(['rok_id' => $zapisnik->rok_id, 'predmet_id' => $zapisnik->predmet_id])->first();
+
+            $polozenIspit = new PolozeniIspiti();
+            $polozenIspit->indikatorAktivan = 0;
+            $polozenIspit->kandidat_id = $id;
+            $polozenIspit->predmet_id = $zapisnik->predmet_id;
+            $polozenIspit->zapisnik_id = $zapisnik->id;
+            $polozenIspit->prijava_id = $prijava->id;
         }
 
         return redirect('/zapisnik/');

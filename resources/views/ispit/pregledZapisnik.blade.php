@@ -36,8 +36,8 @@
                     <h3 class="panel-title">{{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata }}</h3>
                 </div>
                 <div class="panel-body">
-                    <input type="hidden" id="zapisnik_id" name="zapisnik_id" value="{{ $zapisnik->id }}">
-                    <input type="hidden" id="prijava_id" name="prijava_id" value="{{ $zapisnik->datum }}">
+                    <input type="hidden" id="zapisnik_id" name="zapisnik_id[{{ $kandidat->id }}]" value="{{ $zapisnik->id }}">
+                    <input type="hidden" id="prijava_id" name="prijava_id[{{ $kandidat->id }}]" value="{{ $zapisnik->prijava_id }}">
                     <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
                     <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
                     <input type="hidden" id="datum" name="datum" value="{{ $zapisnik->datum }}">
