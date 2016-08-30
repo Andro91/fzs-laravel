@@ -6,6 +6,7 @@ use App\Diploma;
 use App\DiplomskiRad;
 use App\GodinaStudija;
 use App\Kandidat;
+use App\PolozeniIspiti;
 use App\Predmet;
 use App\Profesor;
 use App\StudijskiProgram;
@@ -332,6 +333,30 @@ class IzvestajiController extends Controller
         }
 
         $view = View::make('izvestaji.komisijaStampa')->with('student', $student)->with('diplomski', $diplomski_radovi->first())->with('diploma', $diplome->first());
+
+        $contents = $view->render();
+        PDF::SetTitle('Одлука о формирању комисије');
+        PDF::SetMargins(12,2,12,true);
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Komisija.pdf');
+    }
+
+    public function polozeniStampa(Kandidat $student)
+    {
+        try {
+            //$studenti = Kandidat::where(['id' => $student->id])->get();
+            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->get();
+            //$diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
+            //$diplomski = $diplomski_radovi->first();
+            //return $ispiti;
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti);
 
         $contents = $view->render();
         PDF::SetTitle('Одлука о формирању комисије');

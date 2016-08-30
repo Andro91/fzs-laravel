@@ -12,4 +12,10 @@ class PolozeniIspiti extends Model
     {
         return $this->belongsTo(Kandidat::class, 'kandidat_id');
     }
+
+    public function predmet()
+    {
+        return $this->belongsTo(Predmet::class, 'predmet_id');
+    }
+
 }

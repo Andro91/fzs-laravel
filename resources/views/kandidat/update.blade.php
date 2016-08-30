@@ -418,6 +418,12 @@
                                                 Комисија
                                             </a>
                                         </div>
+
+                                        <div class="form-group pull-left" style="width: 48%; margin-left: 4%;">
+                                            <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/polozeniStampa/{{$kandidat->id}}">
+                                                Уверење о положеним испитима
+                                            </a>
+                                        </div>
                                     </div>
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
