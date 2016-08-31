@@ -34,11 +34,12 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
-                        <div class="form-group pull-left" style="width: 25%;">
-                            <a class="btn btn-primary pull-left" target="_blank" href="{{$putanja}}/izvestaji/spisakPoSmerovimaAktivni">Сви</a>
+                        <div class="form-group pull-left" style="width: 20%;">
+                            <a class="btn btn-primary pull-left" target="_blank"
+                               href="{{$putanja}}/izvestaji/spisakPoSmerovimaAktivni">Сви</a>
                         </div>
                     </div>
                 </div>
@@ -71,6 +72,44 @@
                 </div>
             </form>
         </div>
+
+        <div class="col-sm-12 col-lg-4">
+            <form role="form" target="_blank" method="post" action="{{ url('/izvestaji/nastavniPlan/') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Наставни план</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 70%;  margin-right: 2%">
+                            <label for="program">Студијски програм:</label>
+                            <select class="form-control" id="program" name="program">
+                                @foreach($programPlan as $program)
+                                    <option value="{{$program->id}}">{{$program->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 30%;  margin-right: 2%">
+                            <label for="godina">Година студија:</label>
+                            <select class="form-control" id="godina" name="godina">
+                                @foreach($godinaPlan as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
 
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
