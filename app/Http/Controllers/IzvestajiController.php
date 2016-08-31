@@ -15,6 +15,7 @@ use App\Region;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use PDF;
+use Carbon\Carbon;
 
 use DateTime;
 
@@ -223,14 +224,23 @@ class IzvestajiController extends Controller
             $studenti = Kandidat::where(['id' => $student->id])->get();
             $diplome = Diploma::where(['kandidat_id' => $student->id])->get();
             $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
-            //$diplomski = $diplomski_radovi->first();
-            //return $studenti->first();
+            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->get();
+
+            $zbir = 0;
+            $i = 0;
+            foreach($ispiti as $ispit)
+            {
+                $zbir = $zbir + $ispit->konacnaOcena;
+                $i++;
+            }
+
+            $prosek = $zbir/$i;
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first())->with('diplomski', $diplomski_radovi->first());
+        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first())->with('diplomski', $diplomski_radovi->first())->with('prosek', $prosek);
 
         $contents = $view->render();
         PDF::SetTitle('Уверење');
@@ -346,25 +356,33 @@ class IzvestajiController extends Controller
     public function polozeniStampa(Kandidat $student)
     {
         try {
-            //$studenti = Kandidat::where(['id' => $student->id])->get();
             $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->get();
-            //$diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
-            //$diplomski = $diplomski_radovi->first();
-            //return $ispiti;
+
+            $zbir = 0;
+            $i = 0;
+            foreach($ispiti as $ispit)
+            {
+                $zbir = $zbir + $ispit->konacnaOcena;
+                $i++;
+            }
+
+            $prosek = $zbir/$i;
+            $datum = Carbon::now();
+
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti);
+        $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti)->with('datum', date("d.m.Y", strtotime($datum)))->with('prosek', $prosek);
 
         $contents = $view->render();
-        PDF::SetTitle('Одлука о формирању комисије');
+        PDF::SetTitle('Уверење о положеним испитима');
         PDF::SetMargins(12,2,12,true);
         PDF::AddPage();
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
-        PDF::Output('Komisija.pdf');
+        PDF::Output('Ispiti.pdf');
     }
 
 }

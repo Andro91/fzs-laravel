@@ -59,13 +59,21 @@
                         </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Семестар:</label>
+                        <label for="semestarSlusanjaPredmeta">Семестар:</label>
                         <input name="semestarSlusanjaPredmeta" type="text" class="form-control"
                                value="{{$predmet->semestarSlusanjaPredmeta}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">ЕСПБ:</label>
                         <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="predavanja">Часови предавања:</label>
+                        <input name="predavanja" type="number" class="form-control" value="{{$predmet->predavanja}}">
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="vezbe">Часови вежби:</label>
+                        <input name="vezbe" type="number" class="form-control" value="{{$predmet->vezbe}}">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <div class="checkbox">

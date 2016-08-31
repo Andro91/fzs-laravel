@@ -45,6 +45,8 @@ class PredmetController extends Controller
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         $predmet->espb = $request->espb;
+        $predmet->predavanja = $request->predavanja;
+        $predmet->vezbe = $request->vezbe;
         $predmet->statusPredmeta = 1;
 
 
@@ -93,6 +95,8 @@ class PredmetController extends Controller
         $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
+        $predmet->predavanja = $request->predavanja;
+        $predmet->vezbe = $request->vezbe;
         $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         if ($request->statusPredmeta == 'on' || $request->statusPredmeta == 1) {
             $predmet->statusPredmeta = 1;

@@ -57,6 +57,14 @@
                         <label for="naziv">ЕСПБ:</label>
                         <input name="espb" type="number" class="form-control">
                     </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="predavanja">Часови предавања:</label>
+                        <input name="predavanja" type="number" class="form-control"">
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="vezbe">Часови вежби:</label>
+                        <input name="vezbe" type="number" class="form-control"">
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
