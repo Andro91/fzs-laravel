@@ -201,7 +201,7 @@
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="prviRazred">1. разред</label>
-                                        <select class="form-control" id="prviRazred" name="prviRazred">
+                                        <select class="form-control" id="prviRazred" name="prviRazred" tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($prviRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -214,7 +214,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="drugiRazred">2. разред</label>
-                                        <select class="form-control" id="drugiRazred" name="drugiRazred">
+                                        <select class="form-control" id="drugiRazred" name="drugiRazred" tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($drugiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -227,7 +227,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="treciRazred">3. разред</label>
-                                        <select class="form-control" id="treciRazred" name="treciRazred">
+                                        <select class="form-control" id="treciRazred" name="treciRazred" tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($treciRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -240,7 +240,7 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="cetvrtiRazred">4. разред</label>
-                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred">
+                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred" tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -259,7 +259,7 @@
                                         <label for="OpstiUspehSrednjaSkola">Општи успех средња школа
                                             &nbsp;&nbsp;</label>
                                         <select class="form-control" id="OpstiUspehSrednjaSkola"
-                                                name="OpstiUspehSrednjaSkola">
+                                                name="OpstiUspehSrednjaSkola" tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($kandidat->opstiUspehSrednjaSkola_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach

@@ -41,9 +41,8 @@ srednjaOcena4.focusout(function(){
     var srednja4 = parseFloat(srednjaOcena4.val());
 
     var suma = srednja1 + srednja2 + srednja3 + srednja4;
-
-    $('#SrednjaOcenaSrednjaSkola').val(Math.round((suma/4) * 100) / 100);
-    $('#BrojBodovaSkola').val(Math.round((suma*4) *100) / 100);
+    $('#SrednjaOcenaSrednjaSkola').val((Math.round((suma/4) * 100) / 100).toFixed(2));
+    $('#BrojBodovaSkola').val(Math.round((suma*3) *100) / 100);
 });
 
 srednjaOcenaSrednjaSkola.focusin(function () {
