@@ -240,7 +240,8 @@
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                                         <label for="cetvrtiRazred">4. разред</label>
-                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred" tabindex="-1">
+                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred"
+                                                tabindex="-1">
                                             @foreach($opstiUspehSrednjaSkola as $item)
                                                 <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                             @endforeach
@@ -387,44 +388,13 @@
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
 
-
-                                    <div class="panel-body">
-                                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                            <a class="btn btn-primary form-group"
-                                               href="{{$putanja}}/izvestaji/{{$kandidat->id}}/diplomaUnos">Унос података за
-                                                уверење</a>
-                                        </div>
-                                        <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                            <input type="hidden" value="{{$kandidat->id}}">
-                                            <a class="btn btn-primary form-group" target="_blank"
-                                               href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа
-                                                уверења</a>
-                                        </div>
-
-                                        <div class="form-group pull-left" style="width: 48%;">
-                                            <a class="btn btn-primary form-group"
-                                               href="{{$putanja}}/izvestaji/diplomskiUnos/{{$kandidat->id}}">Унос података за
-                                                дипломски</a>
-                                        </div>
-
-                                        <div class="form-group pull-left" style="width: 48%; margin-left: 4%;">
-                                            <a class="btn btn-primary" href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
-                                                Потврде
-                                            </a>
-                                        </div>
-
-                                        <div class="form-group pull-left" style="width: 48%;">
-                                            <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/komisijaStampa/{{$kandidat->id}}">
-                                                Комисија
-                                            </a>
-                                        </div>
-
-                                        <div class="form-group pull-left" style="width: 48%; margin-left: 4%;">
-                                            <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/polozeniStampa/{{$kandidat->id}}">
-                                                Уверење о положеним испитима
-                                            </a>
-                                        </div>
+                                    <div class="form-group pull-left" style="width: 48%;">
+                                        <a class="btn btn-primary"
+                                           href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
+                                            Потврде
+                                        </a>
                                     </div>
+
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
                                     {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}

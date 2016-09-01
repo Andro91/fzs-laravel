@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 20%;">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
                         <div class="form-group pull-left" style="width: 20%;">
@@ -71,6 +71,21 @@
                     </div>
                 </div>
             </form>
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakDiplomiranih/') }}">
+                {{csrf_field()}}
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак дипломираних студената</h3>
+                    </div>
+                    <div class="panel-body">
+                        <span style="display:inline-block;">
+                            <input name="godina" maxlength="4" type="text" class="form-group">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                            </span>
+                    </div>
+                </div>
+            </form>
+
         </div>
 
         <div class="col-sm-12 col-lg-4">
