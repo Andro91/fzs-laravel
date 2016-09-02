@@ -43,12 +43,13 @@
         {{ csrf_field() }}
         <table id="tabela" class="table">
             <thead>
-            <th>Одабир</th>
-            <th>Име</th>
-            <th>Презиме</th>
-            <th>ЈМБГ</th>
-            <th>Школарина</th>
-            <th>Измена</th>
+                <th>Одабир</th>
+                <th>Име</th>
+                <th>Презиме</th>
+                <th>ЈМБГ</th>
+                <th>Година студија</th>
+                <th>Школарина</th>
+                <th>Измена</th>
             </thead>
             <tbody>
             @foreach($kandidati as $index => $kandidat)
@@ -57,7 +58,9 @@
                     <td>{{$kandidat->imeKandidata}}</td>
                     <td>{{$kandidat->prezimeKandidata}}</td>
                     <td>{{$kandidat->jmbg}}</td>
-                    <td>{{ $kandidat->uplata ? 'Уплаћена' : 'Није уплаћена'}}</td>
+                    <td>{{$kandidat->godinaStudija->nazivRimski}}</td>
+                    <td>@if($kandidat->uplata == 1) <span class='label label-success'>Уплаћена</span> @else <span class='label label-danger'>Није уплаћена</span> @endif</td>
+                    {{--<td>{{ $kandidat->uplata ? 'Уплаћена' : 'Није уплаћена'}}</td>--}}
                     <td>
                         <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
                             <div title="Измена">

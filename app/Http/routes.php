@@ -87,6 +87,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 
+
+    Route::get('/student/{id}/obnova', 'StudentController@obnoviGodinu');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {

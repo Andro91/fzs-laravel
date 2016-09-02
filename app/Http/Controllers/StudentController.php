@@ -59,7 +59,7 @@ class StudentController extends Controller
                 ->with('studijskiProgrami',$studijskiProgrami);
         }
 
-        return "Дошло је до грешке. Молимо ва�? покушајте поново.";
+        return "Дошло је до неочекиване грешке.";
     }
 
     public function upisStudenta($id)
@@ -91,6 +91,30 @@ class StudentController extends Controller
         $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina])->first();
         $upisaneGodine->upisan = 1;
         $upisaneGodine->save();
+
+        $kandidat = Kandidat::find($id);
+
+        $kandidat->godinaStudija_id = $request->godina;
+
+        $kandidat->save();
+
+        return redirect("student/{$id}/upis");
+    }
+
+    public function obnoviGodinu($id, Request $request)
+    {
+        if(empty($id) || empty($request->godina)){
+            Session::flash('flash-error', 'upis');
+            return redirect("student/{$id}/upis");
+        }
+
+        $upis = new UpisGodine();
+        $upis->kandidat_id = $id;
+        $upis->godina = $request->godina;
+        $upis->pokusaj = $request->pokusaj + 1;
+        $upis->skolarina = 0;
+        $upis->upisan = 0;
+        $upis->save();
 
         $kandidat = Kandidat::find($id);
 

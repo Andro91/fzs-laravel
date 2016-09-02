@@ -157,11 +157,11 @@
                                 {{--</select>--}}
                             {{--</div>--}}
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="VisinaKandidata">Висина кандидата</label>
+                                <label for="VisinaKandidata">Висина кандидата (cm)</label>
                                 <input class="form-control" type="text" name="VisinaKandidata" id="VisinaKandidata">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                <label for="TelesnaTezinaKandidata">Телесна тежина кандидата</label>
+                                <label for="TelesnaTezinaKandidata">Телесна тежина кандидата (kg)</label>
                                 <input class="form-control" type="text" name="TelesnaTezinaKandidata" id="TelesnaTezinaKandidata">
                             </div>
                             {{--<div class="form-group">--}}
@@ -229,6 +229,10 @@
                             <div class="form-group">
                                 <label for="BrojBodovaSkola">Број бодова школа</label>
                                 <input class="form-control" type="text" name="BrojBodovaSkola" id="BrojBodovaSkola">
+                            </div>
+                            <div class="form-group">
+                                <label for="ukupniBrojBodova">Укупни број бодова</label>
+                                <input class="form-control" type="text" name="ukupniBrojBodova" id="ukupniBrojBodova">
                             </div>
                             <div class="form-group">
                                 <label for="UpisniRok">Уписни рок</label>

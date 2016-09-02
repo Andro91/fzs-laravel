@@ -34,6 +34,11 @@
     <div>
         <h4>Подаци о студенту</h4>
         <ul class="list-group">
+            <li class="list-group-item">Број Индекса:
+                <strong>
+                    {{ $kandidat->brojIndeksa }}
+                </strong>
+            </li>
             <li class="list-group-item">Име и презиме:
                 <strong>
                     {{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata }}
@@ -46,7 +51,7 @@
             </li>
             <li class="list-group-item">Датум рођења:
                 <strong>
-                    {{ $kandidat->datumRodjenja }}
+                    {{ $kandidat->datumRodjenja->format('d.m.Y') }}
                 </strong>
             </li>
         </ul>
@@ -56,6 +61,7 @@
             <thead>
             <tr>
                 <th>Година</th>
+                <th>Покушај</th>
                 <th>Школарина</th>
                 <th>Уписан</th>
             </tr>
@@ -65,7 +71,7 @@
                     <?php
                         $rowClass = "";
                         if($godina->skolarina == 1 && $godina->upisan == 0){
-                            $rowClass = "info";
+                            $rowClass = "warning";
                         }else if($godina->skolarina == 0 && $godina->upisan == 0){
                             $rowClass = "danger";
                         }else{
@@ -74,14 +80,21 @@
                     ?>
                     <tr class="{{ $rowClass }}">
                         <td>{{ $godina->godina }}</td>
-                        <td>{{ $godina->skolarina == 1 ? "Уплаћена" : "Није уплаћена" }}</td>
-                        <td>{{ $godina->upisan == 1 ? "Уписан" : "Није уписан" }}</td>
+                        <td>{{ $godina->pokusaj }}</td>
+                        <td>@if($godina->skolarina == 1) <span class='label label-success'>Уплаћена</span> @else <span class='label label-danger'>Није уплаћена</span> @endif</td>
+                        <td>@if($godina->upisan == 1) <span class='label label-success'>Уписан</span> @else <span class='label label-danger'>Није уписан</span> @endif</td>
                         <td>
                             <a class="btn btn-primary" {{ $godina->skolarina == 1 ? "disabled" : "" }}
                                 href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}">Уплатио школарину
                             </a>
                             <a class="btn btn-success" {{ ($godina->upisan == 1 || $godina->skolarina == 0) ? "disabled" : "" }}
                                 href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}">Уписао годину
+                            </a>
+                            <a class="btn btn-info" href="{{$putanja}}/student/{{ $kandidat->id }}/obnova?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">
+                                Обнови годину
+                            </a>
+                            <a class="btn btn-warning" href="{{$putanja}}/">
+                                Замрзао годину
                             </a>
                         </td>
                     </tr>

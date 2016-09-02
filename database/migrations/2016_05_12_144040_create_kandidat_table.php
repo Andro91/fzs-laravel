@@ -38,6 +38,7 @@ class CreateKandidatTable extends Migration
             $table->integer('statusUpisa_id')->unsigned()->nullable();
             $table->double('brojBodovaTest')->nullable();
             $table->double('brojBodovaSkola')->nullable();
+            $table->double('ukupniBrojBodova')->nullable();
             $table->double('prosecnaOcena')->nullable();
             $table->string('upisniRok')->nullable();
             $table->string('brojIndeksa')->nullable()->unique();

@@ -307,13 +307,13 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="VisinaKandidata">Висина кандидата</label>
+                                        <label for="VisinaKandidata">Висина кандидата (cm)</label>
                                         <input class="form-control" type="text" name="VisinaKandidata"
                                                id="VisinaKandidata"
                                                value="{{ $kandidat->visina }}">
                                     </div>
                                     <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="TelesnaTezinaKandidata">Телесна тежина кандидата</label>
+                                        <label for="TelesnaTezinaKandidata">Телесна тежина кандидата (kg)</label>
                                         <input class="form-control" type="text" name="TelesnaTezinaKandidata"
                                                id="TelesnaTezinaKandidata" value="{{ $kandidat->telesnaTezina }}">
                                     </div>
@@ -381,6 +381,11 @@
                                         <label for="BrojBodovaSkola">Број бодова школа</label>
                                         <input class="form-control" type="text" name="BrojBodovaSkola"
                                                id="BrojBodovaSkola" value="{{ $kandidat->brojBodovaSkola }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ukupniBrojBodova">Укупни број бодова</label>
+                                        <input class="form-control" type="text" name="ukupniBrojBodova"
+                                               id="ukupniBrojBodova" value="{{ $kandidat->ukupniBrojBodova }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="UpisniRok">Уписни рок</label>

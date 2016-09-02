@@ -16,6 +16,7 @@ class CreateUpisGodineTable extends Migration
             $table->increments('id');
             $table->integer('kandidat_id');
             $table->integer('godina');
+            $table->integer('pokusaj');
             $table->boolean('skolarina');
             $table->boolean('upisan');
             $table->timestamps();

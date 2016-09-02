@@ -12,6 +12,7 @@ class UpisGodine extends Model
     {
         //provera da li je kandidat vec upisan, da bi se izbeglo dupliranje zapisa
         $vecUpisan = UpisGodine::where(['kandidat_id' => $id])->get();
+        $kandidat = Kandidat::find($id);
         if(count($vecUpisan) > 0){
             return;
         }
@@ -19,28 +20,32 @@ class UpisGodine extends Model
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = 1;
-        $upis->skolarina = $uplata;
+        $upis->pokusaj = 1;
+        $upis->skolarina = $kandidat->godinaStudija_id == 1 ? $uplata : 0;
         $upis->upisan = 0;
         $upis->save();
 
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = 2;
-        $upis->skolarina = 0;
+        $upis->pokusaj = 1;
+        $upis->skolarina = $kandidat->godinaStudija_id == 2 ? $uplata : 0;
         $upis->upisan = 0;
         $upis->save();
 
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = 3;
-        $upis->skolarina = 0;
+        $upis->pokusaj = 1;
+        $upis->skolarina = $kandidat->godinaStudija_id == 3 ? $uplata : 0;
         $upis->upisan = 0;
         $upis->save();
 
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = 4;
-        $upis->skolarina = 0;
+        $upis->pokusaj = 1;
+        $upis->skolarina = $kandidat->godinaStudija_id == 4 ? $uplata : 0;
         $upis->upisan = 0;
         $upis->save();
     }
@@ -63,7 +68,7 @@ class UpisGodine extends Model
         $kandidat->godinaStudija_id = $godina;
         $kandidat->save();
 
-        if($godina == 1){
+        if(empty($kandidat->brojIndeksa)){
             UpisGodine::generisiBrojIndeksa($kandidat->id);
         }
     }
@@ -78,7 +83,7 @@ class UpisGodine extends Model
             $prviZapis->skolskaGodinaUpisa_id = $kandidat->skolskaGodinaUpisa_id;
             $prviZapis->indeks = 1;
             $prviZapis->save();
-            $poslednjiBrojIndeksa = 1;
+            $poslednjiBrojIndeksa = 0;
         }else{
             $poslednjiBrojIndeksa = $arhivIndeksa->indeks;
             $arhivIndeksa->indeks++;

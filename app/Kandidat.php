@@ -8,6 +8,8 @@ class Kandidat extends Model
 {
     protected $table = 'kandidat';
 
+    protected $dates = ['datumRodjenja'];
+
     public function angazovanja()
     {
         return $this->hasMany(SportskoAngazovanje::class);

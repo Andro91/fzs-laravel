@@ -199,7 +199,6 @@ class KandidatController extends Controller
 
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = $request->insertedId;
-            // $prviRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $prviRazred->opstiUspeh_id = $request->prviRazred;
             $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
@@ -207,7 +206,6 @@ class KandidatController extends Controller
 
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = $request->insertedId;
-            // $drugiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $drugiRazred->opstiUspeh_id = $request->drugiRazred;
             $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
             $drugiRazred->RedniBrojRazreda = 2;
@@ -215,7 +213,6 @@ class KandidatController extends Controller
 
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = $request->insertedId;
-            // $treciRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $treciRazred->opstiUspeh_id = $request->treciRazred;
             $treciRazred->srednja_ocena = $request->SrednjaOcena3;
             $treciRazred->RedniBrojRazreda = 3;
@@ -223,7 +220,6 @@ class KandidatController extends Controller
 
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = $request->insertedId;
-            // $cetvrtiRazred->SrednjeSkoleFakulteti_id = $skola_id;
             $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
             $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
 
@@ -233,6 +229,7 @@ class KandidatController extends Controller
 
             $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
             $kandidat->srednjaOcenaSrednjaSkola = $request->SrednjaOcenaSrednjaSkola;
+
 
             if ($request->sport1 != 0) {
                 $sport1 = new SportskoAngazovanje();
@@ -288,33 +285,10 @@ class KandidatController extends Controller
                 }
             }
 
-//            foreach ($dokumenta as $dokument) {
-//                if ($request->has(str_replace(' ', '_', $dokument->naziv))) {
-//                    $prilozenDokument = new KandidatPrilozenaDokumenta();
-//                    $prilozenDokument->prilozenaDokumenta_id = $dokument->id;
-//                    $prilozenDokument->kandidat_id = $request->insertedId;
-//                    $prilozenDokument->indikatorAktivan = 1;
-//                    $prilozenDokument->save();
-//                }
-//            }
-
-            //$kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
             $kandidat->brojBodovaTest = $request->BrojBodovaTest;
             $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
+            $kandidat->ukupniBrojBodova = $request->ukupniBrojBodova;
             $kandidat->upisniRok = $request->UpisniRok;
-            //$kandidat->indikatorAktivan = $request->IndikatorAktivan;
-
-//            if($kandidat->uplata == 1){
-//                $upisGodine = new UpisGodine();
-//                $upisGodine->kandidat_id = $request->insertedId;
-//                $upisGodine->godina = 1;
-//                $upisGodine->skolarina = 1;
-//                $upisGodine->upisan = 0;
-//                $upisGodine->save();
-//
-//                UpisGodine::upisiGodinu($request->insertedId, $kandidat->uplata);
-//            }
-
 
             $kandidat->save();
 
@@ -349,7 +323,6 @@ class KandidatController extends Controller
 
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
-        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
         $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
@@ -371,7 +344,6 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = 0;
-            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
             $prviRazred->opstiUspeh_id = 1;
             $prviRazred->srednja_ocena = 0;
             $prviRazred->RedniBrojRazreda = 1;
@@ -382,7 +354,6 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = 0;
-            // $drugiRazred->SrednjeSkoleFakulteti_id = 1;
             $drugiRazred->opstiUspeh_id = 1;
             $drugiRazred->srednja_ocena = 0;
             $drugiRazred->RedniBrojRazreda = 1;
@@ -393,7 +364,6 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = 0;
-            // $treciRazred->SrednjeSkoleFakulteti_id = 1;
             $treciRazred->opstiUspeh_id = 1;
             $treciRazred->srednja_ocena = 0;
             $treciRazred->RedniBrojRazreda = 1;
@@ -404,7 +374,6 @@ class KandidatController extends Controller
         }catch (ModelNotFoundException $e){
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = 0;
-            // $cetvrtiRazred->SrednjeSkoleFakulteti_id = 1;
             $cetvrtiRazred->opstiUspeh_id = 1;
             $cetvrtiRazred->srednja_ocena = 0;
             $cetvrtiRazred->RedniBrojRazreda = 1;
@@ -552,6 +521,7 @@ class KandidatController extends Controller
         $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
         $kandidat->brojBodovaTest = $request->BrojBodovaTest;
         $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
+        $kandidat->ukupniBrojBodova = $request->ukupniBrojBodova;
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->indikatorAktivan = $request->IndikatorAktivan;
 
@@ -687,7 +657,7 @@ class KandidatController extends Controller
         ];
 
         $this->validate($request, [
-            'JMBG' => 'unique:kandidat|max:13|required',
+            'JMBG' => 'unique:kandidat|required',
         ], $messages);
 
         $kandidat = new Kandidat();
@@ -886,8 +856,8 @@ class KandidatController extends Controller
             $kandidat->upisan = 1;
 
             if($kandidat->tipStudija_id == 1){
-                UpisGodine::uplatiGodinu($id, 1);
-                UpisGodine::upisiGodinu($id, 1);
+                UpisGodine::uplatiGodinu($id, $kandidat->godinaStudija_id);
+                UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
             }else if($kandidat->tipStudija_id == 2){
                 UpisGodine::generisiBrojIndeksa($kandidat->id);
             }
@@ -928,7 +898,7 @@ class KandidatController extends Controller
             $kandidat->upisan = 1;
             $kandidat->save();
 
-            UpisGodine::upisiGodinu($kandidatId, 1);
+            UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaUpisa_id);
         }
         return \Redirect::back();
         return redirect('/kandidat/');
