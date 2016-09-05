@@ -78,10 +78,17 @@
                         <h3 class="panel-title">Списак дипломираних студената</h3>
                     </div>
                     <div class="panel-body">
-                        <span style="display:inline-block;">
-                            <input name="godina" maxlength="4" type="text" class="form-group">
+                        <div class="form-group pull-left" style="width: 35%;  margin-right: 2%">
+                            <label for="from">Од:</label>
+                            <input name="from" id="from" type="text" class="form-control">
+                        </div>
+                        <div class="form-group pull-left" style="width: 35%;  margin-right: 2%">
+                            <label for="to">До:</label>
+                            <input name="to" id="to" type="text" class="form-control">
+                        </div>
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
                             <button type="submit" class="btn btn-primary">Штампај</button>
-                            </span>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -128,5 +135,21 @@
     </div>
 
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //$('#lice').combobox('autocomplete', $("#liceHidden").val());
+
+            $("#from").datepicker({
+                dateFormat: 'dd.mm.yy.'
+            });
+
+            $("#to").datepicker({
+                dateFormat: 'dd.mm.yy.'
+            });
+
+        });
+    </script>
 
 @endsection

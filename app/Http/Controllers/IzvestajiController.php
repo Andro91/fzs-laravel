@@ -390,22 +390,17 @@ class IzvestajiController extends Controller
     public function nastavniPlan(Request $request)
     {
         try {
-            //$kandidat = Kandidat::all();
-            //$program = StudijskiProgram::all();
             $predmeti = Predmet::where(['godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
-            //return $predmeti;
+
             if ($predmeti->first()) {
                 $program = $predmeti->first()->studijskiProgram->naziv;
             } else {
                 $program = '';
             }
 
-
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
-
-        //return $studenti;
 
         $view = View::make('izvestaji.nastavniPlan')->with('program', $program)->with('predmeti', $predmeti);
 
@@ -416,4 +411,27 @@ class IzvestajiController extends Controller
         PDF::WriteHtml($contents);
         PDF::Output('Nastavni plan.pdf');
     }
+
+    public function spisakDiplomiranih(Request $request)
+    {
+        try {
+            $from = new DateTime($request->from);
+            $to = new DateTime($request->to);
+
+            $diplomirani = DiplomskiRad::whereBetween('datumOdbrane', array($from, $to))->get();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.diplomirani')->with('diplomirani', $diplomirani);
+
+        $contents = $view->render();
+        PDF::SetTitle('Дипломирани студенти');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Diplomirani.pdf');
+    }
+
 }
