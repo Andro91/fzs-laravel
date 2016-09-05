@@ -73,6 +73,7 @@
             </form>
             <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakDiplomiranih/') }}">
                 {{csrf_field()}}
+
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <h3 class="panel-title">Списак дипломираних студената</h3>

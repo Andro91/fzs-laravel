@@ -6,21 +6,18 @@
 
     <div>
 
-        <h1 style="padding-bottom: 100px;">Списак дипломираних студената</h1>
+        <h1 style="padding-bottom: 100px;">РЎРїРёСЃР°Рє РґРёРїР»РѕРјРёСЂР°РЅРёС… СЃС‚СѓРґРµРЅР°С‚Р°</h1>
         <br/>
         <br/>
 
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;">
-                    <b>Име</b>
+                <th style="border: 1px solid black;"><b>РРјРµ</b>
                 </th>
-                <th style="border: 1px solid black;">
-                    <b>Презиме</b>
+                <th style="border: 1px solid black;"><b>РџСЂРµР·РёРјРµ</b>
                 </th>
-                <th style="border: 1px solid black;">
-                    <b>Број бодова</b>
+                <th style="border: 1px solid black;"><b>Р”Р°С‚СѓРј РѕРґР±СЂР°РЅРµ</b>
                 </th>
             </tr>
             </thead>
@@ -28,14 +25,14 @@
                 <tr>
                     <td style="border: 1px solid black;">{{$item->student->imeKandidata}}</td>
                     <td style="border: 1px solid black;">{{$item->student->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->student->brojBodovaTest}}</td>
+                    <td style="border: 1px solid black;">{{ date('d.m.Y.',strtotime($item->datumOdbrane)) }}</td>
                 </tr>
 
             @endforeach
         </table>
     </div>
 @else
-    <h1>Нема дипломираних студената у овом периоду.</h1>
+    <h1>РќРµРјР° РґРёРїР»РѕРјРёСЂР°РЅРёС… СЃС‚СѓРґРµРЅР°С‚Р° Сѓ РёР·Р°Р±СЂР°РЅРѕРј РїРµСЂРёРѕРґСѓ.</h1>
 @endif
 
 
@@ -47,7 +44,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td>Одговорно лице</td>
+            <td>РћРІР»Р°С€С›РµРЅРѕ Р»РёС†Рµ</td>
         </tr>
         <tr>
             <td></td>

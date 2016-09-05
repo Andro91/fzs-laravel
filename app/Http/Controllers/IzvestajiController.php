@@ -414,6 +414,7 @@ class IzvestajiController extends Controller
 
     public function spisakDiplomiranih(Request $request)
     {
+
         try {
             $from = new DateTime($request->from);
             $to = new DateTime($request->to);
