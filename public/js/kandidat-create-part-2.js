@@ -13,37 +13,48 @@ srednjaOcena3.mask("q.ww");
 srednjaOcena4.mask("q.ww");
 srednjaOcenaSrednjaSkola.mask("q.ww");
 
-srednjaOcena1.focusout(function(){
+srednjaOcena1.change(function(){
     var srednja = parseFloat(srednjaOcena1.val());
     var uspehId = uspeh(srednja);
     $('#prviRazred').val(uspehId);
+
+    racunajOcenu();
 });
-srednjaOcena2.focusout(function(){
+
+srednjaOcena2.change(function(){
     var srednja = parseFloat(srednjaOcena2.val());
     var uspehId = uspeh(srednja);
     $('#drugiRazred').val(uspehId);
+
+    racunajOcenu();
 });
-srednjaOcena3.focusout(function(){
+
+srednjaOcena3.change(function(){
     var srednja = parseFloat(srednjaOcena3.val());
     var uspehId = uspeh(srednja);
     $('#treciRazred').val(uspehId);
+
+    racunajOcenu();
 });
-srednjaOcena4.focusout(function(){
+
+srednjaOcena4.change(function(){
     var srednja = parseFloat(srednjaOcena4.val());
     var uspehId = uspeh(srednja);
     $('#cetvrtiRazred').val(uspehId);
+
+    racunajOcenu();
 });
 
-srednjaOcena4.focusout(function(){
-    var srednja1 = parseFloat(srednjaOcena1.val());
-    var srednja2 = parseFloat(srednjaOcena2.val());
-    var srednja3 = parseFloat(srednjaOcena3.val());
-    var srednja4 = parseFloat(srednjaOcena4.val());
+function racunajOcenu(){
+    var srednja1 = isNaN(parseFloat(srednjaOcena1.val())) ? 0 : parseFloat(srednjaOcena1.val());
+    var srednja2 = isNaN(parseFloat(srednjaOcena2.val())) ? 0 : parseFloat(srednjaOcena2.val());
+    var srednja3 = isNaN(parseFloat(srednjaOcena3.val())) ? 0 : parseFloat(srednjaOcena3.val());
+    var srednja4 = isNaN(parseFloat(srednjaOcena4.val())) ? 0 : parseFloat(srednjaOcena4.val());
 
     var suma = srednja1 + srednja2 + srednja3 + srednja4;
     $('#SrednjaOcenaSrednjaSkola').val((Math.round((suma/4) * 100) / 100).toFixed(2));
     $('#BrojBodovaSkola').val(Math.round((suma*3) *100) / 100);
-});
+}
 
 srednjaOcenaSrednjaSkola.focusin(function () {
     var srednjaOcena = parseFloat($('#SrednjaOcenaSrednjaSkola').val());
@@ -53,6 +64,20 @@ srednjaOcenaSrednjaSkola.focusin(function () {
 srednjaOcenaSrednjaSkola.change(function () {
     var srednjaOcena = parseFloat($('#SrednjaOcenaSrednjaSkola').val());
     $('#OpstiUspehSrednjaSkola').val(uspeh(srednjaOcena));
+});
+
+$('#BrojBodovaTest').change(function () {
+    var skola = parseFloat($('#BrojBodovaSkola').val());
+    var test = parseFloat($('#BrojBodovaTest').val());
+
+    $('#ukupniBrojBodova').val((skola + test).toFixed(2));
+});
+
+$('#BrojBodovaSkola').change(function () {
+    var skola = parseFloat($('#BrojBodovaSkola').val());
+    var test = parseFloat($('#BrojBodovaTest').val());
+
+    $('#ukupniBrojBodova').val((skola + test).toFixed(2));
 });
 
 $(document).ready(function() {

@@ -17,44 +17,65 @@ class UpisGodine extends Model
             return;
         }
 
-        $upis = new UpisGodine();
-        $upis->kandidat_id = $id;
-        $upis->godina = 1;
-        $upis->pokusaj = 1;
-        $upis->skolarina = $kandidat->godinaStudija_id == 1 ? $uplata : 0;
-        $upis->upisan = 0;
-        $upis->save();
+        if($kandidat->tipStudija_id == 1)
+        {
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 1;
+            $upis->pokusaj = 1;
+            $upis->skolarina = $kandidat->godinaStudija_id == 1 ? $uplata : 0;
+            $upis->upisan = 0;
+            $upis->save();
 
-        $upis = new UpisGodine();
-        $upis->kandidat_id = $id;
-        $upis->godina = 2;
-        $upis->pokusaj = 1;
-        $upis->skolarina = $kandidat->godinaStudija_id == 2 ? $uplata : 0;
-        $upis->upisan = 0;
-        $upis->save();
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 2;
+            $upis->pokusaj = 1;
+            $upis->skolarina = $kandidat->godinaStudija_id == 2 ? $uplata : 0;
+            $upis->upisan = 0;
+            $upis->save();
 
-        $upis = new UpisGodine();
-        $upis->kandidat_id = $id;
-        $upis->godina = 3;
-        $upis->pokusaj = 1;
-        $upis->skolarina = $kandidat->godinaStudija_id == 3 ? $uplata : 0;
-        $upis->upisan = 0;
-        $upis->save();
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 3;
+            $upis->pokusaj = 1;
+            $upis->skolarina = $kandidat->godinaStudija_id == 3 ? $uplata : 0;
+            $upis->upisan = 0;
+            $upis->save();
 
-        $upis = new UpisGodine();
-        $upis->kandidat_id = $id;
-        $upis->godina = 4;
-        $upis->pokusaj = 1;
-        $upis->skolarina = $kandidat->godinaStudija_id == 4 ? $uplata : 0;
-        $upis->upisan = 0;
-        $upis->save();
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 4;
+            $upis->pokusaj = 1;
+            $upis->skolarina = $kandidat->godinaStudija_id == 4 ? $uplata : 0;
+            $upis->upisan = 0;
+            $upis->save();
+        }
+        else if($kandidat->tipStudija_id == 2)
+        {
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 1;
+            $upis->pokusaj = 1;
+            $upis->skolarina = $uplata;
+            $upis->upisan = 0;
+            $upis->save();
+        }
+
     }
 
     public static function uplatiGodinu($id, $godina)
     {
         $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
         $upis->skolarina = 1;
-        $upis->save();
+        $saved = $upis->save();
+
+        if($saved){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 
@@ -62,14 +83,25 @@ class UpisGodine extends Model
     {
         $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
         $upis->upisan = 1;
-        $upis->save();
+        $saved1 = $upis->save();
 
         $kandidat = Kandidat::find($id);
-        $kandidat->godinaStudija_id = $godina;
-        $kandidat->save();
+
+        if($saved1){
+            $kandidat->godinaStudija_id = $godina;
+            $saved2 = $kandidat->save();
+        }else{
+            return false;
+        }
 
         if(empty($kandidat->brojIndeksa)){
             UpisGodine::generisiBrojIndeksa($kandidat->id);
+        }
+
+        if($saved1 && $saved2){
+            return true;
+        }else{
+            return false;
         }
     }
 

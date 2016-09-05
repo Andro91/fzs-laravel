@@ -49,11 +49,13 @@
                     {{ $kandidat->jmbg }}
                 </strong>
             </li>
-            <li class="list-group-item">Датум рођења:
-                <strong>
-                    {{ $kandidat->datumRodjenja->format('d.m.Y') }}
-                </strong>
-            </li>
+            @if(!empty($kandidat->datumRodjenja))
+                <li class="list-group-item">Датум рођења:
+                    <strong>
+                        {{ $kandidat->datumRodjenja->format('d.m.Y') }}
+                    </strong>
+                </li>
+            @endif
         </ul>
     </div>
     <div>
@@ -87,7 +89,7 @@
                             <a class="btn btn-primary" {{ $godina->skolarina == 1 ? "disabled" : "" }}
                                 href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}">Уплатио школарину
                             </a>
-                            <a class="btn btn-success" {{ ($godina->upisan == 1 || $godina->skolarina == 0) ? "disabled" : "" }}
+                            <a class="btn btn-success" {{ ($godina->upisan == 1) ? "disabled" : "" }}
                                 href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}">Уписао годину
                             </a>
                             <a class="btn btn-info" href="{{$putanja}}/student/{{ $kandidat->id }}/obnova?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">

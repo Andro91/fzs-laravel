@@ -140,7 +140,7 @@ class KandidatController extends Controller
 
             }
 
-            $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+            $kandidat->mestoRodjenja = $request->mestoRodjenja;
             $kandidat->krsnaSlava_id = $request->KrsnaSlava;
             $kandidat->kontaktTelefon = $request->KontaktTelefon;
             $kandidat->adresaStanovanja = $request->AdresaStanovanja;
@@ -148,7 +148,7 @@ class KandidatController extends Controller
             $kandidat->imePrezimeJednogRoditelja = $request->ImePrezimeJednogRoditelja;
             $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
             $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
-            $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+            $kandidat->mestoZavrseneSkoleFakulteta = $request->mestoZavrseneSkoleFakulteta;
             $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
             $kandidat->tipStudija_id = 1;
@@ -427,7 +427,7 @@ class KandidatController extends Controller
 
         $kandidat->datumRodjenja = date_create_from_format('d.m.Y.', $request->DatumRodjenja);
 
-        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->mestoRodjenja = $request->mestoRodjenja;
         $kandidat->krsnaSlava_id = $request->KrsnaSlava;
         $kandidat->kontaktTelefon = $request->KontaktTelefon;
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
@@ -436,7 +436,7 @@ class KandidatController extends Controller
         $kandidat->kontaktTelefonRoditelja = $request->KontaktTelefonRoditelja;
 
         $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
-        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta = $request->mestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
         $kandidat->tipStudija_id = $request->TipStudija;
@@ -444,47 +444,45 @@ class KandidatController extends Controller
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
         $kandidat->godinaStudija_id = $request->GodinaStudija;
 
-        // $skola_id = $kandidat->srednjeSkoleFakulteti_id;
-
         try {
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = $id;
-            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
-            $prviRazred->opstiUspeh_id = 1;
-            $prviRazred->srednja_ocena = 0;
+            $prviRazred->opstiUspeh_id = $request->prviRazred;
+            $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
+            $prviRazred->save();
         }
         try {
             $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = $id;
-            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
-            $drugiRazred->opstiUspeh_id = 1;
-            $drugiRazred->srednja_ocena = 0;
+            $drugiRazred->opstiUspeh_id = $request->drugiRazred;
+            $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
             $drugiRazred->RedniBrojRazreda = 2;
+            $drugiRazred->save();
         }
         try {
             $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = $id;
-            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
-            $treciRazred->opstiUspeh_id = 1;
-            $treciRazred->srednja_ocena = 0;
+            $treciRazred->opstiUspeh_id = $request->treciRazred;
+            $treciRazred->srednja_ocena = $request->SrednjaOcena3;
             $treciRazred->RedniBrojRazreda = 3;
+            $treciRazred->save();
         }
         try {
             $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = $id;
-            // $prviRazred->SrednjeSkoleFakulteti_id = 1;
-            $cetvrtiRazred->opstiUspeh_id = 1;
-            $cetvrtiRazred->srednja_ocena = 0;
+            $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
+            $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
             $cetvrtiRazred->RedniBrojRazreda = 4;
+            $cetvrtiRazred->save();
         }
 
         $kandidat->opstiUspehSrednjaSkola_id = $request->OpstiUspehSrednjaSkola;
@@ -633,8 +631,6 @@ class KandidatController extends Controller
         return view('kandidat.create_master')
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
-            ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
             ->with('sportskoAngazovanje', $sportskoAngazovanje)
@@ -671,13 +667,13 @@ class KandidatController extends Controller
             $kandidat->uplata = 1;
         }
 
-        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->mestoRodjenja = $request->mestoRodjenja;
         $kandidat->kontaktTelefon = $request->KontaktTelefon;
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
         $kandidat->email = $request->Email;
 
         $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
-        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta = $request->mestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
         $kandidat->tipStudija_id = 2;
@@ -686,22 +682,27 @@ class KandidatController extends Controller
 
         $kandidat->prosecnaOcena = str_replace(",", ".", $request->ProsecnaOcena);
         $kandidat->upisniRok = $request->UpisniRok;
+        $kandidat->godinaStudija_id = 1;
 
-        $kandidat->save();
+        $saved = $kandidat->save();
 
         $insertedId = $kandidat->id;
 
-        //Brisanje svih dokumenata za datog kandidata
-        KandidatPrilozenaDokumenta::where('kandidat_id',$insertedId)->delete();
+        if($saved) {
+            UpisGodine::registrujKandidata($insertedId, $kandidat->uplata);
 
-        //Dodavanje dokumenata za master
-        if($request->has('dokumentaMaster')) {
-            foreach ($request->dokumentaMaster as $dokument) {
-                $prilozenDokument = new KandidatPrilozenaDokumenta();
-                $prilozenDokument->prilozenaDokumenta_id = $dokument;
-                $prilozenDokument->kandidat_id = $insertedId;
-                $prilozenDokument->indikatorAktivan = 1;
-                $prilozenDokument->save();
+            //Brisanje svih dokumenata za datog kandidata
+            KandidatPrilozenaDokumenta::where('kandidat_id', $insertedId)->delete();
+
+            //Dodavanje dokumenata za master
+            if ($request->has('dokumentaMaster')) {
+                foreach ($request->dokumentaMaster as $dokument) {
+                    $prilozenDokument = new KandidatPrilozenaDokumenta();
+                    $prilozenDokument->prilozenaDokumenta_id = $dokument;
+                    $prilozenDokument->kandidat_id = $insertedId;
+                    $prilozenDokument->indikatorAktivan = 1;
+                    $prilozenDokument->save();
+                }
             }
         }
 
@@ -713,8 +714,6 @@ class KandidatController extends Controller
     {
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
-        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
@@ -734,8 +733,6 @@ class KandidatController extends Controller
         return view('kandidat.update_master')
             ->with('mestoRodjenja', $mestoRodjenja)
             ->with('krsnaSlava', $krsnaSlava)
-            // ->with('nazivSkoleFakulteta', $nazivSkoleFakulteta)
-            ->with('mestoZavrseneSkoleFakulteta', $mestoZavrseneSkoleFakulteta)
             ->with('opstiUspehSrednjaSkola', $opstiUspehSrednjaSkola)
             ->with('uspehSrednjaSkola', $uspehSrednjaSkola)
             ->with('sportskoAngazovanje', $sportskoAngazovanje)
@@ -762,13 +759,13 @@ class KandidatController extends Controller
             $kandidat->uplata = 1;
         }
 
-        $kandidat->mestoRodjenja_id = $request->MestoRodjenja;
+        $kandidat->mestoRodjenja = $request->mestoRodjenja;
         $kandidat->kontaktTelefon = $request->KontaktTelefon;
         $kandidat->adresaStanovanja = $request->AdresaStanovanja;
         $kandidat->email = $request->Email;
 
         $kandidat->srednjeSkoleFakulteti = $request->NazivSkoleFakulteta;
-        $kandidat->mestoZavrseneSkoleFakulteta_id = $request->MestoZavrseneSkoleFakulteta;
+        $kandidat->mestoZavrseneSkoleFakulteta = $request->mestoZavrseneSkoleFakulteta;
         $kandidat->smerZavrseneSkoleFakulteta = $request->SmerZavrseneSkoleFakulteta;
 
         $kandidat->tipStudija_id = $request->TipStudija;
@@ -853,15 +850,25 @@ class KandidatController extends Controller
                 return redirect('/master/');
             }
         }else{
-            $kandidat->upisan = 1;
 
             if($kandidat->tipStudija_id == 1){
-                UpisGodine::uplatiGodinu($id, $kandidat->godinaStudija_id);
-                UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
+                $checkOne = UpisGodine::uplatiGodinu($id, $kandidat->godinaStudija_id);
+                $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
+                //Ako uplata ili upis ne prodju, radi se prekid i vraca se greska
+                if(!$checkOne || !$checkTwo){
+                    Session::flash('flash-error', 'upis');
+                    return redirect('/kandidat/');
+                }
             }else if($kandidat->tipStudija_id == 2){
+                $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
+                if(!$checkTwo){
+                    Session::flash('flash-error', 'upis');
+                    return redirect('/master/');
+                }
                 UpisGodine::generisiBrojIndeksa($kandidat->id);
             }
 
+            $kandidat->upisan = 1;
             $saved = $kandidat->save();
             if($saved){
                 Session::flash('flash-success', 'upis');
@@ -886,7 +893,6 @@ class KandidatController extends Controller
 
             UpisGodine::uplatiGodinu($kandidatId, 1);
         }
-        return \Redirect::back();
         return redirect('/kandidat/');
     }
 
@@ -895,12 +901,17 @@ class KandidatController extends Controller
         foreach ($request->odabir as $kandidatId) {
 
             $kandidat = Kandidat::find($kandidatId);
-            $kandidat->upisan = 1;
-            $kandidat->save();
 
-            UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaUpisa_id);
+            $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id);
+
+            if($returnValue){
+                $kandidat->upisan = 1;
+                $kandidat->save();
+            }else{
+                Session::flash('flash-error', 'upis');
+                return redirect('/kandidat/');
+            }
         }
-        return \Redirect::back();
         return redirect('/kandidat/');
     }
 
@@ -913,7 +924,6 @@ class KandidatController extends Controller
             $kandidat->save();
 
         }
-        return \Redirect::back();
         return redirect('/master/');
     }
 
@@ -927,7 +937,6 @@ class KandidatController extends Controller
 
             UpisGodine::generisiBrojIndeksa($kandidatId);
         }
-        return \Redirect::back();
         return redirect('/master/');
     }
 }

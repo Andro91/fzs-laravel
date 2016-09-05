@@ -18,7 +18,7 @@ class CreateKandidatTable extends Migration
             $table->string('prezimeKandidata')->nullable();
             $table->string('jmbg')->unique();
             $table->dateTime('datumRodjenja')->nullable();
-            $table->integer('mestoRodjenja_id')->unsigned()->index();
+            $table->string('mestoRodjenja')->nullable();
             $table->integer('krsnaSlava_id')->unsigned()->index();
             $table->string('kontaktTelefon')->nullable();
             $table->string('adresaStanovanja')->nullable();
@@ -26,7 +26,7 @@ class CreateKandidatTable extends Migration
             $table->string('imePrezimeJednogRoditelja')->nullable();
             $table->string('kontaktTelefonRoditelja')->nullable();
             $table->string('srednjeSkoleFakulteti')->nullable();
-            $table->integer('mestoZavrseneSkoleFakulteta_id')->unsigned()->index();
+            $table->string('mestoZavrseneSkoleFakulteta')->nullable();
             $table->string('smerZavrseneSkoleFakulteta')->nullable();
             $table->integer('uspehSrednjaSkola_id')->unsigned()->index();
             $table->integer('opstiUspehSrednjaSkola_id')->unsigned()->index();

@@ -103,18 +103,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="DatumRodjenja">Датум рођења</label>
-                                <input class="form-control" type="date" name="DatumRodjenja" id="DatumRodjenja"
+                                <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja"
                                        value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="MestoRodjenja">Место рођења</label>
-                                <select class="form-control" id="MestoRodjenja" name="MestoRodjenja"
-                                        style="max-width: 60%">
+                            <div class="form-group" style="width: 60%">
+                                <label for="mestoRodjenja">Место рођења</label>
+                                <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
+                                       class="form-control" style="max-width: 60%" value="{{ $kandidat->mestoRodjenja }}">
+                                <datalist id="mestaList">
                                     @foreach($mestoRodjenja as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->mestoRodjenja_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                        <option value="{{$item->naziv}}">
                                     @endforeach
-                                </select>
+                                </datalist>
                             </div>
                             <div class="form-group">
                                 <label for="KrsnaSlava">Крсна слава</label>
@@ -167,13 +168,9 @@
                                        value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
                             </div>
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <select class="form-control" id="MestoZavrseneSkoleFakulteta"
-                                        name="MestoZavrseneSkoleFakulteta">
-                                    @foreach($mestoZavrseneSkoleFakulteta as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->mestoZavrseneSkoleFakulteta_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
+                                <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
+                                        name="mestoZavrseneSkoleFakulteta" list="mestaList" value="{{ $kandidat->mestoZavrseneSkoleFakulteta }}">
                             </div>
 
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -270,7 +267,7 @@
                                         <label for="SrednjaOcenaSrednjaSkola">Средња оцена средња школа</label>
                                         <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
                                                id="SrednjaOcenaSrednjaSkola"
-                                               value="{{ $kandidat->srednjaOcenaSrednjaSkola }}">
+                                               value="{{ number_format((float)$kandidat->srednjaOcenaSrednjaSkola, 2, '.', '')}}">
                                     </div>
                                 </div>
                             </div>

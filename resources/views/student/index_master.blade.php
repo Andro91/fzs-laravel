@@ -68,6 +68,9 @@
                                 <span class="fa fa-trash"></span>
                             </div>
                         </a>
+                        <a class="btn btn-primary" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
+                            Школарина и упис
+                        </a>
                     </td>
                 </tr>
             @endforeach

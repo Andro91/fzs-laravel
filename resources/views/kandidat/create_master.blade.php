@@ -95,14 +95,15 @@
                                 <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ old('JMBG') }}" >
                             </div>
-                            <div class="form-group" style="width: 70%;">
-                                <label for="MestoRodjenja">Место рођења</label>
-                                <select class="form-control auto-combobox" id="MestoRodjenja" 
-                                name="MestoRodjenja" style="max-width: 60%" >
+                            <div class="form-group" style="width: 60%">
+                                <label for="mestoRodjenja">Место рођења</label>
+                                <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
+                                       class="form-control" style="max-width: 60%" value="{{ old('mestoRodjenja') }}">
+                                <datalist id="mestaList">
                                     @foreach($mestoRodjenja as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
+                                        <option value="{{$item->naziv}}">
                                     @endforeach
-                                </select>
+                                </datalist>
                             </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Контакт телефон</label>
@@ -127,14 +128,10 @@
                                 <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
                                        id="SmerZavrseneSkoleFakulteta" value="{{ old('SmerZavrseneSkoleFakulteta') }}">
                             </div>
-                            <div class="form-group" style="width: 48%; margin-right: 2%;">
-                                <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <select class="form-control auto-combobox" id="MestoZavrseneSkoleFakulteta"
-                                        name="MestoZavrseneSkoleFakulteta">
-                                    @foreach($mestoZavrseneSkoleFakulteta as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
+                                <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
+                                       name="mestoZavrseneSkoleFakulteta" list="mestaList">
                             </div>
 
                             <div class="clearfix"></div>
