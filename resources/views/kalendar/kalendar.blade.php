@@ -30,11 +30,11 @@
                     color: 'blue',
                     textColor: 'white'
                 }
-
-            ]
-
+            ],
+            eventClick: function(calEvent, jsEvent, view) {
+                window.location.href = '{{$putanja}}/kalendar/editRok/' + calEvent.id;
+            }
         })
-
     });
 </script>
 @endsection

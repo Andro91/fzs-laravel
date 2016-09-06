@@ -8,5 +8,7 @@ class AktivniIspitniRokovi extends Model
 {
     protected $table = 'aktivni_ispitni_rokovi';
 
-    protected $fillable = ['rok_id','pocetak', 'kraj', 'komentar', 'tipRoka_id', 'indikatorAktivan'];
+    protected $dates = ['pocetak', 'kraj'];
+
+    protected $fillable = ['rok_id','naziv','pocetak', 'kraj', 'komentar', 'tipRoka_id', 'indikatorAktivan'];
 }

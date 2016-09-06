@@ -56,6 +56,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/kalendar/', 'KalendarController@index');
     Route::get('/kalendar/createRok/', 'KalendarController@createRok');
+    Route::get('/kalendar/editRok/{id}', 'KalendarController@editRok');
+    Route::get('/kalendar/deleteRok/{id}', 'KalendarController@deleteRok');
+    Route::post('/kalendar/updateRok', 'KalendarController@updateRok');
     Route::post('/kalendar/storeRok/', 'KalendarController@storeRok');
     Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
 
