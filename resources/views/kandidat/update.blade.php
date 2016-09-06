@@ -9,22 +9,12 @@
                     {{--GRESKE--}}
                     @if (Session::get('errors'))
                         <div class="alert alert-dismissable alert-danger">
-                            <h4>Greška!</h4>
+                            <h4>Грешка!</h4>
                             <ul>
                                 @foreach (Session::get('errors')->all() as $error)
                                     <li>{!! $error !!}</li>
                                 @endforeach
                             </ul>
-                        </div>
-                    @endif
-
-                    @if (Session::get('jmbgError'))
-                        <div class="alert alert-dismissable alert-danger">
-                            <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Грешка!</h4>
-
-                            <p>ЈМБГ већ постоји у систему.</p>
-
-                            <p>{{ Session::get('status') }}</p>
                         </div>
                     @endif
 
@@ -81,8 +71,9 @@
                         <div class="panel-body">
                             @if(!empty($kandidat->brojIndeksa))
                                 <div class="form-group">
-                                    <label for="ImeKandidata">Број Индекса</label>
-                                    <strong>{{ $kandidat->brojIndeksa }}</strong>
+                                    <label for="brojIndeksa">Број Индекса</label>
+                                    <input class="form-control" type="text" name="brojIndeksa" id="brojIndeksa"
+                                           value="{{ $kandidat->brojIndeksa }}">
                                 </div>
                             @endif
                             <div class="form-group">

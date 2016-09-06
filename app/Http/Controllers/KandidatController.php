@@ -416,6 +416,15 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::find($id);
 
+        $messages = [
+            'brojIndeksa.unique' => 'Број индекса мора бити уникатан. Већ постоји такав запис у бази.',
+        ];
+
+        if($kandidat->brojIndeksa != $request->brojIndeksa){
+            $this->validate($request, [
+                'brojIndeksa' => 'unique:kandidat',
+            ], $messages);
+        }
 
         $kandidat->imeKandidata = $request->ImeKandidata;
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
@@ -522,6 +531,7 @@ class KandidatController extends Controller
         $kandidat->ukupniBrojBodova = $request->ukupniBrojBodova;
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->indikatorAktivan = $request->IndikatorAktivan;
+        $kandidat->brojIndeksa = $request->brojIndeksa;
 
         $saved = $kandidat->save();
 
@@ -751,6 +761,18 @@ class KandidatController extends Controller
     public function updateMaster(Request $request, $id)
     {
         $kandidat = Kandidat::find($id);
+
+        $messages = [
+            'required' => ':attribute је обавезно поље.',
+            'brojIndeksa.unique' => 'Број индекса мора бити уникатан. Већ постоји такав запис у бази.',
+        ];
+
+        if($kandidat->brojIndeksa != $request->brojIndeksa){
+            $this->validate($request, [
+                'brojIndeksa' => 'unique:kandidat',
+            ], $messages);
+        }
+
         $kandidat->imeKandidata = $request->ImeKandidata;
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
@@ -774,6 +796,8 @@ class KandidatController extends Controller
 
         $kandidat->prosecnaOcena = str_replace(",", ".", $request->ProsecnaOcena);
         $kandidat->upisniRok = $request->UpisniRok;
+
+        $kandidat->brojIndeksa = $request->brojIndeksa;
 
         $insertedId = $kandidat->save();
 

@@ -8,20 +8,12 @@
                 {{--GRESKE--}}
                 @if (Session::get('errors'))
                     <div class="alert alert-dismissable alert-danger">
-                        <h4>Greška!</h4>
+                        <h4>Грешка!</h4>
                         <ul>
                             @foreach (Session::get('errors')->all() as $error)
                                 <li>{!! $error !!}</li>
                             @endforeach
                         </ul>
-                    </div>
-                @endif
-
-                @if (Session::get('jmbgError'))
-                    <div class="alert alert-dismissable alert-danger">
-                        <h4><span class="glyphicon glyphicon-exclamation-sign"></span> Грешка!</h4>
-                        <p>ЈМБГ већ постоји у систему.</p>
-                        <p>{{ Session::get('status') }}</p>
                     </div>
                 @endif
 
@@ -86,8 +78,9 @@
                         <div class="panel-body">
                             @if(!empty($kandidat->brojIndeksa))
                                 <div class="form-group">
-                                    <label for="ImeKandidata">Број Индекса</label>
-                                    <strong>{{ $kandidat->brojIndeksa }}</strong>
+                                    <label for="brojIndeksa">Број Индекса</label>
+                                    <input class="form-control" type="text" name="brojIndeksa" id="brojIndeksa"
+                                           value="{{ $kandidat->brojIndeksa }}">
                                 </div>
                             @endif
                             <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -106,15 +99,16 @@
                                 <label for="JMBG">ЈМБГ</label>
                                 <input class="form-control" type="text" name="JMBG" id="JMBG" value="{{ $kandidat->jmbg }}" >
                             </div>
-                            <div class="form-group" style="width: 70%;">
-                                <label for="MestoRodjenja">Место рођења</label>
-                                <select class="form-control auto-combobox" id="MestoRodjenja"
-                                        name="MestoRodjenja" style="max-width: 60%" value="{{ old('MestoRodjenja') }}" >
-                                    @foreach($mestoRodjenja as $item)
-                                        <option value="{{$item->id}}">{{$item->naziv}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="form-group" style="width: 60%">
+                                    <label for="mestoRodjenja">Место рођења</label>
+                                    <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
+                                           class="form-control" style="max-width: 60%" value="{{ $kandidat->mestoRodjenja }}">
+                                    <datalist id="mestaList">
+                                        @foreach($mestoRodjenja as $item)
+                                            <option value="{{$item->naziv}}">
+                                        @endforeach
+                                    </datalist>
+                                </div>
                             <div class="form-group">
                                 <label for="KontaktTelefon">Контакт телефон</label>
                                 <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon" style="max-width: 40%" value="{{ $kandidat->kontaktTelefon }}" >
@@ -140,15 +134,11 @@
                                        id="SmerZavrseneSkoleFakulteta"
                                        value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
                             </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="MestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <select class="form-control auto-combobox" id="MestoZavrseneSkoleFakulteta"
-                                        name="MestoZavrseneSkoleFakulteta">
-                                    @foreach($mestoZavrseneSkoleFakulteta as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->mestoZavrseneSkoleFakulteta_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                                    <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
+                                    <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
+                                           name="mestoZavrseneSkoleFakulteta" list="mestaList" value="{{ $kandidat->mestoZavrseneSkoleFakulteta }}">
+                                </div>
 
                             <div class="clearfix"></div>
                             <hr>
