@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class, //tcpdf
+        Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class, //validacija kompozitnih kljuceva
 
         /*
          * Application Service Providers...
