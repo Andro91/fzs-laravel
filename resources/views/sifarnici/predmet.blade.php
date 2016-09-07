@@ -17,12 +17,6 @@
                     Назив предмета
                 </th>
                 <th>
-                    Тип студија
-                </th>
-                <th>
-                    Студијски програм
-                </th>
-                <th>
                     Тип предмета
                 </th>
                 <th>
@@ -46,31 +40,17 @@
                     <tr>
                         <td>{{$predmet->naziv}}</td>
                         <td>
-                            @if($predmet->tipStudija)
-                                {{$predmet->tipStudija->naziv}}
-                            @else
-                                Prazno
-                            @endif
-                        </td>
-                        <td>
-                            @if($predmet->studijskiProgram)
-                                {{$predmet->studijskiProgram->naziv}}
-                            @else
-                                Prazno
-                            @endif
-                        </td>
-                        <td>
                             @if($predmet->tipPredmeta)
                                 {{$predmet->tipPredmeta->naziv}}
                             @else
-                                Prazno
+                                ''
                             @endif
                         </td>
                         <td>
                             @if($predmet->godinaStudija)
                                 {{$predmet->godinaStudija->naziv}}
                             @else
-                                Prazno
+                                ''
                             @endif
                         </td>
                         <td>{{$predmet->semestarSlusanjaPredmeta}}</td>

@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Redirect;
 use View;
 use PDF;
 use Carbon\Carbon;
+use App\AktivniIspitniRokovi;
+use App\PrijavaIspita;
+use App\StatusIspita;
+use App\ZapisnikOPolaganju_Student;
+use App\PredmetProgram;
+use App\ZapisnikOPolaganjuIspita;
 
 use DateTime;
 
@@ -198,11 +204,10 @@ class IzvestajiController extends Controller
     {
         //$region->delete();
         try {
-            $predmet = Predmet::where(['id' => $request->predmet])->get();
+            $programi = PredmetProgram::where(['predmet_id' => $request->predmet])->get();
+            $studenti = Kandidat::where(['upisan' => 1])->get();
 
-            //return $predmet->id;
-
-            $studenti = Kandidat::where(['upisan' => 1, 'studijskiProgram_id' => $predmet->first()->studijskiProgram_id])->get();
+            //return $programi;
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -210,7 +215,7 @@ class IzvestajiController extends Controller
 
 
 
-        $view = View::make('izvestaji.spisakPoPredmetima')->with('studenti', $studenti)->with('predmet', $predmet->first()->naziv);
+        $view = View::make('izvestaji.spisakPoPredmetima')->with('studenti', $studenti)->with('programi', $programi)->with('predmet', $programi->first()->predmet->naziv);
 
         $contents = $view->render();
         PDF::SetTitle('Списак студената по предмету');
@@ -261,7 +266,7 @@ class IzvestajiController extends Controller
             $predsednik = $profesori;
             $programi = StudijskiProgram::where(['id' => $student->studijskiProgram_id])->get();
             $program = $programi->first();
-            $predmeti = Predmet::where(['studijskiProgram_id' => $program->id])->get();
+            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $student->studijskiProgram_id])->get();
             //return $predmeti;
             $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
             $diplomski = $diplomski_radovi->first();
@@ -390,10 +395,11 @@ class IzvestajiController extends Controller
     public function nastavniPlan(Request $request)
     {
         try {
-            $predmeti = Predmet::where(['godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
+            //$predmeti = Predmet::where(['godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
+            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $request->program])->get();
 
             if ($predmeti->first()) {
-                $program = $predmeti->first()->studijskiProgram->naziv;
+                $program = $predmeti->first()->program->naziv;
             } else {
                 $program = '';
             }
@@ -437,25 +443,52 @@ class IzvestajiController extends Controller
 
     public function zapisnikStampa(Request $request)
     {
+        //return $request->id;
 
         try {
-            $from = new DateTime($request->from);
-            $to = new DateTime($request->to);
+            $zapisnik = ZapisnikOPolaganjuIspita::find($request->id);
+            $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $request->id])->get();
+            $ids = array_map(function(ZapisnikOPolaganju_Student $o) { return $o->kandidat_id; }, $zapisnikStudent->all());
+            $studenti = Kandidat::whereIn('id', $ids)->get();
 
-            $diplomirani = DiplomskiRad::whereBetween('datumOdbrane', array($from, $to))->get();
+            $prijavaIds = array();
+            foreach ($ids as $id) {
+                $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
+                if($pom != null){
+                    $prijavaIds[$id] = $pom->id;
+                }
+            }
+
+            $polozeniIspitIds = array();
+            foreach ($ids as $id) {
+                $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
+                if($pom != null){
+                    $polozeniIspitIds[$id] = $pom->id;
+                }
+            }
+
+            //$studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $request->id])->get();
+            //$statusIspita = StatusIspita::all();
+            $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $request->id])->get();
+            //return $studijskiProgrami;
+            //return $polozeniIspiti;
+
+            $ispit = Predmet::where(['id' => $zapisnik->predmet_id])->first();
+            //return $ispit->naziv;
+
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
-
-        $view = View::make('izvestaji.diplomirani')->with('diplomirani', $diplomirani);
+        //compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
+        $view = View::make('izvestaji.zapisnik')->with('zapisnik', $zapisnik)->with('studenti', $studenti)->with('ispit', $ispit->naziv)->with('polozeniIspiti', $polozeniIspiti);
 
         $contents = $view->render();
-        PDF::SetTitle('Дипломирани студенти');
+        PDF::SetTitle('Записник о полагању испита');
         PDF::AddPage();
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
-        PDF::Output('Diplomirani.pdf');
+        PDF::Output('Zapisnik.pdf');
     }
 
 }

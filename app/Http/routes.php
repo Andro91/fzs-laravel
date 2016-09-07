@@ -196,6 +196,9 @@ Route::get('statusStudiranja/{statusStudiranja}/delete', 'StatusStudiranjaContro
 Route::get('/predmet/{predmet}/edit', 'PredmetController@edit');
 Route::patch('predmet/{predmet}', 'PredmetController@update');
 Route::get('predmet/{predmet}/delete', 'PredmetController@delete');
+Route::get('predmet/{program}/deleteProgram', 'PredmetController@deleteProgram');
+Route::get('/predmet/{predmet}/addProgram', 'PredmetController@addProgram');
+Route::post('predmet/addProgramUnos', 'PredmetController@addProgramUnos');
 
 Route::get('/krsnaSlava/{krsnaSlava}/edit', 'KrsnaSlavaController@edit');
 Route::patch('krsnaSlava/{krsnaSlava}', 'KrsnaSlavaController@update');
@@ -286,7 +289,7 @@ Route::get('izvestaji/komisijaStampa/{student}', 'IzvestajiController@komisijaSt
 Route::get('izvestaji/polozeniStampa/{student}', 'IzvestajiController@polozeniStampa');
 Route::post('izvestaji/nastavniPlan', 'IzvestajiController@nastavniPlan');
 Route::post('izvestaji/spisakDiplomiranih', 'IzvestajiController@spisakDiplomiranih');
-Route::get('izvestaji/diplomaStampa/{zapisnik}', 'IzvestajiController@zapisnikStampa');
+Route::post('izvestaji/zapisnikStampa/{zapisnik}', 'IzvestajiController@zapisnikStampa');
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

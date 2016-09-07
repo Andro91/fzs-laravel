@@ -22,7 +22,7 @@
                             <input type="hidden" id="predmetIdHidden" name="predmetIdHidden" value="{{$diplomski->predmet->id}}">
                             <select class="form-control auto-combobox" id="predmet" name="predmet">
                                 @foreach($predmeti as $predmet)
-                                    <option value="{{$predmet->id}}">{{$predmet->naziv}}</option>
+                                    <option value="{{$predmet->predmet->id}}">{{$predmet->predmet->naziv}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -108,7 +108,7 @@
                                 <label for="predmet">Предмет:</label>
                                 <select class="form-control auto-combobox" id="predmet" name="predmet">
                                     @foreach($predmeti as $predmet)
-                                        <option value="{{$predmet->id}}">{{$predmet->naziv}}</option>
+                                        <option value="{{$predmet->predmet->id}}">{{$predmet->predmet->naziv}}</option>
                                     @endforeach
                                 </select>
                             </div>

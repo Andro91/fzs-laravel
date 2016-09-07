@@ -18,22 +18,6 @@
                         <input name="naziv" type="text" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="tipStudija_id">Тип студија:</label>
-                        <select class="form-control" id="tipStudija_id" name="tipStudija_id">
-                            @foreach($tipStudija as $tipStudija)
-                                <option value="{{$tipStudija->id}}">{{$tipStudija->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="studijskiProgram_id">Студијски програм:</label>
-                        <select class="form-control" id="studijskiProgram_id" name="studijskiProgram_id">
-                            @foreach($studijskiProgram as $studijskiProgram)
-                                <option value="{{$studijskiProgram->id}}">{{$studijskiProgram->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="tipPredmeta_id">Тип предмета:</label>
                         <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
                             @foreach($tipPredmeta as $tipPredmeta)

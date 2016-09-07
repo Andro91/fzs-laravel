@@ -6,7 +6,7 @@ use App\GodinaStudija;
 use App\Predmet;
 use App\StudijskiProgram;
 use App\TipPredmeta;
-use App\TipStudija;
+use App\PredmetProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -23,9 +23,7 @@ class PredmetController extends Controller
     {
         try {
             $predmet = Predmet::all();
-            $tipStudija = TipStudija::all();
             $tipPredmeta = TipPredmeta::all();
-            $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -39,9 +37,7 @@ class PredmetController extends Controller
         $predmet = new Predmet();
 
         $predmet->naziv = $request->naziv;
-        $predmet->studijskiProgram_id = $request->studijskiProgram_id;
         $predmet->godinaStudija_id = $request->godinaStudija_id;
-        $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         $predmet->espb = $request->espb;
@@ -62,37 +58,33 @@ class PredmetController extends Controller
     public function edit(Predmet $predmet)
     {
         try {
-            $tipStudija = TipStudija::all();
-            $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
             $tipPredmeta = TipPredmeta::all();
+            $programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
+            //return $programi;
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.editPredmet', compact('predmet', 'tipStudija', 'studijskiProgram', 'godinaStudija', 'tipPredmeta'));
+        return view('sifarnici.editPredmet', compact('predmet', 'godinaStudija', 'tipPredmeta', 'programi'));
     }
 
     public function add()
     {
         try {
-            $tipStudija = TipStudija::all();
-            $studijskiProgram = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
             $tipPredmeta = TipPredmeta::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addPredmet', compact('tipStudija', 'studijskiProgram', 'godinaStudija', 'tipPredmeta'));
+        return view('sifarnici.addPredmet', compact('tipStudija', 'tipPredmeta'));
     }
 
     public function update(Request $request, Predmet $predmet)
     {
         $predmet->naziv = $request->naziv;
-        $predmet->studijskiProgram_id = $request->studijskiProgram_id;
         $predmet->godinaStudija_id = $request->godinaStudija_id;
-        $predmet->tipStudija_id = $request->tipStudija_id;
         $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
         $predmet->predavanja = $request->predavanja;
@@ -122,6 +114,46 @@ class PredmetController extends Controller
         }
 
         return back();
+    }
+
+    public function deleteProgram(PredmetProgram $program)
+    {
+        try {
+            $program->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return back();
+    }
+
+    public function addProgram(Predmet $predmet)
+    {
+        try {
+            $programi = StudijskiProgram::all();
+            //$semestar = Semestar::all();
+            //$oblik = OblikNastave::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet'));
+    }
+
+    public function addProgramUnos(Request $request)
+    {
+        $program = new PredmetProgram();
+        $program->studijskiProgram_id = $request->program_id;
+        $program->predmet_id = $request->predmet_id;
+        $program->indikatorAktivan = 1;
+
+        try {
+            $program->save();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return Redirect::to('/predmet/' . $request->predmet_id . '/edit');
     }
 
 }

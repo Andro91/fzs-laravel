@@ -10,29 +10,38 @@
         <br/>
         <br/>
 
-        <table style="border: 1px solid black;">
-            <thead>
-            <tr>
-                <th style="border: 1px solid black;">
-                    <b>Име</b>
-                </th>
-                <th style="border: 1px solid black;">
-                    <b>Презиме</b>
-                </th>
-                <th style="border: 1px solid black;">
-                    <b>Број бодова</b>
-                </th>
-            </tr>
-            </thead>
-            @foreach($studenti as $item)
+        @foreach($programi as $program)
+            <label style="padding-bottom: 10px;">{{$program->program->naziv}}</label>
+            <br/>
+            <br/>
+            <table style="border: 1px solid black;">
+                <thead>
                 <tr>
-                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->brojBodovaTest}}</td>
+                    <th style="border: 1px solid black;">
+                        <b>Име</b>
+                    </th>
+                    <th style="border: 1px solid black;">
+                        <b>Презиме</b>
+                    </th>
+                    <th style="border: 1px solid black;">
+                        <b>Број бодова</b>
+                    </th>
                 </tr>
-
-            @endforeach
-        </table>
+                </thead>
+                @foreach($studenti as $item)
+                    @if($item->program->id == $program->program->id)
+                        <tr>
+                            <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
+                            <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;">{{$item->brojBodovaTest}}</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </table>
+            <br/>
+            <br/>
+            <br/>
+        @endforeach
     </div>
 @else
     <h1>Нема регистрованих студената</h1>

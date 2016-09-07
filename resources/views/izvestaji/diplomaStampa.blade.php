@@ -3,7 +3,7 @@
 <hr>
 @if($student !== '')
     <div style="text-align: left"><label>Број: {{$diploma->broj}}</label> <br/>
-        <label>Датум: {{$diploma->datumOdbrane}}</label>
+        <label>Датум: {{ date('d.m.Y.',strtotime($diplomski->datumOdbrane)) }}</label>
     </div>
     <div>
         <p style="text-align: justify;">{{$student->imeKandidata}} ({{$student->imePrezimeJednogRoditelja}}) {{$student->prezimeKandidata}} је
@@ -24,13 +24,13 @@
         </p>
 
         <p style="text-align: justify;">рођен/а {{ date('d.m.Y.',strtotime($student->datumRodjenja)) }} године,
-            место {{$student->mestoRodjenja->naziv}}, општина {{$student->mestoRodjenja->naziv}},
+            место {{$student->mestoRodjenja}}, општина {{$student->mestoRodjenja}},
             Република Србија, уписан школске {{$student->godinaUpisa->naziv}}
             у {{$student->godinaStudija->nazivSlovimaUPadezu}} годину, тип
             студија {{$student->program->tipStudija->naziv}}.
         </p>
 
-        <p style="text-align: justify;">Студент је положио све испите прописане Статутом факултета и наставним планом и програмом и дана <b>{{$diplomski->datumOdbrane}}</b>
+        <p style="text-align: justify;">Студент је положио све испите прописане Статутом факултета и наставним планом и програмом и дана <b>{{ date('d.m.Y.',strtotime($diplomski->datumOdbrane)) }}</b>
             године завршио {{$student->program->tipStudija->naziv}}
             првог степена на Факултету за спорт у Београду, на студијском програму <b>{{$student->program->naziv}}</b> у
             трајању од четири године, обима <b>240</b> ЕСПБ (двестотинечетрдесет бодова),

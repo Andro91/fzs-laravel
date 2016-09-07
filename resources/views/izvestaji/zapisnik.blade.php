@@ -2,33 +2,33 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($diplomirani !== '')
+@if($studenti !== '')
 
-    <div>
+    <div style="text-align: center;">
 
-        <h1 style="padding-bottom: 100px;">Списак дипломираних судената</h1>
+            <h1 style="padding-bottom: 100px;">Записник о полагању испита</h1>
+
         <br/>
         <br/>
 
         <table style="border: 1px solid black;">
             <thead>
             <tr>
+                <th style="border: 1px solid black; width: 20px;"></th>
                 <th style="border: 1px solid black;"><b>Број индекса</b>
                 </th>
                 <th style="border: 1px solid black;"><b>Име</b>
                 </th>
                 <th style="border: 1px solid black;"><b>Презиме</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Датум дипломирања</b>
-                </th>
             </tr>
             </thead>
-            @foreach($diplomirani as $item)
+            @foreach($polozeniIspiti as $index => $ispit)
                 <tr>
-                    <td style="border: 1px solid black;">{{$item->student->brojIndeksa}}</td>
-                    <td style="border: 1px solid black;">{{$item->student->imeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->student->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{ date('d.m.Y.',strtotime($item->datumOdbrane)) }}</td>
+                    <td style="width: 20px;">{{$index + 1}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->brojIndeksa}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->imeKandidata}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->prezimeKandidata}}</td>
                 </tr>
 
             @endforeach

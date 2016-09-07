@@ -15,8 +15,6 @@ class CreatePredmetTable extends Migration
         Schema::create('predmet', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naziv');
-            $table->integer('tipStudija_id')->unsigned()->index();
-            $table->integer('studijskiProgram_id')->unsigned()->index();
             $table->integer('godinaStudija_id')->unsigned()->index();
             $table->integer('semestarSlusanjaPredmeta')->unsigned()->index();
             $table->integer('espb');

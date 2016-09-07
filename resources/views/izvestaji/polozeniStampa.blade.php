@@ -12,7 +12,7 @@
     </p>
     <div style="text-align: justify;">{{$student->imeKandidata}} ({{$student->imePrezimeJednogRoditelja}})
         {{$student->prezimeKandidata}} рођен/а {{ date('d.m.Y.',strtotime($student->datumRodjenja)) }}
-        године, место {{$student->mestoRodjenja->naziv}}, општина {{$student->mestoRodjenja->naziv}},
+        године, место {{$student->mestoRodjenja}}, општина {{$student->mestoRodjenja}},
         Република Србија, број индекса {{$student->brojIndeksa}}, тип студија {{$student->program->tipStudija->naziv}},
         смер - {{$student->program->naziv}}, положио/ла је све испите предвиђене наставним планом и програмом:
     </div>
@@ -34,7 +34,7 @@
             </thead>
             @foreach($ispiti as $index => $ispit)
                 <tr>
-                    <td>{{$index + 1}}</td>
+                    <td style="border: 1px solid black;">{{$index + 1}}</td>
                     <td style="border: 1px solid black;">{{$ispit->predmet->naziv}}</td>
                     <td style="border: 1px solid black;">{{$ispit->predmet->espb}}</td>
                     <td style="border: 1px solid black;">{{$ispit->konacnaOcena}}</td>
