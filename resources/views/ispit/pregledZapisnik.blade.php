@@ -28,6 +28,11 @@
             </div>
         @endif
     </div>
+    <div class="form-group pull-left" style="width: 48%;">
+        <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}">
+            Штампа записника
+        </a>
+    </div>
     <hr>
     @if(!empty($polozeniIspiti))
         @foreach($polozeniIspiti as $index => $ispit)

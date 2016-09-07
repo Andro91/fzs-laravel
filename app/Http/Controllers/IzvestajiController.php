@@ -435,4 +435,27 @@ class IzvestajiController extends Controller
         PDF::Output('Diplomirani.pdf');
     }
 
+    public function zapisnikStampa(Request $request)
+    {
+
+        try {
+            $from = new DateTime($request->from);
+            $to = new DateTime($request->to);
+
+            $diplomirani = DiplomskiRad::whereBetween('datumOdbrane', array($from, $to))->get();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.diplomirani')->with('diplomirani', $diplomirani);
+
+        $contents = $view->render();
+        PDF::SetTitle('Дипломирани студенти');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Diplomirani.pdf');
+    }
+
 }
