@@ -1,4 +1,4 @@
-<title>Додавање предметa</title>
+<title>Додавање програма</title>
 @extends('layouts.layout')
 @section('page_heading','Додавање програма')
 @section('section')
@@ -32,6 +32,14 @@
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="semestar">Семестар:</label>
                         <input name="semestar" type="text" class="form-control">
+                    </div>
+                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
+                        <label for="tipPredmeta_id">Тип предмета:</label>
+                        <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
+                            @foreach($tipPredmeta as $tipPredmeta)
+                                <option value="{{$tipPredmeta->id}}">{{$tipPredmeta->naziv}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="panel-body">

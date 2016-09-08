@@ -16,7 +16,6 @@ class CreatePredmetTable extends Migration
             $table->increments('id');
             $table->string('naziv');
             $table->integer('espb');
-            $table->integer('tipPredmeta_id');
             $table->integer('statusPredmeta');
             $table->integer('predavanja');
             $table->integer('vezbe');

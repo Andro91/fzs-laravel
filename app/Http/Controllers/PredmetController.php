@@ -7,6 +7,8 @@ use App\Predmet;
 use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\PredmetProgram;
+use App\TipSemestra;
+use App\TipStudija;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -36,8 +38,6 @@ class PredmetController extends Controller
         $predmet = new Predmet();
 
         $predmet->naziv = $request->naziv;
-
-        $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         $predmet->espb = $request->espb;
         $predmet->predavanja = $request->predavanja;
         $predmet->vezbe = $request->vezbe;
@@ -56,7 +56,6 @@ class PredmetController extends Controller
     public function edit(Predmet $predmet)
     {
         try {
-            $tipPredmeta = TipPredmeta::all();
             $programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
             //return $programi;
         } catch (\Illuminate\Database\QueryException $e) {
@@ -70,7 +69,6 @@ class PredmetController extends Controller
     {
         try {
             $godinaStudija = GodinaStudija::all();
-            $tipPredmeta = TipPredmeta::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -84,7 +82,6 @@ class PredmetController extends Controller
         $predmet->espb = $request->espb;
         $predmet->predavanja = $request->predavanja;
         $predmet->vezbe = $request->vezbe;
-        $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         if ($request->statusPredmeta == 'on' || $request->statusPredmeta == 1) {
             $predmet->statusPredmeta = 1;
         } else {
@@ -127,13 +124,15 @@ class PredmetController extends Controller
         try {
             $programi = StudijskiProgram::all();
             $godinaStudija = GodinaStudija::all();
+            $tipPredmeta = TipPredmeta::all();
+            $tipStudija = TipStudija::all();
             //$semestar = Semestar::all();
             //$oblik = OblikNastave::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet', 'godinaStudija'));
+        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet', 'godinaStudija', 'tipPredmeta', 'tipStudija'));
     }
 
     public function addProgramUnos(Request $request)
@@ -143,6 +142,8 @@ class PredmetController extends Controller
         $program->predmet_id = $request->predmet_id;
         $program->godinaStudija_id = $request->godinaStudija_id;
         $program->semestar = $request->semestar;
+        $program->tipPredmeta_id = $request->tipPredmeta_id;
+        $program->tipStudija_id = $program->program->tipStudija->id;
         $program->indikatorAktivan = 1;
 
         try {

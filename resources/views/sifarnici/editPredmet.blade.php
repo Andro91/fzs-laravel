@@ -23,16 +23,6 @@
                             <label for="naziv">Назив:</label>
                             <input name="naziv" type="text" class="form-control" value="{{$predmet->naziv}}">
                         </div>
-                        <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                            <label for="tipPredmeta_id">Тип предмета:</label>
-                            <input type="hidden" id="tipPredmetaHidden" name="tipPredmetaHidden"
-                                   value="{{$predmet->tipPredmeta_id}}">
-                            <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id">
-                                @foreach($tipPredmeta as $tipPredmeta)
-                                    <option value="{{$tipPredmeta->id}}">{{$tipPredmeta->naziv}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="naziv">ЕСПБ:</label>
                             <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
@@ -87,6 +77,9 @@
                     Семестар
                 </th>
                 <th>
+                    Тип предмета
+                </th>
+                <th>
 
                 </th>
                 </thead>
@@ -102,6 +95,13 @@
                             @endif
                         </td>
                         <td>{{$program->semestar}}</td>
+                        <td>
+                            @if($program->tipPredmeta)
+                                {{$program->tipPredmeta->naziv}}
+                            @else
+                                ''
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"

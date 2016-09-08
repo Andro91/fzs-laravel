@@ -18,4 +18,9 @@ class PolozeniIspiti extends Model
         return $this->belongsTo(Predmet::class, 'predmet_id');
     }
 
+    public function prijava()
+    {
+        return $this->belongsTo(PrijavaIspita::class, 'prijava_id');
+    }
+
 }

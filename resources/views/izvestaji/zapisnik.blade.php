@@ -21,6 +21,8 @@
                 </th>
                 <th style="border: 1px solid black;"><b>Презиме</b>
                 </th>
+                <th style="border: 1px solid black;"><b>Број полагања</b>
+                </th>
             </tr>
             </thead>
             @foreach($polozeniIspiti as $index => $ispit)
@@ -29,6 +31,7 @@
                     <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->brojIndeksa}}</td>
                     <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->imeKandidata}}</td>
                     <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->prezimeKandidata}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{$ispit->prijava->brojPolaganja}}</td>
                 </tr>
 
             @endforeach
