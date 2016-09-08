@@ -26,9 +26,9 @@
             @foreach($predmeti as $item)
                 <tr>
                     <td style="border: 1px solid black;">{{$item->predmet->naziv}}</td>
-                    <td style="border: 1px solid black;">{{$item->predmet->espb}}</td>
-                    <td style="border: 1px solid black;">{{$item->predmet->vezbe}}</td>
-                    <td style="border: 1px solid black;">{{$item->predmet->predavanja}}</td>
+                    <td style="border: 1px solid black;">{{$item->espb}}</td>
+                    <td style="border: 1px solid black;">{{$item->vezbe}}</td>
+                    <td style="border: 1px solid black;">{{$item->predavanja}}</td>
                 </tr>
 
             @endforeach

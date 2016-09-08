@@ -38,11 +38,6 @@ class PredmetController extends Controller
         $predmet = new Predmet();
 
         $predmet->naziv = $request->naziv;
-        $predmet->espb = $request->espb;
-        $predmet->predavanja = $request->predavanja;
-        $predmet->vezbe = $request->vezbe;
-        $predmet->statusPredmeta = 1;
-
 
         try {
             $predmet->save();
@@ -79,14 +74,6 @@ class PredmetController extends Controller
     public function update(Request $request, Predmet $predmet)
     {
         $predmet->naziv = $request->naziv;
-        $predmet->espb = $request->espb;
-        $predmet->predavanja = $request->predavanja;
-        $predmet->vezbe = $request->vezbe;
-        if ($request->statusPredmeta == 'on' || $request->statusPredmeta == 1) {
-            $predmet->statusPredmeta = 1;
-        } else {
-            $predmet->statusPredmeta = 0;
-        }
 
         try {
             $predmet->update();
@@ -144,6 +131,10 @@ class PredmetController extends Controller
         $program->semestar = $request->semestar;
         $program->tipPredmeta_id = $request->tipPredmeta_id;
         $program->tipStudija_id = $program->program->tipStudija->id;
+        $program->espb = $request->espb;
+        $program->predavanja = $request->predavanja;
+        $program->vezbe = $request->vezbe;
+        $program->statusPredmeta = 1;
         $program->indikatorAktivan = 1;
 
         try {

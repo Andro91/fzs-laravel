@@ -17,12 +17,6 @@
                     Назив предмета
                 </th>
                 <th>
-                    ЕСПБ
-                </th>
-                <th>
-                    Статус
-                </th>
-                <th>
                     Акције
                 </th>
                 </thead>
@@ -30,8 +24,6 @@
                 @foreach($predmet as $predmet)
                     <tr>
                         <td>{{$predmet->naziv}}</td>
-                        <td>{{$predmet->espb}}</td>
-                        <td>{{$predmet->statusPredmeta}}</td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="predmet/{{$predmet->id}}/edit">

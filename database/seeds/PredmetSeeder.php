@@ -14,8 +14,6 @@ class PredmetSeeder extends Seeder
         $predmet = new \App\Predmet();
 
         $predmet->naziv = 'Социологија';
-        $predmet->espb = 5;
-        $predmet->statusPredmeta = 1;
 
         $predmet->save();
     }
