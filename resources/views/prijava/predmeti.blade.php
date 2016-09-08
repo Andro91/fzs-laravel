@@ -67,7 +67,7 @@
         </thead>
         @foreach($predmeti as $predmet)
             <tr>
-                <td>{{$predmet->naziv}}</td>
+                <td>{{$predmet->predmet->naziv}}</td>
                 <td>
                     @if($predmet->tipStudija)
                         {{$predmet->tipStudija->naziv}}
@@ -76,22 +76,22 @@
                     @endif
                 </td>
                 <td>
-                    @if($predmet->studijskiProgram)
-                        {{$predmet->studijskiProgram->naziv}}
+                    @if($predmet->program)
+                        {{$predmet->program->naziv}}
                     @else
                         Prazno
                     @endif
                 </td>
                 <td>
-                    @if($predmet->tipPredmeta)
-                        {{$predmet->tipPredmeta->naziv}}
+                    @if($predmet->predmet->tipPredmeta)
+                        {{$predmet->predmet->tipPredmeta->naziv}}
                     @else
                         Prazno
                     @endif
                 </td>
                 <td>
-                    @if($predmet->godinaStudija)
-                        {{$predmet->godinaStudija->naziv}}
+                    @if($predmet->predmet->godinaStudija)
+                        {{$predmet->predmet->godinaStudija->naziv}}
                     @else
                         Prazno
                     @endif

@@ -41,6 +41,8 @@
 
                     @if(!empty($kandidat))
                         <input type="hidden" name="kandidat_id" id="kandidat_id" value="{{ $kandidat->id }}">
+                        <input type="hidden" name="tipStudija_id" id="tipStudija_id" value="{{ $kandidat->tipStudija_id }}">
+                        <input type="hidden" name="studijskiProgram_id" id="studijskiProgram_id" value="{{ $kandidat->studijskiProgram_id }}">
 
                         {{--<div class="form-group" style="width: 30%;">--}}
                             {{--<label for="brojIndeksa">Број Индекса</label>--}}
@@ -147,6 +149,8 @@
                         {{--//--}}
                         <input type="hidden" name="prijava_za_predmet" value="1">
                         <input type="hidden" name="kandidat_id" id="kandidat_id" value="">
+                        <input type="hidden" name="tipStudija_id" id="tipStudija_id" value="{{ $predmet->tipStudija_id }}">
+                        <input type="hidden" name="studijskiProgram_id" id="studijskiProgram_id" value="{{ $predmet->studijskiProgram_id }}">
 
                         <div class="form-group pull-left" style="width: 30%;">
                             <label for="brojIndeksa">Број Индекса</label>
@@ -171,9 +175,7 @@
                             <label for="StudijskiProgram">Студијски програм</label>
                             <select class="form-control" id="StudijskiProgram" name="StudijskiProgram" disabled>
                                 @foreach($studijskiProgram as $item)
-                                    <option value="{{ $item->id }}"
-                                            {{--{{ ($predmet->studijskiProgram_id == $item->id ? "selected":"") }}--}}
-                                            >{{ $item->naziv }}</option>
+                                    <option value="{{ $item->id }}"{{ ($predmet->program->id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -194,7 +196,7 @@
                         <div class="form-group" style="width: 50%;">
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
-                                    <option value="{{ $predmet->id }}">{{ $predmet->predmet->naziv }}</option>
+                                    <option value="{{ $predmet->predmet_id }}">{{ $predmet->predmet->naziv }}</option>
                             </select>
                         </div>
 
