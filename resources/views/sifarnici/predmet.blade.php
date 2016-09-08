@@ -17,9 +17,6 @@
                     Назив предмета
                 </th>
                 <th>
-                    Тип предмета
-                </th>
-                <th>
                     ЕСПБ
                 </th>
                 <th>
@@ -33,13 +30,6 @@
                 @foreach($predmet as $predmet)
                     <tr>
                         <td>{{$predmet->naziv}}</td>
-                        <td>
-                            @if($predmet->tipPredmeta)
-                                {{$predmet->tipPredmeta->naziv}}
-                            @else
-                                ''
-                            @endif
-                        </td>
                         <td>{{$predmet->espb}}</td>
                         <td>{{$predmet->statusPredmeta}}</td>
                         <td>

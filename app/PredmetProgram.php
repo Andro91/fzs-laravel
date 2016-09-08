@@ -22,4 +22,9 @@ class PredmetProgram extends Model
     {
         return $this->belongsTo(GodinaStudija::class, 'godinaStudija_id');
     }
+
+    public function tipPredmeta()
+    {
+        return $this->belongsTo(TipPredmeta::class, 'tipPredmeta_id');
+    }
 }
