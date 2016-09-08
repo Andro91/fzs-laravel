@@ -19,6 +19,7 @@ class CreatePredmetProgramTable extends Migration
             $table->integer('semestar')->unsigned()->index();
             $table->integer('predmet_id')->nullable();
             $table->integer('tipPredmeta_id');
+            $table->integer('tipStudija_id');
             $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();
         });

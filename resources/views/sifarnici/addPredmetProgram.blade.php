@@ -1,4 +1,4 @@
-<title>Додавање предметa</title>
+<title>Додавање програма</title>
 @extends('layouts.layout')
 @section('page_heading','Додавање програма')
 @section('section')
