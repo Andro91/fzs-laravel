@@ -152,10 +152,7 @@ class StudentController extends Controller
     public function svePrijaveIspitaZaStudenta($id)
     {
         $kandidat = Kandidat::find($id);
-        $prijave = $kandidat->prijaveIspita()
-            ->join('predmet', 'prijava_ispita.predmet_id', '=', 'predmet.id')
-            ->join('ispitni_rok', 'prijava_ispita.rok_id', '=', 'ispitni_rok.id')
-            ->select('prijava_ispita.id as id','predmet.naziv as predmet', 'ispitni_rok.naziv as rok','brojPolaganja', 'datum')->get();
+        $prijave = $kandidat->prijaveIspita()->get();
         return view('prijava.index', compact('kandidat','prijave'));
     }
 
@@ -169,12 +166,25 @@ class StudentController extends Controller
     public function createPrijavaIspitaStudent($id)
     {
         $kandidat = Kandidat::find($id);
-        $brojeviIndeksa = Kandidat::select('id','BrojIndeksa as naziv')->get();
-        $predmeti = Predmet::where([
+        $brojeviIndeksa = Kandidat::where([
+            'upisan' => 1,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
             'tipStudija_id' => $kandidat->tipStudija_id,
-            'studijskiProgram_id' =>  $kandidat->studijskiProgram_id,
+            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
+        ])->select('id','BrojIndeksa as naziv')->get();
+
+//        $predmeti = Predmet::where([
+//            'tipStudija_id' => $kandidat->tipStudija_id,
+//            'studijskiProgram_id' =>  $kandidat->studijskiProgram_id,
+//            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
+//        ])->get();
+
+        $predmeti = PredmetProgram::where([
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
+            'tipStudija_id' => $kandidat->tipStudija_id,
             'godinaStudija_id' =>  $kandidat->godinaStudija_id,
         ])->get();
+
         $studijskiProgram = StudijskiProgram::where(['id' => $kandidat->studijskiProgram_id])->get();
         $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::all();

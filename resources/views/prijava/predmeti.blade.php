@@ -83,25 +83,25 @@
                     @endif
                 </td>
                 <td>
-                    @if($predmet->predmet->tipPredmeta)
-                        {{$predmet->predmet->tipPredmeta->naziv}}
+                    @if($predmet->tipPredmeta)
+                        {{$predmet->tipPredmeta->naziv}}
                     @else
                         Prazno
                     @endif
                 </td>
                 <td>
-                    @if($predmet->predmet->godinaStudija)
-                        {{$predmet->predmet->godinaStudija->naziv}}
+                    @if($predmet->godinaStudija)
+                        {{$predmet->godinaStudija->naziv}}
                     @else
                         Prazno
                     @endif
                 </td>
-                <td>{{$predmet->semestarSlusanjaPredmeta}}</td>
-                <td>{{$predmet->espb}}</td>
-                <td>{{$predmet->statusPredmeta}}</td>
+                <td>{{$predmet->semestar}}</td>
+                <td>{{$predmet->predmet->espb}}</td>
+                <td>{{$predmet->predmet->statusPredmeta}}</td>
                 <td>
                     <div class="btn-group">
-                        <a href="prijava/zapredmet/{{$predmet->id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary">Пријава испита</a>
+                        <a href="prijava/zapredmet/{{$predmet->predmet_id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary">Пријава испита</a>
                     </div>
                 </td>
             </tr>

@@ -97,7 +97,7 @@
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
                                 @foreach($predmeti as $item)
-                                    <option value="{{ $item->id }}">{{ $item->naziv }}</option>
+                                    <option value="{{ $item->predmet_id }}">{{ $item->predmet->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
