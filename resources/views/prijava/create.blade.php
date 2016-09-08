@@ -171,7 +171,9 @@
                             <label for="StudijskiProgram">Студијски програм</label>
                             <select class="form-control" id="StudijskiProgram" name="StudijskiProgram" disabled>
                                 @foreach($studijskiProgram as $item)
-                                    <option value="{{ $item->id }}" {{ ($predmet->studijskiProgram_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                    <option value="{{ $item->id }}"
+                                            {{--{{ ($predmet->studijskiProgram_id == $item->id ? "selected":"") }}--}}
+                                            >{{ $item->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -192,7 +194,7 @@
                         <div class="form-group" style="width: 50%;">
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
-                                    <option value="{{ $predmet->id }}">{{ $predmet->naziv }}</option>
+                                    <option value="{{ $predmet->id }}">{{ $predmet->predmet->naziv }}</option>
                             </select>
                         </div>
 
@@ -217,7 +219,7 @@
                         <div class="form-group pull-left" style="width: 40%;">
                             <label for="tipStudija_id">Тип студија:</label>
                             <select class="form-control" id="tipStudija_id" name="tipStudija_id" disabled>
-                                    <option value="{{$predmet->tipStudija->id}}" >{{$predmet->tipStudija->naziv}}</option>
+                                    <option value="{{$predmet->tipStudija_id}}" >{{$predmet->tipStudija->naziv}}</option>
                             </select>
                         </div>
 
@@ -246,7 +248,7 @@
 
                     <div class="form-group pull-left" style="width: 25%; margin-right: 2%">
                         <label for="brojPolaganja">Ипит полажем (редни број полагања)</label>
-                        <input id="brojPolaganja" class="form-control" type="text" name="brojPolaganja" value="" style="max-width: 30%" />
+                        <input id="brojPolaganja" class="form-control" type="text" name="brojPolaganja" value="1" style="max-width: 30%" />
                     </div>
 
                     <div class="form-group pull-left" style="width: 20%;">

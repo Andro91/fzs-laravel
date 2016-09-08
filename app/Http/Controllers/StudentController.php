@@ -6,6 +6,7 @@ use App\AktivniIspitniRokovi;
 use App\GodinaStudija;
 use App\IspitniRok;
 use App\Predmet;
+use App\PredmetProgram;
 use App\PrijavaIspita;
 use App\Profesor;
 use App\ProfesorPredmet;
@@ -187,13 +188,21 @@ class StudentController extends Controller
 
     }
 
-    public function createPrijavaIspitaPredmet($id)
+    public function createPrijavaIspitaPredmet($id, Request $request)
     {
-        $predmet = Predmet::find($id);
+        //$predmet = Predmet::find($id);
+        $predmet = PredmetProgram::where([
+            'predmet_id' => $id,
+            'studijskiProgram_id' => $request->studijskiProgramId,
+            'tipStudija_id' => $request->tipStudijaId])
+            ->first();
+        //dd($predmet->predmet);
         $kandidat = null;
-        $brojeviIndeksa = Kandidat::where([
-            'tipStudija_id' => $predmet->tipStudija_id,
-            'studijskiProgram_id' => $predmet->studijskiProgram_id])->select('id','BrojIndeksa as naziv')->get();
+        $brojeviIndeksa = Kandidat::
+        where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'studijskiProgram_id' => $request->studijskiProgramId])->
+        select('id','BrojIndeksa as naziv')->get();
         $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
         $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::all();
@@ -247,7 +256,10 @@ class StudentController extends Controller
     {
         $tipStudija = TipStudija::all();
         $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => $request->tipStudijaId, 'indikatorAktivan' => 1])->get();
-        $predmeti = Predmet::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
+        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->select('predmet_id')->get();
+        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
+        //dd($ids);
+        $predmeti = Predmet::find($ids);
         return view('prijava.predmeti', compact('tipStudija','studijskiProgrami','predmeti'));
     }
 

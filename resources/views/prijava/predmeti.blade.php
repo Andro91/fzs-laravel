@@ -101,7 +101,7 @@
                 <td>{{$predmet->statusPredmeta}}</td>
                 <td>
                     <div class="btn-group">
-                        <a href="prijava/zapredmet/{{$predmet->id}}" class="btn btn-primary">Пријава испита</a>
+                        <a href="prijava/zapredmet/{{$predmet->id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary">Пријава испита</a>
                     </div>
                 </td>
             </tr>
