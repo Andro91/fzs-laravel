@@ -33,21 +33,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                            <label for="godinaStudija_id">Година:</label>
-                            <input type="hidden" id="godinaStudijaHidden" name="godinaStudijaHidden"
-                                   value="{{$predmet->godinaStudija_id}}">
-                            <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
-                                @foreach($godinaStudija as $godinaStudija)
-                                    <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                            <label for="semestarSlusanjaPredmeta">Семестар:</label>
-                            <input name="semestarSlusanjaPredmeta" type="text" class="form-control"
-                                   value="{{$predmet->semestarSlusanjaPredmeta}}">
-                        </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="naziv">ЕСПБ:</label>
                             <input name="espb" type="number" class="form-control" value="{{$predmet->espb}}">
@@ -96,6 +81,12 @@
                     Тип студија
                 </th>
                 <th>
+                    Година студија
+                </th>
+                <th>
+                    Семестар
+                </th>
+                <th>
 
                 </th>
                 </thead>
@@ -103,6 +94,14 @@
                     <tr>
                         <td>{{$program->program->naziv}}</td>
                         <td>{{$program->program->tipStudija->naziv}}</td>
+                        <td>
+                            @if($program->godinaStudija)
+                                {{$program->godinaStudija->naziv}}
+                            @else
+                                ''
+                            @endif
+                        </td>
+                        <td>{{$program->semestar}}</td>
                         <td>
                             <div class="btn-group">
                                 <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"

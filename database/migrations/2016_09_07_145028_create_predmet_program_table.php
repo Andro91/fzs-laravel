@@ -15,6 +15,8 @@ class CreatePredmetProgramTable extends Migration
         Schema::create('predmet_program', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('studijskiProgram_id')->nullable();
+            $table->integer('godinaStudija_id')->unsigned()->index();
+            $table->integer('semestar')->unsigned()->index();
             $table->integer('predmet_id')->nullable();
             $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();

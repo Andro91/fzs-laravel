@@ -25,18 +25,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="godinaStudija_id">Година:</label>
-                        <select class="form-control" id="godinaStudija_id" name="godinaStudija_id">
-                            @foreach($godinaStudija as $godinaStudija)
-                                <option value="{{$godinaStudija->id}}">{{$godinaStudija->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">Семестар:</label>
-                        <input name="semestarSlusanjaPredmeta" type="text" class="form-control">
-                    </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="naziv">ЕСПБ:</label>
                         <input name="espb" type="number" class="form-control">

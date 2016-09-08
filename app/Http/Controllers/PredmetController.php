@@ -24,7 +24,6 @@ class PredmetController extends Controller
         try {
             $predmet = Predmet::all();
             $tipPredmeta = TipPredmeta::all();
-            $godinaStudija = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -37,8 +36,7 @@ class PredmetController extends Controller
         $predmet = new Predmet();
 
         $predmet->naziv = $request->naziv;
-        $predmet->godinaStudija_id = $request->godinaStudija_id;
-        $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
+
         $predmet->tipPredmeta_id = $request->tipPredmeta_id;
         $predmet->espb = $request->espb;
         $predmet->predavanja = $request->predavanja;
@@ -58,7 +56,6 @@ class PredmetController extends Controller
     public function edit(Predmet $predmet)
     {
         try {
-            $godinaStudija = GodinaStudija::all();
             $tipPredmeta = TipPredmeta::all();
             $programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
             //return $programi;
@@ -84,8 +81,6 @@ class PredmetController extends Controller
     public function update(Request $request, Predmet $predmet)
     {
         $predmet->naziv = $request->naziv;
-        $predmet->godinaStudija_id = $request->godinaStudija_id;
-        $predmet->semestarSlusanjaPredmeta = $request->semestarSlusanjaPredmeta;
         $predmet->espb = $request->espb;
         $predmet->predavanja = $request->predavanja;
         $predmet->vezbe = $request->vezbe;
@@ -131,13 +126,14 @@ class PredmetController extends Controller
     {
         try {
             $programi = StudijskiProgram::all();
+            $godinaStudija = GodinaStudija::all();
             //$semestar = Semestar::all();
             //$oblik = OblikNastave::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet'));
+        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet', 'godinaStudija'));
     }
 
     public function addProgramUnos(Request $request)
@@ -145,6 +141,8 @@ class PredmetController extends Controller
         $program = new PredmetProgram();
         $program->studijskiProgram_id = $request->program_id;
         $program->predmet_id = $request->predmet_id;
+        $program->godinaStudija_id = $request->godinaStudija_id;
+        $program->semestar = $request->semestar;
         $program->indikatorAktivan = 1;
 
         try {

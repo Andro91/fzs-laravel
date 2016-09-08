@@ -20,12 +20,6 @@
                     Тип предмета
                 </th>
                 <th>
-                    Година студија
-                </th>
-                <th>
-                    Семестар
-                </th>
-                <th>
                     ЕСПБ
                 </th>
                 <th>
@@ -46,14 +40,6 @@
                                 ''
                             @endif
                         </td>
-                        <td>
-                            @if($predmet->godinaStudija)
-                                {{$predmet->godinaStudija->naziv}}
-                            @else
-                                ''
-                            @endif
-                        </td>
-                        <td>{{$predmet->semestarSlusanjaPredmeta}}</td>
                         <td>{{$predmet->espb}}</td>
                         <td>{{$predmet->statusPredmeta}}</td>
                         <td>

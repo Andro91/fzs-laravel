@@ -17,4 +17,9 @@ class PredmetProgram extends Model
     {
         return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');
     }
+
+    public function godinaStudija()
+    {
+        return $this->belongsTo(GodinaStudija::class, 'godinaStudija_id');
+    }
 }
