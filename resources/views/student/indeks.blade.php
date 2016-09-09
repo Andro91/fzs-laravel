@@ -1,11 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Активни студенти основних студија')
 @section('section')
-
-        <!--<script type="text/javascript" src="{{ URL::asset('//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css') }}"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>-->
-
-<div class="col-sm-12 col-lg-10">
+<div class="col-lg-12">
     <div id="messages">
         @if (Session::get('flash-error'))
             <div class="alert alert-dismissible alert-danger">
@@ -82,10 +78,10 @@
                                 <span class="fa fa-trash"></span>
                             </div>
                         </a>
-                        <a class="btn btn-primary" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
+                        <a class="btn btn-primary btn-sm" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
                             Школарина и упис
                         </a>
-                        <a class="btn btn-primary" href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
+                        <a class="btn btn-primary btn-sm" href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
                             Пријава испита
                         </a>
                     </td>

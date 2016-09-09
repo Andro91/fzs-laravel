@@ -414,6 +414,7 @@ class KandidatController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $kandidat = Kandidat::find($id);
 
         $messages = [
@@ -457,36 +458,43 @@ class KandidatController extends Controller
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $prviRazred = new UspehSrednjaSkola();
+        }finally{
             $prviRazred->kandidat_id = $id;
             $prviRazred->opstiUspeh_id = $request->prviRazred;
             $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
             $prviRazred->save();
         }
+        
         try {
             $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $drugiRazred = new UspehSrednjaSkola();
+        }finally{
             $drugiRazred->kandidat_id = $id;
             $drugiRazred->opstiUspeh_id = $request->drugiRazred;
             $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
             $drugiRazred->RedniBrojRazreda = 2;
             $drugiRazred->save();
         }
+
         try {
             $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $treciRazred = new UspehSrednjaSkola();
+        }finally{
             $treciRazred->kandidat_id = $id;
             $treciRazred->opstiUspeh_id = $request->treciRazred;
             $treciRazred->srednja_ocena = $request->SrednjaOcena3;
             $treciRazred->RedniBrojRazreda = 3;
             $treciRazred->save();
         }
+
         try {
             $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
         }catch (ModelNotFoundException $e){
             $cetvrtiRazred = new UspehSrednjaSkola();
+        }finally{
             $cetvrtiRazred->kandidat_id = $id;
             $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
             $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
@@ -675,6 +683,8 @@ class KandidatController extends Controller
 
         if(isset($request->uplata)){
             $kandidat->uplata = 1;
+        }else{
+            $kandidat->uplata = 0;
         }
 
         $kandidat->mestoRodjenja = $request->mestoRodjenja;

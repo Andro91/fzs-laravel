@@ -76,102 +76,126 @@
                                            value="{{ $kandidat->brojIndeksa }}">
                                 </div>
                             @endif
-                            <div class="form-group">
-                                <label for="ImeKandidata">Име кандидата</label>
-                                <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
-                                       value="{{ $kandidat->imeKandidata }}">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="ImeKandidata">Име кандидата</label>
+                                    <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
+                                           value="{{ $kandidat->imeKandidata }}">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="PrezimeKandidata">Презиме кандидата</label>
+                                    <input class="form-control" type="text" name="PrezimeKandidata"
+                                           id="PrezimeKandidata"
+                                           value="{{ $kandidat->prezimeKandidata }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="PrezimeKandidata">Презиме кандидата</label>
-                                <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata"
-                                       value="{{ $kandidat->prezimeKandidata }}">
+                            <div class="row">
+                                <div class="form-group col-lg-10">
+                                    <label for="JMBG">ЈМБГ</label>
+                                    <input class="form-control" type="text" name="JMBG" id="JMBG"
+                                           value="{{ $kandidat->jmbg }}">
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="JMBG">ЈМБГ</label>
-                                <input class="form-control" type="text" name="JMBG" id="JMBG"
-                                       value="{{ $kandidat->jmbg }}">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="DatumRodjenja">Датум рођења</label>
+                                    <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja"
+                                           value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="DatumRodjenja">Датум рођења</label>
-                                <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja"
-                                       value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
+                            <div class="row">
+                                <div class="form-group col-lg-10">
+                                    <label for="mestoRodjenja">Место рођења</label>
+                                    <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
+                                           class="form-control"
+                                           value="{{ $kandidat->mestoRodjenja }}">
+                                    <datalist id="mestaList">
+                                        @foreach($mestoRodjenja as $item)
+                                            <option value="{{$item->naziv}}">
+                                        @endforeach
+                                    </datalist>
+                                </div>
                             </div>
-
-                            <div class="form-group" style="width: 60%">
-                                <label for="mestoRodjenja">Место рођења</label>
-                                <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
-                                       class="form-control" style="max-width: 60%" value="{{ $kandidat->mestoRodjenja }}">
-                                <datalist id="mestaList">
-                                    @foreach($mestoRodjenja as $item)
-                                        <option value="{{$item->naziv}}">
-                                    @endforeach
-                                </datalist>
+                            <div class="row">
+                                <div class="form-group col-lg-10">
+                                    <label for="KrsnaSlava">Крсна слава</label>
+                                    <select class="form-control" id="KrsnaSlava" name="KrsnaSlava">
+                                        @foreach($krsnaSlava as $item)
+                                            <option value="{{ $item->id }}" {{ ($kandidat->krsnaSlava_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="KrsnaSlava">Крсна слава</label>
-                                <select class="form-control" id="KrsnaSlava" name="KrsnaSlava" style="max-width: 50%">
-                                    @foreach($krsnaSlava as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->krsnaSlava_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="form-group  col-lg-6">
+                                    <label for="KontaktTelefon">Контакт телефон</label>
+                                    <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon"
+                                           value="{{ $kandidat->kontaktTelefon }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="KontaktTelefon">Контакт телефон</label>
-                                <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon"
-                                       style="max-width: 40%" value="{{ $kandidat->kontaktTelefon }}">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label for="AdresaStanovanja">Адреса становања</label>
+                                    <input class="form-control" type="text" name="AdresaStanovanja"
+                                           id="AdresaStanovanja"
+                                           value="{{ $kandidat->adresaStanovanja }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="AdresaStanovanja">Адреса становања</label>
-                                <input class="form-control" type="text" name="AdresaStanovanja" id="AdresaStanovanja"
-                                       style="max-width: 80%" value="{{ $kandidat->adresaStanovanja }}">
+                            <div class="row">
+                                <div class="form-group col-lg-9">
+                                    <label for="Email">Email</label>
+                                    <input class="form-control" type="text" name="Email" id="Email"
+                                           value="{{ $kandidat->email }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="Email">Email</label>
-                                <input class="form-control" type="text" name="Email" id="Email" style="max-width: 60%"
-                                       value="{{ $kandidat->email }}">
+                            <div class="row">
+                                <div class="form-group col-lg-8">
+                                    <label for="ImePrezimeJednogRoditelja">Име и презиме једног родитеља</label>
+                                    <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
+                                           id="ImePrezimeJednogRoditelja"
+                                           value="{{ $kandidat->imePrezimeJednogRoditelja }}">
+                                </div>
                             </div>
-                            <div class="form-group" style="width: 80%;">
-                                <label for="ImePrezimeJednogRoditelja">Име и презиме једног родитеља</label>
-                                <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
-                                       id="ImePrezimeJednogRoditelja"
-                                       value="{{ $kandidat->imePrezimeJednogRoditelja }}">
-                            </div>
-                            <div class="form-group" style="width: 80%;">
-                                <label for="KontaktTelefonRoditelja">контакт телефон родитеља</label>
-                                <input class="form-control" type="text" name="KontaktTelefonRoditelja"
-                                       id="KontaktTelefonRoditelja" value="{{ $kandidat->kontaktTelefonRoditelja }}">
+                            <div class="row">
+                                <div class="form-group col-lg-8">
+                                    <label for="KontaktTelefonRoditelja">Контакт телефон родитеља</label>
+                                    <input class="form-control" type="text" name="KontaktTelefonRoditelja"
+                                           id="KontaktTelefonRoditelja"
+                                           value="{{ $kandidat->kontaktTelefonRoditelja }}">
+                                </div>
                             </div>
 
                             <div class="clearfix"></div>
                             <hr>
-
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
-                                <input class="form-control" type="text" name="NazivSkoleFakulteta"
-                                       id="NazivSkoleFakulteta"
-                                       value="{{ $kandidat->srednjeSkoleFakulteti }}">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
+                                    <input class="form-control" type="text" name="NazivSkoleFakulteta"
+                                           id="NazivSkoleFakulteta"
+                                           value="{{ $kandidat->srednjeSkoleFakulteti }}">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
+                                    <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
+                                           id="SmerZavrseneSkoleFakulteta"
+                                           value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
+                                </div>
                             </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
-                                <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
-                                       id="SmerZavrseneSkoleFakulteta"
-                                       value="{{ $kandidat->smerZavrseneSkoleFakulteta }}">
-                            </div>
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
-                                <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
-                                        name="mestoZavrseneSkoleFakulteta" list="mestaList" value="{{ $kandidat->mestoZavrseneSkoleFakulteta }}">
-                            </div>
-
-                            <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                <label for="GodinaStudija">Година студија</label>
-                                <select class="form-control" id="GodinaStudija" name="GodinaStudija"
-                                        style="max-width: 40%">
-                                    @foreach($godinaStudija as $item)
-                                        <option value="{{ $item->id }}" {{ ($kandidat->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
+                                    <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
+                                           name="mestoZavrseneSkoleFakulteta" list="mestaList"
+                                           value="{{ $kandidat->mestoZavrseneSkoleFakulteta }}">
+                                </div>
+                                <div class="form-group col-lg-4 col-lg-offset-2">
+                                    <label for="GodinaStudija">Година студија</label>
+                                    <select class="form-control" id="GodinaStudija" name="GodinaStudija">
+                                        @foreach($godinaStudija as $item)
+                                            <option value="{{ $item->id }}" {{ ($kandidat->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -181,84 +205,101 @@
                 <div class="col-sm-12 col-lg-6">
                     <div class="row">
                         <div class="col-lg-12">
-
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Само за прву годину</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="prviRazred">1. разред</label>
-                                        <select class="form-control" id="prviRazred" name="prviRazred" tabindex="-1">
-                                            @foreach($opstiUspehSrednjaSkola as $item)
-                                                <option value="{{ $item->id }}" {{ ($prviRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label for="prviRazred">1. разред</label>
+                                            <select class="form-control" id="prviRazred" name="prviRazred"
+                                                    tabindex="-1">
+                                                @foreach($opstiUspehSrednjaSkola as $item)
+                                                    <option value="{{$item->id}}" {{ ($prviRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{$item->naziv}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="SrednjaOcena1">Средња оцена</label>
+                                            <input class="form-control" type="text" name="SrednjaOcena1"
+                                                   id="SrednjaOcena1"
+                                                   value="{{ number_format((float)$prviRazred->srednja_ocena, 2, '.', '') }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena1">Средња оцена</label>
-                                        <input class="form-control" type="text" name="SrednjaOcena1" id="SrednjaOcena1"
-                                               value="{{ number_format((float)$prviRazred->srednja_ocena, 2, '.', '') }}">
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label for="drugiRazred">2. разред</label>
+                                            <select class="form-control" id="drugiRazred" name="drugiRazred"
+                                                    tabindex="-1">
+                                                @foreach($opstiUspehSrednjaSkola as $item)
+                                                    <option value="{{ $item->id }}" {{ ($drugiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="SrednjaOcena2">Средња оцена</label>
+                                            <input class="form-control" type="text" name="SrednjaOcena2"
+                                                   id="SrednjaOcena2"
+                                                   value="{{ number_format((float)$drugiRazred->srednja_ocena, 2, '.', '') }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="drugiRazred">2. разред</label>
-                                        <select class="form-control" id="drugiRazred" name="drugiRazred" tabindex="-1">
-                                            @foreach($opstiUspehSrednjaSkola as $item)
-                                                <option value="{{ $item->id }}" {{ ($drugiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                            @endforeach
-                                        </select>
+
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label for="treciRazred">3. разред</label>
+                                            <select class="form-control" id="treciRazred" name="treciRazred"
+                                                    tabindex="-1">
+                                                @foreach($opstiUspehSrednjaSkola as $item)
+                                                    <option value="{{ $item->id }}" {{ ($treciRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="SrednjaOcena3">Средња оцена</label>
+                                            <input class="form-control" type="text" name="SrednjaOcena3"
+                                                   id="SrednjaOcena3"
+                                                   value="{{ number_format((float)$treciRazred->srednja_ocena, 2, '.', '') }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena2">Средња оцена</label>
-                                        <input class="form-control" type="text" name="SrednjaOcena2" id="SrednjaOcena2"
-                                               value="{{ number_format((float)$drugiRazred->srednja_ocena, 2, '.', '') }}">
-                                    </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="treciRazred">3. разред</label>
-                                        <select class="form-control" id="treciRazred" name="treciRazred" tabindex="-1">
-                                            @foreach($opstiUspehSrednjaSkola as $item)
-                                                <option value="{{ $item->id }}" {{ ($treciRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena3">Средња оцена</label>
-                                        <input class="form-control" type="text" name="SrednjaOcena3" id="SrednjaOcena3"
-                                               value="{{ number_format((float)$treciRazred->srednja_ocena, 2, '.', '') }}">
-                                    </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="cetvrtiRazred">4. разред</label>
-                                        <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred"
-                                                tabindex="-1">
-                                            @foreach($opstiUspehSrednjaSkola as $item)
-                                                <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcena4">Средња оцена</label>
-                                        <input class="form-control" type="text" name="SrednjaOcena4" id="SrednjaOcena4"
-                                               value="{{ number_format((float)$cetvrtiRazred->srednja_ocena, 2, '.', '') }}">
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label for="cetvrtiRazred">4. разред</label>
+                                            <select class="form-control" id="cetvrtiRazred" name="cetvrtiRazred"
+                                                    tabindex="-1">
+                                                @foreach($opstiUspehSrednjaSkola as $item)
+                                                    <option value="{{ $item->id }}" {{ ($cetvrtiRazred->opstiUspeh_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="SrednjaOcena4">Средња оцена</label>
+                                            <input class="form-control" type="text" name="SrednjaOcena4"
+                                                   id="SrednjaOcena4"
+                                                   value="{{ number_format((float)$cetvrtiRazred->srednja_ocena, 2, '.', '') }}">
+                                        </div>
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <hr>
 
-                                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                        <label for="OpstiUspehSrednjaSkola">Општи успех средња школа
-                                            &nbsp;&nbsp;</label>
-                                        <select class="form-control" id="OpstiUspehSrednjaSkola"
-                                                name="OpstiUspehSrednjaSkola" tabindex="-1">
-                                            @foreach($opstiUspehSrednjaSkola as $item)
-                                                <option value="{{ $item->id }}" {{ ($kandidat->opstiUspehSrednjaSkola_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group pull-left" style="width: 48%; margin-left: 2%;">
-                                        <label for="SrednjaOcenaSrednjaSkola">Средња оцена средња школа</label>
-                                        <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
-                                               id="SrednjaOcenaSrednjaSkola"
-                                               value="{{ number_format((float)$kandidat->srednjaOcenaSrednjaSkola, 2, '.', '')}}">
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label for="OpstiUspehSrednjaSkola">Општи успех средња школа</label>
+                                            <select class="form-control" id="OpstiUspehSrednjaSkola"
+                                                    name="OpstiUspehSrednjaSkola"
+                                                    tabindex="-1">
+                                                @foreach($opstiUspehSrednjaSkola as $item)
+                                                    <option value="{{ $item->id }}" {{ ($kandidat->opstiUspehSrednjaSkola_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="SrednjaOcenaSrednjaSkola">Средња оцена средња школа</label>
+                                            <input class="form-control" type="text" name="SrednjaOcenaSrednjaSkola"
+                                                   id="SrednjaOcenaSrednjaSkola"
+                                                   value="{{ number_format((float)$kandidat->srednjaOcenaSrednjaSkola, 2, '.', '')}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
