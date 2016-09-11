@@ -75,7 +75,7 @@ class StudentController extends Controller
 
     public function uplataSkolarine($id, Request $request)
     {
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina])->first();
+        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina, 'pokusaj' => $request->pokusaj])->first();
         $upisaneGodine->skolarina = 1;
         $upisaneGodine->save();
 
@@ -89,7 +89,7 @@ class StudentController extends Controller
             return redirect("student/{$id}/upis");
         }
 
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina])->first();
+        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina, 'pokusaj' => $request->pokusaj])->first();
         $upisaneGodine->upisan = 1;
         $upisaneGodine->save();
 
@@ -109,10 +109,12 @@ class StudentController extends Controller
             return redirect("student/{$id}/upis");
         }
 
+        $poslednjiPokusaj = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina])->max('pokusaj');
+
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = $request->godina;
-        $upis->pokusaj = $request->pokusaj + 1;
+        $upis->pokusaj = $poslednjiPokusaj + 1;
         $upis->skolarina = 0;
         $upis->upisan = 0;
         $upis->save();
@@ -122,6 +124,59 @@ class StudentController extends Controller
         $kandidat->godinaStudija_id = $request->godina;
 
         $kandidat->save();
+
+        return redirect("student/{$id}/upis");
+    }
+
+    public function obrisiObnovuGodine($id, Request $request)
+    {
+        if(empty($id) || empty($request->upisId)){
+            Session::flash('flash-error', 'upis');
+            return redirect("student/{$id}/upis");
+        }
+
+        UpisGodine::destroy($request->upisId);
+
+        return redirect("student/{$id}/upis");
+    }
+
+    public function ponistiUplatu($id, Request $request)
+    {
+        if(empty($id) || empty($request->upisId)){
+            Session::flash('flash-error', 'upis');
+            return redirect("student/{$id}/upis");
+        }
+
+        $upis = UpisGodine::find($request->upisId);
+        $upis->skolarina = 0;
+        $upis->save();
+
+        if($upis->godina == 1){
+            $kandidat = Kandidat::find($id);
+            $kandidat->uplata = 0;
+            $kandidat->save();
+        }
+
+        return redirect("student/{$id}/upis");
+    }
+
+    public function ponistiUpis($id, Request $request)
+    {
+        if(empty($id) || empty($request->upisId)){
+            Session::flash('flash-error', 'upis');
+            return redirect("student/{$id}/upis");
+        }
+
+        $upis = UpisGodine::find($request->upisId);
+        $upis->upisan = 0;
+        $upis->save();
+
+        if($upis->godina == 1){
+            $kandidat = Kandidat::find($id);
+            $kandidat->upisan = 0;
+            $kandidat->save();
+            return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
+        }
 
         return redirect("student/{$id}/upis");
     }

@@ -60,8 +60,8 @@
                                 <li {{ (Request::is('*kandidat/create') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('kandidat/create') }}">Додавање</a>
                                 </li>
-                                <li {{ (Request::is('*kandidat/') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('kandidat/' ) }}">Преглед</a>
+                                <li {{ (Request::is('*kandidat?studijskiProgramId=*') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('kandidat?studijskiProgramId=1' ) }}">Преглед</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -73,8 +73,8 @@
                                 <li {{ (Request::is('*master/create') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('master/create') }}">Додавање</a>
                                 </li>
-                                <li {{ (Request::is('*master/') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('master/' ) }}">Преглед</a>
+                                <li {{ (Request::is('*master') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('master' ) }}">Преглед</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

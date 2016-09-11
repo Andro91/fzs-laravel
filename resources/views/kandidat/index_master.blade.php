@@ -59,7 +59,7 @@
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
                         <td style="vertical-align: middle;">
-                            <div class="text-center">
+                            <div class="text-left">
                                 @if($kandidat->uplata == 1) <span class='label label-success'>Уплаћена</span>
                                 @else <span class='label label-danger'>Није уплаћена</span>
                                 @endif

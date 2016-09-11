@@ -48,7 +48,7 @@ class KandidatController extends Controller
      */
     public function index(Request $request)
     {
-        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 1])->first()->id;
+        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 1, 'indikatorAktivan' => 1])->first()->id;
         if( !empty($request->studijskiProgramId )){
             $studijskiProgramId = $request->studijskiProgramId;
         }
@@ -548,13 +548,13 @@ class KandidatController extends Controller
             if($kandidat->upisan == 1){
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
-            return redirect('/kandidat/');
+            return redirect('/kandidat?studijskiProgramId=' . $kandidat->studijskiProgram_id);
         }else{
             Session::flash('flash-error', 'update');
             if($kandidat->upisan == 1){
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
-            return redirect('/kandidat/');
+            return redirect('/kandidat?studijskiProgramId=1' . $kandidat->studijskiProgram_id);
         }
     }
 
@@ -639,7 +639,7 @@ class KandidatController extends Controller
         $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::where('tipStudija_id','2')->get();
+        $studijskiProgram = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
@@ -665,7 +665,7 @@ class KandidatController extends Controller
     public function storeMaster(Request $request)
     {
         $messages = [
-            'required' => ':attribute је обавезно поље.',
+            'JMBG.required' => 'ЈМБГ је обавезно поље.',
             'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.',
             'JMBG.max' => 'ЈМБГ не може имати више од 13 цифара.'
         ];
@@ -726,7 +726,7 @@ class KandidatController extends Controller
             }
         }
 
-        return redirect('/master/');
+        return redirect('/master?studijskiProgramId=' . $kandidat->studijskiProgram_id);
     }
 
 
@@ -830,13 +830,13 @@ class KandidatController extends Controller
             if($kandidat->upisan == 1){
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
-            return redirect('/master/');
+            return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
         }else{
             Session::flash('flash-error', 'update');
             if($kandidat->upisan == 1){
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
-            return redirect('/master/');
+            return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
         }
 
         //return redirect('/master/');
@@ -844,12 +844,12 @@ class KandidatController extends Controller
 
     public function indexMaster(Request $request)
     {
-        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 2])->first()->id;
+        $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->first()->id;
         if( !empty($request->studijskiProgramId )){
             $studijskiProgramId = $request->studijskiProgramId;
         }
 
-        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2])->get();
+        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->get();
 
         $kandidati = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 0, 'studijskiProgram_id' => $studijskiProgramId])->get();
 

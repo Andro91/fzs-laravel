@@ -92,6 +92,10 @@ Route::group(['middleware' => ['web']], function () {
 
 
     Route::get('/student/{id}/obnova', 'StudentController@obnoviGodinu');
+    Route::get('/student/{id}/obrisiObnovu', 'StudentController@obrisiObnovuGodine');
+    Route::get('/student/{id}/ponistiUplatu', 'StudentController@ponistiUplatu');
+    Route::get('/student/{id}/ponistiUpis', 'StudentController@ponistiUpis');
+
 
 });
 

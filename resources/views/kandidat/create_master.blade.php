@@ -5,7 +5,7 @@
         {{--GRESKE--}}
         @if (Session::get('errors'))
             <div class="alert alert-dismissable alert-danger">
-                <h4>Greška!</h4>
+                <h4>Грешка!</h4>
                 <ul>
                     @foreach (Session::get('errors')->all() as $error)
                         <li>{!! $error !!}</li>
