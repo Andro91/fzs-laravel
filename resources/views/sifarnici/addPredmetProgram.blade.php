@@ -14,7 +14,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="program_id">Предмет:</label>
+                        <label for="program_id">Програм:</label>
                         <select class="form-control auto-combobox" id="program_id" name="program_id" required>
                             @foreach($programi as $program)
                                 <option value="{{$program->id}}">{{$program->naziv}}</option>
