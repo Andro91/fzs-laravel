@@ -112,7 +112,7 @@
                         <div class="form-group col-lg-6">
                             <label for="KontaktTelefon">Контакт телефон</label>
                             <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon"
-                                   style="max-width: 40%" value="{{ old('KontaktTelefon') }}">
+                                    value="{{ old('KontaktTelefon') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -120,7 +120,7 @@
                             <label for="AdresaStanovanja">Адреса становања</label>
                             <input class="form-control" type="text" name="AdresaStanovanja"
                                    id="AdresaStanovanja"
-                                   style="max-width: 80%" value="{{ old('AdresaStanovanja') }}">
+                                    value="{{ old('AdresaStanovanja') }}">
                         </div>
                     </div>
 
@@ -128,7 +128,6 @@
                         <div class="form-group col-lg-8">
                             <label for="Email">Email</label>
                             <input class="form-control" type="text" name="Email" id="Email"
-                                   style="max-width: 60%"
                                    value="{{ old('Email') }}">
                         </div>
                     </div>
