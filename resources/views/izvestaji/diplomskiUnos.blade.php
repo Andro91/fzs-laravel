@@ -6,6 +6,7 @@
     <div class="col-sm-12 col-lg-12">
 
         <div class="col-sm-12 col-lg-9">
+            <a href="/izvestaji/potvrdeStudent/{{$student->id}}">&#60;&#60;Назад на потврде</a><br/><br/>
             <form role="form" method="post" action="{{ url('/izvestaji/diplomskiAdd/') }}">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{$student->id}}">

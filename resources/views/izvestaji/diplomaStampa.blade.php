@@ -1,7 +1,7 @@
 <div style="height: 70px;"><img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($student !== '')
+@if($student && $diploma && $diplomski)
     <div style="text-align: left"><label>Број: {{$diploma->broj}}</label> <br/>
         <label>Датум: {{ date('d.m.Y.',strtotime($diplomski->datumOdbrane)) }}</label>
     </div>
@@ -52,10 +52,6 @@
         <br/>
 
     </div>
-@else
-    <h1>Нема регистрованих студената</h1>
-@endif
-
 <br/>
 
 <div>
@@ -67,6 +63,9 @@
         </tr>
     </table>
 </div>
+@else
+    <h1>Нису унети потребни подаци за издраду уверења.</h1>
+@endif
 
 
 

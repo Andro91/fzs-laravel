@@ -1,19 +1,22 @@
-<title>Додавање дипломе</title>
+<title>Додавање уверења</title>
 @extends('layouts.layout')
-@section('page_heading','Додавање дипломе')
+@section('page_heading','Додавање уверења')
 @section('section')
 
     @if($diploma !== null)
 
         <div class="col-md-9">
+            <a href="/izvestaji/potvrdeStudent/{{$student->id}}">&#60;&#60;Назад на потврде</a><br/><br/>
             <form role="form" method="post" action="{{ url('/izvestaji/diplomaAdd') }}">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{$student->id}}">
 
+
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Додавање дипломе</h3>
+                        <h3 class="panel-title">Додавање уверења</h3>
                     </div>
+
                     <div class="panel-body">
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="broj">Број:</label>
@@ -21,7 +24,8 @@
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                             <label for="datumOdbrane">Датум:</label>
-                            <input id="datumOdbrane" value="{{ date('d.m.Y.',strtotime($diploma->datumOdbrane)) }}" name="datumOdbrane" type="text"
+                            <input id="datumOdbrane" value="{{ date('d.m.Y.',strtotime($diploma->datumOdbrane)) }}"
+                                   name="datumOdbrane" type="text"
                                    class="form-control dateMask">
                         </div>
                         <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">

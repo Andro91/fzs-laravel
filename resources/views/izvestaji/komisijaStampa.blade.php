@@ -1,7 +1,7 @@
 <div style="height: 70px;"><img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($student !== '')
+@if($student && $diplomski && $diploma)
     <div style="text-align: left">
 
     </div>
@@ -28,10 +28,6 @@
         </p>
 
     </div>
-@else
-    <h1>Нема регистрованих студената</h1>
-@endif
-
 <br/>
 
 <div>
@@ -58,7 +54,9 @@
         </tr>
     </table>
 </div>
-
+@else
+    <h1>Нема података о комисији.</h1>
+@endif
 
 
 

@@ -2,7 +2,7 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($program !== '')
+@if($program && $predmeti)
 
     <div>
 
@@ -34,11 +34,6 @@
             @endforeach
         </table>
     </div>
-@else
-    <h1>Нема регистрованих студената</h1>
-@endif
-
-
 <br/>
 <br/>
 <br/>
@@ -56,6 +51,10 @@
         </tr>
     </table>
 </div>
+
+@else
+    <h1>Нема података.</h1>
+@endif
 
 
 

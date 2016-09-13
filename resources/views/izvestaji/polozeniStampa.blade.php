@@ -2,7 +2,7 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($ispiti !== '')
+@if(!$ispiti->isEmpty())
     <div style="text-align: left"><label>Број: 66/2016</label> <br/>
         <label>Датум: {{$datum}}</label>
     </div>

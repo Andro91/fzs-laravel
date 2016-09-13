@@ -241,7 +241,12 @@ class IzvestajiController extends Controller
                 $i++;
             }
 
+            if($i != 0){
             $prosek = $zbir/$i;
+            }
+            else{
+                $prosek = 0;
+            }
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -373,9 +378,15 @@ class IzvestajiController extends Controller
                 $i++;
             }
 
-            $prosek = $zbir/$i;
+            if($i != 0){
+                $prosek = $zbir/$i;
+            }
+            else{
+                $prosek = 0;
+            }
             $datum = Carbon::now();
 
+            //return $ispiti;
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
