@@ -2,7 +2,7 @@
 @section('page_heading','Измена испитног рока')
 @section('section')
 
-    <div class="container">
+    <div class="col-lg-9">
         {{--GRESKE--}}
         @if (Session::get('errors'))
             <div class="alert alert-dismissable alert-danger">
@@ -33,53 +33,56 @@
 
                     <input type="hidden" name="rokId" value="{{ $rok->id }}">
 
-                    <div class="form-group" style="width: 40%;">
-                        <label for="rok_id">Испитни рок</label>
-                        <select class="form-control" id="rok_id" name="rok_id">
-                            @foreach($ispitniRok as $tip)
-                                <option value="{{$tip->id}}"  {{ $rok->rok_id == $tip->id ? 'selected' : '' }}>{{$tip->naziv}}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="rok_id">Испитни рок</label>
+                            <select class="form-control" id="rok_id" name="rok_id">
+                                @foreach($ispitniRok as $tip)
+                                    <option value="{{$tip->id}}"  {{ $rok->rok_id == $tip->id ? 'selected' : '' }}>{{$tip->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                            <label for="naziv">Назив</label>
+                            <input id="naziv" class="form-control" type="text" name="naziv" value="{{ $rok->naziv }}" />
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="formatPocetak">Почетак</label>
+                            <input id="formatPocetak" class="form-control dateMask" type="text" name="formatPocetak"
+                                   value="{{ $rok->pocetak->format('d.m.Y.') }}" />
+                        </div>
 
-                    <div class="form-group" style="width: 40%; margin-right: 2%">
-                        <label for="naziv">Назив</label>
-                        <input id="naziv" class="form-control" type="text" name="naziv" value="{{ $rok->naziv }}" />
-                    </div>
+                        <div class="form-group col-lg-4">
+                            <label for="formatKraj">Крај</label>
+                            <input id="formatKraj" class="form-control dateMask" type="text" name="formatKraj"
+                                   value="{{ $rok->kraj->format('d.m.Y.') }}" />
+                        </div>
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="formatPocetak">Почетак</label>
-                        <input id="formatPocetak" class="form-control dateMask" type="text" name="formatPocetak"
-                               value="{{ $rok->pocetak->format('d.m.Y.') }}" />
-                    </div>
+                        <input type="hidden" name="pocetak" id="pocetak" value="{{ $rok->pocetak->format('Y-m-d') }}">
+                        <input type="hidden" name="kraj" id="kraj" value="{{ $rok->kraj->format('Y-m-d') }}">
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="formatKraj">Крај</label>
-                        <input id="formatKraj" class="form-control dateMask" type="text" name="formatKraj"
-                               value="{{ $rok->kraj->format('d.m.Y.') }}" />
-                    </div>
+                        <div class="form-group col-lg-5">
+                            <label for="tipRoka_id">Тип рока</label>
+                            <select class="form-control" id="tipRoka_id" name="tipRoka_id">
+                                <option value="1" {{ $rok->tipRoka_id == 1 ? 'selected' : '' }}>Редовни</option>
+                                <option value="2" {{ $rok->tipRoka_id == 2 ? 'selected' : '' }}>Ванредни</option>
+                            </select>
+                        </div>
 
-                    <input type="hidden" name="pocetak" id="pocetak" value="{{ $rok->pocetak->format('Y-m-d') }}">
-                    <input type="hidden" name="kraj" id="kraj" value="{{ $rok->kraj->format('Y-m-d') }}">
+                        <div class="form-group col-lg-10">
+                            <label for="komentar">Коментар</label>
+                            <input id="komentar" class="form-control" type="text" name="komentar" value="{{ $rok->komentar }}" />
+                        </div>
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="tipRoka_id">Тип рока</label>
-                        <select class="form-control" id="tipRoka_id" name="tipRoka_id">
-                            <option value="1" {{ $rok->tipRoka_id == 1 ? 'selected' : '' }}>Редовни</option>
-                            <option value="2" {{ $rok->tipRoka_id == 2 ? 'selected' : '' }}>Ванредни</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="width: 40%; margin-right: 2%">
-                        <label for="komentar">Коментар</label>
-                        <input id="komentar" class="form-control" type="text" name="komentar" value="{{ $rok->komentar }}" />
-                    </div>
-
-                    <div class="form-group" style="width: 48%; margin-right: 2%;">
-                        <label for="indikatorAktivan">
-                            <input type="checkbox" id="indikatorAktivan" name="indikatorAktivan" value="1"
-                                    {{$rok->indikatorAktivan == 1 ? 'checked' : ''}}>
-                            Индикатор активан</label>
+                        <div class="form-group col-lg-8">
+                            <label for="indikatorAktivan">
+                                <input type="checkbox" id="indikatorAktivan" name="indikatorAktivan" value="1"
+                                        {{$rok->indikatorAktivan == 1 ? 'checked' : ''}}>
+                                Индикатор активан</label>
+                        </div>
                     </div>
 
                     <div class="clearfix"></div>

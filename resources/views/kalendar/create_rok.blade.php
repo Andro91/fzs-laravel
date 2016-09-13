@@ -2,7 +2,7 @@
 @section('page_heading','Нови испитни рок')
 @section('section')
 
-    <div class="container">
+    <div class="col-lg-10">
         {{--GRESKE--}}
         @if (Session::get('errors'))
             <div class="alert alert-dismissable alert-danger">
@@ -31,57 +31,64 @@
                 <form role="form" method="post" action="{{ url('/kalendar/storeRok') }}">
                     {{ csrf_field() }}
 
-                    <div class="form-group" style="width: 40%;">
-                        <label for="rok_id">Испитни рок</label>
-                        <select class="form-control" id="rok_id" name="rok_id">
-                            @foreach($ispitniRok as $tip)
-                                <option value="{{$tip->id}}">{{$tip->naziv}}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="rok_id">Испитни рок</label>
+                            <select class="form-control" id="rok_id" name="rok_id">
+                                @foreach($ispitniRok as $tip)
+                                    <option value="{{$tip->id}}">{{$tip->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                            <label for="naziv">Назив</label>
+                            <input id="naziv" class="form-control" type="text" name="naziv" value=""/>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="formatPocetak">Почетак</label>
+                            <input id="formatPocetak" class="form-control dateMask" type="text" name="formatPocetak"
+                                   value=""/>
+                        </div>
 
-                    <div class="form-group" style="width: 40%; margin-right: 2%">
-                        <label for="naziv">Назив</label>
-                        <input id="naziv" class="form-control" type="text" name="naziv" value="" />
-                    </div>
+                        <div class="form-group col-lg-4">
+                            <label for="formatKraj">Крај</label>
+                            <input id="formatKraj" class="form-control dateMask" type="text" name="formatKraj"
+                                   value=""/>
+                        </div>
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="formatPocetak">Почетак</label>
-                        <input id="formatPocetak" class="form-control dateMask" type="text" name="formatPocetak" value="" />
-                    </div>
+                        <input type="hidden" name="pocetak" id="pocetak">
+                        <input type="hidden" name="kraj" id="kraj">
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="formatKraj">Крај</label>
-                        <input id="formatKraj" class="form-control dateMask" type="text" name="formatKraj" value="" />
-                    </div>
+                        <div class="form-group col-lg-5">
+                            <label for="tipRoka_id">Тип рока</label>
+                            <select class="form-control" id="tipRoka_id" name="tipRoka_id">
+                                <option value="1">Редовни</option>
+                                <option value="2">Ванредни</option>
+                            </select>
+                        </div>
 
-                    <input type="hidden" name="pocetak" id="pocetak">
-                    <input type="hidden" name="kraj" id="kraj">
+                        <div class="form-group col-lg-10">
+                            <label for="komentar">Коментар</label>
+                            <input id="komentar" class="form-control" type="text" name="komentar" value=""/>
+                        </div>
 
-                    <div class="form-group" style="width: 30%;">
-                        <label for="tipRoka_id">Тип рока</label>
-                        <select class="form-control" id="tipRoka_id" name="tipRoka_id">
-                            <option value="1">Редовни</option>
-                            <option value="2">Ванредни</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" style="width: 40%; margin-right: 2%">
-                        <label for="komentar">Коментар</label>
-                        <input id="komentar" class="form-control" type="text" name="komentar" value="" />
-                    </div>
-
-                    <div class="form-group" style="width: 48%; margin-right: 2%;">
-                        <label for="indikatorAktivan">
-                            <input type="checkbox" id="indikatorAktivan" name="indikatorAktivan" value="1">
-                            Индикатор активан</label>
+                        <div class="form-group col-lg-8">
+                            <label for="indikatorAktivan">
+                                <input type="checkbox" id="indikatorAktivan" name="indikatorAktivan" value="1">
+                                Индикатор активан</label>
+                        </div>
                     </div>
 
                     <div class="clearfix"></div>
                     <hr>
 
                     <div class="form-group text-center">
-                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span class="fa fa-save"></span> Сачувај</button>
+                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span
+                                    class="fa fa-save"></span> Сачувај
+                        </button>
                     </div>
 
                 </form>
@@ -89,20 +96,20 @@
         </div>
     </div>
     <script>
-        $( function() {
-            $( "#formatPocetak" ).datepicker({
+        $(function () {
+            $("#formatPocetak").datepicker({
                 dateFormat: 'dd.mm.yy.',
-                altField : "#pocetak",
+                altField: "#pocetak",
                 altFormat: "yy-mm-dd"
             });
 
-            $( "#formatKraj" ).datepicker({
+            $("#formatKraj").datepicker({
                 dateFormat: 'dd.mm.yy.',
-                altField : "#kraj",
+                altField: "#kraj",
                 altFormat: "yy-mm-dd"
             });
 
-        } );
+        });
     </script>
     <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
 @endsection

@@ -22,8 +22,9 @@
                 center: 'title',
                 right:  'today prev,next'
             },
+            editable: true,
             fixedWeekCount: false,
-            height: 750,
+            height: 600,
             eventSources: [
                 {
                     url: '/kalendar/eventSource',
