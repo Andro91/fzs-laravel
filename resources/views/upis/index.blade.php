@@ -162,10 +162,7 @@
 
                                 @if($godina->upisan == 1)
                                         <a class="btn btn-danger"
-                                        href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}"
-                                           @if($godina->godina == 1 && $godina->pokusaj == 1)
-                                           onclick="return confirm('Да ли желите да вратите студента на статус кандидата?');"
-                                                @endif >
+                                        href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                             <i class="fa fa-ban"></i> Поништи упис
                                         </a>
                                 @else

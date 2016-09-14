@@ -171,14 +171,26 @@ class StudentController extends Controller
         $upis->upisan = 0;
         $upis->save();
 
-        if($upis->godina == 1){
-            $kandidat = Kandidat::find($id);
-            $kandidat->upisan = 0;
-            $kandidat->save();
-            return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
-        }
+//        if($upis->godina == 1){
+//            $kandidat = Kandidat::find($id);
+//            $kandidat->upisan = 0;
+//            $kandidat->save();
+//            return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
+//        }
 
         return redirect("student/{$id}/upis");
+    }
+
+    public function promeniStatus(Request $request)
+    {
+        switch($request->statusId){
+            case 1: {
+                $kandidat = Kandidat::find($request->kanndidatId);
+                $kandidat->upisan = 0;
+                $kandidat->save();
+                return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
+            }
+        }
     }
 
     public function masovnaUplata(Request $request)
