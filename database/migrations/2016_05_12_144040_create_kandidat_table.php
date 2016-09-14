@@ -50,6 +50,9 @@ class CreateKandidatTable extends Migration
             $table->integer('mesto_id')->unsigned()->index();
             $table->boolean('uplata')->default(0)->nullable();
             $table->boolean('upisan')->default(0)->nullable();
+            $table->string('drzavaZavrseneSkole')->nullable();
+            $table->string('drzavaRodjenja')->nullable();
+            $table->string('godinaZavrsetkaSkole')->nullable();
             $table->timestamps();
         });
     }

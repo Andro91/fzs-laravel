@@ -113,8 +113,6 @@ class KandidatController extends Controller
             'JMBG.max' => 'ЈМБГ не може имати више од 13 цифара.'
         ];
 
-
-
         if ($request->page == 1) {
 
             $this->validate($request, [
@@ -155,6 +153,12 @@ class KandidatController extends Controller
             $kandidat->tipStudija_id = 1;
             $kandidat->studijskiProgram_id = $request->StudijskiProgram;
             $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
+
+            //Dodao Andrija 14-septembar-2016
+            $kandidat->drzavaZavrseneSkole = $request->drzavaZavrseneSkole;
+            $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
+            $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
+
             $kandidat->godinaStudija_id = $request->GodinaStudija;
 
             $kandidat->save();
@@ -455,6 +459,11 @@ class KandidatController extends Controller
         $kandidat->skolskaGodinaUpisa_id = $request->SkolskeGodineUpisa;
         $kandidat->godinaStudija_id = $request->GodinaStudija;
 
+        //Dodao Andrija 14-septembra-2016
+        $kandidat->drzavaZavrseneSkole = $request->drzavaZavrseneSkole;
+        $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
+        $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
+
         try {
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
         }catch (ModelNotFoundException $e){
@@ -705,6 +714,11 @@ class KandidatController extends Controller
         $kandidat->upisniRok = $request->UpisniRok;
         $kandidat->godinaStudija_id = 1;
 
+        //Dodao Andrija 14-septembar-2016
+        $kandidat->drzavaZavrseneSkole = $request->drzavaZavrseneSkole;
+        $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
+        $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
+
         $saved = $kandidat->save();
 
         $insertedId = $kandidat->id;
@@ -809,6 +823,11 @@ class KandidatController extends Controller
         $kandidat->upisniRok = $request->UpisniRok;
 
         $kandidat->brojIndeksa = $request->brojIndeksa;
+
+        //Dodao Andrija 14-septembar-2016
+        $kandidat->drzavaZavrseneSkole = $request->drzavaZavrseneSkole;
+        $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
+        $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
 
         $insertedId = $kandidat->save();
 

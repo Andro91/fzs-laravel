@@ -107,6 +107,11 @@
                                 @endforeach
                             </datalist>
                         </div>
+                        <div class="form-group col-lg-6">
+                            <label for="drzavaRodjenja">Држава рођења</label>
+                            <input class="form-control" type="text" name="drzavaRodjenja" id="drzavaRodjenja"
+                                   value="{{ old('drzavaRodjenja') }}">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-5">
@@ -143,6 +148,16 @@
                             <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
                             <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
                                    name="mestoZavrseneSkoleFakulteta" list="mestaList">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="drzavaZavrseneSkole">Држава завршене школе или факултета</label>
+                            <input class="form-control" type="text" name="drzavaZavrseneSkole" id="drzavaZavrseneSkole"
+                                   value="{{ old('drzavaZavrseneSkole') }}">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="godinaZavrsetkaSkole">Година завршетка школе или факултета</label>
+                            <input class="form-control" type="text" name="godinaZavrsetkaSkole" id="godinaZavrsetkaSkole"
+                                   value="{{ old('godinaZavrsetkaSkole') }}">
                         </div>
                     </div>
 

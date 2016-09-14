@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-lg-10">
+                                <div class="form-group col-lg-6">
                                     <label for="mestoRodjenja">Место рођења</label>
                                     <input type="text" name="mestoRodjenja" id="mestoRodjenja" list="mestaList"
                                            class="form-control"
@@ -114,6 +114,11 @@
                                             <option value="{{$item->naziv}}">
                                         @endforeach
                                     </datalist>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="drzavaRodjenja">Држава рођења</label>
+                                    <input class="form-control" type="text" name="drzavaRodjenja" id="drzavaRodjenja"
+                                           value="{{ $kandidat->drzavaRodjenja }}">
                                 </div>
                             </div>
                             <div class="row">
@@ -150,7 +155,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-8">
-                                    <label for="ImePrezimeJednogRoditelja">Име и презиме једног родитеља</label>
+                                    <label for="ImePrezimeJednogRoditelja">Име једног родитеља</label>
                                     <input class="form-control" type="text" name="ImePrezimeJednogRoditelja"
                                            id="ImePrezimeJednogRoditelja"
                                            value="{{ $kandidat->imePrezimeJednogRoditelja }}">
@@ -168,13 +173,13 @@
                             <div class="clearfix"></div>
                             <hr>
                             <div class="row">
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-10">
                                     <label for="NazivSkoleFakulteta">Назив школе или факултета</label>
                                     <input class="form-control" type="text" name="NazivSkoleFakulteta"
                                            id="NazivSkoleFakulteta"
                                            value="{{ $kandidat->srednjeSkoleFakulteti }}">
                                 </div>
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-10">
                                     <label for="SmerZavrseneSkoleFakulteta">Смер завршене школе или факултета</label>
                                     <input class="form-control" type="text" name="SmerZavrseneSkoleFakulteta"
                                            id="SmerZavrseneSkoleFakulteta"
@@ -182,13 +187,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-10">
                                     <label for="mestoZavrseneSkoleFakulteta">Место завршене школе или факултета</label>
                                     <input type="text" class="form-control" id="mestoZavrseneSkoleFakulteta"
                                            name="mestoZavrseneSkoleFakulteta" list="mestaList"
                                            value="{{ $kandidat->mestoZavrseneSkoleFakulteta }}">
                                 </div>
-                                <div class="form-group col-lg-4 col-lg-offset-2">
+                                <div class="form-group col-lg-10">
+                                    <label for="drzavaZavrseneSkole">Држава завршене школе или факултета</label>
+                                    <input class="form-control" type="text" name="drzavaZavrseneSkole" id="drzavaZavrseneSkole"
+                                           value="{{ $kandidat->drzavaZavrseneSkole }}">
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <label for="godinaZavrsetkaSkole">Година завршетка школе или факултета</label>
+                                    <input class="form-control" type="text" name="godinaZavrsetkaSkole" id="godinaZavrsetkaSkole"
+                                           value="{{ $kandidat->godinaZavrsetkaSkole }}">
+                                </div>
+                                <div class="form-group col-lg-10">
                                     <label for="GodinaStudija">Година студија</label>
                                     <select class="form-control" id="GodinaStudija" name="GodinaStudija">
                                         @foreach($godinaStudija as $item)
