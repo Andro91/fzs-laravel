@@ -88,7 +88,7 @@
                                 </div>
                             </a>
                             <a class="btn btn-primary btn-sm" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
-                                Школарина и упис
+                                Статус
                             </a>
                             <a class="btn btn-primary btn-sm"
                                href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">

@@ -43,7 +43,7 @@ class StudentController extends Controller
 
         if($tipStudijaId == 1){
 
-            $studenti = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 1, 'godinaStudija_id' =>  $godinaStudija, 'studijskiProgram_id' => $studijskiProgramId])->get();
+            $studenti = Kandidat::where(['tipStudija_id' => 1, 'statusUpisa_id' => 1, 'godinaStudija_id' =>  $godinaStudija, 'studijskiProgram_id' => $studijskiProgramId])->get();
             $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 1])->get();
 
             return view("student.indeks")
@@ -52,7 +52,7 @@ class StudentController extends Controller
 
         }else if($tipStudijaId == 2){
 
-            $studenti = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 1, 'studijskiProgram_id' => $studijskiProgramId])->get();
+            $studenti = Kandidat::where(['tipStudija_id' => 2, 'statusUpisa_id' => 1, 'studijskiProgram_id' => $studijskiProgramId])->get();
             $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2])->get();
 
             return view("student.index_master")->with('studenti', $studenti)
@@ -171,32 +171,20 @@ class StudentController extends Controller
         $upis->upisan = 0;
         $upis->save();
 
-//        if($upis->godina == 1){
-//            $kandidat = Kandidat::find($id);
-//            $kandidat->upisan = 0;
-//            $kandidat->save();
-//            return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
-//        }
-
         return redirect("student/{$id}/upis");
     }
 
-    public function promeniStatus(Request $request)
+    public function promeniStatus($id, $statusId)
     {
-        switch($request->statusId){
-            case 1: {
-                $kandidat = Kandidat::find($request->kanndidatId);
-                $kandidat->upisan = 0;
-                $kandidat->save();
-                return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
-            }
-        }
+        $kandidat = Kandidat::find($id);
+        $kandidat->statusUpisa_id = $statusId;
+        $kandidat->save();
+        return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
 
     public function masovnaUplata(Request $request)
     {
         foreach ($request->odabir as $kandidatId) {
-
             $kandidat = Kandidat::find($kandidatId);
             $godina = $kandidat->godinaStudija_id + 1;
             UpisGodine::uplatiGodinu($kandidatId, $godina);
@@ -234,7 +222,7 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $brojeviIndeksa = Kandidat::where([
-            'upisan' => 1,
+            'statusUpisa_id' => 1,
             'studijskiProgram_id' => $kandidat->studijskiProgram_id,
             'tipStudija_id' => $kandidat->tipStudija_id,
             'godinaStudija_id' =>  $kandidat->godinaStudija_id,
@@ -278,7 +266,7 @@ class StudentController extends Controller
         where([
             'tipStudija_id' => $request->tipStudijaId,
             'studijskiProgram_id' => $request->studijskiProgramId,
-            'upisan' => 1])->
+            'statusUpisa_id' => 1])->
         select('id','BrojIndeksa as naziv')->get();
         $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
         $godinaStudija = GodinaStudija::all();

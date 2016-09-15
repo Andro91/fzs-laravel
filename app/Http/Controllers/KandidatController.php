@@ -56,7 +56,7 @@ class KandidatController extends Controller
 
         $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 1])->get();
 
-        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'upisan' => 0, 'studijskiProgram_id' => $studijskiProgramId])->get();
+        $kandidati = Kandidat::where(['tipStudija_id' => 1, 'statusUpisa_id' => 3, 'studijskiProgram_id' => $studijskiProgramId])->get();
 
         return view("kandidat.indeks")
             ->with('kandidati', $kandidati)
@@ -130,7 +130,7 @@ class KandidatController extends Controller
                 $kandidat->uplata = 0;
             }
 
-            $kandidat->upisan = 0;
+            $kandidat->statusUpisa_id = 3;
 
             //$dateArray = explode('.', ); date()
             if (date_create_from_format('d.m.Y.', $request->DatumRodjenja)) {
@@ -543,7 +543,6 @@ class KandidatController extends Controller
             }
         }
 
-        $kandidat->statusUpisa_id = $request->StatusaUpisaKandidata;
         $kandidat->brojBodovaTest = $request->BrojBodovaTest;
         $kandidat->brojBodovaSkola = $request->BrojBodovaSkola;
         $kandidat->ukupniBrojBodova = $request->ukupniBrojBodova;
@@ -555,13 +554,13 @@ class KandidatController extends Controller
 
         if($saved){
             Session::flash('flash-success', 'update');
-            if($kandidat->upisan == 1){
+            if($kandidat->statusUpisa_id == 1){
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect('/kandidat?studijskiProgramId=' . $kandidat->studijskiProgram_id);
         }else{
             Session::flash('flash-error', 'update');
-            if($kandidat->upisan == 1){
+            if($kandidat->statusUpisa_id == 1){
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect('/kandidat?studijskiProgramId=1' . $kandidat->studijskiProgram_id);
@@ -600,7 +599,6 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
-        //$sportskoAngazovanje = $kandidat->angazovanja();
         $sport = Sport::all();
 
         return view('kandidat.sportsko_angazovanje')
@@ -689,7 +687,7 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
-        $kandidat->upisan = 0;
+        $kandidat->statusUpisa_id = 3;
 
         if(isset($request->uplata)){
             $kandidat->uplata = 1;
@@ -829,7 +827,7 @@ class KandidatController extends Controller
         $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
         $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
 
-        $insertedId = $kandidat->save();
+        $saved = $kandidat->save();
 
         //Brisanje svih dokumenata za datog kandidata
         KandidatPrilozenaDokumenta::where('kandidat_id',$id)->delete();
@@ -845,15 +843,15 @@ class KandidatController extends Controller
             }
         }
 
-        if($insertedId){
+        if($saved){
             Session::flash('flash-success', 'update');
-            if($kandidat->upisan == 1){
+            if($kandidat->statusUpisa_id == 1){
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
         }else{
             Session::flash('flash-error', 'update');
-            if($kandidat->upisan == 1){
+            if($kandidat->statusUpisa_id == 1){
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
@@ -871,7 +869,7 @@ class KandidatController extends Controller
 
         $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->get();
 
-        $kandidati = Kandidat::where(['tipStudija_id' => 2, 'upisan' => 0, 'studijskiProgram_id' => $studijskiProgramId])->get();
+        $kandidati = Kandidat::where(['tipStudija_id' => 2, 'statusUpisa_id' => 3, 'studijskiProgram_id' => $studijskiProgramId])->get();
 
         return view("kandidat.index_master")
             ->with('kandidati', $kandidati)
@@ -922,7 +920,7 @@ class KandidatController extends Controller
                 UpisGodine::generisiBrojIndeksa($kandidat->id);
             }
 
-            $kandidat->upisan = 1;
+            $kandidat->statusUpisa_id = 1;
             $saved = $kandidat->save();
             if($saved){
                 Session::flash('flash-success', 'upis');
@@ -959,7 +957,7 @@ class KandidatController extends Controller
             $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id);
 
             if($returnValue){
-                $kandidat->upisan = 1;
+                $kandidat->statusUpisa_id = 1;
                 $kandidat->save();
             }else{
                 Session::flash('flash-error', 'upis');
@@ -986,7 +984,7 @@ class KandidatController extends Controller
         foreach ($request->odabir as $kandidatId) {
 
             $kandidat = Kandidat::find($kandidatId);
-            $kandidat->upisan = 1;
+            $kandidat->statusUpisa_id = 1;
             $kandidat->save();
 
             UpisGodine::generisiBrojIndeksa($kandidatId);
