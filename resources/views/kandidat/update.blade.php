@@ -124,7 +124,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-10">
                                     <label for="KrsnaSlava">Крсна слава</label>
-                                    <select class="form-control" id="KrsnaSlava" name="KrsnaSlava">
+                                    <select class="form-control auto-combobox" id="KrsnaSlava" name="KrsnaSlava">
                                         @foreach($krsnaSlava as $item)
                                             <option value="{{ $item->id }}" {{ ($kandidat->krsnaSlava_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                         @endforeach
@@ -195,12 +195,14 @@
                                 </div>
                                 <div class="form-group col-lg-10">
                                     <label for="drzavaZavrseneSkole">Држава завршене школе или факултета</label>
-                                    <input class="form-control" type="text" name="drzavaZavrseneSkole" id="drzavaZavrseneSkole"
+                                    <input class="form-control" type="text" name="drzavaZavrseneSkole"
+                                           id="drzavaZavrseneSkole"
                                            value="{{ $kandidat->drzavaZavrseneSkole }}">
                                 </div>
                                 <div class="form-group col-lg-10">
                                     <label for="godinaZavrsetkaSkole">Година завршетка школе или факултета</label>
-                                    <input class="form-control" type="text" name="godinaZavrsetkaSkole" id="godinaZavrsetkaSkole"
+                                    <input class="form-control" type="text" name="godinaZavrsetkaSkole"
+                                           id="godinaZavrsetkaSkole"
                                            value="{{ $kandidat->godinaZavrsetkaSkole }}">
                                 </div>
                                 <div class="form-group col-lg-10">
@@ -464,6 +466,7 @@
         </div>
     </form>
     <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-2.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
     <script>
         //        $.mask.definitions['q'] = '[0-3]';
         //        $.mask.definitions['w'] = '[0-9]';

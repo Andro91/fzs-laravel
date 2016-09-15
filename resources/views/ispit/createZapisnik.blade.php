@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group col-lg-5">
                             <label for="predmet_id">Предмет</label>
-                            <select class="form-control" id="predmet_id"
+                            <select class="form-control auto-combobox" id="predmet_id"
                                     name="predmet_id" {{ empty($predmet_id) ? '' : 'disabled' }}>
                                 @foreach($predmeti as $tip)
                                     <option value="{{$tip->id}}" {{ (!empty($predmet_id) && $predmet_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
