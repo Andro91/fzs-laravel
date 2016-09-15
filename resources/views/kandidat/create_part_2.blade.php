@@ -172,37 +172,40 @@
             </div>
 
             <div class="row">
-                <div class="panel panel-default col-lg-6">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">ДОКУМЕНТА - за упис на I ГОДИНУ СТУДИЈА</h3>
-                    </div>
-                    <div class="panel-body">
-                        @foreach($dokumentiPrvaGodina as $i=>$dokument)
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="dokumentiPrva[{{ $i }}]" value="{{$dokument->id}}">
-                                    {{ $dokument->naziv }}
-                                </label>
-                            </div>
-                        @endforeach
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">ДОКУМЕНТА - за упис на I ГОДИНУ СТУДИЈА</h3>
+                        </div>
+                        <div class="panel-body">
+                            @foreach($dokumentiPrvaGodina as $i=>$dokument)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="dokumentiPrva[{{ $i }}]" value="{{$dokument->id}}">
+                                        {{ $dokument->naziv }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-
-                <div class="panel panel-default col-lg-6">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">ДОКУМЕНТА - за упис на II, III и IV ГОДИНУ СТУДИЈА и прелазак
-                            са другог факултета</h3>
-                    </div>
-                    <div class="panel-body">
-                        @foreach($dokumentiOstaleGodine as $i=>$dokument)
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="dokumentiDruga[{{ $i }}]"
-                                           value="{{$dokument->id}}">
-                                    {{ $dokument->naziv }}
-                                </label>
-                            </div>
-                        @endforeach
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">ДОКУМЕНТА - за упис на II, III и IV ГОДИНУ СТУДИЈА и прелазак
+                                са другог факултета</h3>
+                        </div>
+                        <div class="panel-body">
+                            @foreach($dokumentiOstaleGodine as $i=>$dokument)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="dokumentiDruga[{{ $i }}]"
+                                               value="{{$dokument->id}}">
+                                        {{ $dokument->naziv }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,19 +223,19 @@
                     {{--@endforeach--}}
                     {{--</select>--}}
                     {{--</div>--}}
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <label for="BrojBodovaTest">Број бодова тест</label>
                         <input class="form-control" type="text" name="BrojBodovaTest" id="BrojBodovaTest">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <label for="BrojBodovaSkola">Број бодова школа</label>
                         <input class="form-control" type="text" name="BrojBodovaSkola" id="BrojBodovaSkola">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <label for="ukupniBrojBodova">Укупни број бодова</label>
                         <input class="form-control" type="text" name="ukupniBrojBodova" id="ukupniBrojBodova">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <label for="UpisniRok">Уписни рок</label>
                         <input class="form-control" type="text" name="UpisniRok" id="UpisniRok">
                     </div>
