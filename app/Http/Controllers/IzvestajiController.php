@@ -368,7 +368,7 @@ class IzvestajiController extends Controller
     public function polozeniStampa(Kandidat $student)
     {
         try {
-            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->get();
+            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->where(['indikatorAktivan' => 1])->where(['statusIspita' => 1])->get();
 
             $zbir = 0;
             $i = 0;

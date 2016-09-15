@@ -9,7 +9,7 @@
         </form>
     </div>
     <br/>
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="table-responsive">
             <table id="tabela" class="table">
                 <thead>
