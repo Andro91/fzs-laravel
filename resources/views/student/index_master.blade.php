@@ -2,7 +2,7 @@
 @section('page_heading',"Активни студенти мастер студија")
 @section('section')
 
-<div class="col-sm-12 col-lg-10">
+<div class="col-lg-12">
     <div id="messages">
         @if (Session::get('flash-error'))
             <div class="alert alert-dismissible alert-danger">

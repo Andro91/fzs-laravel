@@ -436,14 +436,6 @@
                                         <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
                                                value="{{ $kandidat->upisniRok }}">
                                     </div>
-
-                                    <div class="form-group pull-left" style="width: 48%;">
-                                        <a class="btn btn-primary"
-                                           href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
-                                            Потврде
-                                        </a>
-                                    </div>
-
                                     {{--<div class="form-group">--}}
                                     {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
                                     {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}

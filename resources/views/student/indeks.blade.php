@@ -92,7 +92,11 @@
                             </a>
                             <a class="btn btn-primary btn-sm"
                                href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
-                                Пријава испита
+                                Испити
+                            </a>
+                            <a class="btn btn-primary btn-sm"
+                               href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
+                                Потврде
                             </a>
                         </td>
                     </tr>

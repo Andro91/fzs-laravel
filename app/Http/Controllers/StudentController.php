@@ -355,8 +355,13 @@ class StudentController extends Controller
 
     public function vratiPredmetPrijava(Request $request)
     {
-        $predmet = Predmet::find($request->id);
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first();
+        $kandidat = Kandidat::find($request->kandidat);
+        $predmetProgram = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
+            'predmet_id' => $request->id
+        ])->first();
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->first();
         if($profesorPredmet == null){
             $profesori = Profesor::all();
         }else{
@@ -367,7 +372,10 @@ class StudentController extends Controller
             $stringProfesori .= "<option value='{$item->id}'>" . $item->zvanje . " " .$item->ime . " " . $item->prezime . "</option>";
         }
 
-        return ['predmet' => $predmet, 'profesori' => $stringProfesori];
+        return ['tipPredmeta' => $predmetProgram->tipPredmeta_id,
+            'godinaStudija' => $predmetProgram->godinaStudija_id,
+            'tipStudija' => $predmetProgram->tipStudija_id,
+            'profesori' => $stringProfesori];
     }
 
 }
