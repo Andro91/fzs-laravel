@@ -85,8 +85,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @endif
-                                @if($godina->godina == 2 && $godina->pokusaj == 1)
+                        @endif
+                        @if($godina->godina == 2 && $godina->pokusaj == 1)
                                 </tbody>
                             </table>
                             <h4>Друга Година</h4>
@@ -100,8 +100,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @endif
-                                @if($godina->godina == 3 && $godina->pokusaj == 1)
+                        @endif
+                        @if($godina->godina == 3 && $godina->pokusaj == 1)
                                 </tbody>
                             </table>
                             <h4>Трећа Година</h4>
@@ -115,8 +115,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @endif
-                                @if($godina->godina == 4 && $godina->pokusaj == 1)
+                        @endif
+                        @if($godina->godina == 4 && $godina->pokusaj == 1)
                                 </tbody>
                             </table>
                             <h4>Четврта Година</h4>
@@ -130,7 +130,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @endif
+                        @endif
                                 <tr class="info">
                                     <td>{{ $godina->godina }}</td>
                                     <td>{{ $godina->pokusaj }}</td>

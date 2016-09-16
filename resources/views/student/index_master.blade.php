@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('page_heading',"Активни студенти мастер студија")
 @section('section')
-
 <div class="col-lg-12">
     <div id="messages">
         @if (Session::get('flash-error'))
@@ -70,6 +69,14 @@
                         </a>
                         <a class="btn btn-primary btn-sm" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
                             Статус
+                        </a>
+                        <a class="btn btn-primary btn-sm"
+                           href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
+                            Испити
+                        </a>
+                        <a class="btn btn-primary btn-sm"
+                           href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
+                            Потврде
                         </a>
                     </td>
                 </tr>

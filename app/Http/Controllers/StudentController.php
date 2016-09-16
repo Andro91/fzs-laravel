@@ -66,7 +66,7 @@ class StudentController extends Controller
     public function upisStudenta($id)
     {
         $kandidat = Kandidat::find($id);
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id])->orderBy('godina', 'ASC')->get();
+        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id])->orderBy('godina','ASC')->orderBy('pokusaj', 'ASC')->get();
 
         return view('upis.index')
             ->with('upisaneGodine', $upisaneGodine)
@@ -246,6 +246,16 @@ class StudentController extends Controller
         $tipStudija = TipStudija::all();
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
         $profesor = Profesor::all();
+
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->get();
+
+        if($profesorPredmet->isEmpty()){
+            $profesori = Profesor::all();
+        }else{
+            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
+            $profesori = Profesor::whereIn('id', $ids)->get();
+        }
+
         $tipPrijave = TipPrijave::all();
 
         return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmeti', 'studijskiProgram', 'godinaStudija',
@@ -361,11 +371,13 @@ class StudentController extends Controller
             'studijskiProgram_id' => $kandidat->studijskiProgram_id,
             'predmet_id' => $request->id
         ])->first();
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->first();
-        if($profesorPredmet == null){
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->get();
+
+        if($profesorPredmet->isEmpty()){
             $profesori = Profesor::all();
         }else{
-            $profesori = Profesor::where(['id' => $profesorPredmet->profesor_id])->get();
+            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
+            $profesori = Profesor::whereIn('id', $ids)->get();
         }
         $stringProfesori = "";
         foreach ($profesori as $item) {
