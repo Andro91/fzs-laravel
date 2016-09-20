@@ -3,98 +3,32 @@
 @section('page_heading','Измени предмет')
 @section('section')
 
-    <div id="tabs">
-        <ul>
-            <li><a href="#tabs-1">Основни подаци</a></li>
-            <li><a href="#tabs-2">Студијски програми</a></li>
-        </ul>
-        <div id="tabs-1">
-            <form role="form" method="post" action="{{$putanja}}/predmet/{{$predmet->id}}">
-                {{csrf_field()}}
-                {{method_field('PATCH')}}
+    <div class="col-md-9">
+
+        <form role="form" method="post" action="{{$putanja}}/predmet/{{$predmet->id}}">
+            {{csrf_field()}}
+            {{method_field('PATCH')}}
 
 
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Измени предмет</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                            <label for="naziv">Назив:</label>
-                            <input name="naziv" type="text" class="form-control" value="{{$predmet->naziv}}">
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                            <button type="submit" class="btn btn-primary">Измени</button>
-                        </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Измени предмет</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <label for="naziv">Назив:</label>
+                        <input name="naziv" type="text" class="form-control" value="{{$predmet->naziv}}">
                     </div>
                 </div>
-            </form>
-        </div>
-        <div id="tabs-2">
-            <div class="btn-group">
-                <form class="btn" action="/predmet/{{$predmet->id}}/addProgram">
-                    <input type="submit" class="btn btn-danger" value="Додај">
-                </form>
+                <div class="panel-body">
+                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                        <button type="submit" class="btn btn-primary">Измени</button>
+                    </div>
+                </div>
             </div>
-            <table id="tabela" class="table">
-                <thead>
-                <th>
-                    Назив
-                </th>
-                <th>
-                    Тип студија
-                </th>
-                <th>
-                    Година студија
-                </th>
-                <th>
-                    Семестар
-                </th>
-                <th>
-                    Тип предмета
-                </th>
-                <th>
-                    ЕСПБ
-                </th>
-                <th>
+        </form>
 
-                </th>
-                </thead>
-                @foreach($programi as $program)
-                    <tr>
-                        <td>{{$program->program->naziv}}</td>
-                        <td>{{$program->program->tipStudija->naziv}}</td>
-                        <td>
-                            @if($program->godinaStudija)
-                                {{$program->godinaStudija->naziv}}
-                            @else
-                                ''
-                            @endif
-                        </td>
-                        <td>{{$program->semestar}}</td>
-                        <td>
-                            @if($program->tipPredmeta)
-                                {{$program->tipPredmeta->naziv}}
-                            @else
-                                ''
-                            @endif
-                        </td>
-                        <td>{{$program->espb}}</td>
-                        <td>
-                            <div class="btn-group">
-                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"
-                                      class="btn" action="/predmet/{{$program->id}}/deleteProgram">
-                                    <input type="submit" class="btn btn-danger" value="Обриши">
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
 
-        </div>
     </div>
 
     <script>

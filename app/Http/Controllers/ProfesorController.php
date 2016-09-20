@@ -67,6 +67,18 @@ class ProfesorController extends Controller
         return view('sifarnici.editProfesor', compact('profesor', 'status', 'predmeti'));
     }
 
+    public function editPredmet(Profesor $profesor)
+    {
+        try {
+            $status = StatusProfesora::all();
+            $predmeti = ProfesorPredmet::where('profesor_id', $profesor->id)->get();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.editProfesorPredmet', compact('profesor', 'status', 'predmeti'));
+    }
+
     public function add()
     {
         try {
@@ -154,6 +166,6 @@ class ProfesorController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return Redirect::to('/profesor/' . $predmet->profesor_id . '/edit');
+        return Redirect::to('/profesor/' . $predmet->profesor_id . '/editPredmet');
     }
 }

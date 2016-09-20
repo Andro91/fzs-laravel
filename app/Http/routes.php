@@ -204,6 +204,7 @@ Route::get('predmet/{predmet}/delete', 'PredmetController@delete');
 Route::get('predmet/{program}/deleteProgram', 'PredmetController@deleteProgram');
 Route::get('/predmet/{predmet}/addProgram', 'PredmetController@addProgram');
 Route::post('predmet/addProgramUnos', 'PredmetController@addProgramUnos');
+Route::get('/predmet/{predmet}/editProgram', 'PredmetController@editProgram');
 
 Route::get('/krsnaSlava/{krsnaSlava}/edit', 'KrsnaSlavaController@edit');
 Route::patch('krsnaSlava/{krsnaSlava}', 'KrsnaSlavaController@update');
@@ -275,6 +276,7 @@ Route::get('profesor/{profesor}/delete', 'ProfesorController@delete');
 Route::get('profesor/{predmet}/deletePredmet', 'ProfesorController@deletePredmet');
 Route::get('/profesor/{profesor}/addPredmet', 'ProfesorController@addPredmet');
 Route::post('profesor/addPredmetUnos', 'ProfesorController@addPredmetUnos');
+Route::get('/profesor/{profesor}/editPredmet', 'ProfesorController@editPredmet');
 
 ///izvestaji
 

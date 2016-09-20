@@ -3,13 +3,7 @@
 @section('page_heading','Измени професора')
 @section('section')
 
-    <div id="tabs">
-        <ul>
-            <li><a href="#tabs-1">Основни подаци</a></li>
-            <li><a href="#tabs-2">Предмети</a></li>
-            <li><a href="#tabs-3">Извештаји</a></li>
-        </ul>
-        <div id="tabs-1">
+
             <form role="form" method="post" action="{{$putanja}}/profesor/{{$profesor->id}}">
                 {{csrf_field()}}
                 {{method_field('PATCH')}}
@@ -65,56 +59,13 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div id="tabs-2">
-            <div class="btn-group">
-                <form class="btn" action="/profesor/{{$profesor->id}}/addPredmet">
-                    <input type="submit" class="btn btn-danger" value="Додај">
-                </form>
-            </div>
-            <table id="tabela" class="table">
-                <thead>
-                <th>
-                    Назив
-                </th>
-                <th>
-                    Облик наставе
-                </th>
-                <th>
-                    Семестар
-                </th>
-                <th>
-
-                </th>
-                </thead>
-                @foreach($predmeti as $predmet)
-                    <tr>
-                        <td>{{$predmet->predmet->naziv}}</td>
-                        <td>{{$predmet->oblik_nastave->naziv}}</td>
-                        <td>{{$predmet->semestar->naziv}}</td>
-                        <td>
-                            <div class="btn-group">
-                                <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"
-                                      class="btn" action="/profesor/{{$predmet->id}}/deletePredmet">
-                                    <input type="submit" class="btn btn-danger" value="Обриши">
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-        <div id="tabs-3">
-
-        </div>
-    </div>
 
     <script>
         $(document).ready(function () {
             $("#status_id").val($("#statusHidden").val());
 
 
-                $("#tabs").tabs();
+                //$("#tabs").tabs();
 
 
             $('#tabela').dataTable({

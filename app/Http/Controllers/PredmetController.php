@@ -51,13 +51,29 @@ class PredmetController extends Controller
     public function edit(Predmet $predmet)
     {
         try {
-            $programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
+            //$programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
             //return $programi;
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.editPredmet', compact('predmet', 'godinaStudija', 'tipPredmeta', 'programi'));
+        return view('sifarnici.editPredmet', compact('predmet'));
+    }
+
+    public function editProgram(Predmet $predmet)
+    {
+        try {
+            try {
+                $programi = PredmetProgram::where(['predmet_id' => $predmet->id])->get();
+
+            } catch (\Illuminate\Database\QueryException $e) {
+                dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        return view('sifarnici.editPredmetProgram', compact('programi', 'predmet'));
     }
 
     public function add()
