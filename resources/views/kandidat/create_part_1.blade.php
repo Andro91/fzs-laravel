@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form role="form" method="post" action="{{ url('/kandidat') }}">
+        <form role="form" method="post" action="{{ url('/kandidat') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="page" id="page" value="1"/>
 
@@ -71,6 +71,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label for="imageUpload">Слика</label>
+                            <input type="file" name="imageUpload" id="imageUpload">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group col-lg-7">
                             <label for="JMBG">ЈМБГ</label>
                             <input class="form-control" type="text" name="JMBG" id="JMBG"
@@ -117,7 +123,7 @@
                         <div class="form-group col-lg-6">
                             <label for="KontaktTelefon">Контакт телефон</label>
                             <input class="form-control" type="text" name="KontaktTelefon" id="KontaktTelefon"
-                                    value="{{ old('KontaktTelefon') }}">
+                                   value="{{ old('KontaktTelefon') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -125,7 +131,7 @@
                             <label for="AdresaStanovanja">Адреса становања</label>
                             <input class="form-control" type="text" name="AdresaStanovanja"
                                    id="AdresaStanovanja"
-                                    value="{{ old('AdresaStanovanja') }}">
+                                   value="{{ old('AdresaStanovanja') }}">
                         </div>
                     </div>
 
@@ -183,7 +189,8 @@
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label for="godinaZavrsetkaSkole">Година завршетка школе или факултета</label>
-                            <input class="form-control" type="text" name="godinaZavrsetkaSkole" id="godinaZavrsetkaSkole"
+                            <input class="form-control" type="text" name="godinaZavrsetkaSkole"
+                                   id="godinaZavrsetkaSkole"
                                    value="{{ old('godinaZavrsetkaSkole') }}">
                         </div>
                         <div class="form-group col-lg-6">
@@ -200,7 +207,7 @@
                     <hr>
 
                     <div class="form-group text-center">
-                        <button type="submit" name="Submit" class="btn btn-primary btn-lg">Даље</button>
+                        <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg">Даље</button>
                     </div>
                 </div>
             </div>

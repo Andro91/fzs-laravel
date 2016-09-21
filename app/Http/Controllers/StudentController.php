@@ -246,8 +246,8 @@ class StudentController extends Controller
         $tipStudija = TipStudija::all();
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
         $profesor = Profesor::all();
-
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->get();
+        //TODO check
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmeti->first()->id])->select('profesor_id')->get();
 
         if($profesorPredmet->isEmpty()){
             $profesori = Profesor::all();
@@ -264,7 +264,7 @@ class StudentController extends Controller
     }
 
     public function createPrijavaIspitaPredmet($id, Request $request)
-    {
+    {;
         //$predmet = Predmet::find($id);
         $predmet = PredmetProgram::where([
             'predmet_id' => $id,
