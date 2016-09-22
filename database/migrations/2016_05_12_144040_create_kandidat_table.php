@@ -53,6 +53,8 @@ class CreateKandidatTable extends Migration
             $table->string('drzavaZavrseneSkole')->nullable();
             $table->string('drzavaRodjenja')->nullable();
             $table->string('godinaZavrsetkaSkole')->nullable();
+            $table->string('slika')->nullable();
+            $table->string('diplomski')->nullable();
             $table->timestamps();
         });
     }

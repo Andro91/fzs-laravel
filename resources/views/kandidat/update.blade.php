@@ -77,16 +77,26 @@
                                 </div>
                             @endif
                             <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="ImeKandidata">Име кандидата</label>
-                                    <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
-                                           value="{{ $kandidat->imeKandidata }}">
+                                <div class="col-lg-6">
+                                    <img src="{{$putanja}}/uploads/images/{{$kandidat->slika}}" class="img-thumbnail"
+                                         width="100%">
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="PrezimeKandidata">Презиме кандидата</label>
-                                    <input class="form-control" type="text" name="PrezimeKandidata"
-                                           id="PrezimeKandidata"
-                                           value="{{ $kandidat->prezimeKandidata }}">
+                                <div class="row col-lg-6">
+                                    <div class="form-group col-lg-12">
+                                        <label for="ImeKandidata">Име кандидата</label>
+                                        <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
+                                               value="{{ $kandidat->imeKandidata }}">
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label for="PrezimeKandidata">Презиме кандидата</label>
+                                        <input class="form-control" type="text" name="PrezimeKandidata"
+                                               id="PrezimeKandidata"
+                                               value="{{ $kandidat->prezimeKandidata }}">
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label for="imageUpload">Нова слика</label>
+                                        <input type="file" name="imageUpload" id="imageUpload">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
