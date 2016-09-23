@@ -54,6 +54,11 @@ function racunajOcenu(){
     var suma = srednja1 + srednja2 + srednja3 + srednja4;
     $('#SrednjaOcenaSrednjaSkola').val((Math.round((suma/4) * 100) / 100).toFixed(2));
     $('#BrojBodovaSkola').val(Math.round((suma*3) *100) / 100);
+
+    var skola = parseFloat($('#BrojBodovaSkola').val());
+    var test = parseFloat($('#BrojBodovaTest').val());
+
+    $('#ukupniBrojBodova').val((skola + test).toFixed(2));
 }
 
 srednjaOcenaSrednjaSkola.focusin(function () {

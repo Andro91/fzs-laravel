@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <form role="form" method="post" action="{{$putanja}}/storeMaster">
+        <form role="form" method="post" action="{{$putanja}}/storeMaster" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="page" id="page" value="1"/>
 
@@ -81,6 +81,12 @@
                             <label for="PrezimeKandidata">Презиме кандидата</label>
                             <input class="form-control" type="text" name="PrezimeKandidata" id="PrezimeKandidata"
                                    value="{{ old('PrezimeKandidata') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label for="imageUpload">Слика</label>
+                            <input type="file" name="imageUpload" id="imageUpload">
                         </div>
                     </div>
                     <div class="row">

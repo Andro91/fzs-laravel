@@ -73,7 +73,7 @@
                     <div class="row">
                         <div class="form-group col-lg-12">
                             <label for="imageUpload">Слика</label>
-                            <input type="file" name="imageUpload" id="imageUpload">
+                            <input type="file" accept="image/*" name="imageUpload" id="imageUpload">
                         </div>
                     </div>
                     <div class="row">

@@ -21,4 +21,5 @@ storage/
 .idea/workspace.xml
 .idea/workspace.xml
 fzs-laravel.zip
-public/uploads/images/slika88.jpg
+public/uploads/images/
+public/uploads/pdf/

@@ -14,7 +14,8 @@
             </div>
         @endif
 
-        <form role="form" method="post" action="{{$putanja}}/master/{{ $kandidat->id }}/edit">
+        <form role="form" method="post" action="{{$putanja}}/master/{{ $kandidat->id }}/edit"
+              enctype="multipart/form-data">
             {{ csrf_field() }}
 
             {{--STUDIJSKI PROGRAM--}}
@@ -84,18 +85,29 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="form-group col-lg-6">
-                            <label for="ImeKandidata">Име кандидата</label>
-                            <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
-                                   value="{{ $kandidat->imeKandidata }}">
+                        <div class="col-lg-4">
+                            <img src="{{$putanja}}/uploads/images/{{$kandidat->slika}}" class="img-thumbnail"
+                                 width="100%">
                         </div>
-                        <div class="form-group col-lg-6">
-                            <label for="PrezimeKandidata">Презиме кандидата</label>
-                            <input class="form-control" type="text" name="PrezimeKandidata"
-                                   id="PrezimeKandidata"
-                                   value="{{ $kandidat->prezimeKandidata }}">
+                        <div class="row col-lg-8">
+                            <div class="form-group col-lg-12">
+                                <label for="ImeKandidata">Име кандидата</label>
+                                <input class="form-control" type="text" name="ImeKandidata" id="ImeKandidata"
+                                       value="{{ $kandidat->imeKandidata }}">
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="PrezimeKandidata">Презиме кандидата</label>
+                                <input class="form-control" type="text" name="PrezimeKandidata"
+                                       id="PrezimeKandidata"
+                                       value="{{ $kandidat->prezimeKandidata }}">
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="imageUpload">Нова слика</label>
+                                <input type="file" name="imageUpload" id="imageUpload">
+                            </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="form-group col-lg-9">
                             <label for="AdresaStanovanja">Адреса становања</label>
@@ -167,7 +179,8 @@
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="godinaZavrsetkaSkole">Година завршетка школе или факултета</label>
-                            <input class="form-control" type="text" name="godinaZavrsetkaSkole" id="godinaZavrsetkaSkole"
+                            <input class="form-control" type="text" name="godinaZavrsetkaSkole"
+                                   id="godinaZavrsetkaSkole"
                                    value="{{ $kandidat->godinaZavrsetkaSkole }}">
                         </div>
                     </div>
@@ -195,6 +208,7 @@
 
                     <div class="form-group text-center">
                         <button type="submit" name="Submit" class="btn btn-primary btn-lg">Сачувај</button>
+                        <input type="submit" name="submitstay" value="Сачувај и остани" class="btn btn-success btn-lg">
                     </div>
                 </div>
             </div>

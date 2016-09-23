@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading',$kandidat->upisan == 0 ? "Измена података постојећег кандидата" : "Измена података активног студента")
 @section('section')
-    <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id) }}">
+    <form role="form" method="post" action="{{ url('/kandidat/' . $kandidat->id) }}" enctype="multipart/form-data">
         <div class="col-sm-12 col-lg-12">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label for="imageUpload">Нова слика</label>
-                                        <input type="file" name="imageUpload" id="imageUpload">
+                                        <input type="file" accept="image/*" name="imageUpload" id="imageUpload">
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +330,8 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="col-lg-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Спортско ангаажовање</h3>
@@ -356,7 +357,8 @@
                                     </table>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Висина и тежина</h3>
@@ -375,9 +377,9 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="panel panel-default pull-left" style="width: 50%;">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">ДОКУМЕНТА - за упис на I ГОДИНУ СТУДИЈА</h3>
                                 </div>
@@ -394,8 +396,9 @@
                                     @endforeach
                                 </div>
                             </div>
-
-                            <div class="panel panel-default pull-left" style="width: 50%;">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">ДОКУМЕНТА - за упис на II, III и IV ГОДИНУ СТУДИЈА и
                                         прелазак
@@ -414,44 +417,49 @@
                                     @endforeach
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="col-lg-12">
                             <div class="panel panel-info pull-left" style="width: 100%;">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Остало</h3>
                                 </div>
                                 <div class="panel-body">
-                                    {{--<div class="form-group">--}}
-                                    {{--<label for="StatusaUpisaKandidata">Status Upisa Kandidata:</label>--}}
-                                    {{--<select class="form-control" id="StatusaUpisaKandidata" name="StatusaUpisaKandidata">--}}
-                                    {{--@foreach($statusaUpisaKandidata as $item)--}}
-                                    {{--<option value="{{$item->id}}">{{$item->naziv}}</option>--}}
-                                    {{--@endforeach--}}
-                                    {{--</select>--}}
-                                    {{--</div>--}}
-                                    <div class="form-group">
-                                        <label for="BrojBodovaTest">Број бодова тест</label>
-                                        <input class="form-control" type="text" name="BrojBodovaTest"
-                                               id="BrojBodovaTest" value="{{ $kandidat->brojBodovaTest }}">
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <label for="BrojBodovaTest">Број бодова тест</label>
+                                            <input class="form-control" type="text" name="BrojBodovaTest"
+                                                   id="BrojBodovaTest" value="{{ $kandidat->brojBodovaTest }}">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <label for="BrojBodovaSkola">Број бодова школа</label>
+                                            <input class="form-control" type="text" name="BrojBodovaSkola"
+                                                   id="BrojBodovaSkola" value="{{ $kandidat->brojBodovaSkola }}">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <label for="ukupniBrojBodova">Укупни број бодова</label>
+                                            <input class="form-control" type="text" name="ukupniBrojBodova"
+                                                   id="ukupniBrojBodova" value="{{ $kandidat->ukupniBrojBodova }}">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <label for="UpisniRok">Уписни рок</label>
+                                            <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
+                                                   value="{{ $kandidat->upisniRok }}">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label for="pdfUpload">Додај дипломски рад</label>
+                                            <input type="file" accept="application/pdf" name="pdfUpload" id="pdfUpload">
+                                        </div>
+                                        @if(!empty($kandidat->diplomski))
+                                            <div class="form-group col-lg-6">
+                                                <label for="pdfUpload">Дипломски рад</label>
+                                                <a class="btn btn-info" href="/uploads/pdf/{{$kandidat->diplomski}}">
+                                                    <span class="fa fa-graduation-cap"></span>
+                                                    Дипломски рад
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
-                                    <div class="form-group">
-                                        <label for="BrojBodovaSkola">Број бодова школа</label>
-                                        <input class="form-control" type="text" name="BrojBodovaSkola"
-                                               id="BrojBodovaSkola" value="{{ $kandidat->brojBodovaSkola }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ukupniBrojBodova">Укупни број бодова</label>
-                                        <input class="form-control" type="text" name="ukupniBrojBodova"
-                                               id="ukupniBrojBodova" value="{{ $kandidat->ukupniBrojBodova }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="UpisniRok">Уписни рок</label>
-                                        <input class="form-control" type="text" name="UpisniRok" id="UpisniRok"
-                                               value="{{ $kandidat->upisniRok }}">
-                                    </div>
-                                    {{--<div class="form-group">--}}
-                                    {{--<label for="IndikatorAktivan">Indikator Aktivan</label>--}}
-                                    {{--<input class="form-control" type="text" name="IndikatorAktivan" id="IndikatorAktivan">--}}
-                                    {{--</div>--}}
                                 </div>
                             </div>
 
@@ -468,6 +476,7 @@
                         <div class="panel-body">
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-success btn-lg">Сачувај</button>
+                                <input type="submit" name="submitstay" value="Сачувај и остани" class="btn btn-success btn-lg">
                             </div>
                         </div>
                     </div>

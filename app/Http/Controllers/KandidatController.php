@@ -50,7 +50,7 @@ class KandidatController extends Controller
     public function index(Request $request)
     {
         $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 1, 'indikatorAktivan' => 1])->first()->id;
-        if( !empty($request->studijskiProgramId )){
+        if (!empty($request->studijskiProgramId)) {
             $studijskiProgramId = $request->studijskiProgramId;
         }
 
@@ -78,7 +78,7 @@ class KandidatController extends Controller
         $sportskoAngazovanje = SportskoAngazovanje::all();
         $prilozeniDokumentPrvaGodina = PrilozenaDokumenta::all();
         $statusaUpisaKandidata = StatusStudiranja::all();
-        $studijskiProgram = StudijskiProgram::where('tipStudija_id','1')->get();
+        $studijskiProgram = StudijskiProgram::where('tipStudija_id', '1')->get();
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
@@ -128,9 +128,9 @@ class KandidatController extends Controller
             $kandidat->prezimeKandidata = $request->PrezimeKandidata;
             $kandidat->jmbg = $request->JMBG;
 
-            if(isset($request->uplata)){
+            if (isset($request->uplata)) {
                 $kandidat->uplata = 1;
-            }else{
+            } else {
                 $kandidat->uplata = 0;
             }
 
@@ -168,11 +168,9 @@ class KandidatController extends Controller
             $kandidat->save();
 
             //SLIKA
-            $hasFile = $request->hasFile('imageUpload');
-
-            if($hasFile){
-                if($request->file('imageUpload')->isValid()){
-                    if(substr($request->file('imageUpload')->getMimeType(), 0, 5) == 'image') {
+            if ($request->hasFile('imageUpload')) {
+                if ($request->file('imageUpload')->isValid()) {
+                    if (substr($request->file('imageUpload')->getMimeType(), 0, 5) == 'image') {
 
                         $imageName = 'slika' . $kandidat->id . '.' .
                             $request->file('imageUpload')->getClientOriginalExtension();
@@ -295,7 +293,7 @@ class KandidatController extends Controller
             $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
 
-            if($request->has('dokumentiPrva')) {
+            if ($request->has('dokumentiPrva')) {
                 foreach ($request->dokumentiPrva as $dokument) {
                     $prilozenDokument = new KandidatPrilozenaDokumenta();
                     $prilozenDokument->prilozenaDokumenta_id = $dokument;
@@ -305,7 +303,7 @@ class KandidatController extends Controller
                 }
             }
 
-            if($request->has('dokumentiDruga')) {
+            if ($request->has('dokumentiDruga')) {
                 foreach ($request->dokumentiDruga as $dokument) {
                     $prilozenDokument = new KandidatPrilozenaDokumenta();
                     $prilozenDokument->prilozenaDokumenta_id = $dokument;
@@ -371,7 +369,7 @@ class KandidatController extends Controller
 
         try {
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $prviRazred = new UspehSrednjaSkola();
             $prviRazred->kandidat_id = 0;
             $prviRazred->opstiUspeh_id = 1;
@@ -381,7 +379,7 @@ class KandidatController extends Controller
 
         try {
             $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $drugiRazred = new UspehSrednjaSkola();
             $drugiRazred->kandidat_id = 0;
             $drugiRazred->opstiUspeh_id = 1;
@@ -391,7 +389,7 @@ class KandidatController extends Controller
 
         try {
             $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $treciRazred = new UspehSrednjaSkola();
             $treciRazred->kandidat_id = 0;
             $treciRazred->opstiUspeh_id = 1;
@@ -401,7 +399,7 @@ class KandidatController extends Controller
 
         try {
             $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $cetvrtiRazred = new UspehSrednjaSkola();
             $cetvrtiRazred->kandidat_id = 0;
             $cetvrtiRazred->opstiUspeh_id = 1;
@@ -444,14 +442,14 @@ class KandidatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+//        dd($request->all());
         $kandidat = Kandidat::find($id);
 
         $messages = [
             'brojIndeksa.unique' => 'Број индекса мора бити уникатан. Већ постоји такав запис у бази.',
         ];
 
-        if($kandidat->brojIndeksa != $request->brojIndeksa){
+        if ($kandidat->brojIndeksa != $request->brojIndeksa) {
             $this->validate($request, [
                 'brojIndeksa' => 'unique:kandidat',
             ], $messages);
@@ -461,32 +459,52 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
-        if(isset($request->uplata)){
+        if (isset($request->uplata)) {
             $kandidat->uplata = 1;
         }
 
         //SLIKA
-        $hasFile = $request->hasFile('imageUpload');
+        if ($request->hasFile('imageUpload')) {
+            if ($request->file('imageUpload')->isValid()) {
+                if (substr($request->file('imageUpload')->getMimeType(), 0, 5) == 'image') {
 
-        if($hasFile){
-            $mime = $request->file('imageUpload')->getMimeType();
-            $size = $request->file('imageUpload')->getSize();
-            if($request->file('imageUpload')->isValid()){
-                if(substr($mime, 0, 5) == 'image') {
+                    $extension = $request->file('imageUpload')->getClientOriginalExtension();
+                    $imageName = 'slika' . $kandidat->id;
+                    $oldImage = glob(base_path() . "/public/uploads/images/{$imageName}.*");
 
-                    $imageName = 'slika' . $kandidat->id . '.' .
-                        $request->file('imageUpload')->getClientOriginalExtension();
-                    if (file_exists("/uploads/images/" . $imageName)) {
-                        $deleteImage = unlink(base_path() . "/public/uploads/images/" . $imageName);
+                    if (!empty($oldImage)) {
+                        \File::delete($oldImage[0]);
                     }
 
-                    $kandidat->slika = $imageName;
+                    $kandidat->slika = $imageName . '.' . $extension;
                     $kandidat->save();
 
                     $request->file('imageUpload')->move(
-                        base_path() . '/public/uploads/images', $imageName
+                        base_path() . '/public/uploads/images', $imageName . '.' . $extension
                     );
+                }
+            }
+        }
 
+        //DIPLOMSKI
+        if ($request->hasFile('pdfUpload')) {
+            if ($request->file('pdfUpload')->isValid()) {
+                if ($request->file('pdfUpload')->getMimeType() == 'application/pdf') {
+
+                    $extension = $request->file('pdfUpload')->getClientOriginalExtension();
+                    $pdfName = 'diplomski' . $kandidat->id;
+                    $oldPdf = glob(base_path() . "/public/uploads/pdf/{$pdfName}.*");
+
+                    if (!empty($oldPdf)) {
+                        \File::delete($oldPdf[0]);
+                    }
+
+                    $kandidat->diplomski = $pdfName . $extension;
+                    $kandidat->save();
+
+                    $request->file('pdfUpload')->move(
+                        base_path() . '/public/uploads/pdf/', $pdfName . $extension
+                    );
                 }
             }
         }
@@ -517,21 +535,21 @@ class KandidatController extends Controller
 
         try {
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $prviRazred = new UspehSrednjaSkola();
-        }finally{
+        } finally {
             $prviRazred->kandidat_id = $id;
             $prviRazred->opstiUspeh_id = $request->prviRazred;
             $prviRazred->srednja_ocena = $request->SrednjaOcena1;
             $prviRazred->RedniBrojRazreda = 1;
             $prviRazred->save();
         }
-        
+
         try {
             $drugiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 2])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $drugiRazred = new UspehSrednjaSkola();
-        }finally{
+        } finally {
             $drugiRazred->kandidat_id = $id;
             $drugiRazred->opstiUspeh_id = $request->drugiRazred;
             $drugiRazred->srednja_ocena = $request->SrednjaOcena2;
@@ -541,9 +559,9 @@ class KandidatController extends Controller
 
         try {
             $treciRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 3])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $treciRazred = new UspehSrednjaSkola();
-        }finally{
+        } finally {
             $treciRazred->kandidat_id = $id;
             $treciRazred->opstiUspeh_id = $request->treciRazred;
             $treciRazred->srednja_ocena = $request->SrednjaOcena3;
@@ -553,9 +571,9 @@ class KandidatController extends Controller
 
         try {
             $cetvrtiRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 4])->firstOrFail();
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             $cetvrtiRazred = new UspehSrednjaSkola();
-        }finally{
+        } finally {
             $cetvrtiRazred->kandidat_id = $id;
             $cetvrtiRazred->opstiUspeh_id = $request->cetvrtiRazred;
             $cetvrtiRazred->srednja_ocena = $request->SrednjaOcena4;
@@ -570,10 +588,10 @@ class KandidatController extends Controller
         $kandidat->telesnaTezina = str_replace(",", ".", $request->TelesnaTezinaKandidata);
 
         //Brisanje svih dokumenata za datog kandidata
-        KandidatPrilozenaDokumenta::where('kandidat_id',$id)->delete();
+        KandidatPrilozenaDokumenta::where('kandidat_id', $id)->delete();
 
         //Dodavanje dokumenata iz prve godine
-        if($request->has('dokumentiPrva')) {
+        if ($request->has('dokumentiPrva')) {
             foreach ($request->dokumentiPrva as $dokument) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
                 $prilozenDokument->prilozenaDokumenta_id = $dokument;
@@ -584,7 +602,7 @@ class KandidatController extends Controller
         }
 
         //Dodavanje dokumenata za ostale godine
-        if($request->has('dokumentiDruga')){
+        if ($request->has('dokumentiDruga')) {
             foreach ($request->dokumentiDruga as $dokument) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
                 $prilozenDokument->prilozenaDokumenta_id = $dokument;
@@ -603,15 +621,18 @@ class KandidatController extends Controller
 
         $saved = $kandidat->save();
 
-        if($saved){
+        if ($saved) {
             Session::flash('flash-success', 'update');
-            if($kandidat->statusUpisa_id == 1){
+            if(!empty($request->submitstay)){
+                return redirect("/kandidat/{$kandidat->id}/edit");
+            }
+            if ($kandidat->statusUpisa_id == 1) {
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect('/kandidat?studijskiProgramId=' . $kandidat->studijskiProgram_id);
-        }else{
+        } else {
             Session::flash('flash-error', 'update');
-            if($kandidat->statusUpisa_id == 1){
+            if ($kandidat->statusUpisa_id == 1) {
                 return redirect("/student/index/1?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect('/kandidat?studijskiProgramId=1' . $kandidat->studijskiProgram_id);
@@ -626,18 +647,23 @@ class KandidatController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function() use ($id){
+        DB::transaction(function () use ($id) {
+            $kandidat = Kandidat::find($id);
             KandidatPrilozenaDokumenta::where(['kandidat_id' => $id])->delete();
             UpisGodine::where(['kandidat_id' => $id])->delete();
             SportskoAngazovanje::where(['kandidat_id' => $id])->delete();
             PrijavaIspita::where(['kandidat_id' => $id])->delete();
 
+            if (!empty($kandidat->slika) && \File::exists(base_path() . "/public/uploads/images/{$kandidat->slika}")) {
+                \File::delete(base_path() . "/public/uploads/images/{$kandidat->slika}");
+            }
+
             $deleted = Kandidat::destroy($id);
 
-            if($deleted){
+            if ($deleted) {
                 Session::flash('flash-success', 'delete');
                 return \Redirect::back();
-            }else {
+            } else {
                 Session::flash('flash-error', 'delete');
                 return \Redirect::back();
             }
@@ -649,20 +675,20 @@ class KandidatController extends Controller
     public function sport($id)
     {
         $kandidat = Kandidat::find($id);
-        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
+        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id', $id)->get();
         $sport = Sport::all();
 
         return view('kandidat.sportsko_angazovanje')
-            ->with('sport',$sport)
-            ->with('kandidat',$kandidat)
-            ->with('sportskoAngazovanje',$sportskoAngazovanje)
-            ->with('id',$id);
+            ->with('sport', $sport)
+            ->with('kandidat', $kandidat)
+            ->with('sportskoAngazovanje', $sportskoAngazovanje)
+            ->with('id', $id);
     }
 
-    public function sportStore(Request $request,$id)
+    public function sportStore(Request $request, $id)
     {
         $kandidat = Kandidat::find($id);
-        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id',$id)->get();
+        $sportskoAngazovanje = SportskoAngazovanje::where('kandidat_id', $id)->get();
         $sportovi = Sport::all();
 
         $sport = new SportskoAngazovanje();
@@ -675,10 +701,10 @@ class KandidatController extends Controller
 
 
         return redirect("/kandidat/{$id}/sportskoangazovanje")
-            ->with('sport',$sportovi)
-            ->with('kandidat',$kandidat)
-            ->with('sportskoAngazovanje',$sportskoAngazovanje)
-            ->with('id',$id);
+            ->with('sport', $sportovi)
+            ->with('kandidat', $kandidat)
+            ->with('sportskoAngazovanje', $sportskoAngazovanje)
+            ->with('id', $id);
     }
 
     public function testPost(Request $request)
@@ -740,10 +766,29 @@ class KandidatController extends Controller
 
         $kandidat->statusUpisa_id = 3;
 
-        if(isset($request->uplata)){
+        if (isset($request->uplata)) {
             $kandidat->uplata = 1;
-        }else{
+        } else {
             $kandidat->uplata = 0;
+        }
+
+        //SLIKA
+        if ($request->hasFile('imageUpload')) {
+            if ($request->file('imageUpload')->isValid()) {
+                if (substr($request->file('imageUpload')->getMimeType(), 0, 5) == 'image') {
+
+                    $imageName = 'slika' . $kandidat->id . '.' .
+                        $request->file('imageUpload')->getClientOriginalExtension();
+
+                    $kandidat->slika = $imageName;
+                    $kandidat->save();
+
+                    $request->file('imageUpload')->move(
+                        base_path() . '/public/uploads/images', $imageName
+                    );
+
+                }
+            }
         }
 
         $kandidat->mestoRodjenja = $request->mestoRodjenja;
@@ -772,7 +817,7 @@ class KandidatController extends Controller
 
         $insertedId = $kandidat->id;
 
-        if($saved) {
+        if ($saved) {
             UpisGodine::registrujKandidata($insertedId, $kandidat->uplata);
 
             //Brisanje svih dokumenata za datog kandidata
@@ -827,8 +872,8 @@ class KandidatController extends Controller
             ->with('godinaStudija', $godinaStudija)
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
             ->with('dokumentaMaster', $dokumentaMaster)
-            ->with('prilozenaDokumenta',$prilozenaDokumenta)
-            ->with('kandidat',$kandidat);
+            ->with('prilozenaDokumenta', $prilozenaDokumenta)
+            ->with('kandidat', $kandidat);
     }
 
 
@@ -841,7 +886,7 @@ class KandidatController extends Controller
             'brojIndeksa.unique' => 'Број индекса мора бити уникатан. Већ постоји такав запис у бази.',
         ];
 
-        if($kandidat->brojIndeksa != $request->brojIndeksa){
+        if ($kandidat->brojIndeksa != $request->brojIndeksa) {
             $this->validate($request, [
                 'brojIndeksa' => 'unique:kandidat',
             ], $messages);
@@ -851,8 +896,31 @@ class KandidatController extends Controller
         $kandidat->prezimeKandidata = $request->PrezimeKandidata;
         $kandidat->jmbg = $request->JMBG;
 
-        if(isset($request->uplata)){
+        if (isset($request->uplata)) {
             $kandidat->uplata = 1;
+        }
+
+        //SLIKA
+        if ($request->hasFile('imageUpload')) {
+            if ($request->file('imageUpload')->isValid()) {
+                if (substr($request->file('imageUpload')->getMimeType(), 0, 5) == 'image') {
+
+                    $extension = $request->file('imageUpload')->getClientOriginalExtension();
+                    $imageName = 'slika' . $kandidat->id;
+                    $oldImage = glob(base_path() . "/public/uploads/images/{$imageName}.*");
+
+                    if (!empty($oldImage)) {
+                        \File::delete($oldImage[0]);
+                    }
+
+                    $kandidat->slika = $imageName . '.' . $extension;
+                    $kandidat->save();
+
+                    $request->file('imageUpload')->move(
+                        base_path() . '/public/uploads/images', $imageName . '.' . $extension
+                    );
+                }
+            }
         }
 
         $kandidat->mestoRodjenja = $request->mestoRodjenja;
@@ -881,10 +949,10 @@ class KandidatController extends Controller
         $saved = $kandidat->save();
 
         //Brisanje svih dokumenata za datog kandidata
-        KandidatPrilozenaDokumenta::where('kandidat_id',$id)->delete();
+        KandidatPrilozenaDokumenta::where('kandidat_id', $id)->delete();
 
         //Dodavanje dokumenata za master
-        if($request->has('dokumentaMaster')) {
+        if ($request->has('dokumentaMaster')) {
             foreach ($request->dokumentaMaster as $dokument) {
                 $prilozenDokument = new KandidatPrilozenaDokumenta();
                 $prilozenDokument->prilozenaDokumenta_id = $dokument;
@@ -894,15 +962,18 @@ class KandidatController extends Controller
             }
         }
 
-        if($saved){
+        if ($saved) {
             Session::flash('flash-success', 'update');
-            if($kandidat->statusUpisa_id == 1){
+            if(!empty($request->submitstay)){
+                return redirect("/master/{$kandidat->id}/edit");
+            }
+            if ($kandidat->statusUpisa_id == 1) {
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
-        }else{
+        } else {
             Session::flash('flash-error', 'update');
-            if($kandidat->statusUpisa_id == 1){
+            if ($kandidat->statusUpisa_id == 1) {
                 return redirect("/student/index/2?studijskiProgramId={$kandidat->studijskiProgram_id}");
             }
             return redirect("/master?studijskiProgramId={$kandidat->studijskiProgram_id}");
@@ -914,7 +985,7 @@ class KandidatController extends Controller
     public function indexMaster(Request $request)
     {
         $studijskiProgramId = StudijskiProgram::where(['tipStudija_id' => 2, 'indikatorAktivan' => 1])->first()->id;
-        if( !empty($request->studijskiProgramId )){
+        if (!empty($request->studijskiProgramId)) {
             $studijskiProgramId = $request->studijskiProgramId;
         }
 
@@ -932,10 +1003,10 @@ class KandidatController extends Controller
     {
         $deleted = Kandidat::destroy($id);
 
-        if($deleted){
+        if ($deleted) {
             Session::flash('flash-success', 'delete');
             return \Redirect::back();
-        }else{
+        } else {
             Session::flash('flash-error', 'delete');
             return \Redirect::back();
         }
@@ -945,26 +1016,26 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::find($id);
 
-        if($kandidat->uplata == 0){
+        if ($kandidat->uplata == 0) {
             Session::flash('flash-error', 'upis');
-            if($kandidat->tipStudija_id == 1){
+            if ($kandidat->tipStudija_id == 1) {
                 return redirect('/kandidat/');
-            }else if($kandidat->tipStudija_id == 2){
+            } else if ($kandidat->tipStudija_id == 2) {
                 return redirect('/master/');
             }
-        }else{
+        } else {
 
-            if($kandidat->tipStudija_id == 1){
+            if ($kandidat->tipStudija_id == 1) {
                 $checkOne = UpisGodine::uplatiGodinu($id, $kandidat->godinaStudija_id);
                 $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
                 //Ako uplata ili upis ne prodju, radi se prekid i vraca se greska
-                if(!$checkOne || !$checkTwo){
+                if (!$checkOne || !$checkTwo) {
                     Session::flash('flash-error', 'upis');
                     return redirect('/kandidat/');
                 }
-            }else if($kandidat->tipStudija_id == 2){
+            } else if ($kandidat->tipStudija_id == 2) {
                 $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
-                if(!$checkTwo){
+                if (!$checkTwo) {
                     Session::flash('flash-error', 'upis');
                     return redirect('/master/');
                 }
@@ -973,14 +1044,14 @@ class KandidatController extends Controller
 
             $kandidat->statusUpisa_id = 1;
             $saved = $kandidat->save();
-            if($saved){
+            if ($saved) {
                 Session::flash('flash-success', 'upis');
-            }else{
+            } else {
                 Session::flash('flash-error', 'upis');
             }
-            if($kandidat->tipStudija_id == 1){
+            if ($kandidat->tipStudija_id == 1) {
                 return redirect('/kandidat/');
-            }else if($kandidat->tipStudija_id == 2){
+            } else if ($kandidat->tipStudija_id == 2) {
                 return redirect('/master/');
             }
         }
@@ -1007,10 +1078,10 @@ class KandidatController extends Controller
 
             $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id);
 
-            if($returnValue){
+            if ($returnValue) {
                 $kandidat->statusUpisa_id = 1;
                 $kandidat->save();
-            }else{
+            } else {
                 Session::flash('flash-error', 'upis');
                 return redirect('/kandidat/');
             }
