@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\GodinaStudija;
 use App\Predmet;
+use App\SkolskaGodUpisa;
 use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\PredmetProgram;
@@ -129,17 +130,33 @@ class PredmetController extends Controller
             $godinaStudija = GodinaStudija::all();
             $tipPredmeta = TipPredmeta::all();
             $tipStudija = TipStudija::all();
+            $skolskaGodina = SkolskaGodUpisa::all();
             //$semestar = Semestar::all();
             //$oblik = OblikNastave::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet', 'godinaStudija', 'tipPredmeta', 'tipStudija'));
+        return view('sifarnici.addPredmetProgram', compact('programi', 'predmet', 'godinaStudija', 'tipPredmeta', 'tipStudija', 'skolskaGodina'));
     }
 
-    public function addProgramUnos(Request $request)
+    public function addProgramUnos(Requests\ProgramRequest $request)
     {
+       /* $this->validate($request, [
+            'studijskiProgram_id' => 'required',
+            'predmet_id' => 'required',
+            'godinaStudija_id' => 'required',
+            'semestar' => 'required',
+            'tipPredmeta_id' => 'required',
+            'tipStudija_id' => 'required',
+            'predavanja' => 'required',
+            'vezbe' => 'required',
+            'skolskaGodina_id' => 'required',
+            'espb' => 'required',
+        ]);*/
+
+        //return Session::get('errors')->all();
+
         $program = new PredmetProgram();
         $program->studijskiProgram_id = $request->program_id;
         $program->predmet_id = $request->predmet_id;
@@ -148,8 +165,9 @@ class PredmetController extends Controller
         $program->tipPredmeta_id = $request->tipPredmeta_id;
         $program->tipStudija_id = $program->program->tipStudija->id;
         $program->espb = $request->espb;
-        $program->predavanja = $request->predavanja;
+        $program->predavanja = $request->skolskaGodina_id;
         $program->vezbe = $request->vezbe;
+        $program->skolskaGodina_id = $request->vezbe;
         $program->statusPredmeta = 1;
         $program->indikatorAktivan = 1;
 
@@ -159,7 +177,7 @@ class PredmetController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return Redirect::to('/predmet/' . $request->predmet_id . '/edit');
+        return Redirect::to('/predmet/' . $request->predmet_id . '/editProgram');
     }
 
 }

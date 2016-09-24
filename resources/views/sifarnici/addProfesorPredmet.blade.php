@@ -8,6 +8,18 @@
             {{csrf_field()}}
 
            <input type="hidden" id="profesor_id" name="profesor_id" value="{{$profesor->id}}">
+
+            @if (Session::get('errors'))
+                <div class="alert alert-dismissable alert-danger">
+                    <h4>Грешка!</h4>
+                    <ul>
+                        @foreach (Session::get('errors')->all() as $error)
+                            <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Предмет</h3>

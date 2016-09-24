@@ -32,10 +32,10 @@
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/edit">
-                                    <input type="submit" class="btn btn-primary" value="Promeni">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Promeni">
                                 </form>
                                 <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');" class="btn" action="srednjeSkoleFakulteti/{{$srednjeSkoleFakulteti->id}}/delete">
-                                    <input type="submit" class="btn btn-danger" value="Izbriši">
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Izbriši">
                                 </form>
                             </div>
                         </td>

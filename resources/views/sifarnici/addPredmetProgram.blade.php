@@ -8,6 +8,18 @@
             {{csrf_field()}}
 
             <input type="hidden" id="predmet_id" name="predmet_id" value="{{$predmet->id}}">
+
+            @if (Session::get('errors'))
+                <div class="alert alert-dismissable alert-danger">
+                    <h4>Грешка!</h4>
+                    <ul>
+                        @foreach (Session::get('errors')->all() as $error)
+                            <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Програм</h3>
@@ -41,8 +53,16 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
+                        <label for="skolskaGodina_id">Школска година:</label>
+                        <select class="form-control" id="skolskaGodina_id" name="skolskaGodina_id">
+                            @foreach($skolskaGodina as $skolskaGodina)
+                                <option value="{{$skolskaGodina->id}}">{{$skolskaGodina->naziv}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="naziv">ЕСПБ:</label>
+                        <label for="espb">ЕСПБ:</label>
                         <input name="espb" type="number" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
@@ -53,15 +73,16 @@
                         <label for="vezbe">Часови вежби:</label>
                         <input name="vezbe" type="number" class="form-control"">
                     </div>
-                    </div>
                 </div>
-                <div class="panel-body">
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <button type="submit" class="btn btn-primary">Додај</button>
-                    </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <button type="submit" class="btn btn-primary">Додај</button>
                 </div>
             </div>
         </form>
+    </div>
+
     </div>
 
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>

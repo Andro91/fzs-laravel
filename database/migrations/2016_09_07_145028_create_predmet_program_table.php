@@ -24,6 +24,7 @@ class CreatePredmetProgramTable extends Migration
             $table->integer('statusPredmeta');
             $table->integer('predavanja');
             $table->integer('vezbe');
+            $table->integer('skolskaGodina_id');
             $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();
         });

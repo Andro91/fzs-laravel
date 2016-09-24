@@ -36,10 +36,10 @@
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="prilozenaDokumenta/{{$dokument->id}}/edit">
-                                    <input type="submit" class="btn btn-primary" value="Измени">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Измени">
                                 </form>
                                 <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');" class="btn" action="prilozenaDokumenta/{{$dokument->id}}/delete">
-                                    <input type="submit" class="btn btn-danger" value="Обриши">
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Обриши">
                                 </form>
                             </div>
                         </td>

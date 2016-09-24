@@ -150,7 +150,7 @@ class ProfesorController extends Controller
         return view('sifarnici.addProfesorPredmet', compact('predmet', 'semestar', 'oblik', 'profesor'));
     }
 
-    public function addPredmetUnos(Request $request)
+    public function addPredmetUnos(Requests\ProfesorRequest $request)
     {
         $predmet = new ProfesorPredmet();
 
