@@ -17,9 +17,6 @@
                     Назив
                 </th>
                 <th>
-                    Датум
-                </th>
-                <th>
                     Акције
                 </th>
                 </thead>
@@ -27,7 +24,6 @@
                 @foreach($status as $status)
                     <tr>
                         <td>{{$status->naziv}}</td>
-                        <td>{{ date('d.m.Y.',strtotime($status->datum)) }}</td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="statusKandidata/{{$status->id}}/edit">

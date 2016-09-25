@@ -16,10 +16,6 @@
                         <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control">
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="datum">Датум промене:</label>
-                        <input id="datum" name="datum" type="date" class="form-control">
-                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">

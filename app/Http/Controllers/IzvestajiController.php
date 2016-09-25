@@ -9,6 +9,7 @@ use App\Kandidat;
 use App\PolozeniIspiti;
 use App\Predmet;
 use App\Profesor;
+use App\SkolskaGodUpisa;
 use App\StudijskiProgram;
 use Illuminate\Http\Request;
 use App\Region;
@@ -35,6 +36,7 @@ class IzvestajiController extends Controller
         try {
             $kandidat = Kandidat::all();
             $program = StudijskiProgram::all();
+            $godina = GodinaStudija::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -53,10 +55,10 @@ class IzvestajiController extends Controller
         {
 
         }*/
-        $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat);
+        $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina);
         //$ime = $region->naziv;
         //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
-
+//return $view;
         $contents = $view->render();
         PDF::SetTitle('Списак кандидата по модулима');
         PDF::AddPage();
@@ -122,11 +124,12 @@ class IzvestajiController extends Controller
             $predmeti = Predmet::all();
             $programPlan = $program;
             $godinaPlan = $godina;
+            $skolskaGodina = SkolskaGodUpisa::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti', 'programPlan', 'godinaPlan'));
+        return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti', 'programPlan', 'godinaPlan', 'skolskaGodina'));
     }
 
     public function potvrdeStudent(Kandidat $student)
@@ -407,7 +410,8 @@ class IzvestajiController extends Controller
     {
         try {
             //$predmeti = Predmet::where(['godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
-            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $request->program])->get();
+            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $request->program])->where(['skolskaGodina_id' => $request->skolskaGodina_id])->where(['godinaStudija_id' => $request->godinaStudija_id])->get();
+            //skolskaGodina_id
 
             if ($predmeti->first()) {
                 $program = $predmeti->first()->program->naziv;

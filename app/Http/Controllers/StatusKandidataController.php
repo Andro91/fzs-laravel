@@ -31,7 +31,6 @@ class StatusKandidataController extends Controller
         $status = new StatusKandidata();
 
         $status->naziv = $request->naziv;
-        $status->datum = date_create_from_format('d.m.Y.', $request->datum);
         $status->indikatorAktivan = 1;
 
 
@@ -57,7 +56,6 @@ class StatusKandidataController extends Controller
     public function update(Request $request, StatusKandidata $status)
     {
         $status->naziv = $request->naziv;
-        $status->datum = date_create_from_format('d.m.Y.', $request->datum);
         if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
             $status->indikatorAktivan = 1;
         } else {

@@ -14,9 +14,6 @@
             <table id="tabela" class="table">
                 <thead>
                 <th>
-                    ЈМБГ
-                </th>
-                <th>
                     Име
                 </th>
                 <th>
@@ -26,16 +23,7 @@
                     Телефон
                 </th>
                 <th>
-                    Кабинет
-                </th>
-                <th>
                     Е - мејл
-                </th>
-                <th>
-                    Звање
-                </th>
-                <th>
-                    Статус
                 </th>
                 <th>
                     Акције
@@ -44,20 +32,10 @@
 
                 @foreach($profesor as $profesor)
                     <tr>
-                        <td>{{$profesor->jmbg}}</td>
                         <td>{{$profesor->ime}}</td>
                         <td>{{$profesor->prezime}}</td>
                         <td>{{$profesor->telefon}}</td>
-                        <td>{{$profesor->kabinet}}</td>
                         <td>{{$profesor->mail}}</td>
-                        <td>{{$profesor->zvanje}}</td>
-                        <td>
-                            @if($profesor->status)
-                                {{$profesor->status->naziv}}
-                            @else
-                                Prazno
-                            @endif
-                        </td>
                         <td>
                             <div class="btn-group">
                                 <form class="btn" action="profesor/{{$profesor->id}}/edit">

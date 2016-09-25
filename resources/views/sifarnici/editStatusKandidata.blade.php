@@ -18,10 +18,6 @@
                         <label for="naziv">Назив:</label>
                         <input name="naziv" type="text" class="form-control" value="{{$status->naziv}}">
                     </div>
-                    <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                        <label for="datum">Датум промене:</label>
-                        <input required="" id="datum" name="datum" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}." type="date" class="form-control" value="{{ date('d.m.Y.',strtotime($status->datum)) }}">
-                    </div>
 
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <div class="checkbox">
