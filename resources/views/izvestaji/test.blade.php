@@ -9,48 +9,56 @@
     <br/>
     @foreach($godina as $godina)
         <h1 style="padding-bottom: 100px;">{{$godina->naziv}} година</h1>
-    @foreach($studijskiProgram as $broj => $program)
-        <label class="{{$godina->naziv}}{{$program->id}}" style="padding-bottom: 10px;">{{$program->naziv}}</label>
-        <br/>
-        <br/>
-        <table class="{{$godina->naziv}}{{$program->id}}" style="border: 1px solid black;">
-            <thead>
-            <tr>
-                <th>Р.бр.</th>
-                <th style="border: 1px solid black;">
-                    <b>Име</b>
-                </th>
-                <th style="border: 1px solid black;">
-                    <b>Презиме</b>
-                </th>
-                <th style="border: 1px solid black;">
-                    <b>Број бодова</b>
-                </th>
-            </tr>
-            </thead>
-            <?php $a=0; $b=0; ?>
-            @foreach($kandidat as $index => $item)
-                @if($item->program->id == $program->id && $item->godinaStudija_id == $godina->id)
-                    <?php $a++; ?>
-                    <tr>
-                        <td style="border: 1px solid black;">{{$a}}</td>
-                        <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
-                        <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
-                        <td style="border: 1px solid black;">{{$item->ukupniBrojBodova}}</td>
-                    </tr>
-                @else
-                <?php $b++; ?>
+        @foreach($uslov as $test)
 
-                    @endif
+            @foreach($studijskiProgram as $broj => $program)
+                @if($test->studijskiProgram_id == $program->id && $test->godinaStudija_id == $godina->id)
+                    <label class="{{$godina->naziv}}{{$program->id}}"
+                           style="padding-bottom: 10px;">{{$program->naziv}}</label>
+                    <br/>
+                    <br/>
+                    <table class="{{$godina->naziv}}{{$program->id}}" style="border: 1px solid black;">
+                        <thead>
+                        <tr>
+                            <th>Р.бр.</th>
+                            <th style="border: 1px solid black;">
+                                <b>Име</b>
+                            </th>
+                            <th style="border: 1px solid black;">
+                                <b>Презиме</b>
+                            </th>
+                            <th style="border: 1px solid black;">
+                                <b>Број бодова</b>
+                            </th>
+                        </tr>
+                        </thead>
+                        <?php $a = 0; $b = 0; ?>
+                        @foreach($kandidat as $index => $item)
+                            @if($item->program->id == $program->id && $item->godinaStudija_id == $godina->id)
+                                <?php $a++; ?>
+                                <tr>
+                                    <td style="border: 1px solid black;">{{$a}}</td>
+                                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
+                                    <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
+                                    <td style="border: 1px solid black;">{{$item->ukupniBrojBodova}}</td>
+                                </tr>
+                            @else
+                                <?php $b++; ?>
 
+                            @endif
+
+                        @endforeach
+                    </table>
+                    <br/>
+                    <br/>
+                    <br/>
+                @endif
             @endforeach
-        </table>
-        <br/>
-        <br/>
-        <br/>
-    @endforeach
+        @endforeach
+
 </div>
 @endforeach
+
 
 <br/>
 <br/>
@@ -71,7 +79,7 @@
 </div>
 
 <style>
-    .test{
-        display:none;
+    .test {
+        display: none;
     }
 </style>

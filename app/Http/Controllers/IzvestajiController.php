@@ -34,9 +34,25 @@ class IzvestajiController extends Controller
     {
         //$region->delete();
         try {
-            $kandidat = Kandidat::all();
-            $program = StudijskiProgram::all();
-            $godina = GodinaStudija::all();
+            $kandidat = Kandidat::where(['statusUpisa_id' => 3])->get();
+            $picks = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+            $picks2 = Kandidat::where(['statusUpisa_id' => 3])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
+            $picks3 = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+            //return $picks3;
+            $uslov = array();
+            $uslov2 = array();
+            foreach($picks as $item)
+            {
+                $uslov[] = $item->studijskiProgram_id;
+            }
+            foreach($picks2 as $item)
+            {
+                $uslov2[] = $item->godinaStudija_id;
+            }
+            //return $uslov;
+            $program = StudijskiProgram::whereIn('id', $uslov)->get();
+            //return $program;
+            $godina = GodinaStudija::whereIn('id', $uslov2)->get();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -55,7 +71,7 @@ class IzvestajiController extends Controller
         {
 
         }*/
-        $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina);
+        $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina)->with('uslov', $picks3);
         //$ime = $region->naziv;
         //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
 //return $view;
@@ -73,7 +89,7 @@ class IzvestajiController extends Controller
     {
         //$region->delete();
         try {
-            $kandidat = Kandidat::where(['upisan' => 1])->get();
+            $kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
             $program = StudijskiProgram::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -94,7 +110,7 @@ class IzvestajiController extends Controller
         try {
             //$kandidat = Kandidat::all();
             //$program = StudijskiProgram::all();
-            $studenti = Kandidat::where(['upisan' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
+            $studenti = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
             if ($studenti->first()) {
                 $program = $studenti->first()->program->naziv;
             } else {
@@ -208,7 +224,7 @@ class IzvestajiController extends Controller
         //$region->delete();
         try {
             $programi = PredmetProgram::where(['predmet_id' => $request->predmet])->get();
-            $studenti = Kandidat::where(['upisan' => 1])->get();
+            $studenti = Kandidat::where(['statusUpisa_id' => 1])->get();
 
             //return $programi;
 
