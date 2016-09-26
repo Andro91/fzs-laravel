@@ -51,15 +51,32 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                            @if($kandidat->upisan == 0)
-                                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                                    <label for="uplata">
-                                        <input type="checkbox" id="uplata"
-                                               name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
-                                        Уплата (да ли је кандидат платио школарину)</label>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="statusUpisa_id">Статус</label>
+                                    <select class="form-control" id="statusUpisa_id"
+                                            name="statusUpisa_id">
+                                        @foreach($statusKandidata as $item)
+                                            <option value="{{ $item->id }}" {{ ($kandidat->statusUpisa_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @endif
+                                <div class="form-group col-lg-6">
+                                    <label for="datumStatusa">Датум статуса</label>
+                                    <input class="form-control dateMask" type="text" name="datumStatusa"
+                                           id="datumStatusa"
+                                           value="{{ !empty($kandidat->datumStatusa) ?
+                                           $kandidat->datumStatusa->format('d.m.Y.') : "" }}">
+                                </div>
+                                @if($kandidat->upisan == 0)
+                                    <div class="form-group col-lg-6">
+                                        <label for="uplata">
+                                            <input type="checkbox" id="uplata"
+                                                   name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
+                                            Уплата (да ли је кандидат платио школарину)</label>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -109,7 +126,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="DatumRodjenja">Датум рођења</label>
-                                    <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja"
+                                    <input class="form-control dateMask" type="text" name="DatumRodjenja" id="DatumRodjenja"
                                            value="{{ date('d.m.Y.',strtotime($kandidat->datumRodjenja)) }}">
                                 </div>
                             </div>
@@ -226,7 +243,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="col-sm-12 col-lg-6">
@@ -476,7 +492,8 @@
                         <div class="panel-body">
                             <div class="form-group text-center">
                                 <button type="submit" class="btn btn-success btn-lg">Сачувај</button>
-                                <input type="submit" name="submitstay" value="Сачувај и остани" class="btn btn-success btn-lg">
+                                <input type="submit" name="submitstay" value="Сачувај и остани"
+                                       class="btn btn-success btn-lg">
                             </div>
                         </div>
                     </div>
@@ -484,22 +501,8 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
     <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-2.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
-    <script>
-        //        $.mask.definitions['q'] = '[0-3]';
-        //        $.mask.definitions['w'] = '[0-9]';
-        //        $.mask.definitions['e'] = '[0-1]';
-        //        $('#DatumRodjenja').mask("qw.ew.9999.");
-        //
-        //        $.mask.definitions['r'] = '[0-5]';
-        //        $.mask.definitions['t'] = '[0-9]';
-
-        // $('#SrednjaOcena1').mask("r.tt");
-        // $('#SrednjaOcena2').mask("r.tt");
-        // $('#SrednjaOcena3').mask("r.tt");
-        // $('#SrednjaOcena4').mask("r.tt");
-        // $('#SrednjaOcenaSrednjaSkola').mask("r.tt");
-
-    </script>
 @endsection

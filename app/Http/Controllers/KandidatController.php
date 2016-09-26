@@ -16,6 +16,7 @@ use App\SkolskaGodUpisa;
 use App\Sport;
 use App\SportskoAngazovanje;
 use App\SrednjeSkoleFakulteti;
+use App\StatusKandidata;
 use App\StatusStudiranja;
 use App\StudijskiProgram;
 use App\TipStudija;
@@ -135,6 +136,7 @@ class KandidatController extends Controller
             }
 
             $kandidat->statusUpisa_id = 3;
+            $kandidat->datumStatusa = Carbon::now();
 
             //$dateArray = explode('.', ); date()
             if (date_create_from_format('d.m.Y.', $request->DatumRodjenja)) {
@@ -348,7 +350,6 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::find($id);
 
-
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         $mestoZavrseneSkoleFakulteta = Opstina::all();
@@ -363,6 +364,7 @@ class KandidatController extends Controller
         $sport = Sport::all();
         $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '1')->get();
         $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
+        $statusKandidata = StatusKandidata::all();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
@@ -430,7 +432,8 @@ class KandidatController extends Controller
             ->with('drugiRazred', $drugiRazred)
             ->with('treciRazred', $treciRazred)
             ->with('cetvrtiRazred', $cetvrtiRazred)
-            ->with('sportskoAngazovanjeKandidata', $sportskoAngazovanjeKandidata);
+            ->with('sportskoAngazovanjeKandidata', $sportskoAngazovanjeKandidata)
+            ->with('statusKandidata', $statusKandidata);
     }
 
     /**
@@ -532,6 +535,11 @@ class KandidatController extends Controller
         $kandidat->drzavaZavrseneSkole = $request->drzavaZavrseneSkole;
         $kandidat->godinaZavrsetkaSkole = $request->godinaZavrsetkaSkole;
         $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
+
+        //Dodao Andrija 26-septembar-2016
+        $kandidat->statusUpisa_id = $request->statusUpisa_id;
+        $kandidat->datumStatusa = date_create_from_format('d.m.Y.', $request->datumStatusa);
+
 
         try {
             $prviRazred = UspehSrednjaSkola::where(['kandidat_id' => $id, 'RedniBrojRazreda' => 1])->firstOrFail();
@@ -717,8 +725,6 @@ class KandidatController extends Controller
     {
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
-        // $nazivSkoleFakulteta = SrednjeSkoleFakulteti::all();
-        $mestoZavrseneSkoleFakulteta = Opstina::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();
         $uspehSrednjaSkola = UspehSrednjaSkola::all();
         $sportskoAngazovanje = SportskoAngazovanje::all();
@@ -765,6 +771,8 @@ class KandidatController extends Controller
         $kandidat->jmbg = $request->JMBG;
 
         $kandidat->statusUpisa_id = 3;
+        $kandidat->datumStatusa = Carbon::now();
+
 
         if (isset($request->uplata)) {
             $kandidat->uplata = 1;
@@ -852,6 +860,7 @@ class KandidatController extends Controller
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
+        $statusKandidata = StatusKandidata::all();
 
         $dokumentaMaster = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
@@ -873,7 +882,8 @@ class KandidatController extends Controller
             ->with('skolskeGodineUpisa', $skolskeGodineUpisa)
             ->with('dokumentaMaster', $dokumentaMaster)
             ->with('prilozenaDokumenta', $prilozenaDokumenta)
-            ->with('kandidat', $kandidat);
+            ->with('kandidat', $kandidat)
+            ->with('statusKandidata', $statusKandidata);
     }
 
 
@@ -899,6 +909,12 @@ class KandidatController extends Controller
         if (isset($request->uplata)) {
             $kandidat->uplata = 1;
         }
+
+        //Dodao Andrija 26-09-2016
+        $kandidat->statusUpisa_id = $request->statusUpisa_id;
+        $kandidat->datumStatusa = empty($request->datumStatusa) ?
+            Carbon::now() :
+            date_create_from_format('d.m.Y.', $request->datumStatusa);
 
         //SLIKA
         if ($request->hasFile('imageUpload')) {
@@ -1043,6 +1059,7 @@ class KandidatController extends Controller
             }
 
             $kandidat->statusUpisa_id = 1;
+            $kandidat->datumStatusa = Carbon::now();
             $saved = $kandidat->save();
             if ($saved) {
                 Session::flash('flash-success', 'upis');
@@ -1080,6 +1097,7 @@ class KandidatController extends Controller
 
             if ($returnValue) {
                 $kandidat->statusUpisa_id = 1;
+                $kandidat->datumStatusa = Carbon::now();
                 $kandidat->save();
             } else {
                 Session::flash('flash-error', 'upis');
@@ -1089,6 +1107,10 @@ class KandidatController extends Controller
         return redirect('/kandidat/');
     }
 
+    /**
+     * @param Request $request
+     * @return Redirect
+     */
     public function masovnaUplataMaster(Request $request)
     {
         foreach ($request->odabir as $kandidatId) {
@@ -1107,6 +1129,7 @@ class KandidatController extends Controller
 
             $kandidat = Kandidat::find($kandidatId);
             $kandidat->statusUpisa_id = 1;
+            $kandidat->datumStatusa = Carbon::now();
             $kandidat->save();
 
             UpisGodine::generisiBrojIndeksa($kandidatId);

@@ -8,7 +8,7 @@ class Kandidat extends Model
 {
     protected $table = 'kandidat';
 
-    protected $dates = ['datumRodjenja'];
+    protected $dates = ['datumRodjenja','datumStatusa'];
 
     public function angazovanja()
     {

@@ -55,6 +55,7 @@ class CreateKandidatTable extends Migration
             $table->string('godinaZavrsetkaSkole')->nullable();
             $table->string('slika')->nullable();
             $table->string('diplomski')->nullable();
+            $table->dateTime('datumStatusa')->nullable();
             $table->timestamps();
         });
     }

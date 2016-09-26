@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group col-lg-5">
                             <label for="DatumRodjenja">Датум рођења</label>
-                            <input class="form-control" type="text" name="DatumRodjenja" id="DatumRodjenja"
+                            <input class="form-control dateMask" type="text" name="DatumRodjenja" id="DatumRodjenja"
                                    value="{{ old('DatumRodjenja') }}">
                         </div>
                     </div>
@@ -214,5 +214,6 @@
         </form>
     </div>
     <script type="text/javascript" src="{{ $putanja }}/js/kandidat-create-part-1.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection

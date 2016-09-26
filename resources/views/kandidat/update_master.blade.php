@@ -50,7 +50,24 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="statusUpisa_id">Статус</label>
+                            <select class="form-control" id="statusUpisa_id"
+                                    name="statusUpisa_id">
+                                @foreach($statusKandidata as $item)
+                                    <option value="{{ $item->id }}" {{ ($kandidat->statusUpisa_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="datumStatusa">Датум статуса</label>
+                            <input class="form-control dateMask" type="text" name="datumStatusa"
+                                   id="datumStatusa"
+                                   value="{{ !empty($kandidat->datumStatusa) ?
+                                           $kandidat->datumStatusa->format('d.m.Y.') : "" }}">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="uplata">
                             <input type="checkbox" id="uplata"
@@ -208,7 +225,7 @@
 
                     <div class="form-group text-center">
                         <button type="submit" name="Submit" class="btn btn-primary btn-lg">Сачувај</button>
-                        <input type="submit" name="submitstay" value="Сачувај и остани" class="btn btn-success btn-lg">
+                        <input type="submit" name="submitstay" value="Сачувај и остани" class="btn btn-primary btn-lg">
                     </div>
                 </div>
             </div>
@@ -224,5 +241,6 @@
             });
         });
     </script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection

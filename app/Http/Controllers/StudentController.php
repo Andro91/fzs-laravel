@@ -15,6 +15,7 @@ use App\TipPredmeta;
 use App\TipPrijave;
 use App\TipStudija;
 use App\UpisGodine;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Kandidat;
 
@@ -178,6 +179,7 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $kandidat->statusUpisa_id = $statusId;
+        $kandidat->datumStatusa = Carbon::now();
         $kandidat->save();
         return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
