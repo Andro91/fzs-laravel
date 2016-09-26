@@ -13,19 +13,23 @@
     <table style="border: 1px solid black;">
         <thead>
         <tr>
-            <th style="border: 1px solid black;">
-                <b>Име</b>
+            <th style="border: 1px solid black;">Р.бр.</th>
+            <th style="border: 1px solid black;"><b>Број индекса</b>
             </th>
-            <th style="border: 1px solid black;">
-                <b>Презиме</b>
+            <th style="border: 1px solid black;"><b>Име</b>
             </th>
-            <th style="border: 1px solid black;">
-                <b>Број бодова</b>
+            <th style="border: 1px solid black;"><b>Презиме</b>
+            </th>
+            <th style="border: 1px solid black;"><b>Број бодова</b>
             </th>
         </tr>
         </thead>
+        <?php $a = 0;?>
         @foreach($studenti as $item)
+            <?php $a++; ?>
                 <tr>
+                    <td style="border: 1px solid black;">{{$a}}</td>
+                    <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
                     <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
                     <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
                     <td style="border: 1px solid black;">{{$item->brojBodovaTest}}</td>

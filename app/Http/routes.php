@@ -297,6 +297,9 @@ Route::get('izvestaji/polozeniStampa/{student}', 'IzvestajiController@polozeniSt
 Route::post('izvestaji/nastavniPlan', 'IzvestajiController@nastavniPlan');
 Route::post('izvestaji/spisakDiplomiranih', 'IzvestajiController@spisakDiplomiranih');
 Route::post('izvestaji/zapisnikStampa/{zapisnik}', 'IzvestajiController@zapisnikStampa');
+Route::post('izvestaji/spisakPoGodini', 'IzvestajiController@spisakPoGodini');
+Route::post('izvestaji/spisakPoProgramu', 'IzvestajiController@spisakPoProgramu');
+Route::post('izvestaji/spisakPoSlavama', 'IzvestajiController@spisakPoSlavama');
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

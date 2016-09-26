@@ -4,15 +4,14 @@
 <hr>
 
 <div>
-    <h1 style="padding-bottom: 100px;">Списак студената</h1>
+    <h1 style="padding-bottom: 100px;">Списак студената уписаних у {{$godinaNaziv->nazivSlovimaUPadezu}} годину</h1>
     <br/>
     <br/>
-    @foreach($godina as $godina)
-        <h1 style="padding-bottom: 100px;">{{$godina->naziv}} година</h1>
+
         @foreach($uslov as $test)
 
             @foreach($studijskiProgram as $broj => $program)
-                @if($test->studijskiProgram_id == $program->id && $test->godinaStudija_id == $godina->id)
+                @if($test->studijskiProgram_id == $program->id && $test->godinaStudija_id == $godina)
                     <label style="padding-bottom: 10px;">{{$program->naziv}}</label>
                     <br/>
                     <br/>
@@ -20,8 +19,6 @@
                         <thead>
                         <tr>
                             <th style="border: 1px solid black;">Р.бр.</th>
-                            <th style="border: 1px solid black;"><b>Број индекса</b>
-                            </th>
                             <th style="border: 1px solid black;"><b>Име</b>
                             </th>
                             <th style="border: 1px solid black;"><b>Презиме</b>
@@ -30,13 +27,12 @@
                             </th>
                         </tr>
                         </thead>
-                        <?php $a = 0;?>
+                        <?php $a = 0; $b = 0; ?>
                         @foreach($kandidat as $index => $item)
-                            @if($item->program->id == $program->id && $item->godinaStudija_id == $godina->id)
+                            @if($item->program->id == $program->id && $item->godinaStudija_id == $godina)
                                 <?php $a++; ?>
                                 <tr>
                                     <td style="border: 1px solid black;">{{$a}}</td>
-                                    <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
                                     <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
                                     <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
                                     <td style="border: 1px solid black;">{{$item->ukupniBrojBodova}}</td>
@@ -53,7 +49,7 @@
         @endforeach
 
 </div>
-@endforeach
+
 
 
 <br/>

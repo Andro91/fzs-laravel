@@ -6,6 +6,7 @@ use App\Diploma;
 use App\DiplomskiRad;
 use App\GodinaStudija;
 use App\Kandidat;
+use App\KrsnaSlava;
 use App\PolozeniIspiti;
 use App\Predmet;
 use App\Profesor;
@@ -38,7 +39,7 @@ class IzvestajiController extends Controller
             $picks = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 3])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
             $picks3 = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
-            //return $picks3;
+
             $uslov = array();
             $uslov2 = array();
             foreach($picks as $item)
@@ -49,53 +50,49 @@ class IzvestajiController extends Controller
             {
                 $uslov2[] = $item->godinaStudija_id;
             }
-            //return $uslov;
             $program = StudijskiProgram::whereIn('id', $uslov)->get();
-            //return $program;
+
             $godina = GodinaStudija::whereIn('id', $uslov2)->get();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        //$kandidat = Kandidat::where('studijskiProgram_id', 1)->get();
-
-        //$brojPrograma = StudijskiProgram::all()->count();
-        //var $i=0;
-        //$spisak = new \Illuminate\Database\Eloquent\Collection;
-        /*foreach($program as $item)
-        {
-            $kandidat = Kandidat::where('studijskiProgram_id', $item->id)->get();
-            $spisak->add($kandidat);
-        }*/
-        /*for($i=0;i<$brojPrograma;$i++)
-        {
-
-        }*/
         $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina)->with('uslov', $picks3);
-        //$ime = $region->naziv;
-        //$view = View::make('sifarnici.test', ['ime' => $region->naziv]);
-//return $view;
+
         $contents = $view->render();
         PDF::SetTitle('Списак кандидата по модулима');
         PDF::AddPage();
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
         PDF::Output('Spisak.pdf');
-
-        //return back();
     }
 
     public function spisakPoSmerovimaAktivni()
     {
-        //$region->delete();
         try {
             $kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
-            $program = StudijskiProgram::all();
+            $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+            $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
+            $picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+
+            $uslov = array();
+            $uslov2 = array();
+            foreach($picks as $item)
+            {
+                $uslov[] = $item->studijskiProgram_id;
+            }
+            foreach($picks2 as $item)
+            {
+                $uslov2[] = $item->godinaStudija_id;
+            }
+            $program = StudijskiProgram::whereIn('id', $uslov)->get();
+
+            $godina = GodinaStudija::whereIn('id', $uslov2)->get();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.spisakSvihStudenata')->with('studijskiProgram', $program)->with('kandidat', $kandidat);
+        $view = View::make('izvestaji.spisakSvihStudenata')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina)->with('uslov', $picks3);
 
         $contents = $view->render();
         PDF::SetTitle('Списак студената по модулима');
@@ -108,8 +105,6 @@ class IzvestajiController extends Controller
     public function spisakZaSmer(Request $request)
     {
         try {
-            //$kandidat = Kandidat::all();
-            //$program = StudijskiProgram::all();
             $studenti = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
             if ($studenti->first()) {
                 $program = $studenti->first()->program->naziv;
@@ -120,12 +115,110 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        //return $studenti;
-
         $view = View::make('izvestaji.spisakSmer')->with('studenti', $studenti)->with('program', $program);
 
         $contents = $view->render();
-        PDF::SetTitle('Списак кандидата');
+        PDF::SetTitle('Списак студената');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
+    public function spisakPoProgramu(Request $request)
+    {
+        try {
+            $kandidat = Kandidat::where(['statusUpisa_id' => 1, 'studijskiProgram_id' => $request->program])->get();
+            $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+            $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('godinaStudija_id')->where('studijskiProgram_id', $request->program)->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
+            $picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+
+            $uslov = array();
+            $uslov2 = array();
+            foreach($picks as $item)
+            {
+                $uslov[] = $item->studijskiProgram_id;
+            }
+            foreach($picks2 as $item)
+            {
+                $uslov2[] = $item->godinaStudija_id;
+            }
+            $program = StudijskiProgram::where('id', $request->program)->get()->first();
+
+            //return $program;
+
+            $godina = GodinaStudija::whereIn('id', $uslov2)->get();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.spisakPoProgramu')->with('kandidat', $kandidat)->with('program', $program)->with('uslov', $picks3)->with('godina', $godina);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
+    public function spisakPoGodini(Request $request)
+    {
+            try {
+                $kandidat = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina])->get();
+                $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+                $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id')->where('godinaStudija_id', $request->godina)->select('studijskiProgram_id')->groupBy('studijskiProgram_id')->get();
+                $picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+
+                $uslov = array();
+                $uslov2 = array();
+                foreach($picks as $item)
+                {
+                    $uslov[] = $item->studijskiProgram_id;
+                }
+                foreach($picks2 as $item)
+                {
+                    $uslov2[] = $item->studijskiProgram_id;
+                }
+
+                $program = StudijskiProgram::whereIn('id', $uslov2)->get();
+                $godina = GodinaStudija::where('id', $request->godina)->get()->first();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.spisakPoGodini')->with('kandidat', $kandidat)->with('studijskiProgram', $program)->with('uslov', $picks3)->with('godina', $request->godina)->with('godinaNaziv', $godina);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
+    public function spisakPoSlavama(Request $request)
+    {
+        try {
+            $kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
+            $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('krsnaSlava_id')->select('krsnaSlava_id')->groupBy('krsnaSlava_id')->get();
+
+            $uslov = array();
+            foreach($picks as $item)
+            {
+                $uslov[] = $item->krsnaSlava_id;
+            }
+
+            $slave = KrsnaSlava::whereIn('id', $uslov)->get();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.spisakPoSlavama')->with('kandidat', $kandidat)->with('slave', $slave)->with('uslov', $picks);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената');
         PDF::AddPage();
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
@@ -140,12 +233,14 @@ class IzvestajiController extends Controller
             $predmeti = Predmet::all();
             $programPlan = $program;
             $godinaPlan = $godina;
+            $godinaS = $godina;
+            $programS = $program;
             $skolskaGodina = SkolskaGodUpisa::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti', 'programPlan', 'godinaPlan', 'skolskaGodina'));
+        return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti', 'programPlan', 'godinaPlan', 'skolskaGodina', 'godinaS', 'programS'));
     }
 
     public function potvrdeStudent(Kandidat $student)

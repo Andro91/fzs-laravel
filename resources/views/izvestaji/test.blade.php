@@ -13,11 +13,10 @@
 
             @foreach($studijskiProgram as $broj => $program)
                 @if($test->studijskiProgram_id == $program->id && $test->godinaStudija_id == $godina->id)
-                    <label class="{{$godina->naziv}}{{$program->id}}"
-                           style="padding-bottom: 10px;">{{$program->naziv}}</label>
+                    <label style="padding-bottom: 10px;">{{$program->naziv}}</label>
                     <br/>
                     <br/>
-                    <table class="{{$godina->naziv}}{{$program->id}}" style="border: 1px solid black;">
+                    <table style="border: 1px solid black;">
                         <thead>
                         <tr>
                             <th>Р.бр.</th>
@@ -78,8 +77,3 @@
     </table>
 </div>
 
-<style>
-    .test {
-        display: none;
-    }
-</style>

@@ -19,7 +19,8 @@
                                 <label for="program">Студијски програм:</label>
                                 <select class="form-control" id="program" name="program">
                                     @foreach($program as $program)
-                                        <option value="{{$program->id}}">{{$program->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
+                                        <option value="{{$program->id}}">{{$program->naziv}}
+                                            - {{$program->tipStudija->skrNaziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -40,7 +41,58 @@
                     </div>
                 </div>
             </form>
+
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoGodini/') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак по години</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="godina">Година студија:</label>
+                                <select class="form-control" id="godina" name="godina">
+                                    @foreach($godinaS as $godinaS)
+                                        <option value="{{$godinaS->id}}">{{$godinaS->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoProgramu/') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак по програму</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="godina">Програм:</label>
+                                <select class="form-control" id="program" name="program">
+                                    @foreach($programS as $programS)
+                                        <option value="{{$programS->id}}">{{$programS->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
+
 
         <div class="col-sm-12 col-lg-4">
             <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoPredmetima/') }}">
@@ -88,6 +140,21 @@
                 </div>
             </form>
 
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoSlavama/') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак студената по славама</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
         </div>
 
         <div class="col-sm-12 col-lg-4">
@@ -103,7 +170,8 @@
                             <label for="program">Студијски програм:</label>
                             <select class="form-control" id="program" name="program">
                                 @foreach($programPlan as $program)
-                                    <option value="{{$program->id}}">{{$program->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
+                                    <option value="{{$program->id}}">{{$program->naziv}}
+                                        - {{$program->tipStudija->skrNaziv}}</option>
                                 @endforeach
                             </select>
                         </div>
