@@ -848,9 +848,6 @@ class KandidatController extends Controller
 
     public function editMaster($id)
     {
-//        $query = \Nqxcode\LuceneSearch\Facade::query('Андрија');
-//        dd($query);
-
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();

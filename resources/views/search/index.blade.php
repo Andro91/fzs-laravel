@@ -50,7 +50,7 @@
                         <th>Име</th>
                         <th>Презиме</th>
                         <th>ЈМБГ</th>
-                        <th>Година студија</th>
+                        <th>Измена</th>
                         </thead>
                         <tbody>
                         @foreach($query as $index => $kandidat)
@@ -59,7 +59,13 @@
                                 <td>{{$kandidat->imeKandidata}}</td>
                                 <td>{{$kandidat->prezimeKandidata}}</td>
                                 <td>{{$kandidat->jmbg}}</td>
-                                <td>{{$kandidat->godinaStudija->nazivRimski}}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
+                                        <div title="Измена">
+                                            <span class="fa fa-edit"></span>
+                                        </div>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
