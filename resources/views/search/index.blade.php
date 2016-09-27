@@ -47,6 +47,7 @@
                 <div class="panel-body">
                     <table id="tabela" class="table">
                         <thead>
+                        <th>Број Индекса</th>
                         <th>Име</th>
                         <th>Презиме</th>
                         <th>ЈМБГ</th>
@@ -55,7 +56,7 @@
                         <tbody>
                         @foreach($query as $index => $kandidat)
                             <tr>
-                                </td>
+                                <td>{{$kandidat->brojIndeksa}}</td>
                                 <td>{{$kandidat->imeKandidata}}</td>
                                 <td>{{$kandidat->prezimeKandidata}}</td>
                                 <td>{{$kandidat->jmbg}}</td>
