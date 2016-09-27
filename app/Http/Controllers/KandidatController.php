@@ -773,7 +773,6 @@ class KandidatController extends Controller
         $kandidat->statusUpisa_id = 3;
         $kandidat->datumStatusa = Carbon::now();
 
-
         if (isset($request->uplata)) {
             $kandidat->uplata = 1;
         } else {
@@ -849,6 +848,9 @@ class KandidatController extends Controller
 
     public function editMaster($id)
     {
+//        $query = \Nqxcode\LuceneSearch\Facade::query('Андрија');
+//        dd($query);
+
         $mestoRodjenja = Opstina::all();
         $krsnaSlava = KrsnaSlava::all();
         $opstiUspehSrednjaSkola = OpstiUspeh::all();

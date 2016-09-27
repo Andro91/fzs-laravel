@@ -34,6 +34,9 @@
                      style="margin: 10px 0px 10px 10px">
                 <a class="navbar-brand" href="{{ url ('') }}"> Факултет за спорт</a>
             </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{$putanja}}/pretraga">Претрага</a></li>
+            </ul>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
                 @if (Auth::guest())

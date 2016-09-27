@@ -9,14 +9,21 @@
         "laravel/framework": "5.2.*",
         "elibyy/tcpdf-laravel": "^5.2",
         "barryvdh/laravel-ide-helper": "^2.2",
-        "felixkiss/uniquewith-validator": "2.*"
+        "felixkiss/uniquewith-validator": "2.*",
+        "nqxcode/laravel-lucene-search": "2.2.*",
+        "illuminate/support": "5.2.*",
+        "nqxcode/zendsearch": "2.*",
+        "nqxcode/lucene-stemmer-en-ru": "1.*"
+
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "orchestra/testbench": "3.2.*"
     },
     "autoload": {
         "classmap": [

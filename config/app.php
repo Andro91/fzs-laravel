@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class, //tcpdf
         Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class, //validacija kompozitnih kljuceva
+        Nqxcode\LuceneSearch\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,7 +205,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Elibyy\TCPDF\Facades\TCPDF::class, //tcpdf
-
+        'Search' => Nqxcode\LuceneSearch\Facade::class,
     ],
 
 ];

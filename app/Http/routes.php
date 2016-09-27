@@ -97,6 +97,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/student/{id}/ponistiUpis', 'StudentController@ponistiUpis');
     Route::get('/student/{id}/status/{statusId}', 'StudentController@promeniStatus');
 
+    //PRETRAGA
+    Route::get('/pretraga', 'SearchController@search');
+    Route::post('/pretraga', 'SearchController@searchResult');
 
 });
 
