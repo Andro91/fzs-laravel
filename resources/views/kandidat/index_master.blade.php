@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Преглед кандидата за мастер студије')
 @section('section')
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <div id="messages">
             @if (Session::get('flash-error'))
                 <div class="alert alert-dismissible alert-danger">

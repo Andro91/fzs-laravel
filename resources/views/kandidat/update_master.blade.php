@@ -102,9 +102,9 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 text-center">
                             <img src="{{$putanja}}/uploads/images/{{$kandidat->slika}}" class="img-thumbnail"
-                                 width="100%">
+                                 style="max-height: 300px">
                         </div>
                         <div class="row col-lg-8">
                             <div class="form-group col-lg-12">
