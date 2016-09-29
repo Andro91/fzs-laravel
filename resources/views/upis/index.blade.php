@@ -73,7 +73,7 @@
                 </div>
                 <div class="panel-body">
                     @foreach($upisaneGodine as $godina)
-                        @if($godina->godina == 1 && $godina->pokusaj == 1)
+                        @if($godina->godina == 1 && $godina->pokusaj == 1 && $kandidat->tipStudija_id == 1)
                             <h4>Прва Година</h4>
                             <table class="table">
                                 <thead>
@@ -120,6 +120,19 @@
                                 </tbody>
                             </table>
                             <h4>Четврта Година</h4>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Година</th>
+                                    <th>Покушај</th>
+                                    <th>Школарина</th>
+                                    <th>Уписан</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                        @endif
+                        @if($godina->godina == 1 && $godina->pokusaj == 1 && $kandidat->tipStudija_id == 2)
+                            <h4>Мастер студије</h4>
                             <table class="table">
                                 <thead>
                                 <tr>

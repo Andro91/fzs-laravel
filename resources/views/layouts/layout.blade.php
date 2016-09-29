@@ -35,7 +35,7 @@
                 <a class="navbar-brand" href="{{ url ('') }}"> Факултет за спорт</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="{{$putanja}}/pretraga">Претрага</a></li>
+                <li><a href="{{$putanja}}/pretraga"><span class="fa fa-search"></span><b> Претрага</b></a></li>
             </ul>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
