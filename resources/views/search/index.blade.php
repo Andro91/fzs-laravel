@@ -24,17 +24,16 @@
         @endif
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Претрага кандидата</h3>
+                <h3 class="panel-title">Критеријум за претрагу</h3>
             </div>
             <div class="panel-body">
                 <form role="form" method="post" action="{{ url('/pretraga') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="search">Претрага</label>
                         <input type="text" class="form-control" id="pretraga" name="pretraga">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Претрага">
+                        <input type="submit" class="btn btn-primary" value="Тражи">
                     </div>
                 </form>
             </div>

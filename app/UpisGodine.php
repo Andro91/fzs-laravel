@@ -10,9 +10,14 @@ class UpisGodine extends Model
 
     public static function registrujKandidata($id, $uplata)
     {
-        //provera da li je kandidat vec upisan, da bi se izbeglo dupliranje zapisa
-        $vecUpisan = UpisGodine::where(['kandidat_id' => $id])->get();
         $kandidat = Kandidat::find($id);
+
+        //provera da li je kandidat vec upisan, da bi se izbeglo dupliranje zapisa
+
+        $vecUpisan = UpisGodine::where([
+            'kandidat_id' => $id,
+            'tipStudija_id' => $kandidat->tipStudija_id])->get();
+
         if(count($vecUpisan) > 0){
             return;
         }
@@ -23,6 +28,7 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 1;
             $upis->pokusaj = 1;
+            $upis->tipStudija_id = 1;
             $upis->skolarina = $kandidat->godinaStudija_id == 1 ? $uplata : 0;
             $upis->upisan = 0;
             $upis->save();
@@ -31,6 +37,7 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 2;
             $upis->pokusaj = 1;
+            $upis->tipStudija_id = 1;
             $upis->skolarina = $kandidat->godinaStudija_id == 2 ? $uplata : 0;
             $upis->upisan = 0;
             $upis->save();
@@ -39,6 +46,7 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 3;
             $upis->pokusaj = 1;
+            $upis->tipStudija_id = 1;
             $upis->skolarina = $kandidat->godinaStudija_id == 3 ? $uplata : 0;
             $upis->upisan = 0;
             $upis->save();
@@ -47,6 +55,7 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 4;
             $upis->pokusaj = 1;
+            $upis->tipStudija_id = 1;
             $upis->skolarina = $kandidat->godinaStudija_id == 4 ? $uplata : 0;
             $upis->upisan = 0;
             $upis->save();
@@ -57,6 +66,7 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 1;
             $upis->pokusaj = 1;
+            $upis->tipStudija_id = 2;
             $upis->skolarina = $uplata;
             $upis->upisan = 0;
             $upis->save();

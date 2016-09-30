@@ -17,6 +17,7 @@ class CreateUpisGodineTable extends Migration
             $table->integer('kandidat_id');
             $table->integer('godina');
             $table->integer('pokusaj');
+            $table->integer('tipStudija_id');
             $table->boolean('skolarina');
             $table->boolean('upisan');
             $table->timestamps();

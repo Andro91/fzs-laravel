@@ -64,14 +64,20 @@ class StudentController extends Controller
         return "Дошло је до неочекиване грешке.";
     }
 
+    //Status studenta
     public function upisStudenta($id)
     {
         $kandidat = Kandidat::find($id);
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id])->orderBy('godina','ASC')->orderBy('pokusaj', 'ASC')->get();
+        $studijskiProgram = StudijskiProgram::where(['tipStudija_id' => 2])->get();
+        $osnovneStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 1])
+            ->orderBy('godina','ASC')
+            ->orderBy('pokusaj', 'ASC')
+            ->get();
+        $masterStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 2])->get();
 
-        return view('upis.index')
-            ->with('upisaneGodine', $upisaneGodine)
-            ->with('kandidat', $kandidat);
+        $doktorskeStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 3])->get();
+
+        return view('upis.index', compact('kandidat', 'osnovneStudije', 'masterStudije', 'doktorskeStudije', 'studijskiProgram'));
     }
 
     public function uplataSkolarine($id, Request $request)
@@ -115,6 +121,7 @@ class StudentController extends Controller
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = $request->godina;
+        $upis->tipStudija_id = $request->tipStudijaId;
         $upis->pokusaj = $poslednjiPokusaj + 1;
         $upis->skolarina = 0;
         $upis->upisan = 0;
@@ -390,6 +397,23 @@ class StudentController extends Controller
             'godinaStudija' => $predmetProgram->godinaStudija_id,
             'tipStudija' => $predmetProgram->tipStudija_id,
             'profesori' => $stringProfesori];
+    }
+
+    public function upisMasterStudija(Request $request)
+    {
+        //dd($request->all());
+        $kandidat = Kandidat::find($request->kandidat_id);
+        if(!empty($kandidat)){
+            if($kandidat->tipStudija_id == 1){
+                $kandidat->tipStudija_id = 2;
+                $kandidat->studijskiProgram_id = $request->StudijskiProgram;
+                $kandidat->save();
+                UpisGodine::registrujKandidata($kandidat->id, 0);
+                return redirect("/student/{$kandidat->id}/upis");
+            }
+            return Redirect::back();
+        }
+        return Redirect::back();
     }
 
 }
