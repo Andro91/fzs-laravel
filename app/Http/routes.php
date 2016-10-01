@@ -304,6 +304,7 @@ Route::post('izvestaji/zapisnikStampa/{zapisnik}', 'IzvestajiController@zapisnik
 Route::post('izvestaji/spisakPoGodini', 'IzvestajiController@spisakPoGodini');
 Route::post('izvestaji/spisakPoProgramu', 'IzvestajiController@spisakPoProgramu');
 Route::post('izvestaji/spisakPoSlavama', 'IzvestajiController@spisakPoSlavama');
+Route::post('izvestaji/spisakPoProfesorima', 'IzvestajiController@spisakPoProfesorima');
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

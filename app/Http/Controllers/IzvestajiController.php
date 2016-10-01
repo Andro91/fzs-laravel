@@ -10,6 +10,7 @@ use App\KrsnaSlava;
 use App\PolozeniIspiti;
 use App\Predmet;
 use App\Profesor;
+use App\ProfesorPredmet;
 use App\SkolskaGodUpisa;
 use App\StudijskiProgram;
 use App\TipStudija;
@@ -214,7 +215,7 @@ class IzvestajiController extends Controller
         PDF::Output('Spisak.pdf');
     }
 
-    public function spisakPoSlavama(Request $request)
+    public function spisakPoSlavama()
     {
         try {
             $kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
@@ -233,6 +234,33 @@ class IzvestajiController extends Controller
         }
 
         $view = View::make('izvestaji.spisakPoSlavama')->with('kandidat', $kandidat)->with('slave', $slave)->with('uslov', $picks);
+
+        $contents = $view->render();
+        PDF::SetTitle('Списак студената');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 12);
+        PDF::WriteHtml($contents);
+        PDF::Output('Spisak.pdf');
+    }
+
+    public function spisakPoProfesorima()
+    {
+        try {
+            $profesori = DB::table('profesor')
+                ->join('profesor_predmet', 'profesor.id', '=', 'profesor_predmet.profesor_id')
+                ->select('profesor.*')->distinct('profesor.id')->groupBy('profesor.id')
+                ->get();
+
+            //return $profesori;
+            //$profesori = Profesor::all();
+            $predmeti = Predmet::all();
+            $veza = ProfesorPredmet::all();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $view = View::make('izvestaji.predmetiPoProfesorima')->with('profesori', $profesori)->with('predmeti', $predmeti)->with('veza', $veza);
 
         $contents = $view->render();
         PDF::SetTitle('Списак студената');

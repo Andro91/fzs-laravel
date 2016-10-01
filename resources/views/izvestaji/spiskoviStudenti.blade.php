@@ -155,6 +155,21 @@
                 </div>
             </form>
 
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoProfesorima/') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак предмета по професорима</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
         </div>
 
         <div class="col-sm-12 col-lg-4">
