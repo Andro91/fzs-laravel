@@ -13,22 +13,33 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;"><b>Назив</b>
+                <th style="border: 1px solid black;"><b>Р. бр.</b>
                 </th>
-                <th style="border: 1px solid black;"><b>ЕСПБ</b>
+                <th style="border: 1px solid black; width: 200px;"><b>Назив</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Вежбе</b>
+                <th style="border: 1px solid black; width: 15px;">Семестар
                 </th>
-                <th style="border: 1px solid black;"><b>Предавања</b>
+                <th style="border: 1px solid black;"><b>Тип</b>
+                </th>
+                <th style="border: 1px solid black; width: 50px;"><b>Вежбе</b>
+                </th>
+                <th style="border: 1px solid black; width: 75px;"><b>Предавања</b>
+                </th>
+                <th style="border: 1px solid black; width: 50px;"><b>ЕСПБ</b>
                 </th>
             </tr>
             </thead>
+            <?php $a = 0;?>
             @foreach($predmeti as $item)
+                <?php $a++; ?>
                 <tr>
-                    <td style="border: 1px solid black;">{{$item->predmet->naziv}}</td>
-                    <td style="border: 1px solid black;">{{$item->espb}}</td>
-                    <td style="border: 1px solid black;">{{$item->vezbe}}</td>
-                    <td style="border: 1px solid black;">{{$item->predavanja}}</td>
+                    <td style="border: 1px solid black;">{{$a}}</td>
+                    <td style="border: 1px solid black; width: 200px;">{{$item->predmet->naziv}}</td>
+                    <td style="border: 1px solid black; width: 15px;">{{$item->semestar}}</td>
+                    <td style="border: 1px solid black;">{{$item->tipPredmeta->naziv}}</td>
+                    <td style="border: 1px solid black; width: 50px;">{{$item->vezbe}}</td>
+                    <td style="border: 1px solid black; width: 75px;">{{$item->predavanja}}</td>
+                    <td style="border: 1px solid black; width: 50px;">{{$item->espb}}</td>
                 </tr>
 
             @endforeach

@@ -7,10 +7,9 @@
     <h1 style="padding-bottom: 100px;">Списак студената на смеру {{$program->naziv}}</h1>
     <br/>
     <br/>
-    @foreach($godina as $godina)
-        <h1 style="padding-bottom: 100px;">{{$godina->naziv}} година</h1>
-        @foreach($uslov as $test)
-            @if($test->studijskiProgram_id == $program->id && $test->godinaStudija_id == $godina->id)
+
+
+
 
                 <label style="padding-bottom: 10px;"></label>
                 <br/>
@@ -21,26 +20,23 @@
                         <th style="border: 1px solid black;">Р.бр.</th>
                         <th style="border: 1px solid black;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Име</b>
+                        <th style="border: 1px solid black;"><b>Име и презиме</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Презиме</b>
-                        </th>
-                        <th style="border: 1px solid black;"><b>Број бодова</b>
+                        <th style="border: 1px solid black; width: 50px;"><b>Година</b>
                         </th>
                     </tr>
                     </thead>
                     <?php $a = 0; $b = 0; ?>
                     @foreach($kandidat as $index => $item)
-                        @if($item->godinaStudija_id == $godina->id)
+
                             <?php $a++; ?>
                             <tr>
                                 <td style="border: 1px solid black;">{{$a}}</td>
                                 <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                                <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
-                                <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
-                                <td style="border: 1px solid black;">{{$item->ukupniBrojBodova}}</td>
+                                <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                                <td style="border: 1px solid black; text-align: right; width: 50px;">{{$item->godina}}</td>
                             </tr>
-                        @endif
+
 
                     @endforeach
                 </table>
@@ -48,11 +44,11 @@
                 <br/>
                 <br/>
 
-            @endif
-                @endforeach
+
+
 
 </div>
-@endforeach
+
 
 
 <br/>

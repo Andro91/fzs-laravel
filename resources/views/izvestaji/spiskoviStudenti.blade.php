@@ -178,16 +178,6 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group pull-left" style="width: 30%;  margin-right: 2%">
-                            <label for="godina">Година студија:</label>
-                            <select class="form-control" id="godina" name="godina">
-                                @foreach($godinaPlan as $godina)
-                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 30%;  margin-right: 2%">
                             <label for="skolskaGodina_id">Школска година:</label>
                             <select class="form-control" id="skolskaGodina_id" name="godina">
                                 @foreach($skolskaGodina as $godina)
