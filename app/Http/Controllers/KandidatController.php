@@ -1137,4 +1137,10 @@ class KandidatController extends Controller
         }
         return redirect('/master/');
     }
+
+    public function registracijaKandidata($id)
+    {
+        UpisGodine::registrujKandidata($id,0);
+        return redirect('/kandidat/');
+    }
 }

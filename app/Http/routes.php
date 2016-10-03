@@ -317,3 +317,5 @@ Route::get('/test3', 'KandidatController@test3');
 Route::post('/testPost', 'KandidatController@testPost');
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/regk/{id}', 'KandidatController@registracijaKandidata');
