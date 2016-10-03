@@ -121,7 +121,7 @@ class KandidatController extends Controller
         if ($request->page == 1) {
 
             $this->validate($request, [
-                'JMBG' => 'unique:kandidat|max:13|required',
+                'JMBG' => 'unique:kandidat|required',
             ], $messages);
 
             $kandidat = new Kandidat();
