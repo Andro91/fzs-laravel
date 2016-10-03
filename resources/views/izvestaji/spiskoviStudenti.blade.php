@@ -76,11 +76,11 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="form-group col-lg-6">
+                            <div class="form-group col-lg-12">
                                 <label for="godina">Програм:</label>
                                 <select class="form-control" id="program" name="program">
                                     @foreach($programS as $programS)
-                                        <option value="{{$programS->id}}">{{$programS->naziv}}</option>
+                                        <option value="{{$programS->id}}">{{$programS->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -183,7 +183,7 @@
                     <div class="panel-body">
                         <div class="form-group pull-left" style="width: 70%;  margin-right: 2%">
                             <label for="program">Студијски програм:</label>
-                            <select class="form-control" id="program" name="program">
+                            <select style="width:250px;" class="form-control" id="program" name="program">
                                 @foreach($programPlan as $program)
                                     <option value="{{$program->id}}">{{$program->naziv}}
                                         - {{$program->tipStudija->skrNaziv}}</option>
@@ -194,7 +194,7 @@
                     <div class="panel-body">
                         <div class="form-group pull-left" style="width: 30%;  margin-right: 2%">
                             <label for="skolskaGodina_id">Школска година:</label>
-                            <select class="form-control" id="skolskaGodina_id" name="godina">
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
                                 @foreach($skolskaGodina as $godina)
                                     <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                 @endforeach
