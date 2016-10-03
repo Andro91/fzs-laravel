@@ -77,8 +77,9 @@ class IzvestajiController extends Controller
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->where(['upis_godine.upisan' => 1])
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
-                ->get();
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')->get();
+            //dd($kandidat);
+            //dd($kandidat->where('kandidat.tipStudija_id', '2')->get());
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
             //$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('tipStudija_id')->select('tipStudija_id')->groupBy('tipStudija_id')->get();
@@ -141,10 +142,12 @@ class IzvestajiController extends Controller
 
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                ->where(['upis_godine.upisan' => 1])->where(['kandidat.studijskiProgram_id' => $request->program])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->where(['upis_godine.upisan' => 1])
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
-                ->get();
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')->get();
+                //->get();
+
+            //dd($kandidat);
 
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1, 'studijskiProgram_id' => $request->program])->get();
             /*$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
