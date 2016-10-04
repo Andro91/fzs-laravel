@@ -16,7 +16,7 @@ use App\SkolskaGodUpisa;
 use App\Sport;
 use App\SportskoAngazovanje;
 use App\SrednjeSkoleFakulteti;
-use App\StatusKandidata;
+use App\StatusGodine;
 use App\StatusStudiranja;
 use App\StudijskiProgram;
 use App\TipStudija;
@@ -108,10 +108,6 @@ class KandidatController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-
-//        dd($hasFile . " " . $isValid . " " . $mime . " " . $size);
-
         $messages = [
             'required' => ':attribute је обавезно поље.',
             'JMBG.unique' => 'ЈМБГ мора бити уникатан. Већ постоји такав запис у бази.',
@@ -189,8 +185,6 @@ class KandidatController extends Controller
             }
 
             $insertedId = $kandidat->id;
-
-            UpisGodine::registrujKandidata($insertedId, $kandidat->uplata);
 
             $mestoZavrseneSkoleFakulteta = Opstina::all();
             $opstiUspehSrednjaSkola = OpstiUspeh::all();
@@ -364,7 +358,7 @@ class KandidatController extends Controller
         $sport = Sport::all();
         $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '1')->get();
         $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
-        $statusKandidata = StatusKandidata::all();
+        $statusKandidata = StatusGodine::all();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
@@ -633,7 +627,7 @@ class KandidatController extends Controller
 
         if ($saved) {
             Session::flash('flash-success', 'update');
-            if(!empty($request->submitstay)){
+            if (!empty($request->submitstay)) {
                 return redirect("/kandidat/{$kandidat->id}/edit");
             }
             if ($kandidat->statusUpisa_id == 1) {
@@ -861,7 +855,7 @@ class KandidatController extends Controller
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
-        $statusKandidata = StatusKandidata::all();
+        $statusKandidata = StatusGodine::all();
 
         $dokumentaMaster = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 
@@ -981,7 +975,7 @@ class KandidatController extends Controller
 
         if ($saved) {
             Session::flash('flash-success', 'update');
-            if(!empty($request->submitstay)){
+            if (!empty($request->submitstay)) {
                 return redirect("/master/{$kandidat->id}/edit");
             }
             if ($kandidat->statusUpisa_id == 1) {
@@ -1031,47 +1025,45 @@ class KandidatController extends Controller
 
     public function upisKandidata($id)
     {
+
         $kandidat = Kandidat::find($id);
+        UpisGodine::registrujKandidata($id);
 
-        if ($kandidat->uplata == 0) {
-            Session::flash('flash-error', 'upis');
-            if ($kandidat->tipStudija_id == 1) {
-                return redirect('/kandidat/');
-            } else if ($kandidat->tipStudija_id == 2) {
-                return redirect('/master/');
-            }
-        } else {
-
-            if ($kandidat->tipStudija_id == 1) {
-                $checkOne = UpisGodine::uplatiGodinu($id, $kandidat->godinaStudija_id);
-                $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
-                //Ako uplata ili upis ne prodju, radi se prekid i vraca se greska
-                if (!$checkOne || !$checkTwo) {
-                    Session::flash('flash-error', 'upis');
-                    return redirect('/kandidat/');
-                }
-            } else if ($kandidat->tipStudija_id == 2) {
-                $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id);
-                if (!$checkTwo) {
-                    Session::flash('flash-error', 'upis');
-                    return redirect('/master/');
-                }
-                UpisGodine::generisiBrojIndeksa($kandidat->id);
-            }
-
-            $kandidat->statusUpisa_id = 1;
-            $kandidat->datumStatusa = Carbon::now();
-            $saved = $kandidat->save();
-            if ($saved) {
-                Session::flash('flash-success', 'upis');
-            } else {
+        if ($kandidat->tipStudija_id == 1) {
+            $check = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id, $kandidat->skolskaGodinaUpisa_id);
+            //Ako uplata ili upis ne prodju, radi se prekid i vraca se greska
+            if (!$check) {
                 Session::flash('flash-error', 'upis');
-            }
-            if ($kandidat->tipStudija_id == 1) {
                 return redirect('/kandidat/');
-            } else if ($kandidat->tipStudija_id == 2) {
+            }
+        } else if ($kandidat->tipStudija_id == 2) {
+            $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id, $kandidat->skolskaGodinaUpisa_id);
+            if (!$checkTwo) {
+                Session::flash('flash-error', 'upis');
                 return redirect('/master/');
             }
+            UpisGodine::generisiBrojIndeksa($kandidat->id);
+        } else if ($kandidat->tipStudija_id == 3) {
+            $checkTwo = UpisGodine::upisiGodinu($id, $kandidat->godinaStudija_id, $kandidat->skolskaGodinaUpisa_id);
+            if (!$checkTwo) {
+                Session::flash('flash-error', 'upis');
+                return redirect('/master/');
+            }
+            UpisGodine::generisiBrojIndeksa($kandidat->id);
+        }
+
+        $kandidat->statusUpisa_id = 1;
+        $kandidat->datumStatusa = Carbon::now();
+        $saved = $kandidat->save();
+        if ($saved) {
+            Session::flash('flash-success', 'upis');
+        } else {
+            Session::flash('flash-error', 'upis');
+        }
+        if ($kandidat->tipStudija_id == 1) {
+            return redirect('/kandidat/');
+        } else if ($kandidat->tipStudija_id == 2) {
+            return redirect('/master/');
         }
     }
 
@@ -1094,7 +1086,7 @@ class KandidatController extends Controller
 
             $kandidat = Kandidat::find($kandidatId);
 
-            $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id);
+            $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id, $kandidat->skolskaGodinaUpisa_id);
 
             if ($returnValue) {
                 $kandidat->statusUpisa_id = 1;
@@ -1140,7 +1132,7 @@ class KandidatController extends Controller
 
     public function registracijaKandidata($id)
     {
-        UpisGodine::registrujKandidata($id,0);
+        UpisGodine::registrujKandidata($id, 0);
         return redirect('/kandidat/');
     }
 }

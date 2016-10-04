@@ -48,7 +48,6 @@
                 <th>Презиме</th>
                 <th>ЈМБГ</th>
                 <th>Година студија</th>
-                <th>Школарина</th>
                 <th>Измена</th>
                 </thead>
                 <tbody>
@@ -60,13 +59,6 @@
                         <td>{{$kandidat->prezimeKandidata}}</td>
                         <td>{{$kandidat->jmbg}}</td>
                         <td>{{$kandidat->godinaStudija->nazivRimski}}</td>
-                        <td style="vertical-align: middle;">
-                            <div class="text-left">
-                                @if($kandidat->uplata == 1) <span class='label label-success'>Уплаћена</span>
-                                @else <span class='label label-danger'>Није уплаћена</span>
-                                @endif
-                            </div>
-                        </td>
                         <td>
                             <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
                                 <div title="Измена">
@@ -79,8 +71,9 @@
                                     <span class="fa fa-trash"></span>
                                 </div>
                             </a>
-                            <a class="btn btn-success btn-sm" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis"
-                                    {{ $kandidat->uplata ? '' : 'disabled=disabled' }}>Упис кандидата</a>
+                            <a class="btn btn-success btn-sm" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/upis">
+                                Упис кандидата
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -131,7 +124,7 @@
             $('#tabela').dataTable({
                 "aaSorting": [],
                 "columnDefs": [
-                    {"orderable": false, "targets": [0, 6]}
+                    {"orderable": false, "targets": [0, 5]}
                 ],
                 "oLanguage": {
                     "sProcessing": "Процесирање у току...",

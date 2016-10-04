@@ -2,21 +2,27 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class UpisGodine extends Model
 {
     protected $table = 'upis_godine';
 
-    public static function registrujKandidata($id, $uplata)
+    public function status()
+    {
+        return $this->belongsTo(StatusGodine::class, 'statusGodine_id');
+    }
+
+    public static function registrujKandidata($id)
     {
         $kandidat = Kandidat::find($id);
 
         //provera da li je kandidat vec upisan, da bi se izbeglo dupliranje zapisa
-
         $vecUpisan = UpisGodine::where([
             'kandidat_id' => $id,
-            'tipStudija_id' => $kandidat->tipStudija_id])->get();
+            'tipStudija_id' => $kandidat->tipStudija_id])
+            ->get();
 
         if(count($vecUpisan) > 0){
             return;
@@ -24,41 +30,75 @@ class UpisGodine extends Model
 
         if($kandidat->tipStudija_id == 1)
         {
-            $upis = new UpisGodine();
-            $upis->kandidat_id = $id;
-            $upis->godina = 1;
-            $upis->pokusaj = 1;
-            $upis->tipStudija_id = 1;
-            $upis->skolarina = $kandidat->godinaStudija_id == 1 ? $uplata : 0;
-            $upis->upisan = 0;
-            $upis->save();
+//            \DB::transaction(function () use($id, $kandidat) {
+                $upis = new UpisGodine();
+                $upis->kandidat_id = $id;
+                $upis->godina = 1;
+                $upis->pokusaj = 1;
+                $upis->tipStudija_id = $kandidat->tipStudija_id;
+                $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+                if($kandidat->godinaStudija_id == 1){
+                    $upis->statusGodine_id = 1;
+                    $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+                    $upis->datumUpisa = Carbon::now();
+                }else{
+                    $upis->statusGodine_id = 3;
+                    $upis->skolskaGodina_id = null;
+                    $upis->datumUpisa = null;
+                }
+                $upis->save();
 
-            $upis = new UpisGodine();
-            $upis->kandidat_id = $id;
-            $upis->godina = 2;
-            $upis->pokusaj = 1;
-            $upis->tipStudija_id = 1;
-            $upis->skolarina = $kandidat->godinaStudija_id == 2 ? $uplata : 0;
-            $upis->upisan = 0;
-            $upis->save();
+                $upis = new UpisGodine();
+                $upis->kandidat_id = $id;
+                $upis->godina = 2;
+                $upis->pokusaj = 1;
+                $upis->tipStudija_id = $kandidat->tipStudija_id;
+                $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+                if($kandidat->godinaStudija_id == 2){
+                    $upis->statusGodine_id = 1;
+                    $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+                    $upis->datumUpisa = Carbon::now();
+                }else{
+                    $upis->statusGodine_id = 3;
+                    $upis->skolskaGodina_id = null;
+                    $upis->datumUpisa = null;
+                }
+                $upis->save();
 
-            $upis = new UpisGodine();
-            $upis->kandidat_id = $id;
-            $upis->godina = 3;
-            $upis->pokusaj = 1;
-            $upis->tipStudija_id = 1;
-            $upis->skolarina = $kandidat->godinaStudija_id == 3 ? $uplata : 0;
-            $upis->upisan = 0;
-            $upis->save();
+                $upis = new UpisGodine();
+                $upis->kandidat_id = $id;
+                $upis->godina = 3;
+                $upis->pokusaj = 1;
+                $upis->tipStudija_id = $kandidat->tipStudija_id;
+                $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+                if($kandidat->godinaStudija_id == 3){
+                    $upis->statusGodine_id = 1;
+                    $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+                    $upis->datumUpisa = Carbon::now();
+                }else{
+                    $upis->statusGodine_id = 3;
+                    $upis->skolskaGodina_id = null;
+                    $upis->datumUpisa = null;
+                }
+                $upis->save();
 
-            $upis = new UpisGodine();
-            $upis->kandidat_id = $id;
-            $upis->godina = 4;
-            $upis->pokusaj = 1;
-            $upis->tipStudija_id = 1;
-            $upis->skolarina = $kandidat->godinaStudija_id == 4 ? $uplata : 0;
-            $upis->upisan = 0;
-            $upis->save();
+                $upis = new UpisGodine();
+                $upis->kandidat_id = $id;
+                $upis->godina = 4;
+                $upis->pokusaj = 1;
+                $upis->tipStudija_id = $kandidat->tipStudija_id;
+                $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+                if($kandidat->godinaStudija_id == 4){
+                    $upis->statusGodine_id = 1;
+                    $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+                    $upis->datumUpisa = Carbon::now();
+                }else{
+                    $upis->statusGodine_id = 3;
+                    $upis->skolskaGodina_id = null;
+                    $upis->datumUpisa = null;
+                }
+                $upis->save();
+//            });
         }
         else if($kandidat->tipStudija_id == 2)
         {
@@ -66,36 +106,89 @@ class UpisGodine extends Model
             $upis->kandidat_id = $id;
             $upis->godina = 1;
             $upis->pokusaj = 1;
-            $upis->tipStudija_id = 2;
-            $upis->skolarina = $uplata;
-            $upis->upisan = 0;
+            $upis->tipStudija_id = $kandidat->tipStudija_id;
+            $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+            $upis->statusGodine_id = 1;
+            $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+            $upis->datumUpisa = null;
+            $upis->save();
+        }else if($kandidat->tipStudija_id == 3)
+        {
+            $upis = new UpisGodine();
+            $upis->kandidat_id = $id;
+            $upis->godina = 1;
+            $upis->pokusaj = 1;
+            $upis->tipStudija_id = $kandidat->tipStudija_id;
+            $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+            $upis->statusGodine_id = 1;
+            $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+            $upis->datumUpisa = null;
             $upis->save();
         }
 
     }
 
-    public static function uplatiGodinu($id, $godina)
+    //Upis master studija za postojećeg kandidata
+    public static function upisMasterPostojeciKandidat($kandidatId,$studijskiProgramId)
     {
-        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
-        $upis->skolarina = 1;
-        $saved = $upis->save();
-
-        if($saved){
-            return true;
-        }else{
+        $kandidat = Kandidat::find($kandidatId);
+        if(!empty($kandidat)){
+            if($kandidat->tipStudija_id == 1){
+                $kandidat->tipStudija_id = 2;
+                $kandidat->studijskiProgram_id = $studijskiProgramId;
+                $kandidat->save();
+                UpisGodine::registrujKandidata($kandidat->id);
+                return true;
+            }
             return false;
         }
-
+        return false;
     }
 
+//    public static function uplatiGodinu($id, $godina)
+//    {
+//        $kandidat = Kandidat::find($id);
+//        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
+//        $upis->kandidat_id = $id;
+//        $upis->godina = 1;
+//        $upis->pokusaj = 1;
+//        $upis->tipStudija_id = $kandidat->tipStudija_id;
+//        $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
+//        $upis->statusGodine_id = 1;
+//        $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
+//        $upis->datumUpisa = null;
+//        $saved = $upis->save();
+//
+//        if($saved){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//
+//    }
 
-    public static function upisiGodinu($id, $godina)
+
+
+    public static function upisiGodinu($id, $godina, $skolskaGodinaUpisaId)
     {
-        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
-        $upis->upisan = 1;
-        $saved1 = $upis->save();
-
         $kandidat = Kandidat::find($id);
+        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
+
+        //Ako nije prva godina, staramo se da prethodnu godinu obelezimo kao zavrsenu
+        if($godina > 1 && !empty($kandidat->brojIndeksa)){
+            $max = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->max('pokusaj');
+            $prethodnaGodina = UpisGodine::where([
+                'kandidat_id' => $id,
+                'godina' => $godina-1,
+                'pokusaj' => $max,
+                'tipStudija_id' => $kandidat->tipStudija_id])->first();
+            $prethodnaGodina->statusGodine_id = 5;
+            $ads = $prethodnaGodina->save();
+        }
+        $upis->statusGodine_id = 1;
+        $upis->skolskaGodina_id = $skolskaGodinaUpisaId;
+        $upis->datumUpisa = Carbon::now();
+        $saved1 = $upis->save();
 
         if($saved1){
             $kandidat->godinaStudija_id = $godina;

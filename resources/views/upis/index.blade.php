@@ -111,8 +111,7 @@
                             <thead>
                             <tr>
                                 <th>Година</th>
-                                <th>Школарина</th>
-                                <th>Уписан</th>
+                                <th>Статус</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -120,33 +119,26 @@
                                 <tr @if($godina->pokusaj > 1) class="warning" @else class="info" @endif>
                                     <td>{{ $godina->godina }}</td>
                                     <td>
-                                        @if($godina->skolarina == 1)
-                                            <span class='label label-success'>Уплаћена</span>
-                                        @else
-                                            <span class='label label-danger'>Није уплаћена</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($godina->upisan == 1)
+                                        @if($godina->statusGodine_id == 1)
                                             <span class='label label-success'>Уписан</span>
                                         @else
                                             <span class='label label-danger'>Није уписан</span>
                                         @endif
                                     </td>
                                     <td>
-                                        @if($godina->skolarina == 1)
-                                            <a class="btn btn-danger"
-                                               href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUplatu?upisId={{ $godina->id }}">
-                                                <i class="fa fa-ban"></i> Поништи уплату
-                                            </a>
-                                        @else
-                                            <a class="btn btn-primary"
-                                               href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уплатиo
-                                                школарину
-                                            </a>
-                                        @endif
+                                        {{--@if($godina->skolarina == 1)--}}
+                                            {{--<a class="btn btn-danger"--}}
+                                               {{--href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUplatu?upisId={{ $godina->id }}">--}}
+                                                {{--<i class="fa fa-ban"></i> Поништи уплату--}}
+                                            {{--</a>--}}
+                                        {{--@else--}}
+                                            {{--<a class="btn btn-primary"--}}
+                                               {{--href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уплатиo--}}
+                                                {{--школарину--}}
+                                            {{--</a>--}}
+                                        {{--@endif--}}
 
-                                        @if($godina->upisan == 1)
+                                        @if($godina->statusGodine_id == 1)
                                             <a class="btn btn-danger"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                                 <i class="fa fa-ban"></i> Поништи упис
@@ -182,8 +174,8 @@
                         <tr>
                             <th>Година</th>
                             <th>Покушај</th>
-                            <th>Школарина</th>
-                            <th>Уписан</th>
+                            <th>Статус</th>
+                            <th>Датум статуса</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -192,33 +184,33 @@
                                 <td>{{ $godina->godina }}</td>
                                 <td>{{ $godina->pokusaj }}</td>
                                 <td>
-                                    @if($godina->skolarina == 1)
-                                        <span class='label label-success'>Уплаћена</span>
-                                    @else
-                                        <span class='label label-danger'>Није уплаћена</span>
+                                    @if($godina->statusGodine_id == 1)
+                                        <span class='label label-success'>{{$godina->status->naziv}}</span>
+                                    @elseif($godina->statusGodine_id == 2)
+                                        <span class='label label-default'>{{$godina->status->naziv}}</span>
+                                    @elseif($godina->statusGodine_id == 3)
+                                        <span class='label label-danger'>{{$godina->status->naziv}}</span>
+                                    @elseif($godina->statusGodine_id == 4)
+                                        <span class='label label-warning'>{{$godina->status->naziv}}</span>
+                                    @elseif($godina->statusGodine_id == 5)
+                                        <span class='label label-info'>{{$godina->status->naziv}}</span>
                                     @endif
                                 </td>
+                                <td>{{ $godina->datumUpisa }}</td>
                                 <td>
-                                    @if($godina->upisan == 1)
-                                        <span class='label label-success'>Уписан</span>
-                                    @else
-                                        <span class='label label-danger'>Није уписан</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($godina->skolarina == 1)
-                                        <a class="btn btn-danger"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUplatu?upisId={{ $godina->id }}">
-                                            <i class="fa fa-ban"></i> Поништи уплату
-                                        </a>
-                                    @else
-                                        <a class="btn btn-primary"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уплатиo
-                                            школарину
-                                        </a>
-                                    @endif
+                                    {{--@if($godina->skolarina == 1)--}}
+                                        {{--<a class="btn btn-danger"--}}
+                                           {{--href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUplatu?upisId={{ $godina->id }}">--}}
+                                            {{--<i class="fa fa-ban"></i> Поништи уплату--}}
+                                        {{--</a>--}}
+                                    {{--@else--}}
+                                        {{--<a class="btn btn-primary"--}}
+                                           {{--href="{{$putanja}}/student/{{ $kandidat->id }}/uplataSkolarine?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уплатиo--}}
+                                            {{--школарину--}}
+                                        {{--</a>--}}
+                                    {{--@endif--}}
 
-                                    @if($godina->upisan == 1)
+                                    @if($godina->statusGodine_id == 1)
                                         <a class="btn btn-danger"
                                            href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                             <i class="fa fa-ban"></i> Поништи упис

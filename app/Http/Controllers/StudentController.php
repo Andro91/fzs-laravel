@@ -95,12 +95,28 @@ class StudentController extends Controller
             Session::flash('flash-error', 'upis');
             return redirect("student/{$id}/upis");
         }
-
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina, 'pokusaj' => $request->pokusaj])->first();
-        $upisaneGodine->upisan = 1;
-        $upisaneGodine->save();
-
         $kandidat = Kandidat::find($id);
+
+        $godina = $request->godina;
+        if($godina > 1){
+            $max = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina-1])->max('pokusaj');
+            $prethodnaGodina = UpisGodine::where([
+                'kandidat_id' => $id,
+                'godina' => $godina-1,
+                'pokusaj' => $max,
+                'tipStudija_id' => $kandidat->tipStudija_id])->first();
+            $prethodnaGodina->statusGodine_id = 5;
+            $prethodnaGodina->save();
+        }
+
+        $upisaneGodine = UpisGodine::where([
+            'kandidat_id' => $id,
+            'godina' => $request->godina,
+            'pokusaj' => $request->pokusaj,
+            'tipStudija_id' => $kandidat->tipStudija_id])->first();
+        $upisaneGodine->statusGodine_id = 1;
+        $upisaneGodine->datumUpisa = Carbon::now();
+        $upisaneGodine->save();
 
         $kandidat->godinaStudija_id = $request->godina;
 
@@ -116,18 +132,20 @@ class StudentController extends Controller
             return redirect("student/{$id}/upis");
         }
 
-        $poslednjiPokusaj = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina])->max('pokusaj');
+        $kandidat = Kandidat::find($id);
+
+        $poslednjiPokusaj = UpisGodine::where([
+            'kandidat_id' => $id,
+            'godina' => $request->godina,
+            'tipStudija_id' => $kandidat->tipStudija_id])->max('pokusaj');
 
         $upis = new UpisGodine();
         $upis->kandidat_id = $id;
         $upis->godina = $request->godina;
         $upis->tipStudija_id = $request->tipStudijaId;
         $upis->pokusaj = $poslednjiPokusaj + 1;
-        $upis->skolarina = 0;
-        $upis->upisan = 0;
+        $upis->statusGodine_id = 4;
         $upis->save();
-
-        $kandidat = Kandidat::find($id);
 
         $kandidat->godinaStudija_id = $request->godina;
 
@@ -176,7 +194,7 @@ class StudentController extends Controller
         }
 
         $upis = UpisGodine::find($request->upisId);
-        $upis->upisan = 0;
+        $upis->statusGodine_id = 3;
         $upis->save();
 
         return redirect("student/{$id}/upis");
@@ -208,7 +226,7 @@ class StudentController extends Controller
             $kandidat = Kandidat::find($kandidatId);
             $godina = $kandidat->godinaStudija_id + 1;
 
-            UpisGodine::upisiGodinu($kandidatId, $godina);
+            UpisGodine::upisiGodinu($kandidatId, $godina, $kandidat->skolskaGodinaUpisa_id);
         }
         return redirect('/student/index/1');
     }
@@ -401,19 +419,15 @@ class StudentController extends Controller
 
     public function upisMasterStudija(Request $request)
     {
-        //dd($request->all());
-        $kandidat = Kandidat::find($request->kandidat_id);
-        if(!empty($kandidat)){
-            if($kandidat->tipStudija_id == 1){
-                $kandidat->tipStudija_id = 2;
-                $kandidat->studijskiProgram_id = $request->StudijskiProgram;
-                $kandidat->save();
-                UpisGodine::registrujKandidata($kandidat->id, 0);
-                return redirect("/student/{$kandidat->id}/upis");
-            }
+        $result = UpisGodine::upisMasterPostojeciKandidat($request->kandidat_id,$request->StudijskiProgram);
+        if($result){
+            Session::flash('flash-success', 'upis');
+            return redirect("/student/{$request->kandidat_id}/upis");
+        }else{
+            Session::flash('flash-error', 'upis');
             return Redirect::back();
         }
-        return Redirect::back();
+
     }
 
 }
