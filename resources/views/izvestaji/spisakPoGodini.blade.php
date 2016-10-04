@@ -26,7 +26,7 @@
                                 <tr>
                                     <td style="border: 1px solid black;">{{$a}}</td>
                                     <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                                    <td style="border: 1px solid black;">{{$item->program->naziv}}</td>
+                                    <td style="border: 1px solid black;">{{$item->program}}</td>
                                 </tr>
                             @endif
 
