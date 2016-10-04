@@ -288,7 +288,7 @@ Route::get('izvestaji/spisakPoSmerovima', 'IzvestajiController@spisakPoSmerovima
 Route::get('/izvestaji/spiskoviStudenti', 'IzvestajiController@spiskoviStudenti');
 Route::post('izvestaji/spisakZaSmer', 'IzvestajiController@spisakZaSmer');
 Route::get('izvestaji/potvrdeStudent/{student}', 'IzvestajiController@potvrdeStudent');
-Route::get('izvestaji/spisakPoSmerovimaAktivni', 'IzvestajiController@spisakPoSmerovimaAktivni');
+Route::post('izvestaji/spisakPoSmerovimaAktivni', 'IzvestajiController@spisakPoSmerovimaAktivni');
 Route::post('izvestaji/spisakPoPredmetima', 'IzvestajiController@spisakPoPredmetima');
 Route::get('izvestaji/{student}/diplomaUnos', 'IzvestajiController@diplomaUnos');
 Route::post('izvestaji/diplomaAdd', 'IzvestajiController@diplomaAdd');

@@ -18,22 +18,22 @@
                 <thead>
                 <tr>
                     <th style="border: 1px solid black;">
-                        <b>Име</b>
+                        <b>Име и презиме</b>
                     </th>
                     <th style="border: 1px solid black;">
-                        <b>Презиме</b>
+                        <b>Мејл</b>
                     </th>
                     <th style="border: 1px solid black;">
-                        <b>Број бодова</b>
+                        <b>Година</b>
                     </th>
                 </tr>
                 </thead>
                 @foreach($studenti as $item)
-                    @if($item->program->id == $program->program->id)
+                    @if($item->program_id == $program->program->id)
                         <tr>
-                            <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
-                            <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
-                            <td style="border: 1px solid black;">{{$item->brojBodovaTest}}</td>
+                            <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;">{{$item->email}}</td>
+                            <td style="border: 1px solid black;">{{$item->godina}}</td>
                         </tr>
                     @endif
                 @endforeach

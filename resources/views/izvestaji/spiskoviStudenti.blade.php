@@ -32,12 +32,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="skolskaGodina_id">Школска година:</label>
+                                <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                    @foreach($skolskaGodina6 as $bla)
+                                        <option value="{{$bla->id}}">{{$bla->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Штампај</button>
-                            <a class="btn btn-primary" target="_blank"
-                               href="{{$putanja}}/izvestaji/spisakPoSmerovimaAktivni">Сви</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Штампај</button>
                     </div>
                 </div>
             </form>
@@ -59,6 +63,15 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="skolskaGodina_id">Школска година:</label>
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="skolskaGodina">
+                                @foreach($skolskaGodina3 as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Штампај</button>
@@ -80,10 +93,20 @@
                                 <label for="godina">Програм:</label>
                                 <select class="form-control" id="program" name="program">
                                     @foreach($programS as $programS)
-                                        <option value="{{$programS->id}}">{{$programS->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
+                                        <option value="{{$programS->id}}">{{$programS->naziv}}
+                                            - {{$program->tipStudija->skrNaziv}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="skolskaGodina_id">Школска година:</label>
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                @foreach($skolskaGodina4 as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Штампај</button>
@@ -111,6 +134,16 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="skolskaGodina_id">Школска година:</label>
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                @foreach($skolskaGodina7 as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
@@ -148,9 +181,20 @@
                         <h3 class="panel-title">Списак студената по славама</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+
+                        <div class="form-group">
+                            <label for="skolskaGodina_id">Школска година:</label>
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                @foreach($skolskaGodina8 as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
+
                     </div>
                 </div>
             </form>
@@ -181,7 +225,7 @@
                         <h3 class="panel-title">Наставни план</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 70%;  margin-right: 2%">
+                        <div class="form-group">
                             <label for="program">Студијски програм:</label>
                             <select style="width:250px;" class="form-control" id="program" name="program">
                                 @foreach($programPlan as $program)
@@ -190,9 +234,8 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group pull-left" style="width: 30%;  margin-right: 2%">
+
+                        <div class="form-group">
                             <label for="skolskaGodina_id">Школска година:</label>
                             <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
                                 @foreach($skolskaGodina as $godina)
@@ -200,15 +243,39 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Штампај</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoSmerovimaAktivni') }}">
+                {{csrf_field()}}
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Списак свих активних студената</h3>
                     </div>
                     <div class="panel-body">
+                        <div class="form-group">
+                            <label for="skolskaGodina_id">Школска година:</label>
+                            <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                @foreach($skolskaGodina9 as $godina)
+                                    <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
                             <button type="submit" class="btn btn-primary">Штампај</button>
                         </div>
                     </div>
                 </div>
             </form>
+
         </div>
+
 
     </div>
 
