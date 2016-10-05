@@ -95,6 +95,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/student/{id}/obrisiObnovu', 'StudentController@obrisiObnovuGodine');
     Route::get('/student/{id}/ponistiUplatu', 'StudentController@ponistiUplatu');
     Route::get('/student/{id}/ponistiUpis', 'StudentController@ponistiUpis');
+    Route::get('/student/{id}/izmenaGodine', 'StudentController@izmenaGodine');
+    Route::post('/student/{id}/izmenaGodine', 'StudentController@storeIzmenaGodine');
     Route::get('/student/{id}/status/{statusId}', 'StudentController@promeniStatus');
     Route::get('/student/{id}/upisMasterStudija', 'StudentController@upisMasterStudija');
 

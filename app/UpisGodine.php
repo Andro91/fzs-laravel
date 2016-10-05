@@ -9,6 +9,8 @@ class UpisGodine extends Model
 {
     protected $table = 'upis_godine';
 
+    protected $dates = ['datumUpisa','datumPromene'];
+
     public function status()
     {
         return $this->belongsTo(StatusGodine::class, 'statusGodine_id');

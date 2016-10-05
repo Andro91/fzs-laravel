@@ -10,6 +10,8 @@ use App\PredmetProgram;
 use App\PrijavaIspita;
 use App\Profesor;
 use App\ProfesorPredmet;
+use App\SkolskaGodUpisa;
+use App\StatusGodine;
 use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\TipPrijave;
@@ -139,13 +141,23 @@ class StudentController extends Controller
             'godina' => $request->godina,
             'tipStudija_id' => $kandidat->tipStudija_id])->max('pokusaj');
 
-        $upis = new UpisGodine();
-        $upis->kandidat_id = $id;
-        $upis->godina = $request->godina;
-        $upis->tipStudija_id = $request->tipStudijaId;
-        $upis->pokusaj = $poslednjiPokusaj + 1;
-        $upis->statusGodine_id = 4;
-        $upis->save();
+        $prethodnaGodina = UpisGodine::where([
+            'kandidat_id' => $id,
+            'godina' => $request->godina,
+            'pokusaj' => $poslednjiPokusaj,
+            'tipStudija_id' => $kandidat->tipStudija_id])->first();
+        $prethodnaGodina->statusGodine_id = 4;
+        $prethodnaGodina->datumPromene = Carbon::now();
+        $prethodnaGodina->save();
+
+        $obnovaGodine = new UpisGodine();
+        $obnovaGodine->kandidat_id = $id;
+        $obnovaGodine->godina = $request->godina;
+        $obnovaGodine->tipStudija_id = $request->tipStudijaId;
+        $obnovaGodine->pokusaj = $poslednjiPokusaj + 1;
+        $obnovaGodine->statusGodine_id = 1;
+        $obnovaGodine->datumUpisa = Carbon::now();
+        $obnovaGodine->save();
 
         $kandidat->godinaStudija_id = $request->godina;
 
@@ -428,6 +440,34 @@ class StudentController extends Controller
             return Redirect::back();
         }
 
+    }
+
+    public function izmenaGodine($id)
+    {
+        $upisGodine = UpisGodine::find($id);
+        $statusGodine = StatusGodine::all();
+        $skolskaGodina = SkolskaGodUpisa::all();
+
+        return view('upis.edit', compact('upisGodine', 'statusGodine', 'skolskaGodina'));
+    }
+
+    public function storeIzmenaGodine(Request $request)
+    {
+        $upisGodine = UpisGodine::find($request->id);
+        $upisGodine->statusGodine_id = $request->statusGodine_id;
+        $upisGodine->skolskaGodina_id = $request->skolskaGodina_id;
+
+        $upisGodine->datumUpisa = (empty($request->datumUpisa) || empty($request->datumUpisa_format)) ?
+            null : $request->datumUpisa;
+
+        $upisGodine->datumPromene = (empty($request->datumPromene) || empty($request->datumPromene_format)) ?
+            null : $request->datumPromene;
+
+        $saved = $upisGodine->save();
+        if(!$saved){
+            Session::flash('error', 'Дошло је до грешке при чувању!');
+        }
+        return redirect("/student/{$upisGodine->kandidat_id}/upis");
     }
 
 }
