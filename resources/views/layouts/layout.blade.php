@@ -152,7 +152,7 @@
                                     <a href="{{ url ('bodovanje' ) }}">Бодовање</a>
                                 </li>
                                 <li {{ (Request::is('*statusKandidata') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('statusKandidata' ) }}">Статус кандидата</a>
+                                    <a href="{{ url ('statusKandidata' ) }}">Статус године</a>
                                 </li>
                                 <li {{ (Request::is('*statusIspita') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('statusIspita' ) }}">Статус испита</a>

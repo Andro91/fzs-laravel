@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\StatusKandidata;
+use App\StatusGodine;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +18,7 @@ class StatusKandidataController extends Controller
     public function index()
     {
         try {
-            $status = StatusKandidata::all();
+            $status = StatusGodine::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -28,7 +28,7 @@ class StatusKandidataController extends Controller
 
     public function unos(Request $request)
     {
-        $status = new StatusKandidata();
+        $status = new StatusGodine();
 
         $status->naziv = $request->naziv;
         $status->indikatorAktivan = 1;
@@ -43,7 +43,7 @@ class StatusKandidataController extends Controller
         return Redirect::to('/statusKandidata');
     }
 
-    public function edit(StatusKandidata $status)
+    public function edit(StatusGodine $status)
     {
         return view('sifarnici.editStatusKandidata', compact('status'));
     }
@@ -53,7 +53,7 @@ class StatusKandidataController extends Controller
         return view('sifarnici.addStatusKandidata');
     }
 
-    public function update(Request $request, StatusKandidata $status)
+    public function update(Request $request, StatusGodine $status)
     {
         $status->naziv = $request->naziv;
         if ($request->indikatorAktivan == 'on' || $request->indikatorAktivan == 1) {
@@ -71,7 +71,7 @@ class StatusKandidataController extends Controller
         return Redirect::to('/statusKandidata');
     }
 
-    public function delete(StatusKandidata $status)
+    public function delete(StatusGodine $status)
     {
         try {
             $status->delete();
