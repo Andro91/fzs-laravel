@@ -15,6 +15,12 @@ class KalendarController extends Controller
         return view('kalendar.kalendar');
     }
 
+    public function indexRok()
+    {
+        $ispitniRokovi = AktivniIspitniRokovi::all();
+        return view('kalendar.index_rok', compact('ispitniRokovi'));
+    }
+
     public function createRok()
     {
         $ispitniRok = IspitniRok::all();

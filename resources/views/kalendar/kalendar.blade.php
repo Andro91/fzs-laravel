@@ -3,7 +3,10 @@
 @section('section')
 
 <div class="col-sm-12 col-lg-10">
-    <a href="{{$putanja}}/kalendar/createRok/" class="btn btn-primary"><span class="fa fa-plus"></span> Нови рок</a>
+    <a href="{{$putanja}}/kalendar/indexRok/" class="btn btn-primary">
+        <span class="fa fa-envelope-square"></span>
+        Сви рокови
+    </a>
     <br>
     <br>
 

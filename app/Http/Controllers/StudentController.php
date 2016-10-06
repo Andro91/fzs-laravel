@@ -377,13 +377,14 @@ class StudentController extends Controller
     public function spisakPredmeta(Request $request)
     {
         $tipStudija = TipStudija::all();
-        $studijskiProgrami = StudijskiProgram::where(['tipStudija_id' => $request->tipStudijaId, 'indikatorAktivan' => 1])->get();
-//        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->select('predmet_id')->get();
+        $studijskiProgrami = StudijskiProgram::where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'indikatorAktivan' => 1])->get();
+
         $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
-//        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
-        //dd($ids);
-//        $predmeti = Predmet::find($ids);
+
         $predmeti = $predmetProgram;
+
         return view('prijava.predmeti', compact('tipStudija','studijskiProgrami','predmeti'));
     }
 

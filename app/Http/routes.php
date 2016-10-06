@@ -55,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/student/index/{tipStudijaId}/', 'StudentController@index');
 
     Route::get('/kalendar/', 'KalendarController@index');
+    Route::get('/kalendar/indexRok/', 'KalendarController@indexRok');
     Route::get('/kalendar/createRok/', 'KalendarController@createRok');
     Route::get('/kalendar/editRok/{id}', 'KalendarController@editRok');
     Route::get('/kalendar/deleteRok/{id}', 'KalendarController@deleteRok');

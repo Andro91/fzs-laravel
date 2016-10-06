@@ -5,7 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class UpisGodine extends Model
+class UpisGodine extends AndroModel
 {
     protected $table = 'upis_godine';
 

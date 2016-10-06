@@ -6,18 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Nqxcode\LuceneSearch\Model\SearchableInterface;
 use Nqxcode\LuceneSearch\Model\SearchTrait;
 
-class Kandidat extends Model implements SearchableInterface
+class Kandidat extends AndroModel
 {
-    use SearchTrait;
-
-    /**
-     * Get id list for all searchable models.
-     */
-    public static function searchableIds()
-    {
-        return self::lists('id');
-    }
-
     protected $table = 'kandidat';
 
     protected $dates = ['datumRodjenja','datumStatusa'];
