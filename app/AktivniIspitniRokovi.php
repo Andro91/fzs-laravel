@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class AktivniIspitniRokovi extends AndroModel
 {
     protected $table = 'aktivni_ispitni_rokovi';

@@ -93,6 +93,7 @@ class IspitController extends Controller
             $polozenIspit->predmet_id = $zapisnik->predmet_id;
             $polozenIspit->zapisnik_id = $zapisnik->id;
             $polozenIspit->prijava_id = $prijava->id;
+            $polozenIspit->godinaStudija_id = 
             $polozenIspit->save();
         }
 

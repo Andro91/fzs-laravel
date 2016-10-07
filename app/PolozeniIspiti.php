@@ -15,12 +15,17 @@ class PolozeniIspiti extends Model
 
     public function predmet()
     {
-        return $this->belongsTo(Predmet::class, 'predmet_id');
+        return $this->belongsTo(PredmetProgram::class, 'predmet_id');
     }
 
     public function prijava()
     {
         return $this->belongsTo(PrijavaIspita::class, 'prijava_id');
+    }
+
+    public function zapisnik()
+    {
+        return $this->belongsTo(ZapisnikOPolaganjuIspita::class, 'zapisnik_id');
     }
 
 }

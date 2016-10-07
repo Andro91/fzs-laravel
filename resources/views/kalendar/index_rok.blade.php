@@ -43,7 +43,17 @@
                     <td>{{\App\AktivniIspitniRokovi::tipRoka($rok->tipRoka_id)}}</td>
                     <td>{{$rok->komentar}}</td>
                     <td>
-
+                        <a class="btn btn-warning" href="{{$putanja}}/kalendar/editRok/{{ $rok->id }}">
+                            <div title="Измена">
+                                <span class="fa fa-edit"></span>
+                            </div>
+                        </a>
+                        <a class="btn btn-danger" href="{{$putanja}}/kalendar/deleteRok/{{ $rok->id }}"
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете испитни рок?');">
+                            <div title="Брисање">
+                                <span class="fa fa-trash"></span>
+                            </div>
+                        </a>
                     </td>
                 </tr>
             @endforeach

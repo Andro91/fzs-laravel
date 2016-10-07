@@ -97,7 +97,11 @@
             </div>
             <div class="panel-body">
                 <a href="/student/{{ $kandidat->id }}/status/3" class="btn btn-primary">Врати на статус кандидата</a>
-                <a href="/student/{{ $kandidat->id }}/status/4" class="btn btn-warning">Замрзни годину</a>
+                @if($kandidat->statusUpisa_id == 4)
+                    <a href="/student/{{ $kandidat->id }}/status/1" class="btn btn-warning">Одмрзни годину</a>
+                @else
+                    <a href="/student/{{ $kandidat->id }}/status/4" class="btn btn-warning">Замрзни годину</a>
+                @endif
                 @if($kandidat->tipStudija_id == 1)
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
                         Упис на мастер студије
@@ -111,133 +115,162 @@
                     <h3 class="panel-title">Година студија</h3>
                 </div>
                 <div class="panel-body">
-                    @if(!empty($masterStudije))
+                    @if(!$masterStudije->isEmpty())
                         <h4>Мастер студије</h4>
                         <table class="table">
                             <thead>
                             <tr>
                                 <th>Година</th>
+                                <th>Покушај</th>
                                 <th>Статус</th>
-                                <th>Датум статуса</th>
+                                <th>Датум уписа</th>
                                 <th>Датум промене</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($masterStudije as $godina)
                                 <tr @if($godina->pokusaj > 1) class="warning" @else class="info" @endif>
                                     <td>{{ $godina->godina }}</td>
+                                    <td>{{ $godina->pokusaj }}</td>
                                     <td>
                                         @if($godina->statusGodine_id == 1)
-                                            <span class='label label-success'>Уписан</span>
-                                        @else
-                                            <span class='label label-danger'>Није уписан</span>
+                                            <span class='label label-success'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 2)
+                                            <span class='label label-default'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 3)
+                                            <span class='label label-danger'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 4)
+                                            <span class='label label-warning'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 5)
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(!empty($godina->datumUpisa))
+                                            {{$godina->datumUpisa->format('d.m.Y.')}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(!empty($godina->datumPromene))
+                                            {{$godina->datumPromene->format('d.m.Y.')}}
                                         @endif
                                     </td>
                                     <td>
                                         @if($godina->statusGodine_id == 1)
-                                            <a class="btn btn-danger"
+                                            <a class="btn btn-danger btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                                 <i class="fa fa-ban"></i> Поништи упис
                                             </a>
-                                        @else
-                                            <a class="btn btn-success"
+                                        @elseif($godina->statusGodine_id == 3)
+                                            <a class="btn btn-success btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
                                                 годину
                                             </a>
                                         @endif
 
-                                        @if($godina->pokusaj == 1)
-                                            <a class="btn btn-info"
+                                        @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))
+                                            <a class="btn btn-warning btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/obnova?godina={{ $godina->godina }}&tipStudijaId={{ $godina->tipStudija_id }}">
                                                 Обнови годину
                                             </a>
                                         @elseif($godina->pokusaj > 1)
-                                            <a class="btn btn-danger"
+                                            <a class="btn btn-danger btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/obrisiObnovu?upisId={{ $godina->id }}"
                                                onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
                                                 <span style="margin: 3px" class="fa fa-trash"></span>
                                             </a>
                                         @endif
+                                        <a class="btn btn-warning"
+                                           href="{{$putanja}}/student/{{ $godina->id }}/izmenaGodine">
+                                            <div title="Измена">
+                                                <span class="fa fa-edit"></span>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     @endif
-                    <h4>Основне студије</h4>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Година</th>
-                            <th>Покушај</th>
-                            <th>Статус</th>
-                            <th>Датум статуса</th>
-                            <th>Датум промене</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($osnovneStudije as $godina)
-                            <tr @if($godina->pokusaj > 1) class="warning" @else class="info" @endif>
-                                <td>{{ $godina->godina }}</td>
-                                <td>{{ $godina->pokusaj }}</td>
-                                <td>
-                                    @if($godina->statusGodine_id == 1)
-                                        <span class='label label-success'>{{$godina->status->naziv}}</span>
-                                    @elseif($godina->statusGodine_id == 2)
-                                        <span class='label label-default'>{{$godina->status->naziv}}</span>
-                                    @elseif($godina->statusGodine_id == 3)
-                                        <span class='label label-danger'>{{$godina->status->naziv}}</span>
-                                    @elseif($godina->statusGodine_id == 4)
-                                        <span class='label label-warning'>{{$godina->status->naziv}}</span>
-                                    @elseif($godina->statusGodine_id == 5)
-                                        <span class='label label-info'>{{$godina->status->naziv}}</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if(!empty($godina->datumUpisa))
-                                        {{$godina->datumUpisa->format('d.m.Y.')}}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if(!empty($godina->datumPromene))
-                                        {{$godina->datumPromene->format('d.m.Y.')}}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($godina->statusGodine_id == 1)
-                                        <a class="btn btn-danger btn-sm"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
-                                            <i class="fa fa-ban"></i> Поништи упис
-                                        </a>
-                                    @elseif($godina->statusGodine_id == 3)
-                                        <a class="btn btn-success btn-sm"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
-                                            годину
-                                        </a>
-                                    @endif
-
-                                    @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))
-                                        <a class="btn btn-warning btn-sm"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/obnova?godina={{ $godina->godina }}&tipStudijaId={{ $godina->tipStudija_id }}">
-                                            Обнови годину
-                                        </a>
-                                    @elseif($godina->pokusaj > 1)
-                                        <a class="btn btn-danger btn-sm"
-                                           href="{{$putanja}}/student/{{ $kandidat->id }}/obrisiObnovu?upisId={{ $godina->id }}"
-                                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
-                                            <span style="margin: 3px" class="fa fa-trash"></span>
-                                        </a>
-                                    @endif
-                                    <a class="btn btn-warning" href="{{$putanja}}/student/{{ $godina->id }}/izmenaGodine">
-                                        <div title="Измена">
-                                            <span class="fa fa-edit"></span>
-                                        </div>
-                                    </a>
-                                </td>
+                    @if(!$osnovneStudije->isEmpty())
+                        <h4>Основне студије</h4>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Година</th>
+                                <th>Покушај</th>
+                                <th>Статус</th>
+                                <th>Датум уписа</th>
+                                <th>Датум промене</th>
+                                <th></th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($osnovneStudije as $godina)
+                                <tr @if($godina->pokusaj > 1) class="warning" @else class="info" @endif>
+                                    <td>{{ $godina->godina }}</td>
+                                    <td>{{ $godina->pokusaj }}</td>
+                                    <td>
+                                        @if($godina->statusGodine_id == 1)
+                                            <span class='label label-success'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 2)
+                                            <span class='label label-default'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 3)
+                                            <span class='label label-danger'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 4)
+                                            <span class='label label-warning'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 5)
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(!empty($godina->datumUpisa))
+                                            {{$godina->datumUpisa->format('d.m.Y.')}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(!empty($godina->datumPromene))
+                                            {{$godina->datumPromene->format('d.m.Y.')}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($godina->statusGodine_id == 1)
+                                            <a class="btn btn-danger btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
+                                                <i class="fa fa-ban"></i> Поништи упис
+                                            </a>
+                                        @elseif($godina->statusGodine_id == 3)
+                                            <a class="btn btn-success btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
+                                                годину
+                                            </a>
+                                        @endif
+
+                                        @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))
+                                            <a class="btn btn-warning btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/obnova?godina={{ $godina->godina }}&tipStudijaId={{ $godina->tipStudija_id }}">
+                                                Обнови годину
+                                            </a>
+                                        @elseif($godina->pokusaj > 1)
+                                            <a class="btn btn-danger btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/obrisiObnovu?upisId={{ $godina->id }}"
+                                               onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
+                                                <span style="margin: 3px" class="fa fa-trash"></span>
+                                            </a>
+                                        @endif
+                                        <a class="btn btn-warning"
+                                           href="{{$putanja}}/student/{{ $godina->id }}/izmenaGodine">
+                                            <div title="Измена">
+                                                <span class="fa fa-edit"></span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>

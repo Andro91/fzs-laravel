@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AktivniIspitniRokovi;
 use App\GodinaStudija;
 use App\IspitniRok;
+use App\PolozeniIspiti;
 use App\Predmet;
 use App\PredmetProgram;
 use App\PrijavaIspita;
@@ -76,6 +77,8 @@ class StudentController extends Controller
             ->orderBy('pokusaj', 'ASC')
             ->get();
         $masterStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 2])->get();
+
+//        dd($osnovneStudije->isEmpty());
 
         $doktorskeStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 3])->get();
 
@@ -247,7 +250,13 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
-        return view('prijava.index', compact('kandidat','prijave'));
+        $polozeniIspitiPrvaGodina = PolozeniIspiti::where([
+            'kandidat_id' => $id,
+//            '' => 1
+        ])->get();
+        $ispiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+
+        return view('prijava.index', compact('kandidat','prijave','ispiti'));
     }
 
     public function svePrijaveIspitaZaPredmet($id)
@@ -469,6 +478,13 @@ class StudentController extends Controller
             Session::flash('error', 'Дошло је до грешке при чувању!');
         }
         return redirect("/student/{$upisGodine->kandidat_id}/upis");
+    }
+
+    public function zamrznutiStudenti()
+    {
+        $studenti = Kandidat::where(['statusUpisa_id' => 4])->get();
+
+        return view('student.index_zamrznuti', compact('studenti'));
     }
 
 }

@@ -92,6 +92,9 @@
                                 <li {{ (Request::is('*student/index/2*') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('student/index/2?studijskiProgramId=4' ) }}">Мастер студије</a>
                                 </li>
+                                <li {{ (Request::is('*student/zamrznuti') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('student/zamrznuti' ) }}">Замрзнути статус</a>
+                                </li>
                                 <li {{ (Request::is('*/izvestaji/spiskoviStudenti*') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/izvestaji/spiskoviStudenti' ) }}">Извештаји</a>
                                 </li>
