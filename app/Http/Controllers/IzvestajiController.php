@@ -58,14 +58,18 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
+        $pdf_settings = \Config::get('tcpdf2');
+
+        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+
         $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina)->with('uslov', $picks3);
 
         $contents = $view->render();
-        PDF::SetTitle('Списак кандидата по модулима');
-        PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
-        PDF::WriteHtml($contents);
-        PDF::Output('Spisak.pdf');
+        $pdf->SetTitle('Списак кандидата по модулима');
+        $pdf->AddPage();
+        $pdf->SetFont('freeserif', '', 12);
+        $pdf->WriteHtml($contents);
+        $pdf->Output('Spisak.pdf');
     }
 
     public function spisakPoSmerovimaAktivni(Request $request)
@@ -100,14 +104,18 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
+        $pdf_settings = \Config::get('tcpdf2');
+
+        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+
         $view = View::make('izvestaji.spisakSvihStudenata')->with('kandidat', $kandidat)->with('tip', $tip)->with('tipSvi', $tipSvi);
 
         $contents = $view->render();
-        PDF::SetTitle('Списак студената по модулима');
-        PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
-        PDF::WriteHtml($contents);
-        PDF::Output('Spisak.pdf');
+        $pdf->SetTitle('Списак студената по модулима');
+        $pdf->AddPage();
+        $pdf->SetFont('freeserif', '', 12);
+        $pdf->WriteHtml($contents);
+        $pdf->Output('Spisak.pdf');
     }
 
     public function spisakZaSmer(Request $request)
@@ -173,15 +181,9 @@ class IzvestajiController extends Controller
 
         $pdf_settings = \Config::get('tcpdf2');
 
-        //$pdf_settings['page_orientation'] = 'L';
-
-//        \Config::set('tcpdf.page_orientation', 'L');
-
-//        dd($pdf_settings);
+        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf');
 
         $view = View::make('izvestaji.spisakPoProgramu')->with('kandidat', $kandidat)->with('program', $program);
-
-        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
 
         $contents = $view->render();
         $pdf->SetTitle('Списак студената');
@@ -385,8 +387,10 @@ class IzvestajiController extends Controller
     public function spisakPoPredmetima(Request $request)
     {
         //$region->delete();
+
         try {
             $programi = PredmetProgram::where(['predmet_id' => $request->predmet])->get();
+            //dd($programi);
             //$studenti = Kandidat::where(['statusUpisa_id' => 1])->get();
 
             $studenti = DB::table('kandidat')
@@ -396,16 +400,22 @@ class IzvestajiController extends Controller
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program',
                     'studijski_program.id as program_id')->get();
 
-            //dd($studenti);
+            //dd($programi);
 
-            //return $programi;
+            if ($programi->first()) {
+                $predmet = $programi->first()->predmet->naziv;
+            }
+            else
+            {
+                $predmet = '';
+            }
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
 
-        $view = View::make('izvestaji.spisakPoPredmetima')->with('studenti', $studenti)->with('programi', $programi)->with('predmet', $programi->first()->predmet->naziv);
+        $view = View::make('izvestaji.spisakPoPredmetima')->with('studenti', $studenti)->with('programi', $programi)->with('predmet', $predmet);
 
         $contents = $view->render();
         PDF::SetTitle('Списак студената по предмету');
@@ -598,14 +608,18 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
+        $pdf_settings = \Config::get('tcpdf2');
+
+        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+
         $view = View::make('izvestaji.nastavniPlan')->with('program', $program)->with('predmeti', $predmeti);
 
         $contents = $view->render();
-        PDF::SetTitle('Наставни план');
-        PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
-        PDF::WriteHtml($contents);
-        PDF::Output('Nastavni plan.pdf');
+        $pdf->SetTitle('Наставни план');
+        $pdf->AddPage();
+        $pdf->SetFont('freeserif', '', 12);
+        $pdf->WriteHtml($contents);
+        $pdf->Output('Nastavni plan.pdf');
     }
 
     public function spisakDiplomiranih(Request $request)

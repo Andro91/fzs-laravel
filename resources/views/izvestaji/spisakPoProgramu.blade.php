@@ -3,52 +3,55 @@
 </div>
 <hr>
 
-<div>
+<div style="width:100%;height:100%;">
     <h1 style="padding-bottom: 100px;">Списак студената на смеру {{$program->naziv}}</h1>
     <br/>
     <br/>
+    <br/>
+    <br/>
 
-
-
-
-                <label style="padding-bottom: 10px;"></label>
-                <br/>
-                <br/>
-                <table style="border: 1px solid black; width:950px;">
+    <table>
+        <tr>
+            <td style="width:5%"></td>
+            <td style="width:90%">
+                <table style="border: 1px solid black;width:480px">
                     <thead>
                     <tr>
-                        <th style="border: 1px solid black;">Р.бр.</th>
-                        <th style="border: 1px solid black;"><b>Број индекса</b>
+                        <th style="border: 1px solid black;width:30px;"><b>Р.бр.</b></th>
+                        <th style="border: 1px solid black;width:65px;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width:300px;"><b>Име и презиме</b>
                         </th>
-                        <th style="border: 1px solid black; width: 50px;"><b>Година</b>
+                        <th style="border: 1px solid black;width:50px;"><b>Година</b>
                         </th>
                     </tr>
                     </thead>
                     <?php $a = 0; $b = 0; ?>
                     @foreach($kandidat as $index => $item)
 
-                            <?php $a++; ?>
-                            <tr>
-                                <td style="border: 1px solid black;">{{$a}}</td>
-                                <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                                <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                                <td style="border: 1px solid black; text-align: right; width: 50px;">{{$item->godina}}</td>
-                            </tr>
-
+                        <?php $a++; ?>
+                        <tr>
+                            <td style="border: 1px solid black;width:30px;">{{$a}}</td>
+                            <td style="border: 1px solid black;width:65px;">{{$item->brojIndeksa}}</td>
+                            <td style="border: 1px solid black;width:300px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;text-align: right;width:50px;">{{$item->godina}}</td>
+                        </tr>
 
                     @endforeach
                 </table>
-                <br/>
-                <br/>
-                <br/>
+            </td>
+            <td style="width:5%"></td>
+        </tr>
+    </table>
 
 
+
+    <br/>
+    <br/>
+    <br/>
 
 
 </div>
-
 
 
 <br/>

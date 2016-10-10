@@ -17,7 +17,7 @@
                 </th>
                 <th style="border: 1px solid black; width: 200px;"><b>Назив</b>
                 </th>
-                <th style="border: 1px solid black; width: 15px;">Семестар
+                <th style="border: 1px solid black;">Семестар
                 </th>
                 <th style="border: 1px solid black;"><b>Тип</b>
                 </th>
@@ -35,7 +35,7 @@
                 <tr>
                     <td style="border: 1px solid black;">{{$a}}</td>
                     <td style="border: 1px solid black; width: 200px;">{{$item->predmet->naziv}}</td>
-                    <td style="border: 1px solid black; width: 15px;">{{$item->semestar}}</td>
+                    <td style="border: 1px solid black;">{{$item->semestar}}</td>
                     <td style="border: 1px solid black;">{{$item->tipPredmeta->naziv}}</td>
                     <td style="border: 1px solid black; width: 50px;">{{$item->vezbe}}</td>
                     <td style="border: 1px solid black; width: 75px;">{{$item->predavanja}}</td>

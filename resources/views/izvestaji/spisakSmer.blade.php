@@ -10,33 +10,39 @@
     <br/>
     <br/>
 
-    <table style="border: 1px solid black;">
-        <thead>
+    <table>
         <tr>
-            <th style="border: 1px solid black;">Р.бр.</th>
-            <th style="border: 1px solid black;"><b>Број индекса</b>
-            </th>
-            <th style="border: 1px solid black;"><b>Име</b>
-            </th>
-            <th style="border: 1px solid black;"><b>Презиме</b>
-            </th>
-            <th style="border: 1px solid black;"><b>Број бодова</b>
-            </th>
-        </tr>
-        </thead>
-        <?php $a = 0;?>
-        @foreach($studenti as $item)
-            <?php $a++; ?>
-                <tr>
-                    <td style="border: 1px solid black;">{{$a}}</td>
-                    <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->brojBodovaTest}}</td>
-                </tr>
+            <td style="width:5%"></td>
+            <td style="width:90%">
+                <table style="border: 1px solid black;">
+                    <thead>
+                    <tr>
+                        <th style="border: 1px solid black;width:30px"><b>Р.бр.</b></th>
+                        <th style="border: 1px solid black;width:65px"><b>Број индекса</b>
+                        </th>
+                        <th style="border: 1px solid black;width:300px"><b>Име и презиме</b>
+                        </th>
+                        <th style="border: 1px solid black;width:70px"><b>Број бодова</b>
+                        </th>
+                    </tr>
+                    </thead>
+                    <?php $a = 0;?>
+                    @foreach($studenti as $item)
+                        <?php $a++; ?>
+                        <tr>
+                            <td style="border: 1px solid black;width:30px">{{$a}}</td>
+                            <td style="border: 1px solid black;width:65px">{{$item->brojIndeksa}}</td>
+                            <td style="border: 1px solid black;width:300px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;width:70px">{{$item->brojBodovaTest}}</td>
+                        </tr>
 
-        @endforeach
+                    @endforeach
+                </table>
+            </td>
+            <td style="width:5%"></td>
+        </tr>
     </table>
+
 </div>
     @else
     <h1>Нема регистрованих студената</h1>
