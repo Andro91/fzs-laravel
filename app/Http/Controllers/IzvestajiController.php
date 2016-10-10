@@ -60,7 +60,7 @@ class IzvestajiController extends Controller
 
         $pdf_settings = \Config::get('tcpdf2');
 
-        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+        $pdf = new \Elibyy\TCPDF\TCPDF([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
 
         $view = View::make('izvestaji.test')->with('studijskiProgram', $program)->with('kandidat', $kandidat)->with('godina', $godina)->with('uslov', $picks3);
 
@@ -106,7 +106,7 @@ class IzvestajiController extends Controller
 
         $pdf_settings = \Config::get('tcpdf2');
 
-        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+        $pdf = new \Elibyy\TCPDF\TCPDF([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
 
         $view = View::make('izvestaji.spisakSvihStudenata')->with('kandidat', $kandidat)->with('tip', $tip)->with('tipSvi', $tipSvi);
 
@@ -181,7 +181,7 @@ class IzvestajiController extends Controller
 
         $pdf_settings = \Config::get('tcpdf2');
 
-        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf');
+        $pdf = new \Elibyy\TCPDF\TCPDF([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf');
 
         $view = View::make('izvestaji.spisakPoProgramu')->with('kandidat', $kandidat)->with('program', $program);
 
@@ -610,7 +610,7 @@ class IzvestajiController extends Controller
 
         $pdf_settings = \Config::get('tcpdf2');
 
-        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+        $pdf = new \Elibyy\TCPDF\TCPDF([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
 
         $view = View::make('izvestaji.nastavniPlan')->with('program', $program)->with('predmeti', $predmeti);
 
