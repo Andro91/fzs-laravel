@@ -171,14 +171,24 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
+        $pdf_settings = \Config::get('tcpdf2');
+
+        //$pdf_settings['page_orientation'] = 'L';
+
+//        \Config::set('tcpdf.page_orientation', 'L');
+
+//        dd($pdf_settings);
+
         $view = View::make('izvestaji.spisakPoProgramu')->with('kandidat', $kandidat)->with('program', $program);
 
+        $pdf = new \Elibyy\TCPDF\TCPdf([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
+
         $contents = $view->render();
-        PDF::SetTitle('Списак студената');
-        PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
-        PDF::WriteHtml($contents);
-        PDF::Output('Spisak.pdf');
+        $pdf->SetTitle('Списак студената');
+        $pdf->AddPage();
+        $pdf->SetFont('freeserif', '', 12);
+        $pdf->WriteHtml($contents);
+        $pdf->Output('Spisak.pdf');
     }
 
     public function spisakPoGodini(Request $request)

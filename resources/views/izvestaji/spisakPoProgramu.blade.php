@@ -14,7 +14,7 @@
                 <label style="padding-bottom: 10px;"></label>
                 <br/>
                 <br/>
-                <table style="border: 1px solid black;">
+                <table style="border: 1px solid black; width:950px;">
                     <thead>
                     <tr>
                         <th style="border: 1px solid black;">Р.бр.</th>

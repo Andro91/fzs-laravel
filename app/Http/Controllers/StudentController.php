@@ -250,6 +250,7 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
+<<<<<<< HEAD
 //        $polozeniIspitiPrvaGodina = PolozeniIspiti::with('predmet_program')->where([
 //            'kandidat_id' => $id
 //        ])->get();
@@ -264,6 +265,11 @@ class StudentController extends Controller
             $query->where('godinaStudija_id', '=', '2');
         }])->where([
             'polozeni_ispiti.kandidat_id' => $id
+=======
+        $polozeniIspitiPrvaGodina = PolozeniIspiti::where([
+            'kandidat_id' => $id,
+//            'godina' => 1
+>>>>>>> origin/master
         ])->get();
 
         $polozeniIspitiTrecaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
