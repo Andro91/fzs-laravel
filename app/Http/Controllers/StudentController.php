@@ -250,13 +250,43 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
-        $polozeniIspitiPrvaGodina = PolozeniIspiti::where([
-            'kandidat_id' => $id,
-//            '' => 1
-        ])->get();
-        $ispiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+//        $polozeniIspitiPrvaGodina = PolozeniIspiti::with('predmet_program')->where([
+//            'kandidat_id' => $id
+//        ])->get();
 
-        return view('prijava.index', compact('kandidat','prijave','ispiti'));
+        $polozeniIspitiPrvaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
+            $query->where('godinaStudija_id', '=', '1');
+        }])->where([
+            'polozeni_ispiti.kandidat_id' => $id
+        ])->get();
+
+        $polozeniIspitiDrugaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
+            $query->where('godinaStudija_id', '=', '2');
+        }])->where([
+            'polozeni_ispiti.kandidat_id' => $id
+        ])->get();
+
+        $polozeniIspitiTrecaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
+            $query->where('godinaStudija_id', '=', '3');
+        }])->where([
+            'polozeni_ispiti.kandidat_id' => $id
+        ])->get();
+
+        $polozeniIspitiCetvrtaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
+            $query->where('godinaStudija_id', '=', '4');
+        }])->where([
+            'polozeni_ispiti.kandidat_id' => $id
+        ])->get();
+
+        //$ispiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+
+        return view('prijava.index', compact(
+            'kandidat',
+            'prijave',
+            'polozeniIspitiPrvaGodina',
+            'polozeniIspitiDrugaGodina',
+            'polozeniIspitiTrecaGodina',
+            'polozeniIspitiCetvrtaGodina'));
     }
 
     public function svePrijaveIspitaZaPredmet($id)
