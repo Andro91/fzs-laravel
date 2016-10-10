@@ -252,7 +252,7 @@ class StudentController extends Controller
         $prijave = $kandidat->prijaveIspita()->get();
         $polozeniIspitiPrvaGodina = PolozeniIspiti::where([
             'kandidat_id' => $id,
-//            '' => 1
+//            'godina' => 1
         ])->get();
         $ispiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
 
