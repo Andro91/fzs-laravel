@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class PolozeniIspiti extends Model
+class PolozeniIspiti extends AndroModel
 {
     protected $table = 'polozeni_ispiti';
 

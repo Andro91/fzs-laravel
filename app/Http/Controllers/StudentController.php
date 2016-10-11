@@ -78,8 +78,6 @@ class StudentController extends Controller
             ->get();
         $masterStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 2])->get();
 
-//        dd($osnovneStudije->isEmpty());
-
         $doktorskeStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 3])->get();
 
         return view('upis.index', compact('kandidat', 'osnovneStudije', 'masterStudije', 'doktorskeStudije', 'studijskiProgram'));
@@ -251,35 +249,70 @@ class StudentController extends Controller
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
 
-//        $polozeniIspitiPrvaGodina = PolozeniIspiti::with('predmet_program')->where([
-//            'kandidat_id' => $id
-//        ])->get();
+        $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
+            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
+            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
+            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
+            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
+            ->select(\DB::raw("polozeni_ispiti.*,
+                predmet.naziv as naziv,
+                prijava_ispita.rok_id as rok,
+                prijava_ispita.brojPolaganja as broj,
+                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->where(['predmet_program.godinaStudija_id' => 1, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
+            ->get();
 
-        $polozeniIspitiPrvaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
-            $query->where('godinaStudija_id', '=', '1');
-        }])->where([
-            'polozeni_ispiti.kandidat_id' => $id
-        ])->get();
+        $polozeniIspitiDrugaGodina = \DB::table('polozeni_ispiti')
+            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
+            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
+            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
+            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
+            ->select(\DB::raw("polozeni_ispiti.*,
+                predmet.naziv as naziv,
+                prijava_ispita.rok_id as rok,
+                prijava_ispita.brojPolaganja as broj,
+                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->where(['predmet_program.godinaStudija_id' => 2, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
+            ->get();
 
-        $polozeniIspitiDrugaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
-            $query->where('godinaStudija_id', '=', '2');
-        }])->where([
-            'polozeni_ispiti.kandidat_id' => $id
-        ])->get();
+        $polozeniIspitiTrecaGodina = \DB::table('polozeni_ispiti')
+            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
+            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
+            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
+            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
+            ->select(\DB::raw("polozeni_ispiti.*,
+                predmet.naziv as naziv,
+                prijava_ispita.rok_id as rok,
+                prijava_ispita.brojPolaganja as broj,
+                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->where(['predmet_program.godinaStudija_id' => 3, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
+            ->get();
 
-        $polozeniIspitiTrecaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
-            $query->where('godinaStudija_id', '=', '3');
-        }])->where([
-            'polozeni_ispiti.kandidat_id' => $id
-        ])->get();
+        $polozeniIspitiCetvrtaGodina = \DB::table('polozeni_ispiti')
+            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
+            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
+            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
+            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
+            ->select(\DB::raw("polozeni_ispiti.*,
+                predmet.naziv as naziv,
+                prijava_ispita.rok_id as rok,
+                prijava_ispita.brojPolaganja as broj,
+                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
+            ->get();
 
-        $polozeniIspitiCetvrtaGodina = PolozeniIspiti::with(['predmet' => function ($query) {
-            $query->where('godinaStudija_id', '=', '4');
-        }])->where([
-            'polozeni_ispiti.kandidat_id' => $id
-        ])->get();
-
-        //$ispiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+        $polozeniIspitiMaster = \DB::table('polozeni_ispiti')
+            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
+            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
+            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
+            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
+            ->select(\DB::raw("polozeni_ispiti.*,
+                predmet.naziv as naziv,
+                prijava_ispita.rok_id as rok,
+                prijava_ispita.brojPolaganja as broj,
+                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 2, 'polozeni_ispiti.kandidat_id' => $id])
+            ->get();
 
         return view('prijava.index', compact(
             'kandidat',
@@ -287,7 +320,8 @@ class StudentController extends Controller
             'polozeniIspitiPrvaGodina',
             'polozeniIspitiDrugaGodina',
             'polozeniIspitiTrecaGodina',
-            'polozeniIspitiCetvrtaGodina'));
+            'polozeniIspitiCetvrtaGodina',
+            'polozeniIspitiMaster'));
     }
 
     public function svePrijaveIspitaZaPredmet($id)
@@ -316,8 +350,9 @@ class StudentController extends Controller
         $predmeti = PredmetProgram::where([
             'studijskiProgram_id' => $kandidat->studijskiProgram_id,
             'tipStudija_id' => $kandidat->tipStudija_id,
-            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
-        ])->get();
+            //Godina je uklonjena, da bi mogao da se prijavi ispit iz bilo koje godine
+            //'godinaStudija_id' =>  $kandidat->godinaStudija_id,
+        ])->orderBy('semestar')->get();
 
         $studijskiProgram = StudijskiProgram::where(['id' => $kandidat->studijskiProgram_id])->get();
         $godinaStudija = GodinaStudija::all();

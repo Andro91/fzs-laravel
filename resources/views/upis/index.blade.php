@@ -74,7 +74,7 @@
                 </li>
                 <li class="list-group-item">Име (име родитеља) презиме:
                     <strong>
-                        {{ $kandidat->imeKandidata . " " . $kandidat->imePrezimeJednogRoditelja . " " . $kandidat->prezimeKandidata }}
+                        {{ $kandidat->imeKandidata . " (" . $kandidat->imePrezimeJednogRoditelja . ") " . $kandidat->prezimeKandidata }}
                     </strong>
                 </li>
                 <li class="list-group-item">ЈМБГ:

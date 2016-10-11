@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PrijavaIspita extends Model
+class PrijavaIspita extends AndroModel
 {
     protected $table = 'prijava_ispita';
 
@@ -23,5 +23,11 @@ class PrijavaIspita extends Model
     public function rok()
     {
         return $this->belongsTo(AktivniIspitniRokovi::class, 'rok_id');
+    }
+
+    public static function nazivRokaPoId($idRoka)
+    {
+        $rok = AktivniIspitniRokovi::find($idRoka);
+        return $rok->naziv;
     }
 }

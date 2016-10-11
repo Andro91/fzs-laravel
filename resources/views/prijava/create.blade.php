@@ -93,7 +93,7 @@
                                 <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                                 <select class="form-control" id="predmet_id" name="predmet_id">
                                     @foreach($predmeti as $item)
-                                        <option value="{{ $item->predmet_id }}">{{ $item->predmet->naziv }}</option>
+                                        <option value="{{ $item->id }}">{{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -201,7 +201,7 @@
                         <div class="form-group" style="width: 50%;">
                             <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
-                                <option value="{{ $predmet->predmet_id }}">{{ $predmet->predmet->naziv }}</option>
+                                <option value="{{ $predmet->id }}">{{ "Семестар " . $predmet->semestar . ': ' . $predmet->predmet->naziv }}</option>
                             </select>
                         </div>
 

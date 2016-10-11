@@ -11,7 +11,7 @@
                         {{ $kandidat->brojIndeksa }}
                     </strong>
                 </li>
-                <li class="list-group-item">Име и презиме:
+                <li class="list-group-item">Име (име родитеља) презиме:
                     <strong>
                         {{ $kandidat->imeKandidata . " (" . $kandidat->imePrezimeJednogRoditelja . ") " . $kandidat->prezimeKandidata }}
                     </strong>
@@ -117,6 +117,8 @@
                                                    data-toggle="tab">Трећа година</a></li>
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
                                                    data-toggle="tab">Четврта година</a></li>
+                        <li role="presentation"><a href="#master" aria-controls="master" role="tab"
+                                                   data-toggle="tab">Мастер студије</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -134,19 +136,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(!$polozeniIspitiPrvaGodina->isEmpty())
+                                @if(!empty($polozeniIspitiPrvaGodina))
                                     @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
+                                            <td>{{$ispit->naziv}}</td>
+                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
+                                            <td>{{$ispit->broj}}</td>
+                                            <td>{{$ispit->datum}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
-                                                <a class="btn btn-danger"
-                                                   href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"
-                                                   onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>
+                                                {{--<a class="btn btn-danger"--}}
+                                                   {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                   {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -167,19 +169,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(!$polozeniIspitiDrugaGodina->isEmpty())
-                                    @foreach($polozeniIspitiDrugaGodina as $index => $ispit)
+                                @if(!empty($polozeniIspitiDrugaGodina))
+                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
+                                            <td>{{$ispit->naziv}}</td>
+                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
+                                            <td>{{$ispit->broj}}</td>
+                                            <td>{{$ispit->datum}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
-                                                <a class="btn btn-danger"
-                                                   href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"
-                                                   onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>
+                                                {{--<a class="btn btn-danger"--}}
+                                                {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -200,19 +202,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(!$polozeniIspitiTrecaGodina->isEmpty())
-                                    @foreach($polozeniIspitiTrecaGodina as $index => $ispit)
+                                @if(!empty($polozeniIspitiTrecaGodina))
+                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
+                                            <td>{{$ispit->naziv}}</td>
+                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
+                                            <td>{{$ispit->broj}}</td>
+                                            <td>{{$ispit->datum}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
-                                                <a class="btn btn-danger"
-                                                   href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"
-                                                   onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>
+                                                {{--<a class="btn btn-danger"--}}
+                                                {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -233,19 +235,52 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(!$polozeniIspitiCetvrtaGodina->isEmpty())
-                                    @foreach($polozeniIspitiCetvrtaGodina as $index => $ispit)
+                                @if(!empty($polozeniIspitiCetvrtaGodina))
+                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
+                                            <td>{{$ispit->naziv}}</td>
+                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
+                                            <td>{{$ispit->broj}}</td>
+                                            <td>{{$ispit->datum}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
-                                                <a class="btn btn-danger"
-                                                   href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"
-                                                   onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>
+                                                {{--<a class="btn btn-danger"--}}
+                                                {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="master">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Предмет</th>
+                                    <th>Рок</th>
+                                    <th>Број Полагања</th>
+                                    <th>Датум</th>
+                                    <th>Оцена</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if(!empty($polozeniIspitiMaster))
+                                    @foreach($polozeniIspitiMaster as $index => $ispit)
+                                        <tr>
+                                            <td>{{$ispit->naziv}}</td>
+                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
+                                            <td>{{$ispit->broj}}</td>
+                                            <td>{{$ispit->datum}}</td>
+                                            <td>{{$ispit->konacnaOcena}}</td>
+                                            <td>
+                                                {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
+                                                {{--<a class="btn btn-danger"--}}
+                                                {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
