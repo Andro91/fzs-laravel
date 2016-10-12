@@ -92,7 +92,7 @@
                 <h3 class="panel-title">За одабране кандидате</h3>
             </div>
             <div class="panel-body">
-                <div id="masovnaUplata" class="btn btn-primary">Уплатили школарину</div>
+                {{--<div id="masovnaUplata" class="btn btn-primary">Уплатили школарину</div>--}}
                 <div id="masovniUpis" class="btn btn-success">Изврши упис</div>
             </div>
         </div>

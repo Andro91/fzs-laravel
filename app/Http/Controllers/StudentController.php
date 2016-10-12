@@ -83,15 +83,6 @@ class StudentController extends Controller
         return view('upis.index', compact('kandidat', 'osnovneStudije', 'masterStudije', 'doktorskeStudije', 'studijskiProgram'));
     }
 
-    public function uplataSkolarine($id, Request $request)
-    {
-        $upisaneGodine = UpisGodine::where(['kandidat_id' => $id, 'godina' => $request->godina, 'pokusaj' => $request->pokusaj])->first();
-        $upisaneGodine->skolarina = 1;
-        $upisaneGodine->save();
-
-        return redirect("/student/{$id}/upis");
-    }
-
     public function upisiStudenta($id, Request $request)
     {
         if(empty($id) || empty($request->godina)){
@@ -222,16 +213,6 @@ class StudentController extends Controller
         return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
 
-    public function masovnaUplata(Request $request)
-    {
-        foreach ($request->odabir as $kandidatId) {
-            $kandidat = Kandidat::find($kandidatId);
-            $godina = $kandidat->godinaStudija_id + 1;
-            UpisGodine::uplatiGodinu($kandidatId, $godina);
-        }
-        return redirect('/student/index/1');
-    }
-
     public function masovniUpis(Request $request)
     {
         foreach ($request->odabir as $kandidatId) {
@@ -244,6 +225,7 @@ class StudentController extends Controller
         return redirect('/student/index/1');
     }
 
+    //Stranica Status studenta
     public function svePrijaveIspitaZaStudenta($id)
     {
         $kandidat = Kandidat::find($id);
@@ -338,14 +320,8 @@ class StudentController extends Controller
             'statusUpisa_id' => 1,
             'studijskiProgram_id' => $kandidat->studijskiProgram_id,
             'tipStudija_id' => $kandidat->tipStudija_id,
-            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
+            'godinaStudija_id' => $kandidat->godinaStudija_id,
         ])->select('id','BrojIndeksa as naziv')->get();
-
-//        $predmeti = Predmet::where([
-//            'tipStudija_id' => $kandidat->tipStudija_id,
-//            'studijskiProgram_id' =>  $kandidat->studijskiProgram_id,
-//            'godinaStudija_id' =>  $kandidat->godinaStudija_id,
-//        ])->get();
 
         $predmeti = PredmetProgram::where([
             'studijskiProgram_id' => $kandidat->studijskiProgram_id,

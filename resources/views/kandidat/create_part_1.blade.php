@@ -42,13 +42,13 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-lg-12">
-                            <label for="uplata">
-                                <input type="checkbox" id="uplata" name="uplata">
-                                Уплата (да ли је кандидат платио школарину)</label>
-                        </div>
-                    </div>
+                    {{--<div class="row">--}}
+                        {{--<div class="form-group col-lg-12">--}}
+                            {{--<label for="uplata">--}}
+                                {{--<input type="checkbox" id="uplata" name="uplata">--}}
+                                {{--Уплата (да ли је кандидат платио школарину)</label>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
 
