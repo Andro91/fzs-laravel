@@ -43,12 +43,14 @@
             {{ csrf_field() }}
             <table id="tabela" class="table">
                 <thead>
-                <th></th>
-                <th>Име</th>
-                <th>Презиме</th>
-                <th>ЈМБГ</th>
-                <th>Година студија</th>
-                <th>Измена</th>
+                <tr>
+                    <th></th>
+                    <th>Име</th>
+                    <th>Презиме</th>
+                    <th>ЈМБГ</th>
+                    <th>Година студија</th>
+                    <th>Измена</th>
+                </tr>
                 </thead>
                 <tbody>
                 @foreach($kandidati as $index => $kandidat)

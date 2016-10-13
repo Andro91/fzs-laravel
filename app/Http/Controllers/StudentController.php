@@ -25,6 +25,7 @@ use App\Kandidat;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Validator;
 
 class StudentController extends Controller
 {
@@ -355,12 +356,13 @@ class StudentController extends Controller
 
     public function createPrijavaIspitaPredmet($id, Request $request)
     {;
+        dd($request->all());
         //$predmet = Predmet::find($id);
         $predmet = PredmetProgram::where([
             'predmet_id' => $id,
             'studijskiProgram_id' => $request->studijskiProgramId,
-            'tipStudija_id' => $request->tipStudijaId])
-            ->first();
+            'tipStudija_id' => $request->tipStudijaId
+        ])->first();
         $kandidat = null;
         $brojeviIndeksa = Kandidat::
         where([
@@ -383,6 +385,69 @@ class StudentController extends Controller
 
         return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmet', 'studijskiProgram', 'godinaStudija',
             'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
+    }
+
+    public function createPrijavaIspitaPredmetMany($id)
+    {
+        $predmet = PredmetProgram::find($id);
+        $kandidati = Kandidat::
+        where([
+            'tipStudija_id' => $predmet->tipStudija_id,
+            'studijskiProgram_id' => $predmet->studijskiProgram_id,
+            'statusUpisa_id' => 1])->get();
+        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
+        $godinaStudija = GodinaStudija::all();
+        $tipPredmeta = TipPredmeta::all();
+        $tipStudija = TipStudija::all();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+
+        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->get();
+
+        if($profesorPredmet->isEmpty()){
+            $profesor = Profesor::all();
+        }else{
+            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
+            $profesor = Profesor::whereIn('id', $ids)->get();
+        }
+
+        return view('prijava.createManyPredmet', compact('kandidati', 'predmet', 'studijskiProgram', 'godinaStudija',
+            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
+    }
+
+    public function storePrijavaIspitaPredmetMany(Request $request)
+    {
+        $errorArray = array();
+        $duplicateArray = array();
+        foreach ($request->odabir as $kandidatId) {
+
+            $validator = PrijavaIspita::where([
+                'kandidat_id' => $kandidatId,
+                'predmet_id' => $request->predmet_id,
+                'rok_id' => $request->rok_id,
+            ])->get();
+
+            if (!$validator->isEmpty()) {
+                $duplicateArray[] = Kandidat::find($kandidatId);
+                continue;
+            }
+
+            $prijava = new PrijavaIspita($request->all());
+            $prijava->kandidat_id = $kandidatId;
+            $saved = $prijava->save();
+
+            if(!$saved){
+                $errorArray[] = Kandidat::find($kandidatId);
+            }
+        }
+//        if(!empty($errorArray)){
+//            Session::flash('flash-error', $errorArray);
+//        }
+//        if(!empty($duplicateArray)){
+//            Session::flash('flash-duplicate', $duplicateArray);
+//        }
+//        dd(count($errorArray) . count($duplicateArray));
+
+        return view('prijava.rezultat', compact('errorArray', 'duplicateArray'))->with('predmetId', $request->predmet_id);
     }
 
     public function storePrijavaIspita(Request $request)

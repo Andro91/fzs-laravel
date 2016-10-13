@@ -3,7 +3,8 @@
 @section('section')
     <h3>Предмет: {{ $predmet->naziv }}</h3>
     <br>
-    <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава</a>
+    <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>
+    <a href="{{$putanja}}/prijava/predmetVise/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - више студената</a>
     <div id="messages">
         @if (Session::get('flash-error'))
             <div class="alert alert-dismissible alert-danger">

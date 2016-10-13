@@ -75,6 +75,8 @@ Route::group(['middleware' => ['web']], function () {
     //(INDEX i CREATE Predmet-Prijava)
     Route::get('/prijava/zapredmet/{predmetId}', 'StudentController@svePrijaveIspitaZaPredmet');
     Route::get('/prijava/predmet/{predmetId}', 'StudentController@createPrijavaIspitaPredmet');
+    Route::get('/prijava/predmetVise/{predmetId}', 'StudentController@createPrijavaIspitaPredmetMany');
+    Route::post('/prijava/predmetVise/', 'StudentController@storePrijavaIspitaPredmetMany');
 
     Route::post('/prijava/', 'StudentController@storePrijavaIspita');
     Route::get('/prijava/delete/{id}', 'StudentController@deletePrijavaIspita');
