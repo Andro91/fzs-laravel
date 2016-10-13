@@ -29,15 +29,7 @@
                         <label for="predmet_id">Предмет:</label>
                         <select class="form-control auto-combobox" id="predmet_id" name="predmet_id">
                             @foreach($predmet as $predmet)
-                                <option value="{{$predmet->id}}">{{$predmet->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
-                        <label for="semestar_id">Семестар:</label>
-                        <select class="form-control" id="semestar_id" name="semestar_id">
-                            @foreach($semestar as $semestar)
-                                <option value="{{$semestar->id}}">{{$semestar->naziv}}</option>
+                                <option value="{{$predmet->id}}">{{$predmet->predmet->naziv}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -29,7 +29,7 @@
                         <label for="program_id">Програм:</label>
                         <select class="form-control auto-combobox" id="program_id" name="program_id" required>
                             @foreach($programi as $program)
-                                <option value="{{$program->id}}">{{$program->naziv}}</option>
+                                <option value="{{$program->id}}">{{$program->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
                             @endforeach
                         </select>
                     </div>

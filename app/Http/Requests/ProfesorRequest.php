@@ -16,7 +16,6 @@ class ProfesorRequest extends Request
         return [
             'predmet_id' => 'required',
             'oblikNastave_id' => 'required',
-            'semestar_id' => 'required',
         ];
     }
 
@@ -25,7 +24,6 @@ class ProfesorRequest extends Request
         return [
             'predmet_id.required' => 'Унесите предмет.',
             'oblikNastave_id.required' => 'Унесите облик наставе.',
-            'semestar_id.required' => 'Унесите семестар.',
         ];
     }
 }

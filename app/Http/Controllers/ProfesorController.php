@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\OblikNastave;
 use App\Predmet;
+use App\PredmetProgram;
 use App\Profesor;
 use App\ProfesorPredmet;
 use App\Semestar;
@@ -70,8 +71,9 @@ class ProfesorController extends Controller
     public function editPredmet(Profesor $profesor)
     {
         try {
-            $status = StatusProfesora::all();
+            //$status = StatusProfesora::all();
             $predmeti = ProfesorPredmet::where('profesor_id', $profesor->id)->get();
+            //return($predmeti->first());
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
@@ -140,14 +142,13 @@ class ProfesorController extends Controller
     public function addPredmet(Profesor $profesor)
     {
         try {
-            $predmet = Predmet::all();
-            $semestar = Semestar::all();
+            $predmet = PredmetProgram::all();
             $oblik = OblikNastave::all();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        return view('sifarnici.addProfesorPredmet', compact('predmet', 'semestar', 'oblik', 'profesor'));
+        return view('sifarnici.addProfesorPredmet', compact('predmet', 'oblik', 'profesor'));
     }
 
     public function addPredmetUnos(Requests\ProfesorRequest $request)
@@ -156,8 +157,7 @@ class ProfesorController extends Controller
 
         $predmet->profesor_id= $request->profesor_id;
         $predmet->predmet_id = $request->predmet_id;
-        $predmet->semestar_id = $request->semestar_id;
-        $predmet->oblik_nastave_id = $request->oblikNastave_id;
+        $predmet->oblikNastave_id = $request->oblikNastave_id;
         $predmet->indikatorAktivan = 1;
 
         try {

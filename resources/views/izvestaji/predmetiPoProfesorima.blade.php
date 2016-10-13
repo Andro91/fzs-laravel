@@ -15,7 +15,7 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;">Р.бр.</th>
+                <th style="border: 1px solid black;"><b>Р.бр.</b></th>
                 <th style="border: 1px solid black;"><b>Назив</b>
                 </th>
             </tr>
@@ -27,7 +27,7 @@
                     <?php $a++; ?>
                     <tr>
                         <td style="border: 1px solid black;">{{$a}}</td>
-                        <td style="border: 1px solid black;">{{$predmet->predmet->naziv}}</td>
+                        <td style="border: 1px solid black;">{{$predmet->predmet->predmet->naziv}}</td>
                     </tr>
                 @endif
 

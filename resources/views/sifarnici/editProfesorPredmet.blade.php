@@ -16,20 +16,22 @@
                 Назив
             </th>
             <th>
-                Облик наставе
+                Тип предмета
             </th>
             <th>
                 Семестар
             </th>
             <th>
-
+                Облик наставе
             </th>
             </thead>
             @foreach($predmeti as $predmet)
                 <tr>
-                    <td>{{$predmet->predmet->naziv}}</td>
+                    <td>{{$predmet->predmet->predmet->naziv}}
+                        - {{$predmet->predmet->program->skrNazivStudijskogPrograma}}</td>
+                    <td>{{$predmet->predmet->tipPredmeta->naziv}}</td>
+                    <td>{{$predmet->predmet->semestar}}</td>
                     <td>{{$predmet->oblik_nastave->naziv}}</td>
-                    <td>{{$predmet->semestar->naziv}}</td>
                     <td>
                         <div class="btn-group">
                             <form onsubmit="return confirm('Да ли сте сигурни да желите да обришете податке?');"
