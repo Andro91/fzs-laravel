@@ -16,6 +16,7 @@ class CreateProfesorPredmetTable extends Migration
             $table->increments('id');
             $table->integer('profesor_id')->nullable();
             $table->integer('predmet_id')->nullable();//id predmet_program
+            $table->integer('oblik_nastave_id')->nullable();
             $table->integer('indikatorAktivan')->unsigned()->nullable();
             $table->timestamps();
         });
