@@ -222,6 +222,8 @@
                                             <span class='label label-warning'>{{$godina->status->naziv}}</span>
                                         @elseif($godina->statusGodine_id == 5)
                                             <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 6)
+                                            <span class='label label-default'>{{$godina->status->naziv}}</span>
                                         @endif
                                     </td>
                                     <td>

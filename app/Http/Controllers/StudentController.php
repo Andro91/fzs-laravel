@@ -171,26 +171,6 @@ class StudentController extends Controller
         return redirect("student/{$id}/upis");
     }
 
-    public function ponistiUplatu($id, Request $request)
-    {
-        if(empty($id) || empty($request->upisId)){
-            Session::flash('flash-error', 'upis');
-            return redirect("student/{$id}/upis");
-        }
-
-        $upis = UpisGodine::find($request->upisId);
-        $upis->skolarina = 0;
-        $upis->save();
-
-        if($upis->godina == 1){
-            $kandidat = Kandidat::find($id);
-            $kandidat->uplata = 0;
-            $kandidat->save();
-        }
-
-        return redirect("student/{$id}/upis");
-    }
-
     public function ponistiUpis($id, Request $request)
     {
         if(empty($id) || empty($request->upisId)){
@@ -210,8 +190,25 @@ class StudentController extends Controller
         $kandidat = Kandidat::find($id);
         $kandidat->statusUpisa_id = $statusId;
         $kandidat->datumStatusa = Carbon::now();
+        if($statusId == 4){
+            $aktivnaGodina = UpisGodine::where([
+                'kandidat_id' => $id,
+                'statusGodine_id' => 1
+            ])->first();
+            $aktivnaGodina->statusGodine_id = 6;
+            $aktivnaGodina->datumPromene = Carbon::now();
+            $aktivnaGodina->save();
+        }else if($statusId == 1){
+            $aktivnaGodina = UpisGodine::where([
+                'kandidat_id' => $id,
+                'statusGodine_id' => 6
+            ])->first();
+            $aktivnaGodina->datumPromene = Carbon::now();
+            $aktivnaGodina->statusGodine_id = 1;
+            $aktivnaGodina->save();
+        }
         $kandidat->save();
-        return redirect("kandidat?studijskiProgramId={$kandidat->studijskiProgram_id}");
+        return redirect("student/index/{$kandidat->tipStudija_id}?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
 
     public function masovniUpis(Request $request)
@@ -224,326 +221,6 @@ class StudentController extends Controller
             UpisGodine::upisiGodinu($kandidatId, $godina, $kandidat->skolskaGodinaUpisa_id);
         }
         return redirect('/student/index/1');
-    }
-
-    //Stranica Status studenta
-    public function svePrijaveIspitaZaStudenta($id)
-    {
-        $kandidat = Kandidat::find($id);
-        $prijave = $kandidat->prijaveIspita()->get();
-
-        $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
-            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-            ->where(['predmet_program.godinaStudija_id' => 1, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-            ->get();
-
-        $polozeniIspitiDrugaGodina = \DB::table('polozeni_ispiti')
-            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-            ->where(['predmet_program.godinaStudija_id' => 2, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-            ->get();
-
-        $polozeniIspitiTrecaGodina = \DB::table('polozeni_ispiti')
-            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-            ->where(['predmet_program.godinaStudija_id' => 3, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-            ->get();
-
-        $polozeniIspitiCetvrtaGodina = \DB::table('polozeni_ispiti')
-            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-            ->get();
-
-        $polozeniIspitiMaster = \DB::table('polozeni_ispiti')
-            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 2, 'polozeni_ispiti.kandidat_id' => $id])
-            ->get();
-
-        return view('prijava.index', compact(
-            'kandidat',
-            'prijave',
-            'polozeniIspitiPrvaGodina',
-            'polozeniIspitiDrugaGodina',
-            'polozeniIspitiTrecaGodina',
-            'polozeniIspitiCetvrtaGodina',
-            'polozeniIspitiMaster'));
-    }
-
-    public function svePrijaveIspitaZaPredmet($id)
-    {
-        $predmet = Predmet::find($id);
-        $prijave = $predmet->prijaveIspita()->get();
-        return view('prijava.indexPredmet', compact('predmet','prijave'));
-    }
-
-    public function createPrijavaIspitaStudent($id)
-    {
-        $kandidat = Kandidat::find($id);
-        $brojeviIndeksa = Kandidat::where([
-            'statusUpisa_id' => 1,
-            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
-            'tipStudija_id' => $kandidat->tipStudija_id,
-            'godinaStudija_id' => $kandidat->godinaStudija_id,
-        ])->select('id','BrojIndeksa as naziv')->get();
-
-        $predmeti = PredmetProgram::where([
-            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
-            'tipStudija_id' => $kandidat->tipStudija_id,
-            //Godina je uklonjena, da bi mogao da se prijavi ispit iz bilo koje godine
-            //'godinaStudija_id' =>  $kandidat->godinaStudija_id,
-        ])->orderBy('semestar')->get();
-
-        $studijskiProgram = StudijskiProgram::where(['id' => $kandidat->studijskiProgram_id])->get();
-        $godinaStudija = GodinaStudija::all();
-        $tipPredmeta = TipPredmeta::all();
-        $tipStudija = TipStudija::all();
-        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
-        $profesor = Profesor::all();
-        //TODO check
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmeti->first()->id])->select('profesor_id')->get();
-
-        if($profesorPredmet->isEmpty()){
-            $profesori = Profesor::all();
-        }else{
-            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
-            $profesori = Profesor::whereIn('id', $ids)->get();
-        }
-
-        $tipPrijave = TipPrijave::all();
-
-        return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmeti', 'studijskiProgram', 'godinaStudija',
-            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
-
-    }
-
-    public function createPrijavaIspitaPredmet($id, Request $request)
-    {;
-        dd($request->all());
-        //$predmet = Predmet::find($id);
-        $predmet = PredmetProgram::where([
-            'predmet_id' => $id,
-            'studijskiProgram_id' => $request->studijskiProgramId,
-            'tipStudija_id' => $request->tipStudijaId
-        ])->first();
-        $kandidat = null;
-        $brojeviIndeksa = Kandidat::
-        where([
-            'tipStudija_id' => $request->tipStudijaId,
-            'studijskiProgram_id' => $request->studijskiProgramId,
-            'statusUpisa_id' => 1])->
-        select('id','BrojIndeksa as naziv')->get();
-        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
-        $godinaStudija = GodinaStudija::all();
-        $tipPredmeta = TipPredmeta::all();
-        $tipStudija = TipStudija::all();
-        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->first();
-        if($profesorPredmet == null){
-            $profesor = Profesor::all();
-        }else{
-            $profesor = Profesor::where(['id' => $profesorPredmet->profesor_id])->get();
-        }
-        $tipPrijave = TipPrijave::all();
-
-        return view('prijava.create', compact('kandidat', 'brojeviIndeksa', 'predmet', 'studijskiProgram', 'godinaStudija',
-            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
-    }
-
-    public function createPrijavaIspitaPredmetMany($id)
-    {
-        $predmet = PredmetProgram::find($id);
-        $kandidati = Kandidat::
-        where([
-            'tipStudija_id' => $predmet->tipStudija_id,
-            'studijskiProgram_id' => $predmet->studijskiProgram_id,
-            'statusUpisa_id' => 1])->get();
-        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
-        $godinaStudija = GodinaStudija::all();
-        $tipPredmeta = TipPredmeta::all();
-        $tipStudija = TipStudija::all();
-        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
-
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->get();
-
-        if($profesorPredmet->isEmpty()){
-            $profesor = Profesor::all();
-        }else{
-            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
-            $profesor = Profesor::whereIn('id', $ids)->get();
-        }
-
-        return view('prijava.createManyPredmet', compact('kandidati', 'predmet', 'studijskiProgram', 'godinaStudija',
-            'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
-    }
-
-    public function storePrijavaIspitaPredmetMany(Request $request)
-    {
-        $errorArray = array();
-        $duplicateArray = array();
-        foreach ($request->odabir as $kandidatId) {
-
-            $validator = PrijavaIspita::where([
-                'kandidat_id' => $kandidatId,
-                'predmet_id' => $request->predmet_id,
-                'rok_id' => $request->rok_id,
-            ])->get();
-
-            if (!$validator->isEmpty()) {
-                $duplicateArray[] = Kandidat::find($kandidatId);
-                continue;
-            }
-
-            $prijava = new PrijavaIspita($request->all());
-            $prijava->kandidat_id = $kandidatId;
-            $saved = $prijava->save();
-
-            if(!$saved){
-                $errorArray[] = Kandidat::find($kandidatId);
-            }
-        }
-//        if(!empty($errorArray)){
-//            Session::flash('flash-error', $errorArray);
-//        }
-//        if(!empty($duplicateArray)){
-//            Session::flash('flash-duplicate', $duplicateArray);
-//        }
-//        dd(count($errorArray) . count($duplicateArray));
-
-        return view('prijava.rezultat', compact('errorArray', 'duplicateArray'))->with('predmetId', $request->predmet_id);
-    }
-
-    public function storePrijavaIspita(Request $request)
-    {
-        $messages = [
-            'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио тражени испит у траженом року.',
-        ];
-
-        $this->validate($request, [
-            'kandidat_id' => 'unique_with:prijava_ispita,predmet_id,rok_id',
-        ], $messages);
-
-        $prijava = new PrijavaIspita($request->all());
-        $saved = $prijava->save();
-
-        if($saved){
-            if(!empty($request->prijava_za_predmet)){
-                return redirect("/prijava/zapredmet/{$request->predmet_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
-            }else{
-                return redirect("/prijava/zastudenta/{$request->kandidat_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
-            }
-        }else{
-            Session::flash('flash-error', 'create');
-            return Redirect::back();
-        }
-
-    }
-
-    public function deletePrijavaIspita($id, Request $request)
-    {
-        $prijava = PrijavaIspita::find($id);
-        $kandidat = $prijava->kandidat_id;
-        $predmet = $prijava->predmet_id;
-        PrijavaIspita::destroy($id);
-
-        if($request->prijava == 'predmet'){
-            return redirect("/prijava/zapredmet/{$predmet}");
-        }else{
-            return redirect("/prijava/zastudenta/{$kandidat}");
-        }
-    }
-
-    public function spisakPredmeta(Request $request)
-    {
-        $tipStudija = TipStudija::all();
-        $studijskiProgrami = StudijskiProgram::where([
-            'tipStudija_id' => $request->tipStudijaId,
-            'indikatorAktivan' => 1])->get();
-
-        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
-
-        $predmeti = $predmetProgram;
-
-        return view('prijava.predmeti', compact('tipStudija','studijskiProgrami','predmeti'));
-    }
-
-    public function vratiKandidataPrijava(Request $request)
-    {
-        $kandidat = Kandidat::find($request->id);
-        $predmetProgram = PredmetProgram::where(['tipStudija_id' => $kandidat->tipStudija_id, 'studijskiProgram_id' => $kandidat->studijskiProgram_id])->get();
-        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
-        $predmeti = Predmet::find($ids);
-
-        $stringPredmeti = "";
-        foreach ($predmeti as $item) {
-            $stringPredmeti .= "<option value='{$item->id}'>{$item->naziv}</option>";
-        }
-
-        return ['student' => $kandidat, 'predmeti' => $stringPredmeti];
-    }
-
-    public function vratiPredmetPrijava(Request $request)
-    {
-        $kandidat = Kandidat::find($request->kandidat);
-        $predmetProgram = PredmetProgram::where([
-            'tipStudija_id' => $kandidat->tipStudija_id,
-            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
-            'predmet_id' => $request->id
-        ])->first();
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->get();
-
-        if($profesorPredmet->isEmpty()){
-            $profesori = Profesor::all();
-        }else{
-            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
-            $profesori = Profesor::whereIn('id', $ids)->get();
-        }
-        $stringProfesori = "";
-        foreach ($profesori as $item) {
-            $stringProfesori .= "<option value='{$item->id}'>" . $item->zvanje . " " .$item->ime . " " . $item->prezime . "</option>";
-        }
-
-        return ['tipPredmeta' => $predmetProgram->tipPredmeta_id,
-            'godinaStudija' => $predmetProgram->godinaStudija_id,
-            'tipStudija' => $predmetProgram->tipStudija_id,
-            'profesori' => $stringProfesori];
     }
 
     public function upisMasterStudija(Request $request)

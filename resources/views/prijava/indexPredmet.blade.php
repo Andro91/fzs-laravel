@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('page_heading','Пријава испита')
 @section('section')
-    <h3>Предмет: {{ $predmet->naziv }}</h3>
+    <h3>Предмет: {{ $predmet->predmet->naziv }}</h3>
     <br>
-    <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>
+    <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>
     <a href="{{$putanja}}/prijava/predmetVise/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - више студената</a>
     <div id="messages">
         @if (Session::get('flash-error'))
@@ -33,6 +33,8 @@
         @endif
     </div>
     <hr>
+    <h3>Пријављени студенти</h3>
+    <br>
     <table id="tabela" class="table">
         <thead>
         <tr>

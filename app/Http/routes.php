@@ -65,25 +65,25 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/kalendar/storeRok/', 'KalendarController@storeRok');
     Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
 
-    //Spisak predmeta za prijavu ispita
-    Route::get('/predmeti/', 'StudentController@spisakPredmeta');
-
     //Prijava za ispit preko studenta (INDEX i CREATE Student-Prijava)
-    Route::get('/prijava/zastudenta/{kandidatId}', 'StudentController@svePrijaveIspitaZaStudenta');
-    Route::get('/prijava/student/{kandidatId}', 'StudentController@createPrijavaIspitaStudent');
+    Route::get('/prijava/zastudenta/{kandidatId}', 'PrijavaController@svePrijaveIspitaZaStudenta');
+    Route::get('/prijava/student/{kandidatId}', 'PrijavaController@createPrijavaIspitaStudent');
+
+    //Spisak predmeta za prijavu ispita
+    Route::get('/predmeti/', 'PrijavaController@spisakPredmeta');
 
     //(INDEX i CREATE Predmet-Prijava)
-    Route::get('/prijava/zapredmet/{predmetId}', 'StudentController@svePrijaveIspitaZaPredmet');
-    Route::get('/prijava/predmet/{predmetId}', 'StudentController@createPrijavaIspitaPredmet');
-    Route::get('/prijava/predmetVise/{predmetId}', 'StudentController@createPrijavaIspitaPredmetMany');
-    Route::post('/prijava/predmetVise/', 'StudentController@storePrijavaIspitaPredmetMany');
+    Route::get('/prijava/zaPredmet/{predmetId}', 'PrijavaController@indexPrijavaIspitaPredmet');
+    Route::get('/prijava/predmet/{predmetId}', 'PrijavaController@createPrijavaIspitaPredmet');
+    Route::get('/prijava/predmetVise/{predmetId}', 'PrijavaController@createPrijavaIspitaPredmetMany');
+    Route::post('/prijava/predmetVise/', 'PrijavaController@storePrijavaIspitaPredmetMany');
 
-    Route::post('/prijava/', 'StudentController@storePrijavaIspita');
-    Route::get('/prijava/delete/{id}', 'StudentController@deletePrijavaIspita');
+    Route::post('/prijava/', 'PrijavaController@storePrijavaIspita');
+    Route::get('/prijava/delete/{id}', 'PrijavaController@deletePrijavaIspita');
 
     //AJAX pozivi sa prijave
-    Route::post('/prijava/vratiKandidataPrijava', 'StudentController@vratiKandidataPrijava');
-    Route::post('/prijava/vratiPredmetPrijava', 'StudentController@vratiPredmetPrijava');
+    Route::post('/prijava/vratiKandidataPrijava', 'PrijavaController@vratiKandidataPrijava');
+    Route::post('/prijava/vratiPredmetPrijava', 'PrijavaController@vratiPredmetPrijava');
 
     //Zapisnik o polaganju ispita
     Route::get('/zapisnik', 'IspitController@indexZapisnik');

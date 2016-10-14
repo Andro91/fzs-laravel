@@ -1085,6 +1085,7 @@ class KandidatController extends Controller
         foreach ($request->odabir as $kandidatId) {
 
             $kandidat = Kandidat::find($kandidatId);
+            UpisGodine::registrujKandidata($kandidatId);
 
             $returnValue = UpisGodine::upisiGodinu($kandidatId, $kandidat->godinaStudija_id, $kandidat->skolskaGodinaUpisa_id);
 

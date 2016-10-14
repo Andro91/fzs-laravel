@@ -29,7 +29,6 @@
             </div>
         @endif
     </div>
-    <hr>
     <ul class="nav nav-pills">
         @foreach($tipStudija as $tip)
             <li role="presentation"
@@ -69,39 +68,23 @@
             <tr>
                 <td>{{$predmet->predmet->naziv}}</td>
                 <td>
-                    @if($predmet->tipStudija)
-                        {{$predmet->tipStudija->naziv}}
-                    @else
-                        Prazno
-                    @endif
+                    {{$predmet->tipStudija->naziv}}
                 </td>
                 <td>
-                    @if($predmet->program)
-                        {{$predmet->program->naziv}}
-                    @else
-                        Prazno
-                    @endif
+                    {{$predmet->program->naziv}}
                 </td>
                 <td>
-                    @if($predmet->tipPredmeta)
-                        {{$predmet->tipPredmeta->naziv}}
-                    @else
-                        Prazno
-                    @endif
+                    {{$predmet->tipPredmeta->naziv}}
                 </td>
                 <td>
-                    @if($predmet->godinaStudija)
-                        {{$predmet->godinaStudija->naziv}}
-                    @else
-                        Prazno
-                    @endif
+                    {{$predmet->godinaStudija->naziv}}
                 </td>
                 <td>{{$predmet->semestar}}</td>
                 <td>{{$predmet->predmet->espb}}</td>
                 <td>{{$predmet->predmet->statusPredmeta}}</td>
                 <td>
                     <div class="btn-group">
-                        <a href="prijava/zapredmet/{{$predmet->predmet_id}}?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ Request::input('studijskiProgramId') }}" class="btn btn-primary">Пријава испита</a>
+                        <a href="prijava/zaPredmet/{{$predmet->predmet_id}}" class="btn btn-primary">Пријава испита</a>
                     </div>
                 </td>
             </tr>

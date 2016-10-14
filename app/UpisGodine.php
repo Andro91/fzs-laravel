@@ -3,7 +3,6 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 
 class UpisGodine extends AndroModel
 {
@@ -32,7 +31,6 @@ class UpisGodine extends AndroModel
 
         if($kandidat->tipStudija_id == 1)
         {
-//            \DB::transaction(function () use($id, $kandidat) {
                 $upis = new UpisGodine();
                 $upis->kandidat_id = $id;
                 $upis->godina = 1;
@@ -100,7 +98,6 @@ class UpisGodine extends AndroModel
                     $upis->datumUpisa = null;
                 }
                 $upis->save();
-//            });
         }
         else if($kandidat->tipStudija_id == 2)
         {
@@ -146,30 +143,6 @@ class UpisGodine extends AndroModel
         }
         return false;
     }
-
-//    public static function uplatiGodinu($id, $godina)
-//    {
-//        $kandidat = Kandidat::find($id);
-//        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
-//        $upis->kandidat_id = $id;
-//        $upis->godina = 1;
-//        $upis->pokusaj = 1;
-//        $upis->tipStudija_id = $kandidat->tipStudija_id;
-//        $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
-//        $upis->statusGodine_id = 1;
-//        $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
-//        $upis->datumUpisa = null;
-//        $saved = $upis->save();
-//
-//        if($saved){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//
-//    }
-
-
 
     public static function upisiGodinu($id, $godina, $skolskaGodinaUpisaId)
     {
