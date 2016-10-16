@@ -38,7 +38,7 @@ class IzvestajiController extends Controller
     {
         //$region->delete();
         try {
-            $kandidat = Kandidat::where(['statusUpisa_id' => 3])->get();
+            $kandidat = Kandidat::where(['statusUpisa_id' => 3])->orderBy('brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 3])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
             $picks3 = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
@@ -122,7 +122,7 @@ class IzvestajiController extends Controller
     public function spisakZaSmer(Request $request)
     {
         try {
-            $studenti = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
+            $studenti = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->orderBy('brojIndeksa')->get();
             if ($studenti->first()) {
                 $program = $studenti->first()->program->naziv;
             } else {
@@ -151,7 +151,8 @@ class IzvestajiController extends Controller
                 ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->program])
                 ->where(['upis_godine.skolskaGodina_id' => $request->godina])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')->get();
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->orderBy('kandidat.brojIndeksa')->get();
             //->get();
 
             //dd($kandidat);
@@ -202,7 +203,8 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->where(['upis_godine.statusGodine_id' => 1])->where(['upis_godine.skolskaGodina_id' => $request->skolskaGodina])
                 ->where(['upis_godine.godina' => $request->godina])
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')->get();
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->orderBy('kandidat.brojIndeksa')->get();
             //dd($kandidat);
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina])->get();
             /*$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
@@ -239,7 +241,7 @@ class IzvestajiController extends Controller
     public function spisakPoSlavama()
     {
         try {
-            $kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
+            $kandidat = Kandidat::where(['statusUpisa_id' => 1])->orderBy('brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('krsnaSlava_id')->select('krsnaSlava_id')->groupBy('krsnaSlava_id')->get();
 
             $uslov = array();
@@ -399,7 +401,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->where(['upis_godine.skolskaGodina_id' => $request->godina])->where(['upis_godine.statusGodine_id' => 1])
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program',
-                    'studijski_program.id as program_id')->get();
+                    'studijski_program.id as program_id')->orderBy('kandidat.brojIndeksa')->get();
 
             //dd($programi);
 

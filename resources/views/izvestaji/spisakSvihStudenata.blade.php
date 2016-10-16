@@ -68,18 +68,5 @@
 <br/>
 <br/>
 <br/>
-<div>
-    <table>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Председник комисије</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td style="padding-bottom: 10px;"></td>
-            <td style="border-bottom: 1px solid black;"></td>
-        </tr>
-    </table>
-</div>
+
 
