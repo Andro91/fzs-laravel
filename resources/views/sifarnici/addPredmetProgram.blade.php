@@ -29,7 +29,8 @@
                         <label for="program_id">Програм:</label>
                         <select class="form-control auto-combobox" id="program_id" name="program_id" required>
                             @foreach($programi as $program)
-                                <option value="{{$program->id}}">{{$program->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
+                                <option value="{{$program->id}}">{{$program->naziv}}
+                                    - {{$program->tipStudija->skrNaziv}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,7 +44,18 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="semestar">Семестар:</label>
-                        <input name="semestar" type="text" class="form-control">
+                        <select class="form-control" id="semestar" name="semestar">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
                     </div>
                     <div class="form-group pull-left" style="width: 48%;  margin-right: 2%">
                         <label for="tipPredmeta_id">Тип предмета:</label>
