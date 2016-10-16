@@ -29,8 +29,7 @@
                         <label for="program_id">Програм:</label>
                         <select class="form-control auto-combobox" id="program_id" name="program_id" required>
                             @foreach($programi as $program)
-                                <option value="{{$program->id}}">{{$program->naziv}}
-                                    - {{$program->tipStudija->skrNaziv}}</option>
+                                <option value="{{$program->id}}">{{$program->naziv}} - {{$program->tipStudija->skrNaziv}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -79,11 +78,11 @@
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="predavanja">Часови предавања:</label>
-                        <input name="predavanja" type="number" class="form-control"">
+                        <input name="predavanja" type="number" class="form-control">
                     </div>
                     <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
                         <label for="vezbe">Часови вежби:</label>
-                        <input name="vezbe" type="number" class="form-control"">
+                        <input name="vezbe" type="number" class="form-control">
                     </div>
                 </div>
             </div>

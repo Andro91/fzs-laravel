@@ -142,20 +142,6 @@ class PredmetController extends Controller
 
     public function addProgramUnos(Requests\ProgramRequest $request)
     {
-       /* $this->validate($request, [
-            'studijskiProgram_id' => 'required',
-            'predmet_id' => 'required',
-            'godinaStudija_id' => 'required',
-            'semestar' => 'required',
-            'tipPredmeta_id' => 'required',
-            'tipStudija_id' => 'required',
-            'predavanja' => 'required',
-            'vezbe' => 'required',
-            'skolskaGodina_id' => 'required',
-            'espb' => 'required',
-        ]);*/
-
-        //return Session::get('errors')->all();
 
         $program = new PredmetProgram();
         $program->studijskiProgram_id = $request->program_id;
@@ -165,9 +151,9 @@ class PredmetController extends Controller
         $program->tipPredmeta_id = $request->tipPredmeta_id;
         $program->tipStudija_id = $program->program->tipStudija->id;
         $program->espb = $request->espb;
-        $program->predavanja = $request->skolskaGodina_id;
+        $program->predavanja = $request->predavanja;
         $program->vezbe = $request->vezbe;
-        $program->skolskaGodina_id = $request->vezbe;
+        $program->skolskaGodina_id = $request->skolskaGodina_id;
         $program->statusPredmeta = 1;
         $program->indikatorAktivan = 1;
 
