@@ -8,6 +8,7 @@
     <br/>
     <br/>
 
+
     @foreach($uslov as $test)
 
         @foreach($slave as $broj => $slava)
@@ -18,12 +19,12 @@
                 <table style="border: 1px solid black;">
                     <thead>
                     <tr>
-                        <th style="border: 1px solid black;">Р.бр.</th>
+                        <th style="border: 1px solid black; width: 40px;"><b>Р.бр.</b></th>
                         <th style="border: 1px solid black;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width: 170px;"><b>Име и презиме</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Мејл</b>
+                        <th style="border: 1px solid black;width: 170px;"><b>Мејл</b>
                         </th>
                     </tr>
                     </thead>
@@ -32,10 +33,10 @@
                         @if($item->krsnaSlava_id == $slava->id)
                             <?php $a++; ?>
                             <tr>
-                                <td style="border: 1px solid black;">{{$a}}</td>
+                                <td style="border: 1px solid black;width: 40px;">{{$a}}</td>
                                 <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                                <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                                <td style="border: 1px solid black;">{{$item->email}}</td>
+                                <td style="border: 1px solid black; width: 170px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                                <td style="border: 1px solid black;width: 170px;">{{$item->email}}</td>
                             </tr>
                         @endif
 
@@ -49,10 +50,3 @@
     @endforeach
 
 </div>
-
-
-
-<br/>
-<br/>
-<br/>
-

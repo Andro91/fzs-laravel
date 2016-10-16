@@ -17,23 +17,29 @@
             <table style="border: 1px solid black;">
                 <thead>
                 <tr>
-                    <th style="border: 1px solid black;">
+                    <th style="border: 1px solid black;width:40px"><b>Р.бр.</b></th>
+                    <th style="border: 1px solid black;width:80px"><b>Број индекса</b></th>
+                    <th style="border: 1px solid black;width:200px">
                         <b>Име и презиме</b>
                     </th>
-                    <th style="border: 1px solid black;">
+                    <th style="border: 1px solid black;width:150px">
                         <b>Мејл</b>
                     </th>
-                    <th style="border: 1px solid black;">
+                    <th style="border: 1px solid black;width:60px">
                         <b>Година</b>
                     </th>
                 </tr>
                 </thead>
+                <?php $a = 0;?>
                 @foreach($studenti as $item)
                     @if($item->program_id == $program->program->id)
+                        <?php $a++; ?>
                         <tr>
-                            <td style="border: 1px solid black;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                            <td style="border: 1px solid black;">{{$item->email}}</td>
-                            <td style="border: 1px solid black;">{{$item->godina}}</td>
+                            <td style="border: 1px solid black;width:40px">{{$a}}</td>
+                            <td style="border: 1px solid black;width:80px">{{$item->brojIndeksa}}</td>
+                            <td style="border: 1px solid black;width:200px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;width:150px">{{$item->email}}</td>
+                            <td style="border: 1px solid black;width:60px">{{$item->godina}}</td>
                         </tr>
                     @endif
                 @endforeach
@@ -46,8 +52,3 @@
 @else
     <h1>Нема регистрованих студената</h1>
 @endif
-
-
-<br/>
-<br/>
-<br/>

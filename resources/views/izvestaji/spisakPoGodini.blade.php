@@ -17,7 +17,8 @@
                     <thead>
                     <tr>
                         <th style="border: 1px solid black;width:30px"><b>Р.бр.</b></th>
-                        <th style="border: 1px solid black;width:300px"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width:100px"><b>Број индекса</b></th>
+                        <th style="border: 1px solid black;width:200px"><b>Име и презиме</b>
                         </th>
                         <th style="border: 1px solid black;width:150px"><b>Програм</b>
                         </th>
@@ -29,7 +30,8 @@
                             <?php $a++; ?>
                             <tr>
                                 <td style="border: 1px solid black;width:30px">{{$a}}</td>
-                                <td style="border: 1px solid black;width:300px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                                <td style="border: 1px solid black;width:100px">{{$item->brojIndeksa}}</td>
+                                <td style="border: 1px solid black;width:200px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
                                 <td style="border: 1px solid black;width:150px">{{$item->program}}</td>
                             </tr>
                         @endif
@@ -45,10 +47,3 @@
     <br/>
     <br/>
 </div>
-
-
-<br/>
-<br/>
-<br/>
-
-

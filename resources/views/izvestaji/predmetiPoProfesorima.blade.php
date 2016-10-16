@@ -41,10 +41,3 @@
     @endforeach
 
 </div>
-
-
-<br/>
-<br/>
-<br/>
-
-

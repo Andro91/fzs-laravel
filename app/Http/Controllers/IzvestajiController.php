@@ -153,30 +153,9 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
-            //->get();
 
-            //dd($kandidat);
-
-            //$kandidat = Kandidat::where(['statusUpisa_id' => 1, 'studijskiProgram_id' => $request->program])->get();
-            /*$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
-            $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('godinaStudija_id')->where('studijskiProgram_id', $request->program)->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
-            $picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
-
-            $uslov = array();
-            $uslov2 = array();
-            foreach($picks as $item)
-            {
-                $uslov[] = $item->studijskiProgram_id;
-            }
-            foreach($picks2 as $item)
-            {
-                $uslov2[] = $item->godinaStudija_id;
-            }*/
             $program = StudijskiProgram::where('id', $request->program)->get()->first();
 
-            //return $program;
-
-            //$godina = GodinaStudija::whereIn('id', $uslov2)->get();
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
