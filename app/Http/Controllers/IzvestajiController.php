@@ -577,7 +577,7 @@ class IzvestajiController extends Controller
     {
         try {
             //$predmeti = Predmet::where(['godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->get();
-            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $request->program])->get();
+            $predmeti = PredmetProgram::where(['studijskiProgram_id' => $request->program])->orderBy('semestar')->get();
             //skolskaGodina_id
 
             if ($predmeti->first()) {
