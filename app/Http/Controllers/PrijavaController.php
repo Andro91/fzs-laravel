@@ -291,7 +291,6 @@ class PrijavaController extends Controller
             Session::flash('flash-error', 'create');
             return Redirect::back();
         }
-
     }
 
     public function deletePrijavaIspita($id, Request $request)
@@ -313,12 +312,13 @@ class PrijavaController extends Controller
     {
         $kandidat = Kandidat::find($request->id);
         $predmetProgram = PredmetProgram::where(['tipStudija_id' => $kandidat->tipStudija_id, 'studijskiProgram_id' => $kandidat->studijskiProgram_id])->get();
-        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
-        $predmeti = Predmet::find($ids);
+
+//        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
+//        $predmeti = Predmet::find($ids);
 
         $stringPredmeti = "";
-        foreach ($predmeti as $item) {
-            $stringPredmeti .= "<option value='{$item->id}'>{$item->naziv}</option>";
+        foreach ($predmetProgram as $item) {
+            $stringPredmeti .= "<option value='{$item->id}'>{$item->predmet->naziv}</option>";
         }
 
         return ['student' => $kandidat, 'predmeti' => $stringPredmeti];
