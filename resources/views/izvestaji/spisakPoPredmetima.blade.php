@@ -32,7 +32,7 @@
                 </thead>
                 <?php $a = 0;?>
                 @foreach($studenti as $item)
-                    @if($item->program_id == $program->program->id)
+                    @if($item->program_id == $program->program->id && $item->godina == $program->godinaStudija_id)
                         <?php $a++; ?>
                         <tr>
                             <td style="border: 1px solid black;width:40px">{{$a}}</td>

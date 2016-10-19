@@ -157,7 +157,7 @@ class ProfesorController extends Controller
 
         $predmet->profesor_id= $request->profesor_id;
         $predmet->predmet_id = $request->predmet_id;
-        $predmet->oblikNastave_id = $request->oblikNastave_id;
+        $predmet->oblik_nastave_id = $request->oblikNastave_id;
         $predmet->indikatorAktivan = 1;
 
         try {
