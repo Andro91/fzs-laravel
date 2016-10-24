@@ -20,9 +20,9 @@ class CreateUpisGodineTable extends Migration
             $table->integer('tipStudija_id');
             $table->integer('statusGodine_id');
             $table->integer('studijskiProgram_id');
-            $table->integer('skolskaGodina_id');
-            $table->date('datumUpisa');
-            $table->date('datumPromene');
+            $table->integer('skolskaGodina_id')->nullable();
+            $table->date('datumUpisa')->nullable();;
+            $table->date('datumPromene')->nullable();;
             $table->timestamps();
         });
     }

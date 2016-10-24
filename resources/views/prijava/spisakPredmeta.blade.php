@@ -84,7 +84,7 @@
                 <td>{{$predmet->predmet->statusPredmeta}}</td>
                 <td>
                     <div class="btn-group">
-                        <a href="prijava/zaPredmet/{{$predmet->predmet_id}}" class="btn btn-primary">Пријава испита</a>
+                        <a href="prijava/zaPredmet/{{$predmet->id}}" class="btn btn-primary">Пријава испита</a>
                     </div>
                 </td>
             </tr>

@@ -48,7 +48,12 @@ class PrijavaController extends Controller
     public function indexPrijavaIspitaPredmet($id)
     {
         $predmet = PredmetProgram::find($id);
-        $prijave = $predmet->prijaveIspita()->get();
+        $prijave = $predmet->prijaveIspita();
+
+        if($prijave != null){
+            $prijave = $predmet->prijaveIspita()->get();
+        }
+
         return view('prijava.indexPredmet', compact('predmet','prijave'));
     }
 
