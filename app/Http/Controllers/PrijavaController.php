@@ -327,12 +327,8 @@ class PrijavaController extends Controller
     //AJAX call
     public function vratiPredmetPrijava(Request $request)
     {
-        $kandidat = Kandidat::find($request->kandidat);
-        $predmetProgram = PredmetProgram::where([
-            'tipStudija_id' => $kandidat->tipStudija_id,
-            'studijskiProgram_id' => $kandidat->studijskiProgram_id,
-            'predmet_id' => $request->id
-        ])->first();
+//        $kandidat = Kandidat::find($request->kandidat);
+        $predmetProgram = PredmetProgram::find($request->id);
         $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $request->id])->select('profesor_id')->get();
 
         if($profesorPredmet->isEmpty()){

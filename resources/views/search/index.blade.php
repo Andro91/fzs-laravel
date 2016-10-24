@@ -65,6 +65,23 @@
                                             <span class="fa fa-edit"></span>
                                         </div>
                                     </a>
+                                    <a class="btn btn-danger" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/delete"
+                                       onclick="return confirm('Да ли сте сигурни да желите да обришете податке овог студента?');">
+                                        <div title="Брисање">
+                                            <span class="fa fa-trash"></span>
+                                        </div>
+                                    </a>
+                                    <a class="btn btn-primary btn-sm" href="{{$putanja}}/student/{{ $kandidat->id }}/upis">
+                                        Статус
+                                    </a>
+                                    <a class="btn btn-primary btn-sm"
+                                       href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
+                                        Испити
+                                    </a>
+                                    <a class="btn btn-primary btn-sm"
+                                       href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
+                                        Потврде
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
