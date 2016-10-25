@@ -41,3 +41,5 @@ return [
 //    'tcpdf_calls_in_html' => '', // K_TCPDF_CALLS_IN_HTML
 //    'timezone'            => '', // K_TIMEZONE
 ];
+
+/*ALTER TABLE `upis_godine` CHANGE `skolskaGodina_id` `skolskaGodina_id` INT(11) NULL, CHANGE `datumUpisa` `datumUpisa` DATE NULL DEFAULT NULL, CHANGE `datumPromene` `datumPromene` DATE NULL DEFAULT NULL;*/
