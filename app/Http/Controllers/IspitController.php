@@ -6,6 +6,7 @@ use App\AktivniIspitniRokovi;
 use App\Kandidat;
 use App\PolozeniIspiti;
 use App\Predmet;
+use App\PredmetProgram;
 use App\PrijavaIspita;
 use App\StatusIspita;
 use App\ZapisnikOPolaganju_Student;
@@ -35,7 +36,7 @@ class IspitController extends Controller
         if(count($aktivniIspitniRok->all()) == 0){
             $aktivniIspitniRok = null;
         }
-        $predmeti = Predmet::all();
+        $predmeti = PredmetProgram::all();
 
         $rok_id = null;
         $predmet_id = null;
@@ -58,7 +59,7 @@ class IspitController extends Controller
         }
 
         $aktivniIspitniRok = AktivniIspitniRokovi::all();
-        $predmeti = Predmet::all();
+        $predmeti = PredmetProgram::all();
         $studenti = Kandidat::whereIn('id', $ids)->get();
         //dd($studenti);
         $rok_id = $request->rok_id;

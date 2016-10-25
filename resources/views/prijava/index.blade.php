@@ -84,7 +84,7 @@
                         <tr>
                             <td>{{$kandidat->imeKandidata . " " . $kandidat->prezimeKandidata}}</td>
                             <td>{{$kandidat->brojIndeksa}}</td>
-                            <td>{{$prijava->predmet->naziv}}</td>
+                            <td>{{$prijava->predmet->predmet->naziv}}</td>
                             <td>{{$prijava->rok->naziv}}</td>
                             <td>{{$prijava->brojPolaganja}}</td>
                             <td>{{$prijava->datum}}</td>

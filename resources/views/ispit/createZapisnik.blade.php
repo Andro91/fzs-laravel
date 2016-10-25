@@ -22,7 +22,7 @@
                 @endif
             </div>
         @endif
-        <div class="panel panel-warning">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Записник о полагању исппита</h3>
             </div>
@@ -45,24 +45,22 @@
                             <label for="predmet_id">Предмет</label>
                             <select class="form-control {{ empty($predmet_id) ? 'auto-combobox' : '' }}" id="predmet_id"
                                     name="predmet_id" {{ empty($predmet_id) ? '' : 'disabled' }}>
-                                @foreach($predmeti as $tip)
-                                    <option value="{{$tip->id}}" {{ (!empty($predmet_id) && $predmet_id == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
+                                @foreach($predmeti as $item)
+                                    <option value="{{$item->id}}" {{ (!empty($predmet_id) && $predmet_id == $item->id) ? 'selected' : '' }}>{{ $item->predmet->naziv . " - " . $item->tipStudija->skrNaziv . " " . $item->studijskiProgram->naziv }}</option>
                                 @endforeach
                             </select>
-
                         </div>
-                        <div class="form-group col-lg-1">
+                        <div class="form-group col-lg-2">
                             <label for="submitPredpodaci">&nbsp;</label><br>
-                            <button type="submit" name="Submit" id="submitPredpodaci" class="btn btn-success"><span
-                                        class="fa fa-check"></span></button>
-                        </div>
-                        <div class="form-group col-lg-1">
-                            <label for="submitPredpodaci">&nbsp;</label><br>
-                            <a href="{{$putanja}}/zapisnik/create" class="btn btn-danger"><span
-                                        class="fa fa-close"></span></a>
+                            @if(empty($predmet_id))
+                                <button type="submit" name="Submit" id="submitPredpodaci" class="btn btn-success"><span
+                                            class="fa fa-check" style="margin: 3px"></span></button>
+                            @else
+                                <a href="{{$putanja}}/zapisnik/create" class="btn btn-danger"><span
+                                            class="fa fa-close"  style="margin: 3px"></span></a>
+                            @endif
                         </div>
                     </div>
-                    <br>
                 </form>
                 <div class="clearfix"></div>
                 <hr>
@@ -80,7 +78,7 @@
                     @endif
                     <input type="hidden" id="datum" name="datum" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 
-                    <h2>Студенти који су пријавили испит у испитном року</h2>
+                    <h3>Студенти који су пријавили испит у испитном року</h3>
 
                     <div class="clearfix"></div>
                     <hr>
@@ -104,10 +102,9 @@
                         <thead>
                         <tr>
                             <th>Полагао</th>
-                            <th>Име</th>
-                            <th>Презиме</th>
-                            <th>ЈМБГ</th>
                             <th>Број Индекса</th>
+                            <th>Име и презиме</th>
+                            <th>ЈМБГ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -116,10 +113,9 @@
                                 <tr>
                                     <td><input type="checkbox" id="odabir" name="odabir[{{ $index }}]"
                                                value="{{ $kandidat->id }}"></td>
-                                    <td>{{$kandidat->imeKandidata}}</td>
-                                    <td>{{$kandidat->prezimeKandidata}}</td>
-                                    <td>{{$kandidat->jmbg}}</td>
                                     <td>{{$kandidat->brojIndeksa}}</td>
+                                    <td>{{$kandidat->imeKandidata . " " . $kandidat->prezimeKandidata }}</td>
+                                    <td>{{$kandidat->jmbg}}</td>
                                     @if(!empty($prijavaIds))
                                         <input type="hidden" name="odabir2[{{ $kandidat->id }}]"
                                                value="{{$prijavaIds[$kandidat->id]}}">
@@ -129,13 +125,17 @@
                         @endif
                         </tbody>
                     </table>
-
+                    @if(!empty($predmet_id))
+                        <div class="form-group">
+                            <a class="btn btn-primary" href="/prijava/zaPredmet/{{ $predmet_id }}">Додај студента</a>
+                        </div>
+                    @endif
+                    <hr>
                     <div class="form-group text-center">
-                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span
+                        <button type="submit" name="Submit" class="btn btn-primary btn-lg"><span
                                     class="fa fa-save"></span> Сачувај
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>

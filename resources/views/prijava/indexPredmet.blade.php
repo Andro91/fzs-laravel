@@ -52,7 +52,7 @@
             <tr>
                 <td>{{$prijava->kandidat->imeKandidata . " " . $prijava->kandidat->prezimeKandidata}}</td>
                 <td>{{ empty($prijava->kandidat->brojIndeksa) ? '' : $prijava->kandidat->brojIndeksa}}</td>
-                <td>{{ empty( $prijava->predmet->naziv) ? '' : $prijava->predmet->naziv}}</td>
+                <td>{{ $prijava->predmet->predmet->naziv}}</td>
                 <td>{{ empty($prijava->rok->naziv) ? '' : $prijava->rok->naziv}}</td>
                 <td>{{$prijava->brojPolaganja }}</td>
                 <td>{{$prijava->datum}}</td>

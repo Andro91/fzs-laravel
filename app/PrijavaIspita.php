@@ -17,7 +17,7 @@ class PrijavaIspita extends AndroModel
 
     public function predmet()
     {
-        return $this->belongsTo(Predmet::class, 'predmet_id');
+        return $this->belongsTo(PredmetProgram::class, 'predmet_id');
     }
 
     public function rok()
