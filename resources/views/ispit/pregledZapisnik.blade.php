@@ -31,15 +31,21 @@
                 </div>
             @endif
         </div>
-
-        <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
-            {{ csrf_field() }}
-            <div class="form-group pull-left" style="width: 48%;">
-                <input type="hidden" name="id" value="{{$zapisnik->id}}">
-                <input type="submit" class="btn btn-primary" value="Штампа записника">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Предмет: {{ $zapisnik->predmet->predmet->naziv }}</h3>
+                <h4>Испитни рок: {{ $zapisnik->ispitniRok->naziv }}</h4>
             </div>
-        </form>
-
+            <div class="col-lg-4" style="margin-top: 20px">
+                <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="{{$zapisnik->id}}">
+                        <input type="submit" class="btn btn-primary" value="Штампа записника">
+                    </div>
+                </form>
+            </div>
+        </div>
         <hr>
         @if(!empty($polozeniIspiti))
             @foreach($polozeniIspiti as $index => $ispit)
@@ -47,7 +53,9 @@
                     {{ csrf_field() }}
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ $ispit->kandidat->imeKandidata . " " . $ispit->kandidat->prezimeKandidata }}</h3>
+                            <h3 class="panel-title">
+                                {{ $ispit->kandidat->brojIndeksa . " " . $ispit->kandidat->imeKandidata . " " . $ispit->kandidat->prezimeKandidata }}
+                            </h3>
                         </div>
                         <div class="panel-body">
                             <input type="hidden" id="ispit_id" name="ispit_id[{{ $index }}]" value="{{ $ispit->id }}">
