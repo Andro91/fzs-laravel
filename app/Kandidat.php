@@ -17,6 +17,11 @@ class Kandidat extends AndroModel
         return $this->hasMany(SportskoAngazovanje::class);
     }
 
+    public function tipStudija()
+    {
+        return $this->belongsTo(TipStudija::class, 'tipStudija_id');
+    }
+
     public function program()
     {
         return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');

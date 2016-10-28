@@ -109,6 +109,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/pretraga', 'SearchController@search');
     Route::post('/pretraga', 'SearchController@searchResult');
 
+    //SKOLARINA
+    Route::get('/skolarina/{id}', 'SkolarinaController@index');
+    Route::get('/skolarina/izmena/{id}', 'SkolarinaController@edit');
+    Route::post('/skolarina/store', 'SkolarinaController@store');
+
 });
 
 Route::group(['middleware' => ['web', 'admin']], function () {
