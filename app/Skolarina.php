@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Skolarina extends Model
+class Skolarina extends AndroModel
 {
     protected $table = "skolarina";
 

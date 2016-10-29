@@ -111,8 +111,13 @@ Route::group(['middleware' => ['web']], function () {
 
     //SKOLARINA
     Route::get('/skolarina/{id}', 'SkolarinaController@index');
+    Route::get('/skolarina/dodavanje/{id}', 'SkolarinaController@create');
     Route::get('/skolarina/izmena/{id}', 'SkolarinaController@edit');
+    Route::get('/skolarina/uplata/{id}', 'SkolarinaController@createUplata');
+    Route::get('/skolarina/uplata/edit/{id}', 'SkolarinaController@editUplata');
     Route::post('/skolarina/store', 'SkolarinaController@store');
+    Route::post('/uplata/store', 'SkolarinaController@storeUplata');
+    Route::get('/skolarina/uplata/delete/{id}', 'SkolarinaController@deleteUplata');
 
 });
 

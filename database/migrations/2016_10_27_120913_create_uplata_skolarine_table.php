@@ -17,6 +17,7 @@ class CreateUplataSkolarineTable extends Migration
             $table->integer('skolarina_id');
             $table->integer('kandidat_id');
             $table->double('iznos');
+            $table->string('naziv')->nullable();
             $table->date('datum');
             $table->timestamps();
         });

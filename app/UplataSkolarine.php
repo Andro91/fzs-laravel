@@ -10,6 +10,8 @@ class UplataSkolarine extends Model
 
     protected $dates = ['datum'];
 
+    protected $guarded = ['formatDatum'];
+
     public function kandidat()
     {
         return $this->belongsTo(Kandidat::class, 'kandidat_id');

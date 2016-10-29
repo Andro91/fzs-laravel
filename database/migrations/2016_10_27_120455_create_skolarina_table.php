@@ -17,7 +17,7 @@ class CreateSkolarinaTable extends Migration
             $table->integer('kandidat_id');
             $table->double('iznos');
             $table->string('komentar');
-            $table->integer('godinaStudija');
+            $table->integer('godinaStudija_id');
             $table->integer('tipStudija_id');
             $table->integer('studijskiProgram_id');
             $table->timestamps();
