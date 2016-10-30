@@ -3,6 +3,16 @@
 @section('section')
     {{--<h3>Студент: {{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . " " . $kandidat->brojIndeksa }}</h3>--}}
     <div class="col-lg-12">
+        @if (Session::get('errors'))
+            <div class="alert alert-dismissable alert-danger">
+                <h4>Грешка!</h4>
+                <ul>
+                    @foreach (Session::get('errors')->all() as $error)
+                        <li>{!! $error !!}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div>
             <h4>Подаци о студенту</h4>
             <ul class="list-group">

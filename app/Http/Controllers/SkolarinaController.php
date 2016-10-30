@@ -64,6 +64,14 @@ class SkolarinaController extends Controller
     public function store(Request $request)
     {
         if(empty($request->id)){
+            $messages = [
+                'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли већ постоји школарина за тражену годину студија.',
+            ];
+
+            $this->validate($request, [
+                'kandidat_id' => 'unique_with:skolarina,tipStudija_id,godinaStudija_id',
+            ], $messages);
+
             $skolarina = Skolarina::create($request->all());
             $saved = $skolarina->save();
 
@@ -141,10 +149,8 @@ class SkolarinaController extends Controller
     public function arhiva($id)
     {
         $kandidat = Kandidat::find($id);
-        $skolarinaOS = Skolarina::where(['kandidat_id' => $id, 'tipStudija_id' => 1])->get();
-        $skolarinaMS = Skolarina::where(['kandidat_id' => $id, 'tipStudija_id' => 2])->get();
-        $skolarinaDS = Skolarina::where(['kandidat_id' => $id, 'tipStudija_id' => 3])->get();
+        $sveSkolarine = Skolarina::where(['kandidat_id' => $id])->get();
 
-        return view('skolarina.index', compact('kandidat'));
+        return view('skolarina.arhiva', compact('kandidat', 'sveSkolarine'));
     }
 }

@@ -118,6 +118,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/skolarina/store', 'SkolarinaController@store');
     Route::post('/uplata/store', 'SkolarinaController@storeUplata');
     Route::get('/skolarina/uplata/delete/{id}', 'SkolarinaController@deleteUplata');
+    Route::get('/skolarina/arhiva/{id}', 'SkolarinaController@arhiva');
 
 });
 
