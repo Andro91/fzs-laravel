@@ -31,8 +31,13 @@
 
                         <div class="form-group col-lg-8">
                             <label for="komentar">Коментар</label>
-                            <input id="komentar" class="form-control" type="text" name="komentar" value=""/>
+                            <input id="komentar" class="form-control" type="text" name="komentar" value="" list="predlozi"/>
                         </div>
+                        <datalist id="predlozi">
+                            <option value="Редовна школарина">
+                            <option value="Обнова године">
+                            <option value="Школарина са попустом">
+                        </datalist>
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-6">

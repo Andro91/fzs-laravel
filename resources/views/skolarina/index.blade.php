@@ -30,6 +30,13 @@
                         {{ $kandidat->godinaStudija->naziv }}
                     </strong>
                 </li>
+                @if(!empty($trenutnaSkolarina))
+                    <li class="list-group-item">Година на коју се односи школарина:
+                        <strong>
+                            {{ $trenutnaSkolarina->godinaStudija->naziv . " - " . $trenutnaSkolarina->komentar}}
+                        </strong>
+                    </li>
+                @endif
             </ul>
         </div>
         @if(!empty($trenutnaSkolarina))
@@ -39,38 +46,10 @@
                         class="fa fa-list"></span> Архива школарине</a>
         @else
             <div class="form-group text-center">
-            <a href="{{$putanja}}/skolarina/dodavanje/{{$kandidat->id}}" class="btn btn-success btn-lg"><span
-                        class="fa fa-plus"></span> Унос школарине</a>
+                <a href="{{$putanja}}/skolarina/dodavanje/{{$kandidat->id}}" class="btn btn-success btn-lg"><span
+                            class="fa fa-plus"></span> Унос школарине</a>
             </div>
         @endif
-        <div id="messages">
-            @if (Session::get('flash-error'))
-                <div class="alert alert-dismissible alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Грешка!</strong>
-                    @if(Session::get('flash-error') === 'update')
-                        Дошло је до грешке при чувању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'delete')
-                        Дошло је до грешке при брисању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'upis')
-                        Дошло је до грешке при упису кандидата! Молимо вас проверите да ли је кандидат уплатио
-                        школарину и покушајте поново.
-                    @endif
-                </div>
-            @elseif(Session::get('flash-success'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Успех!</strong>
-                    @if(Session::get('flash-success') === 'update')
-                        Подаци о кандидату су успешно сачувани.
-                    @elseif(Session::get('flash-success') === 'delete')
-                        Подаци о кандидату су успешно обрисани.
-                    @elseif(Session::get('flash-success') === 'upis')
-                        Упис кандидата је успешно извршен.
-                    @endif
-                </div>
-            @endif
-        </div>
         <hr>
         @if(!empty($trenutnaSkolarina))
             <div id="skolarina" class="row">
@@ -169,7 +148,8 @@
                                     <td>{{$uplata->datum->format('d.m.Y.')}}</td>
                                     <td>{{$uplata->naziv}}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{$putanja}}/skolarina/uplata/edit/{{$uplata->id}}">
+                                        <a class="btn btn-warning"
+                                           href="{{$putanja}}/skolarina/uplata/edit/{{$uplata->id}}">
                                             <div title="Измена">
                                                 <span class="fa fa-edit"></span>
                                             </div>
