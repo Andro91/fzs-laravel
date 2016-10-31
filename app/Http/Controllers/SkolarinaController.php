@@ -11,6 +11,7 @@ use App\UplataSkolarine;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 
 class SkolarinaController extends Controller
 {
@@ -78,7 +79,9 @@ class SkolarinaController extends Controller
             $saved = $skolarina->save();
 
             if(!$saved){
-                \Session::flash('error', 'save');
+                \Session::flash('flash-error', 'update');
+            }else{
+                \Session::flash('flash-success', 'update');
             }
 
             $kandidatId = $request->kandidat_id;
@@ -91,13 +94,15 @@ class SkolarinaController extends Controller
             $saved = $skolarina->save();
 
             if(!$saved){
-                \Session::flash('error', 'save');
+                \Session::flash('flash-error', 'update');
+            }else{
+                \Session::flash('flash-success', 'update');
             }
 
             $kandidatId = $skolarina->kandidat_id;
         }
 
-        return redirect("/skolarina/{$kandidatId}");
+        return redirect("/skolarina/arhiva/{$kandidatId}");
     }
 
     public function createUplata($id)
@@ -181,7 +186,13 @@ class SkolarinaController extends Controller
     {
         $skolarina = Skolarina::find($id);
         $kandidatId = $skolarina->kandidat_id;
-        $skolarina->delete();
+        $deleted = $skolarina->delete();
+
+        if(!$deleted){
+            \Session::flash('flash-error', 'delete');
+        }else{
+            \Session::flash('flash-success', 'delete');
+        }
 
         return redirect("/skolarina/arhiva/{$kandidatId}");
     }

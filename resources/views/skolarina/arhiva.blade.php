@@ -33,6 +33,29 @@
             </ul>
         </div>
         <hr>
+        <div id="messages">
+            @if (Session::get('flash-error'))
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Грешка!</strong>
+                    @if(Session::get('flash-error') === 'update')
+                        Дошло је до грешке при чувању података! Молимо вас покушајте поново.
+                    @elseif(Session::get('flash-error') === 'delete')
+                        Дошло је до грешке при брисању података! Молимо вас покушајте поново.
+                    @endif
+                </div>
+            @elseif(Session::get('flash-success'))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Успех!</strong>
+                    @if(Session::get('flash-success') === 'update')
+                        Подаци о школарини су успешно сачувани.
+                    @elseif(Session::get('flash-success') === 'delete')
+                        Подаци о школарини су успешно обрисани.
+                    @endif
+                </div>
+            @endif
+        </div>
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Школарине</h3>

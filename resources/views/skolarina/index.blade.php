@@ -48,6 +48,8 @@
             <div class="form-group text-center">
                 <a href="{{$putanja}}/skolarina/dodavanje/{{$kandidat->id}}" class="btn btn-success btn-lg"><span
                             class="fa fa-plus"></span> Унос школарине</a>
+                <a href="{{$putanja}}/skolarina/arhiva/{{$kandidat->id}}" class="btn btn-warning btn-lg"><span
+                            class="fa fa-list"></span> Архива школарине</a>
             </div>
         @endif
         <hr>
