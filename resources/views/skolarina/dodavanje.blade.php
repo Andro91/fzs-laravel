@@ -13,15 +13,6 @@
                 </ul>
             </div>
         @endif
-        @if (Session::get('flash-error'))
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>Грешка!</strong>
-                @if(Session::get('flash-error') === 'create')
-                    Дошло је до грешке при чувању података! Молимо вас покушајте поново.
-                @endif
-            </div>
-        @endif
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Унос школарине</h3>
@@ -35,12 +26,12 @@
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label for="iznos">Износ</label>
-                            <input id="iznos" class="form-control" type="text" name="iznos" value="" />
+                            <input id="iznos" class="form-control" type="text" name="iznos" value=""/>
                         </div>
 
                         <div class="form-group col-lg-8">
                             <label for="komentar">Коментар</label>
-                            <input id="komentar" class="form-control" type="text" name="komentar" value="" />
+                            <input id="komentar" class="form-control" type="text" name="komentar" value=""/>
                         </div>
                     </div>
                     <div class="row">
@@ -66,10 +57,9 @@
                     <hr>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-save"></span> Сачувај</button>
+                        <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-save"></span> Сачувај
+                        </button>
                     </div>
-
-
                 </form>
             </div>
         </div>

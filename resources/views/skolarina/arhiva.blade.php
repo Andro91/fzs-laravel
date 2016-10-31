@@ -70,14 +70,20 @@
                                 <td>{{$item->updated_at->format('d.m.Y.')}}</td>
                                 <td>{{$item->komentar}}</td>
                                 <td>
+                                    <a class="btn btn-primary"
+                                       href="{{$putanja}}/skolarina/view/{{$item->id}}">
+                                        <div title="Измена">
+                                            <span class="fa fa-eye"></span>
+                                        </div>
+                                    </a>
                                     <a class="btn btn-warning"
-                                       href="{{$putanja}}/skolarina/uplata/edit/{{$item->id}}">
+                                       href="{{$putanja}}/skolarina/izmena/{{$item->id}}">
                                         <div title="Измена">
                                             <span class="fa fa-edit"></span>
                                         </div>
                                     </a>
                                     <a class="btn btn-danger"
-                                       href="{{$putanja}}/skolarina/uplata/delete/{{$item->id}}"
+                                       href="{{$putanja}}/skolarina/delete/{{$item->id}}"
                                        onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
                                         <div title="Брисање">
                                             <span class="fa fa-trash"></span>

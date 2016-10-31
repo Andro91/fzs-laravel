@@ -64,13 +64,15 @@ class SkolarinaController extends Controller
     public function store(Request $request)
     {
         if(empty($request->id)){
-            $messages = [
-                'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли већ постоји школарина за тражену годину студија.',
-            ];
-
-            $this->validate($request, [
-                'kandidat_id' => 'unique_with:skolarina,tipStudija_id,godinaStudija_id',
-            ], $messages);
+//            Validacija unosa - provera da li vec postoji par kandidat-godina-tipStudija
+//            Provera uklonjena ybog mogucnosti obnavljanja godine
+//            $messages = [
+//                'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли већ постоји школарина за тражену годину студија.',
+//            ];
+//
+//            $this->validate($request, [
+//                'kandidat_id' => 'unique_with:skolarina,tipStudija_id,godinaStudija_id',
+//            ], $messages);
 
             $skolarina = Skolarina::create($request->all());
             $saved = $skolarina->save();
@@ -152,5 +154,35 @@ class SkolarinaController extends Controller
         $sveSkolarine = Skolarina::where(['kandidat_id' => $id])->get();
 
         return view('skolarina.arhiva', compact('kandidat', 'sveSkolarine'));
+    }
+
+    public function view($id)
+    {
+        $trenutnaSkolarina = Skolarina::find($id);
+        $kandidat = Kandidat::find($trenutnaSkolarina->kandidat_id);
+
+        $uplacenIznos = 0;
+        $preostaliIznos = 0;
+
+        if($trenutnaSkolarina != null){
+            $trenutneUplate = UplataSkolarine::where([
+                'skolarina_id' => $trenutnaSkolarina->id,
+            ])->get();
+            $uplacenIznos = $trenutneUplate->sum('iznos');
+            $preostaliIznos = $trenutnaSkolarina->iznos - $uplacenIznos;
+        }else{
+            $trenutneUplate = null;
+        }
+
+        return view('skolarina.index', compact('kandidat', 'trenutnaSkolarina', 'trenutneUplate', 'uplacenIznos', 'preostaliIznos'));
+    }
+
+    public function delete($id)
+    {
+        $skolarina = Skolarina::find($id);
+        $kandidatId = $skolarina->kandidat_id;
+        $skolarina->delete();
+
+        return redirect("/skolarina/arhiva/{$kandidatId}");
     }
 }
