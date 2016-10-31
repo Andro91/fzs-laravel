@@ -82,6 +82,10 @@
                                        href="{{$putanja}}/izvestaji/potvrdeStudent/{{$kandidat->id}}">
                                         Потврде
                                     </a>
+                                    <a class="btn btn-primary btn-sm"
+                                       href="{{$putanja}}/skolarina/{{$kandidat->id}}">
+                                        Школарина
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
