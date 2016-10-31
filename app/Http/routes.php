@@ -66,7 +66,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/kalendar/eventSource/', 'KalendarController@eventSource');
 
     //Prijava za ispit preko studenta (INDEX i CREATE Student-Prijava)
-    Route::get('/prijava/zastudenta/{kandidatId}', 'PrijavaController@svePrijaveIspitaZaStudenta');
+    Route::get('/prijava/zaStudenta/{kandidatId}', 'PrijavaController@svePrijaveIspitaZaStudenta');
     Route::get('/prijava/student/{kandidatId}', 'PrijavaController@createPrijavaIspitaStudent');
 
     //Spisak predmeta za prijavu ispita

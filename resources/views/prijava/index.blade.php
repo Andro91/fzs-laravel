@@ -97,7 +97,7 @@
                             <td>{{$prijava->predmet->predmet->naziv}}</td>
                             <td>{{$prijava->rok->naziv}}</td>
                             <td>{{$prijava->brojPolaganja}}</td>
-                            <td>{{$prijava->datum}}</td>
+                            <td>{{$prijava->datum->format('d.m.Y')}}</td>
                             <td>
                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                 <a class="btn btn-danger"

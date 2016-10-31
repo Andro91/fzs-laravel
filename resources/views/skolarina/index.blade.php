@@ -55,7 +55,7 @@
         <hr>
         @if(!empty($trenutnaSkolarina))
             <div id="skolarina" class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <div class="row">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">

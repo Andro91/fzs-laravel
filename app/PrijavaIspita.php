@@ -8,6 +8,8 @@ class PrijavaIspita extends AndroModel
 {
     protected $table = 'prijava_ispita';
 
+    protected $dates = ['datum'];
+
     protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum'];
 
     public function kandidat()
