@@ -94,7 +94,6 @@ class IspitController extends Controller
             $polozenIspit->predmet_id = $zapisnik->predmet_id;
             $polozenIspit->zapisnik_id = $zapisnik->id;
             $polozenIspit->prijava_id = $prijava->id;
-            $polozenIspit->godinaStudija_id = 
             $polozenIspit->save();
         }
 
@@ -158,6 +157,45 @@ class IspitController extends Controller
         }
 
         return redirect('/zapisnik/pregled/' . $zapisnikId);
+    }
+
+    public function priznavanjeIspita($id)
+    {
+        $kandidat = Kandidat::find($id);
+
+        $predmetProgram = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar')->get();
+
+        return view('ispit.priznatiIspiti', compact('kandidat', 'predmetProgram'));
+    }
+
+    public function storePriznatiIspiti(Request $request)
+    {
+        foreach ($request->predmetId as $index => $ispit) {
+
+            $polozenIspit = new PolozeniIspiti();
+            $polozenIspit->kandidat_id = $request->kandidat_id;
+            $polozenIspit->predmet_id = $ispit;
+            $polozenIspit->zapisnik_id = 0;
+            $polozenIspit->prijava_id = 0;
+            $polozenIspit->konacnaOcena = $request->konacnaOcena[$index];
+            $polozenIspit->statusIspita = 5;
+            $polozenIspit->indikatorAktivan = 1;
+            $polozenIspit->save();
+        }
+
+        return redirect("/prijava/zaStudenta/{$request->kandidat_id}");
+    }
+
+    public function deletePriznatIspit($id)
+    {
+        $polozenIspit = PolozeniIspiti::find($id);
+        $kandidatId = $polozenIspit->kandidat_id;
+        $polozenIspit->delete();
+
+        return redirect("/prijava/zaStudenta/{$kandidatId}");
     }
 
 }

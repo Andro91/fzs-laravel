@@ -95,6 +95,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 
+    //Priznavanje ispita za kandidate koji se upisusju na II, III, i IV godinu studija
+    Route::get('/priznavanjeIspita/{kandidatId}', 'IspitController@priznavanjeIspita');
+    Route::post('/storePriznatiIspiti/', 'IspitController@storePriznatiIspiti');
+    Route::get('/deletePriznatIspit/{id}', 'IspitController@deletePriznatIspit');
+
 
     Route::get('/student/{id}/obnova', 'StudentController@obnoviGodinu');
     Route::get('/student/{id}/obrisiObnovu', 'StudentController@obrisiObnovuGodine');

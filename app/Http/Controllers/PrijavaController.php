@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AktivniIspitniRokovi;
 use App\GodinaStudija;
 use App\Kandidat;
+use App\PolozeniIspiti;
 use App\PredmetProgram;
 use App\PrijavaIspita;
 use App\Profesor;
@@ -152,16 +153,14 @@ class PrijavaController extends Controller
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
 
+        $priznatiIspiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+
         $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
             ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
             ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
             ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
             ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-            ->select(\DB::raw("polozeni_ispiti.*,
-                predmet.naziv as naziv,
-                prijava_ispita.rok_id as rok,
-                prijava_ispita.brojPolaganja as broj,
-                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
+            ->select(\DB::raw("polozeni_ispiti.*, predmet.naziv as naziv, prijava_ispita.rok_id as rok, prijava_ispita.brojPolaganja as broj, DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
             ->where(['predmet_program.godinaStudija_id' => 1, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
             ->get();
 
@@ -224,7 +223,8 @@ class PrijavaController extends Controller
             'polozeniIspitiDrugaGodina',
             'polozeniIspitiTrecaGodina',
             'polozeniIspitiCetvrtaGodina',
-            'polozeniIspitiMaster'));
+            'polozeniIspitiMaster',
+            'priznatiIspiti'));
     }
 
     public function createPrijavaIspitaStudent($id)

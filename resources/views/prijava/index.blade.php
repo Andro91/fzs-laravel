@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('page_heading','Испити')
 @section('section')
-    {{--<h3>Студент: {{ $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . " " . $kandidat->brojIndeksa }}</h3>--}}
     <div class="col-lg-12">
         @if (Session::get('errors'))
             <div class="alert alert-dismissable alert-danger">
@@ -47,6 +46,9 @@
             <div class="panel-body">
                 <a href="{{$putanja}}/prijava/student/{{$kandidat->id}}" class="btn btn-primary"><span
                             class="fa fa-plus"></span> Нова пријава</a>
+
+                <a href="{{$putanja}}/priznavanjeIspita/{{$kandidat->id}}" class="btn btn-info"><span
+                            class="fa fa-plus"></span> Признати испити</a>
 
                 <div id="messages">
                     @if (Session::get('flash-error'))
@@ -127,6 +129,10 @@
                                                    data-toggle="tab">Трећа година</a></li>
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
                                                    data-toggle="tab">Четврта година</a></li>
+                        @if(!empty($priznatiIspiti))
+                            <li role="presentation"><a href="#priznati" aria-controls="priznati" role="tab"
+                                                       data-toggle="tab">Признати испити</a></li>
+                        @endif
                         <li role="presentation"><a href="#master" aria-controls="master" role="tab"
                                                    data-toggle="tab">Мастер студије</a></li>
                     </ul>
@@ -157,8 +163,8 @@
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
-                                                   {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
-                                                   {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
+                                                {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
+                                                {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -265,6 +271,42 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if(!empty($priznatiIspiti))
+                            <div role="tabpanel" class="tab-pane" id="priznati">
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Предмет</th>
+                                                <th>Оцена</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @foreach($priznatiIspiti as $index => $ispit)
+                                                <tr>
+                                                    <td>{{$ispit->predmet->predmet->naziv}}</td>
+                                                    <td>{{$ispit->konacnaOcena}}</td>
+                                                    <td>
+                                                        <a class="btn btn-danger"
+                                                           href="{{$putanja}}/deletePriznatIspit/{{ $ispit->id }}"
+                                                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
+                                                            <div title="Брисање">
+                                                                <span class="fa fa-trash"></span>
+                                                            </div>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div role="tabpanel" class="tab-pane" id="master">
                             <table class="table">
                                 <thead>
