@@ -30,6 +30,9 @@ class PrijavaIspita extends AndroModel
     public static function nazivRokaPoId($idRoka)
     {
         $rok = AktivniIspitniRokovi::find($idRoka);
+        if($rok == null){
+            return null;
+        }
         return $rok->naziv;
     }
 }

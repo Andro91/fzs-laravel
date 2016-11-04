@@ -164,6 +164,18 @@ class PrijavaController extends Controller
             ->where(['predmet_program.godinaStudija_id' => 1, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
             ->get();
 
+        $polozeniIspitiPrvaGodina = PolozeniIspiti::whereHas('predmet', function ($query) {
+            $query->where([
+                'godinaStudija_id' => 1,
+                'tipStudija_id' => 1]);
+        })->where(['kandidat_id' => $id])->get();
+
+//        Example of query Relationship
+//
+//        $posts = Post::whereHas('comments', function ($query) {
+//            $query->where('content', 'like', 'foo%');
+//        })->get();
+
         $polozeniIspitiDrugaGodina = \DB::table('polozeni_ispiti')
             ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
             ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
@@ -176,6 +188,12 @@ class PrijavaController extends Controller
                 DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
             ->where(['predmet_program.godinaStudija_id' => 2, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
             ->get();
+
+        $polozeniIspitiDrugaGodina = PolozeniIspiti::whereHas('predmet', function ($query) {
+            $query->where([
+                'godinaStudija_id' => 2,
+                'tipStudija_id' => 1]);
+        })->where(['kandidat_id' => $id])->get();
 
         $polozeniIspitiTrecaGodina = \DB::table('polozeni_ispiti')
             ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')

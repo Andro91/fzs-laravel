@@ -121,25 +121,32 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+
+                        <li role="presentation" class="active"><a href="#prvaGodina" aria-controls="prvaGodina"
+                                                                  role="tab"
                                                                   data-toggle="tab">Прва година</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Друга
-                                година</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
+
+                        <li role="presentation"><a href="#drugaGodina" aria-controls="drugaGodina" role="tab"
+                                                   data-toggle="tab">Друга година</a></li>
+
+                        <li role="presentation"><a href="#trecaGodina" aria-controls="trecaGodina" role="tab"
                                                    data-toggle="tab">Трећа година</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
+
+                        <li role="presentation"><a href="#cetvrtaGodina" aria-controls="cetvrtaGodina" role="tab"
                                                    data-toggle="tab">Четврта година</a></li>
+
                         @if(!empty($priznatiIspiti))
                             <li role="presentation"><a href="#priznati" aria-controls="priznati" role="tab"
                                                        data-toggle="tab">Признати испити</a></li>
                         @endif
+
                         <li role="presentation"><a href="#master" aria-controls="master" role="tab"
                                                    data-toggle="tab">Мастер студије</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
+                        <div role="tabpanel" class="tab-pane active" id="prvaGodina">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -155,10 +162,10 @@
                                 @if(!empty($polozeniIspitiPrvaGodina))
                                     @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->naziv}}</td>
-                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
-                                            <td>{{$ispit->broj}}</td>
-                                            <td>{{$ispit->datum}}</td>
+                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
+                                            <td>{{$ispit->prijava->rok->naziv}}</td>
+                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
+                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
@@ -172,7 +179,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
+                        <div role="tabpanel" class="tab-pane" id="drugaGodina">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -186,12 +193,12 @@
                                 </thead>
                                 <tbody>
                                 @if(!empty($polozeniIspitiDrugaGodina))
-                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
+                                    @foreach($polozeniIspitiDrugaGodina as $index => $ispit)
                                         <tr>
-                                            <td>{{$ispit->naziv}}</td>
-                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
-                                            <td>{{$ispit->broj}}</td>
-                                            <td>{{$ispit->datum}}</td>
+                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
+                                            <td>{{$ispit->prijava->rok->naziv}}</td>
+                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
+                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
                                             <td>{{$ispit->konacnaOcena}}</td>
                                             <td>
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
@@ -205,7 +212,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="messages">
+                        <div role="tabpanel" class="tab-pane" id="trecaGodina">
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -238,7 +245,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="settings">
+                        <div role="tabpanel" class="tab-pane" id="cetvrtaGodina">
                             <table class="table">
                                 <thead>
                                 <tr>
