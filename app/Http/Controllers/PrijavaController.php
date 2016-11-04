@@ -288,9 +288,9 @@ class PrijavaController extends Controller
 
         if($saved){
             if(!empty($request->prijava_za_predmet)){
-                return redirect("/prijava/zapredmet/{$request->predmet_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
+                return redirect("/prijava/zaPredmet/{$request->predmet_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
             }else{
-                return redirect("/prijava/zastudenta/{$request->kandidat_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
+                return redirect("/prijava/zaStudenta/{$request->kandidat_id}?tipStudijaId=" . $request->tipStudija_id . "&studijskiProgramId=" . $request->studijskiProgram_id);
             }
         }else{
             Session::flash('flash-error', 'create');
@@ -306,9 +306,9 @@ class PrijavaController extends Controller
         PrijavaIspita::destroy($id);
 
         if($request->prijava == 'predmet'){
-            return redirect("/prijava/zapredmet/{$predmet}");
+            return redirect("/prijava/zaPredmet/{$predmet}");
         }else{
-            return redirect("/prijava/zastudenta/{$kandidat}");
+            return redirect("/prijava/zaStudenta/{$kandidat}");
         }
     }
 
