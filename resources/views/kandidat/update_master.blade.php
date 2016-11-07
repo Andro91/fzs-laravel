@@ -94,7 +94,7 @@
                     <h3 class="panel-title">Основни подаци</h3>
                 </div>
                 <div class="panel-body">
-                    @if(!empty($kandidat->brojIndeksa))
+                    @if($kandidat->statusUpisa_id == 1)
                         <div class="form-group">
                             <label for="brojIndeksa">Број Индекса</label>
                             <input class="form-control" type="text" name="brojIndeksa" id="brojIndeksa"
