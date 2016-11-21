@@ -150,6 +150,7 @@ return [
         Elibyy\TCPDF\ServiceProvider::class, //tcpdf
         Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class, //validacija kompozitnih kljuceva
         Nqxcode\LuceneSearch\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -206,6 +207,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Elibyy\TCPDF\Facades\TCPDF::class, //tcpdf
         'Search' => Nqxcode\LuceneSearch\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class, //izdvajanje u excel
     ],
 
 ];
