@@ -27,6 +27,7 @@ use App\ZapisnikOPolaganju_Student;
 use App\PredmetProgram;
 use App\ZapisnikOPolaganjuIspita;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel;
 
 use DateTime;
 
@@ -281,6 +282,7 @@ class IzvestajiController extends Controller
             $godinaPlan = $godina;
             $godinaS = $godina;
             $programS = $program;
+            $programE = $program;
             $skolskaGodina = SkolskaGodUpisa::all();
             $skolskaGodina2 = $skolskaGodina;
             $skolskaGodina3 = $skolskaGodina;
@@ -290,13 +292,15 @@ class IzvestajiController extends Controller
             $skolskaGodina7 = $skolskaGodina;
             $skolskaGodina8 = $skolskaGodina;
             $skolskaGodina9 = $skolskaGodina;
+            $skolskaGodinaE = $skolskaGodina;
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
         return view('izvestaji.spiskoviStudenti', compact('program', 'godina', 'predmeti', 'programPlan',
             'godinaPlan', 'skolskaGodina', 'godinaS', 'programS', 'skolskaGodina2', 'skolskaGodina3', 'skolskaGodina4',
-            'skolskaGodina5', 'skolskaGodina6', 'skolskaGodina7', 'skolskaGodina8', 'skolskaGodina9'));
+            'skolskaGodina5', 'skolskaGodina6', 'skolskaGodina7', 'skolskaGodina8', 'skolskaGodina9', 'skolskaGodinaE',
+            'programE'));
     }
 
     public function potvrdeStudent(Kandidat $student)
@@ -677,6 +681,37 @@ class IzvestajiController extends Controller
         PDF::SetFont('freeserif', '', 12);
         PDF::WriteHtml($contents);
         PDF::Output('Zapisnik.pdf');
+    }
+
+    public function excelStampa(Request $request)
+    {
+
+        try {
+           // DB::setFetchMode(\PDO::FETCH_ASSOC);
+            $kandidat = DB::table('kandidat')
+                ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->programE])
+                ->where(['upis_godine.skolskaGodina_id' => $request->godinaE])
+                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->orderBy('kandidat.brojIndeksa')->get();
+
+            $program = StudijskiProgram::where('id', $request->programE)->get()->first();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+
+        $kandidat=array_map(function($x){
+            return (array)$x;
+        },$kandidat);
+
+        \Excel::create('users', function($excel) use($kandidat) {
+            $excel->sheet('Sheet 1', function($sheet) use($kandidat) {
+                $sheet->fromModel($kandidat);
+            });
+        })->export('xlsx');
+
     }
 
 }

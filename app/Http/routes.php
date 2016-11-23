@@ -330,6 +330,7 @@ Route::post('izvestaji/spisakPoGodini', 'IzvestajiController@spisakPoGodini');
 Route::post('izvestaji/spisakPoProgramu', 'IzvestajiController@spisakPoProgramu');
 Route::post('izvestaji/spisakPoSlavama', 'IzvestajiController@spisakPoSlavama');
 Route::post('izvestaji/spisakPoProfesorima', 'IzvestajiController@spisakPoProfesorima');
+Route::post('izvestaji/excelStampa', 'IzvestajiController@excelStampa');
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

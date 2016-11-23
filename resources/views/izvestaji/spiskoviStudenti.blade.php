@@ -288,8 +288,45 @@
         </div>
         <div id="menu1" class="tab-pane fade">
             <p></p>
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
+            <h3>Издвајање података у Excel табелу</h3>
+            <div class="col-sm-12 col-lg-8">
+
+                <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/excelStampa/') }}">
+                    {{csrf_field()}}
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Списак по програму</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label for="godinaE">Програм:</label>
+                                    <select class="form-control" id="programE" name="programE">
+                                        @foreach($programE as $programE)
+                                            <option value="{{$programE->id}}">{{$programE->naziv}}
+                                                - {{$program->tipStudija->skrNaziv}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="skolskaGodina_idE">Школска година:</label>
+                                <select style="width:130px;" class="form-control" id="skolskaGodina_idE" name="godinaE">
+                                    @foreach($skolskaGodinaE as $godina)
+                                        <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Штампај</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 
