@@ -271,4 +271,11 @@ class StudentController extends Controller
         return view('student.index_zamrznuti', compact('studenti'));
     }
 
+    public function diplomiraniStudenti()
+    {
+        $studenti = Kandidat::where(['statusUpisa_id' => 4])->get();
+
+        return view('student.index_diplomirani', compact('studenti'));
+    }
+
 }

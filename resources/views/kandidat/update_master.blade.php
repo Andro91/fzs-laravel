@@ -68,12 +68,12 @@
                                            $kandidat->datumStatusa->format('d.m.Y.') : "" }}">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="uplata">
-                            <input type="checkbox" id="uplata"
-                                   name="uplata" {{ $kandidat->uplata ? "checked":"" }}>
-                            Уплата (да ли је кандидат платио школарину)</label>
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="uplata">--}}
+                            {{--<input type="checkbox" id="uplata"--}}
+                                   {{--name="uplata" {{ $kandidat->uplata ? "checked":"" }}>--}}
+                            {{--Уплата (да ли је кандидат платио школарину)</label>--}}
+                    {{--</div>--}}
                     <p><strong>Уз пријаву прилажем:</strong></p>
                     @foreach($dokumentaMaster as $i=>$dokument)
                         <div class="checkbox">
@@ -94,13 +94,13 @@
                     <h3 class="panel-title">Основни подаци</h3>
                 </div>
                 <div class="panel-body">
-                    @if($kandidat->statusUpisa_id == 1)
+                    {{--@if($kandidat->statusUpisa_id == 1)--}}
                         <div class="form-group">
                             <label for="brojIndeksa">Број Индекса</label>
                             <input class="form-control" type="text" name="brojIndeksa" id="brojIndeksa"
                                    value="{{ $kandidat->brojIndeksa }}">
                         </div>
-                    @endif
+                    {{--@endif--}}
                     <div class="row">
                         <div class="col-lg-4 text-center">
                             <img src="{{$putanja}}/uploads/images/{{$kandidat->slika}}" class="img-thumbnail"
