@@ -271,11 +271,16 @@ class StudentController extends Controller
         return view('student.index_zamrznuti', compact('studenti'));
     }
 
-    public function diplomiraniStudenti()
+    public function diplomiraniStudenti(Request $request)
     {
-        $studenti = Kandidat::where(['statusUpisa_id' => 4])->get();
+        $tipStudija = TipStudija::all();
+        $studijskiProgrami = StudijskiProgram::where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'indikatorAktivan' => 1])->get();
 
-        return view('student.index_diplomirani', compact('studenti'));
+        $studenti = Kandidat::where(['tipStudija_id' => $request->tipStudijaId,'studijskiProgram_id' => $request->studijskiProgramId,'statusUpisa_id' => 7])->get();
+
+        return view('student.index_diplomirani', compact('studenti','tipStudija','studijskiProgrami'));
     }
 
 }

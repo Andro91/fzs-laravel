@@ -96,7 +96,7 @@
                                     <a href="{{ url ('student/zamrznuti' ) }}">Замрзнути статус</a>
                                 </li>
                                 <li {{ (Request::is('*student/diplomirani') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('student/diplomirani' ) }}">Дипломирани студенти</a>
+                                    <a href="{{ url ('student/diplomirani?tipStudijaId=1&studijskiProgramId=1' ) }}">Дипломирани студенти</a>
                                 </li>
                                 <li {{ (Request::is('*/izvestaji/spiskoviStudenti*') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('/izvestaji/spiskoviStudenti' ) }}">Извештаји</a>
