@@ -96,11 +96,14 @@
                 <h3 class="panel-title">Статус студија</h3>
             </div>
             <div class="panel-body">
-                <a href="/student/{{ $kandidat->id }}/status/3" class="btn btn-primary">Врати на статус кандидата</a>
-                @if($kandidat->statusUpisa_id == 4)
-                    <a href="/student/{{ $kandidat->id }}/status/1" class="btn btn-warning">Одмрзни годину</a>
-                @else
-                    <a href="/student/{{ $kandidat->id }}/status/4" class="btn btn-warning">Замрзни годину</a>
+                <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}" class="btn btn-primary">Врати на статус кандидата</a>
+                {{--@if($kandidat->statusUpisa_id == Config::get('constants.statusi.zamrzao'))--}}
+                    {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}" class="btn btn-warning">Одмрзни годину</a>--}}
+                {{--@else--}}
+                    {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}" class="btn btn-warning">Замрзни годину</a>--}}
+                {{--@endif--}}
+                @if($kandidat->statusUpisa_id != Config::get('constants.statusi.diplomirao'))
+                    <a href="/student/{{ $kandidat->id }}/status/6" class="btn btn-success">Дипломирао</a>
                 @endif
                 @if($kandidat->tipStudija_id == 1)
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
@@ -144,6 +147,10 @@
                                             <span class='label label-warning'>{{$godina->status->naziv}}</span>
                                         @elseif($godina->statusGodine_id == 5)
                                             <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 6)
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 7)
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -167,6 +174,11 @@
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
                                                 годину
                                             </a>
+                                        {{--@elseif($godina->statusGodine_id == Config::get('constants.statusi.zamrzao'))--}}
+                                                {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}" class="btn btn-warning">Одмрзни годину</a>--}}
+                                        {{--@elseif($godina->statusGodine_id != Config::get('constants.statusi.zamrzao'))--}}
+                                                {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}" class="btn btn-warning">Замрзни годину</a>--}}
+                                            {{--@endif--}}
                                         @endif
 
                                         @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))
@@ -223,7 +235,9 @@
                                         @elseif($godina->statusGodine_id == 5)
                                             <span class='label label-info'>{{$godina->status->naziv}}</span>
                                         @elseif($godina->statusGodine_id == 6)
-                                            <span class='label label-default'>{{$godina->status->naziv}}</span>
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
+                                        @elseif($godina->statusGodine_id == 7)
+                                            <span class='label label-info'>{{$godina->status->naziv}}</span>
                                         @endif
                                     </td>
                                     <td>

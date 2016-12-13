@@ -266,19 +266,25 @@ class StudentController extends Controller
 
     public function zamrznutiStudenti()
     {
-        $studenti = Kandidat::where(['statusUpisa_id' => 4])->get();
+        $statusZamrzao = \Config::get('constants.statusi.zamrzao');
+        $studenti = Kandidat::where(['statusUpisa_id' => $statusZamrzao])->get();
 
         return view('student.index_zamrznuti', compact('studenti'));
     }
 
     public function diplomiraniStudenti(Request $request)
     {
+        $statusDiplomirao = \Config::get('constants.statusi.diplomirao');
         $tipStudija = TipStudija::all();
         $studijskiProgrami = StudijskiProgram::where([
             'tipStudija_id' => $request->tipStudijaId,
             'indikatorAktivan' => 1])->get();
 
-        $studenti = Kandidat::where(['tipStudija_id' => $request->tipStudijaId,'studijskiProgram_id' => $request->studijskiProgramId,'statusUpisa_id' => 7])->get();
+        $studenti = Kandidat::where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'studijskiProgram_id' => $request->studijskiProgramId,
+            'statusUpisa_id' => $statusDiplomirao
+        ])->get();
 
         return view('student.index_diplomirani', compact('studenti','tipStudija','studijskiProgrami'));
     }
