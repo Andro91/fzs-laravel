@@ -31,10 +31,14 @@
 
                         <?php $a++; ?>
                         <tr>
-                            <td style="border: 1px solid black;width:30px;">{{$a}}</td>
-                            <td style="border: 1px solid black;width:65px;">{{$item->brojIndeksa}}</td>
-                            <td style="border: 1px solid black;width:300px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                            <td style="border: 1px solid black;text-align: right;width:50px;">{{$item->godina}}</td>
+                            <td style="border: 1px solid black;width:30px;">
+                                {{$a}}</td>
+                            <td style="border: 1px solid black;width:65px;">
+                                {{$item->brojIndeksa}}</td>
+                            <td style="border: 1px solid black;width:300px;">
+                                {{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;text-align: right;width:50px;">
+                                {{$item->godina}}</td>
                         </tr>
 
                     @endforeach

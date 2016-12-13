@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="skolskaGodina_id">Школска година:</label>
-                                        <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                        <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="test">
                                             @foreach($skolskaGodina6 as $bla)
                                                 <option value="{{$bla->id}}">{{$bla->naziv}}</option>
                                             @endforeach
@@ -101,7 +101,7 @@
                                         <select class="form-control" id="program" name="program">
                                             @foreach($programS as $programS)
                                                 <option value="{{$programS->id}}">{{$programS->naziv}}
-                                                    - {{$program->tipStudija->skrNaziv}}</option>
+                                                    - {{$programS->tipStudija->skrNaziv}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -289,7 +289,7 @@
         <div id="menu1" class="tab-pane fade">
             <p></p>
             <h3>Издвајање података у Excel табелу</h3>
-            <div class="col-sm-12 col-lg-8">
+            <div class="col-sm-12 col-lg-4">
 
                 <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/excelStampa/') }}">
                     {{csrf_field()}}
@@ -305,7 +305,7 @@
                                     <select class="form-control" id="programE" name="programE">
                                         @foreach($programE as $programE)
                                             <option value="{{$programE->id}}">{{$programE->naziv}}
-                                                - {{$program->tipStudija->skrNaziv}}</option>
+                                                - {{$programE->tipStudija->skrNaziv}}</option>
                                         @endforeach
                                     </select>
                                 </div>

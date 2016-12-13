@@ -122,18 +122,31 @@ class IzvestajiController extends Controller
 
     public function spisakZaSmer(Request $request)
     {
+        //dd($request->godina);
         try {
-            $studenti = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->orderBy('brojIndeksa')->get();
-            if ($studenti->first()) {
-                $program = $studenti->first()->program->naziv;
+            $studenti = DB::table('kandidat')
+                ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->program])
+                ->where(['kandidat.godinaStudija_id' => $request->godina])
+                ->where(['upis_godine.skolskaGodina_id' => $request->test])
+                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->orderBy('kandidat.brojIndeksa')->get();
+                //Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->orderBy('brojIndeksa')->get();
+//dd($studenti);
+            if ($studenti) {
+                $program = StudijskiProgram::where(['id' => $request->program])->get();
+
+                $nazivPrograma = $program->first()->naziv;
+                //dd($nazivPrograma);
             } else {
-                $program = '';
+                $nazivPrograma = '';
             }
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.spisakSmer')->with('studenti', $studenti)->with('program', $program);
+        $view = View::make('izvestaji.spisakSmer')->with('studenti', $studenti)->with('program', $nazivPrograma);
 
         $contents = $view->render();
         PDF::SetTitle('Списак студената');

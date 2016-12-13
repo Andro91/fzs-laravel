@@ -27,13 +27,17 @@
                     </tr>
                     </thead>
                     <?php $a = 0;?>
-                    @foreach($studenti as $item)
+                    @foreach($studenti as $index => $item)
                         <?php $a++; ?>
                         <tr>
-                            <td style="border: 1px solid black;width:30px">{{$a}}</td>
-                            <td style="border: 1px solid black;width:65px">{{$item->brojIndeksa}}</td>
-                            <td style="border: 1px solid black;width:210px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                            <td style="border: 1px solid black;width:180px">{{$item->email}}</td>
+                            <td style="border: 1px solid black;width:30px">
+                                {{$a}}</td>
+                            <td style="border: 1px solid black;width:65px">
+                                {{$item->brojIndeksa}}</td>
+                            <td style="border: 1px solid black;width:210px">
+                                {{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                            <td style="border: 1px solid black;width:180px">
+                                {{$item->email}}</td>
                         </tr>
                     @endforeach
                 </table>
