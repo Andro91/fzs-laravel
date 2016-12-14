@@ -29,9 +29,13 @@ use Illuminate\Validation\Validator;
 
 class StudentController extends Controller
 {
+    private $status;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->status = \Config::get('constants.statusi');
     }
 
     public function index(Request $request, $tipStudijaId)
@@ -185,29 +189,30 @@ class StudentController extends Controller
         return redirect("student/{$id}/upis");
     }
 
-    public function promeniStatus($id, $statusId)
+    public function promeniStatus($id, $statusId, $godinaId)
     {
         $kandidat = Kandidat::find($id);
-        $kandidat->statusUpisa_id = $statusId;
+        if($statusId == $this->status['zavrsio'] || $statusId == $this->status['odustao'] || $statusId == $this->status['obnovio']){
+
+        }else{
+            $kandidat->statusUpisa_id = $statusId;
+        }
+
         $kandidat->datumStatusa = Carbon::now();
-        if($statusId == 4){
-            $aktivnaGodina = UpisGodine::where([
-                'kandidat_id' => $id,
-                'statusGodine_id' => 1
-            ])->first();
-            $aktivnaGodina->statusGodine_id = 6;
+
+        if($godinaId != 0){
+            $aktivnaGodina = UpisGodine::find($godinaId);
+            $aktivnaGodina->statusGodine_id = $statusId;
+            if($statusId == $this->status['upisan']){
+                $aktivnaGodina->datumUpisa = Carbon::now();
+            }
             $aktivnaGodina->datumPromene = Carbon::now();
-            $aktivnaGodina->save();
-        }else if($statusId == 1){
-            $aktivnaGodina = UpisGodine::where([
-                'kandidat_id' => $id,
-                'statusGodine_id' => 6
-            ])->first();
-            $aktivnaGodina->datumPromene = Carbon::now();
-            $aktivnaGodina->statusGodine_id = 1;
+
             $aktivnaGodina->save();
         }
+
         $kandidat->save();
+
         return redirect("student/index/{$kandidat->tipStudija_id}?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
 

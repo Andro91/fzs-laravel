@@ -89,6 +89,12 @@
                         </strong>
                     </li>
                 @endif
+                <li class="list-group-item">Тренутни статус:
+                    <strong>
+                        <span class='btn btn-lg btn-default'>{{ $kandidat->statusUpisa->naziv }}</span>
+
+                    </strong>
+                </li>
             </ul>
         </div>
         <div class="panel panel-primary">
@@ -96,14 +102,14 @@
                 <h3 class="panel-title">Статус студија</h3>
             </div>
             <div class="panel-body">
-                <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}" class="btn btn-primary">Врати на статус кандидата</a>
+                <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}/0" class="btn btn-primary">Врати на статус кандидата</a>
                 {{--@if($kandidat->statusUpisa_id == Config::get('constants.statusi.zamrzao'))--}}
                     {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}" class="btn btn-warning">Одмрзни годину</a>--}}
                 {{--@else--}}
                     {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}" class="btn btn-warning">Замрзни годину</a>--}}
                 {{--@endif--}}
                 @if($kandidat->statusUpisa_id != Config::get('constants.statusi.diplomirao'))
-                    <a href="/student/{{ $kandidat->id }}/status/6" class="btn btn-success">Дипломирао</a>
+                    <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.diplomirao') }}/0" class="btn btn-success">Дипломирао</a>
                 @endif
                 @if($kandidat->tipStudija_id == 1)
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
@@ -169,16 +175,21 @@
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                                 <i class="fa fa-ban"></i> Поништи упис
                                             </a>
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zavrsio') }}/{{$godina->id}}">
+                                                <i class="fa fa-check"></i> Завршио годину
+                                            </a>
                                         @elseif($godina->statusGodine_id == 3)
                                             <a class="btn btn-success btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
                                                 годину
                                             </a>
-                                        {{--@elseif($godina->statusGodine_id == Config::get('constants.statusi.zamrzao'))--}}
-                                                {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}" class="btn btn-warning">Одмрзни годину</a>--}}
-                                        {{--@elseif($godina->statusGodine_id != Config::get('constants.statusi.zamrzao'))--}}
-                                                {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}" class="btn btn-warning">Замрзни годину</a>--}}
-                                            {{--@endif--}}
+                                        @endif
+
+                                        @if($godina->statusGodine_id == Config::get('constants.statusi.zamrzao'))
+                                            <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}/{{$godina->id}}" class="btn btn-info btn-sm">Одмрзни годину</a>
+                                        @elseif($godina->statusGodine_id == Config::get('constants.statusi.upisan'))
+                                            <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}/{{$godina->id}}" class="btn btn-primary btn-sm">Замрзни годину</a>
                                         @endif
 
                                         @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))
@@ -256,11 +267,21 @@
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/ponistiUpis?upisId={{ $godina->id }}">
                                                 <i class="fa fa-ban"></i> Поништи упис
                                             </a>
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{$putanja}}/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zavrsio') }}/{{$godina->id}}">
+                                                <i class="fa fa-check"></i> Завршио годину
+                                            </a>
                                         @elseif($godina->statusGodine_id == 3)
                                             <a class="btn btn-success btn-sm"
                                                href="{{$putanja}}/student/{{ $kandidat->id }}/upisiStudenta?godina={{ $godina->godina }}&pokusaj={{ $godina->pokusaj }}">Уписао
                                                 годину
                                             </a>
+                                        @endif
+
+                                        @if($godina->statusGodine_id == Config::get('constants.statusi.zamrzao'))
+                                            <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}/{{$godina->id}}" class="btn btn-info btn-sm">Одмрзни годину</a>
+                                        @elseif($godina->statusGodine_id == Config::get('constants.statusi.upisan'))
+                                            <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}/{{$godina->id}}" class="btn btn-primary btn-sm">Замрзни годину</a>
                                         @endif
 
                                         @if($godina->pokusaj == 1 && ($godina->statusGodine_id == 1 || $godina->statusGodine_id == 4))

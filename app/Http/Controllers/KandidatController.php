@@ -531,10 +531,10 @@ class KandidatController extends Controller
         $kandidat->drzavaRodjenja = $request->drzavaRodjenja;
 
         //Dodao Andrija 26-septembar-2016
-        $kandidat->statusUpisa_id = $request->statusUpisa_id;
-        $kandidat->datumStatusa = empty($request->datumStatusa) ?
-            Carbon::now() :
-            date_create_from_format('d.m.Y.', $request->datumStatusa);
+//        $kandidat->statusUpisa_id = $request->statusUpisa_id;
+//        $kandidat->datumStatusa = empty($request->datumStatusa) ?
+//            Carbon::now() :
+//            date_create_from_format('d.m.Y.', $request->datumStatusa);
 
 
         try {

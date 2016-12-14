@@ -51,4 +51,9 @@ class Kandidat extends AndroModel
     {
         return $this->belongsTo(GodinaStudija::class, 'godinaStudija_id');
     }
+
+    public function statusUpisa()
+    {
+        return $this->belongsTo(StatusGodine::class, 'statusUpisa_id');
+    }
 }

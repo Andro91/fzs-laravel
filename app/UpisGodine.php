@@ -135,6 +135,7 @@ class UpisGodine extends AndroModel
             if($kandidat->tipStudija_id == 1){
                 $kandidat->tipStudija_id = 2;
                 $kandidat->studijskiProgram_id = $studijskiProgramId;
+                $kandidat->statusUpisa_id = \Config::get('constants.statusi.upisan');
                 $kandidat->save();
                 UpisGodine::registrujKandidata($kandidat->id);
                 return true;

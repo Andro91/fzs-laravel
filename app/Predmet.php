@@ -17,4 +17,14 @@ class Predmet extends AndroModel
     {
         return $this->hasMany(PrijavaIspita::class);
     }
+
+    public function tipStudija()
+    {
+        return $this->belongsTo(TipStudija::class, 'tipStudija_id');
+    }
+
+    public function studijskiProgram()
+    {
+        return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');
+    }
 }

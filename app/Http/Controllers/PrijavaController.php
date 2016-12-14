@@ -6,6 +6,7 @@ use App\AktivniIspitniRokovi;
 use App\GodinaStudija;
 use App\Kandidat;
 use App\PolozeniIspiti;
+use App\Predmet;
 use App\PredmetProgram;
 use App\PrijavaIspita;
 use App\Profesor;
@@ -33,11 +34,12 @@ class PrijavaController extends Controller
     public function spisakPredmeta(Request $request)
     {
         $tipStudija = TipStudija::all();
-        $studijskiProgrami = StudijskiProgram::where([
-            'tipStudija_id' => $request->tipStudijaId,
-            'indikatorAktivan' => 1])->get();
+//        $studijskiProgrami = StudijskiProgram::where([
+//            'tipStudija_id' => $request->tipStudijaId,
+//            'indikatorAktivan' => 1])->get();
 
-        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
+//        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
+        $predmetProgram = Predmet::all();
 
         $predmeti = $predmetProgram;
 
