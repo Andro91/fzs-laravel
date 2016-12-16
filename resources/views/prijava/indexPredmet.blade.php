@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Пријава испита')
 @section('section')
-    <h3>Предмет: {{ $predmet->predmet->naziv }}</h3>
+    <h3>Предмет: {{ $predmet->naziv }}</h3>
     <br>
     <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>
     <a href="{{$putanja}}/prijava/predmetVise/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - више студената</a>
@@ -50,12 +50,12 @@
         <tbody>
         @foreach($prijave as $index => $prijava)
             <tr>
-                <td>{{$prijava->kandidat->imeKandidata . " " . $prijava->kandidat->prezimeKandidata}}</td>
-                <td>{{ empty($prijava->kandidat->brojIndeksa) ? '' : $prijava->kandidat->brojIndeksa}}</td>
-                <td>{{ $prijava->predmet->predmet->naziv}}</td>
-                <td>{{ empty($prijava->rok->naziv) ? '' : $prijava->rok->naziv}}</td>
-                <td>{{$prijava->brojPolaganja }}</td>
-                <td>{{$prijava->datum}}</td>
+                <td>{{ $prijava->kandidat->imeKandidata . " " . $prijava->kandidat->prezimeKandidata }}</td>
+                <td>{{ empty($prijava->kandidat->brojIndeksa) ? '' : $prijava->kandidat->brojIndeksa }}</td>
+                <td>{{ $prijava->predmet->naziv }}</td>
+                <td>{{ empty($prijava->rok->naziv) ? '' : $prijava->rok->naziv }}</td>
+                <td>{{ $prijava->brojPolaganja }}</td>
+                <td>{{ $prijava->datum }}</td>
                 <td>
                     {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                     <a class="btn btn-danger" href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=predmet"
@@ -69,6 +69,3 @@
     <br>
 <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection
-
-
-

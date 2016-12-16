@@ -50,7 +50,10 @@ class PrijavaController extends Controller
     //Predmet se bira iznad
     public function indexPrijavaIspitaPredmet($id)
     {
-        $predmet = PredmetProgram::find($id);
+        $predmet = Predmet::find($id);
+
+//        $predmetProgram = PredmetProgram::where(['predmet_id' => $id])->get();
+
         $prijave = $predmet->prijaveIspita();
 
         if($prijave != null){
@@ -89,13 +92,15 @@ class PrijavaController extends Controller
 
     public function createPrijavaIspitaPredmetMany($id)
     {
-        $predmet = PredmetProgram::find($id);
+        $predmet = Predmet::find($id);
+
+        $predmetProgram = PredmetProgram::where(['predmet_id' => $id])->get()->first();
+
         $kandidati = Kandidat::where([
-            'tipStudija_id' => $predmet->tipStudija_id,
-            'studijskiProgram_id' => $predmet->studijskiProgram_id,
+            'tipStudija_id' => $predmetProgram->tipStudija_id,
             'statusUpisa_id' => 1])->get();
-        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
-        $godinaStudija = GodinaStudija::all();
+//        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
+//        $godinaStudija = GodinaStudija::all();
         $tipPredmeta = TipPredmeta::all();
         $tipStudija = TipStudija::all();
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();

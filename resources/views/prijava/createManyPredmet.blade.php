@@ -43,34 +43,34 @@
                     <div class="form-group" style="width: 50%;">
                         <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
                         <select class="form-control" id="predmet_id" name="predmet_id" disabled>
-                            <option value="{{ $predmet->id }}">{{ "Семестар " . $predmet->semestar . ': ' . $predmet->predmet->naziv }}</option>
+                            <option value="{{ $predmet->id }}">{{ $predmet->naziv }}</option>
                         </select>
                     </div>
 
-                    <div class="form-group pull-left" style="width: 40%;  margin-right: 2%">
-                        <label for="tipPredmeta_id">Тип предмета:</label>
-                        <select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id" disabled>
-                            @foreach($tipPredmeta as $tip)
-                                <option value="{{$tip->id}}" {{ ($predmet->tipPredmeta_id == $tip->id ? "selected":"") }}>{{$tip->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--<div class="form-group pull-left" style="width: 40%;  margin-right: 2%">--}}
+                        {{--<label for="tipPredmeta_id">Тип предмета:</label>--}}
+                        {{--<select class="form-control" id="tipPredmeta_id" name="tipPredmeta_id" disabled>--}}
+                            {{--@foreach($tipPredmeta as $tip)--}}
+                                {{--<option value="{{$tip->id}}" {{ ($predmet->tipPredmeta_id == $tip->id ? "selected":"") }}>{{$tip->naziv}}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
 
-                    <div class="form-group pull-left" style="width: 10%; margin-right: 2%;">
-                        <label for="godinaStudija_id">Година студија</label>
-                        <select class="form-control" id="godinaStudija_id" name="godinaStudija_id" disabled>
-                            @foreach($godinaStudija as $item)
-                                <option value="{{ $item->id }}" {{ ($predmet->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--<div class="form-group pull-left" style="width: 10%; margin-right: 2%;">--}}
+                        {{--<label for="godinaStudija_id">Година студија</label>--}}
+                        {{--<select class="form-control" id="godinaStudija_id" name="godinaStudija_id" disabled>--}}
+                            {{--@foreach($godinaStudija as $item)--}}
+                                {{--<option value="{{ $item->id }}" {{ ($predmet->godinaStudija_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
 
-                    <div class="form-group pull-left" style="width: 40%;">
-                        <label for="tipStudija_id">Тип студија:</label>
-                        <select class="form-control" id="tipStudija_id" name="tipStudija_id" disabled>
-                            <option value="{{$predmet->tipStudija_id}}">{{$predmet->tipStudija->naziv}}</option>
-                        </select>
-                    </div>
+                    {{--<div class="form-group pull-left" style="width: 40%;">--}}
+                        {{--<label for="tipStudija_id">Тип студија:</label>--}}
+                        {{--<select class="form-control" id="tipStudija_id" name="tipStudija_id" disabled>--}}
+                            {{--<option value="{{$predmet->tipStudija_id}}">{{$predmet->tipStudija->naziv}}</option>--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
 
                     <div class="clearfix"></div>
                     <hr>
@@ -113,6 +113,17 @@
                     <div class="clearfix"></div>
                     <hr>
 
+                    <div class="form-group col-lg-4">
+                        <label for="rok_id">Студенти</label>
+                        <select class="form-control auto-combobox" id="rok_id" name="rok_id">
+                            @foreach($kandidati as $index => $kandidat)
+                                <option value="{{$kandidat->id}}">{{$kandidat->brojIndeksa}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <input type="button" value="Додај" class="btn btn-lg btn-primary">
+
                     <table id="tabela" class="table">
                         <thead>
                         <tr>
@@ -124,17 +135,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($kandidati as $index => $kandidat)
-                            <tr>
-                                <td><input type="checkbox" id="odabir" name="odabir[{{ $index }}]"
-                                           value="{{ $kandidat->id }}">
-                                </td>
-                                <td>{{$kandidat->imeKandidata}}</td>
-                                <td>{{$kandidat->prezimeKandidata}}</td>
-                                <td>{{$kandidat->jmbg}}</td>
-                                <td>{{$kandidat->godinaStudija->nazivRimski}}</td>
-                            </tr>
-                        @endforeach
+                        {{--@foreach($kandidati as $index => $kandidat)--}}
+                            {{--<tr>--}}
+                                {{--<td><input type="checkbox" id="odabir" name="odabir[{{ $index }}]"--}}
+                                           {{--value="{{ $kandidat->id }}">--}}
+                                {{--</td>--}}
+                                {{--<td>{{$kandidat->imeKandidata}}</td>--}}
+                                {{--<td>{{$kandidat->prezimeKandidata}}</td>--}}
+                                {{--<td>{{$kandidat->jmbg}}</td>--}}
+                                {{--<td>{{$kandidat->godinaStudija->nazivRimski}}</td>--}}
+                            {{--</tr>--}}
+                        {{--@endforeach--}}
                         </tbody>
                     </table>
                     <hr>
@@ -151,6 +162,7 @@
     <br>
     <br>
     <br>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
     <script>
         var forma = $('#formaKandidatiOdabir');
 

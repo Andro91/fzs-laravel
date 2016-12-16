@@ -40,58 +40,59 @@
     <br>
     {{--@if(!empty(Request::input('tipStudijaId')))--}}
     {{--<ul class="nav nav-pills">--}}
-        {{--@foreach($studijskiProgrami as $program)--}}
-            {{--<li role="presentation"--}}
-                    {{--{{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>--}}
-                {{--<a href="?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>--}}
-            {{--</li>--}}
-        {{--@endforeach--}}
+    {{--@foreach($studijskiProgrami as $program)--}}
+    {{--<li role="presentation"--}}
+    {{--{{ Request::input('studijskiProgramId') == $program->id  ? 'class=active' : '' }}>--}}
+    {{--<a href="?tipStudijaId={{ Request::input('tipStudijaId') }}&studijskiProgramId={{ $program->id }}">{{ $program->naziv }}</a>--}}
+    {{--</li>--}}
+    {{--@endforeach--}}
     {{--</ul>--}}
     {{--<br>--}}
     {{--<hr>--}}
     {{--@endif--}}
-
-    @if(!empty($predmeti))
-    <table id="tabela" class="table">
-        <thead>
-        <th>Назив предмета</th>
-        {{--<th>Тип студија</th>--}}
-        {{--<th>Студијски програм</th>--}}
-        {{--<th>Тип предмета</th>--}}
-        {{--<th>Година студија</th>--}}
-        {{--<th>Семестар</th>--}}
-        {{--<th>ЕСПБ</th>--}}
-        {{--<th>Статус</th>--}}
-        <th>Акције</th>
-        </thead>
-        @foreach($predmeti as $predmet)
-            <tr>
-                <td>{{$predmet->naziv}}</td>
-                {{--<td>--}}
-                    {{--{{$predmet->tipStudija->naziv}}--}}
-                {{--</td>--}}
-                {{--<td>--}}
-                    {{--{{$predmet->studijskiProgram->naziv}}--}}
-                {{--</td>--}}
-                {{--<td>--}}
-                    {{--{{$predmet->tipPredmeta->naziv}}--}}
-                {{--</td>--}}
-                {{--<td>--}}
-                    {{--{{$predmet->godinaStudija->naziv}}--}}
-                {{--</td>--}}
-                {{--<td>{{$predmet->semestar}}</td>--}}
-                {{--<td>{{$predmet->espb}}</td>--}}
-                {{--<td>{{$predmet->statusPredmeta}}</td>--}}
-                <td>
-                    <div class="btn-group">
-                        <a href="prijava/zaPredmet/{{$predmet->id}}" class="btn btn-primary">Пријава испита</a>
-                    </div>
-                </td>
-            </tr>
-        @endforeach
-    </table>
-    @endif
-    <br/>
+    <div class="col-lg-10">
+        @if(!empty($predmeti))
+            <table id="tabela" class="table">
+                <thead>
+                <th>Назив предмета</th>
+                {{--<th>Тип студија</th>--}}
+                {{--<th>Студијски програм</th>--}}
+                {{--<th>Тип предмета</th>--}}
+                {{--<th>Година студија</th>--}}
+                {{--<th>Семестар</th>--}}
+                {{--<th>ЕСПБ</th>--}}
+                {{--<th>Статус</th>--}}
+                <th>Акције</th>
+                </thead>
+                @foreach($predmeti as $predmet)
+                    <tr>
+                        <td>{{$predmet->naziv}}</td>
+                        {{--<td>--}}
+                        {{--{{$predmet->tipStudija->naziv}}--}}
+                        {{--</td>--}}
+                        {{--<td>--}}
+                        {{--{{$predmet->studijskiProgram->naziv}}--}}
+                        {{--</td>--}}
+                        {{--<td>--}}
+                        {{--{{$predmet->tipPredmeta->naziv}}--}}
+                        {{--</td>--}}
+                        {{--<td>--}}
+                        {{--{{$predmet->godinaStudija->naziv}}--}}
+                        {{--</td>--}}
+                        {{--<td>{{$predmet->semestar}}</td>--}}
+                        {{--<td>{{$predmet->espb}}</td>--}}
+                        {{--<td>{{$predmet->statusPredmeta}}</td>--}}
+                        <td>
+                            <div class="btn-group">
+                                <a href="prijava/zaPredmet/{{$predmet->id}}" class="btn btn-primary">Пријава испита</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
+        <br/>
+    </div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
 @endsection
 
