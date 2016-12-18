@@ -86,10 +86,12 @@ Route::group(['middleware' => ['web']], function () {
     //AJAX pozivi sa prijave
     Route::post('/prijava/vratiKandidataPrijava', 'PrijavaController@vratiKandidataPrijava');
     Route::post('/prijava/vratiPredmetPrijava', 'PrijavaController@vratiPredmetPrijava');
+    Route::post('/prijava/vratiKandidataPoBroju', 'PrijavaController@vratiKandidataPoBroju');
 
     //Zapisnik o polaganju ispita
     Route::get('/zapisnik', 'IspitController@indexZapisnik');
     Route::get('/zapisnik/create', 'IspitController@createZapisnik');
+    Route::get('/zapisnik/vratiZapisnikPredmet', 'IspitController@vratiZapisnikPredmet');
     Route::post('/zapisnik/podaci', 'IspitController@podaci');
     Route::post('/zapisnik/storeZapisnik', 'IspitController@storeZapisnik');
     Route::get('/zapisnik/delete/{id}', 'IspitController@deleteZapisnik');

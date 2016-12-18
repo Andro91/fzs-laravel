@@ -10,7 +10,7 @@ class PrijavaIspita extends AndroModel
 
     protected $dates = ['datum'];
 
-    protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'brojPolaganja', 'datum'];
+    protected $fillable = ['kandidat_id','predmet_id', 'rok_id', 'profesor_id', 'brojPolaganja', 'datum'];
 
     public function kandidat()
     {
@@ -25,6 +25,11 @@ class PrijavaIspita extends AndroModel
     public function rok()
     {
         return $this->belongsTo(AktivniIspitniRokovi::class, 'rok_id');
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(Profesor::class, 'profesor_id');
     }
 
     public static function nazivRokaPoId($idRoka)

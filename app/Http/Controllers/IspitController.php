@@ -8,6 +8,7 @@ use App\PolozeniIspiti;
 use App\Predmet;
 use App\PredmetProgram;
 use App\PrijavaIspita;
+use App\Profesor;
 use App\StatusIspita;
 use App\ZapisnikOPolaganju_Student;
 use App\ZapisnikOPolaganju_StudijskiProgram;
@@ -36,12 +37,28 @@ class IspitController extends Controller
         if(count($aktivniIspitniRok->all()) == 0){
             $aktivniIspitniRok = null;
         }
-        $predmeti = PredmetProgram::all();
+        $predmeti = Predmet::all();
+
+        $profesori = Profesor::all();
 
         $rok_id = null;
         $predmet_id = null;
 
-        return view('ispit.createZapisnik', compact('aktivniIspitniRok','predmeti', 'rok_id', 'predmet_id' ));
+        return view('ispit.createZapisnik', compact('aktivniIspitniRok','predmeti', 'rok_id', 'predmet_id', 'profesori' ));
+    }
+
+    public function vratiZapisnikPredmet(Request $request){
+        $prijava = PrijavaIspita::where([
+            'rok_id' => $request->rokId
+        ])->select('predmet_id', 'profesor_id')->get();
+        $predmetId = array_unique($prijava->pluck('predmet_id')->all());
+        $profesorId = array_unique($prijava->pluck('profesor_id')->all());
+
+        $profesori = Profesor::whereIn('id',$profesorId)->get()->isEmpty()
+            ? Profesor::all()
+            : Profesor::whereIn('id',$profesorId)->get() ;
+
+        return ['predmeti' => $predmeti = Predmet::whereIn('id',$predmetId)->get(), 'profesori' => $profesori];
     }
 
     public function podaci(Request $request)
@@ -55,7 +72,6 @@ class IspitController extends Controller
             if($pom != null){
                 $prijavaIds[$id] = $pom->id;
             }
-
         }
 
         $aktivniIspitniRok = AktivniIspitniRokovi::all();

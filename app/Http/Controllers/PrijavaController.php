@@ -94,25 +94,21 @@ class PrijavaController extends Controller
     {
         $predmet = Predmet::find($id);
 
-        $predmetProgram = PredmetProgram::where(['predmet_id' => $id])->get()->first();
-
         $kandidati = Kandidat::where([
-            'tipStudija_id' => $predmetProgram->tipStudija_id,
-            'statusUpisa_id' => 1])->get();
-//        $studijskiProgram = StudijskiProgram::where(['id' => $predmet->studijskiProgram_id])->get();
-//        $godinaStudija = GodinaStudija::all();
-        $tipPredmeta = TipPredmeta::all();
-        $tipStudija = TipStudija::all();
+            'statusUpisa_id' => 1
+        ])->get();
+
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
 
-        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->get();
+//        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->get();
+//        if($profesorPredmet->isEmpty()){
+//            $profesor = Profesor::all();
+//        }else{
+//            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
+//            $profesor = Profesor::whereIn('id', $ids)->get();
+//        }
 
-        if($profesorPredmet->isEmpty()){
-            $profesor = Profesor::all();
-        }else{
-            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
-            $profesor = Profesor::whereIn('id', $ids)->get();
-        }
+        $profesor = Profesor::all();
 
         return view('prijava.createManyPredmet', compact('kandidati', 'predmet', 'studijskiProgram', 'godinaStudija',
             'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave'));
@@ -122,12 +118,24 @@ class PrijavaController extends Controller
     {
         $errorArray = array();
         $duplicateArray = array();
+
+        //dd($request->all());
+
+        $messages = [
+            'odabir.required' => 'Нисте одабрали ни једног студента за пријаву испита!',
+        ];
+
+        $this->validate($request, [
+            'odabir' => 'required',
+        ], $messages);
+
         foreach ($request->odabir as $kandidatId) {
 
             $validator = PrijavaIspita::where([
                 'kandidat_id' => $kandidatId,
                 'predmet_id' => $request->predmet_id,
                 'rok_id' => $request->rok_id,
+                'profesor_id' => $request->profesor_id
             ])->get();
 
             if (!$validator->isEmpty()) {
@@ -136,6 +144,7 @@ class PrijavaController extends Controller
             }
 
             $prijava = new PrijavaIspita($request->all());
+            $prijava->brojPolaganja = 1;
             $prijava->kandidat_id = $kandidatId;
             $saved = $prijava->save();
 
@@ -376,5 +385,16 @@ class PrijavaController extends Controller
             'godinaStudija' => $predmetProgram->godinaStudija_id,
             'tipStudija' => $predmetProgram->tipStudija_id,
             'profesori' => $stringProfesori];
+    }
+
+    //AJAX call
+    public function vratiKandidataPoBroju(Request $request)
+    {
+        $kandidat = Kandidat::find($request->id);
+        return "<tr>" .
+        "<td><input type='checkbox' name='odabir[$kandidat->id]' value='$kandidat->id' checked></td>" .
+        "<td>{$kandidat->brojIndeksa}</td>" .
+        "<td>" . $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . "</td>" .
+        "<td>{$kandidat->godinaStudija->nazivRimski}</td></tr>";
     }
 }

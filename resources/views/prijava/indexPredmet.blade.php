@@ -3,7 +3,7 @@
 @section('section')
     <h3>Предмет: {{ $predmet->naziv }}</h3>
     <br>
-    <a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>
+    {{--<a href="{{$putanja}}/prijava/predmet/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - један студент</a>--}}
     <a href="{{$putanja}}/prijava/predmetVise/{{$predmet->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Нова пријава - више студената</a>
     <div id="messages">
         @if (Session::get('flash-error'))
@@ -40,9 +40,8 @@
         <tr>
             <th>Кандидат</th>
             <th>Број Индекса</th>
-            <th>Предмет</th>
             <th>Рок</th>
-            <th>Број Полагања</th>
+            <th>Код професора</th>
             <th>Датум</th>
             <th></th>
         </tr>
@@ -52,10 +51,9 @@
             <tr>
                 <td>{{ $prijava->kandidat->imeKandidata . " " . $prijava->kandidat->prezimeKandidata }}</td>
                 <td>{{ empty($prijava->kandidat->brojIndeksa) ? '' : $prijava->kandidat->brojIndeksa }}</td>
-                <td>{{ $prijava->predmet->naziv }}</td>
                 <td>{{ empty($prijava->rok->naziv) ? '' : $prijava->rok->naziv }}</td>
-                <td>{{ $prijava->brojPolaganja }}</td>
-                <td>{{ $prijava->datum }}</td>
+                <td>{{ $prijava->profesor->ime . " " . $prijava->profesor->prezime }}</td>
+                <td>{{ $prijava->datum->format('d.m.Y.') }}</td>
                 <td>
                     {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                     <a class="btn btn-danger" href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=predmet"

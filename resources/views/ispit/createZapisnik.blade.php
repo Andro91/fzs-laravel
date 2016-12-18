@@ -46,7 +46,7 @@
                             <select class="form-control {{ empty($predmet_id) ? 'auto-combobox' : '' }}" id="predmet_id"
                                     name="predmet_id" {{ empty($predmet_id) ? '' : 'disabled' }}>
                                 @foreach($predmeti as $item)
-                                    <option value="{{$item->id}}" {{ (!empty($predmet_id) && $predmet_id == $item->id) ? 'selected' : '' }}>{{ $item->predmet->naziv . " - " . $item->tipStudija->skrNaziv . " " . $item->studijskiProgram->naziv }}</option>
+                                    <option value="{{$item->id}}" {{ (!empty($predmet_id) && $predmet_id == $item->id) ? 'selected' : '' }}>{{ $item->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -57,10 +57,26 @@
                                             class="fa fa-check" style="margin: 3px"></span></button>
                             @else
                                 <a href="{{$putanja}}/zapisnik/create" class="btn btn-danger"><span
-                                            class="fa fa-close"  style="margin: 3px"></span></a>
+                                            class="fa fa-close" style="margin: 3px"></span></a>
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-lg-5">
+                            <label for="profesor_id">Професор</label>
+                            <select class="form-control auto-combobox" id="profesor_id"
+                                    name="profesor_id">
+                                @foreach($profesori as $item)
+                                    <option value="{{$item->id}}">{{ $item->ime . " " . $item->prezime }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-2">
+                            <label for="ajaxSubmitPrijava">&nbsp;</label><br>
+                            <input type="button" id="ajaxSubmitPrijava" class="btn btn-success" value="Прикажи студенте">
+                        </div>
+                    </div>
+
                 </form>
                 <div class="clearfix"></div>
                 <hr>
@@ -148,11 +164,29 @@
     <br>
     <br>
     <script>
-        $('#predmet_id').change(function () {
-            $('#predmet_id_forma').val($('#predmet_id').val());
-        });
         $('#rok_id').change(function () {
-            $('#rok_id_forma').val($('#rok_id').val());
+            var rok = $('#rok_id');
+            $.ajax({
+                url: '/zapisnik/vratiZapisnikPredmet',
+                method: 'get',
+                data: {
+                    rokId: rok.val()
+                },
+                success: function (result) {
+                    var selectList = $('#predmet_id');
+                    $('div.col-lg-5:nth-child(2) > span:nth-child(3) > input:nth-child(1)').val('');
+                    selectList.html('');
+                    $.each(result['predmeti'], function () {
+                        selectList.append($("<option />").val(this.id).text(this.naziv));
+                    });
+                    selectList = $('#profesor_id');
+                    selectList.html('');
+                    $('div.row:nth-child(3) > div:nth-child(1) > span:nth-child(3) > input:nth-child(1)').val('');
+                    $.each(result['profesori'], function () {
+                        selectList.append($("<option />").val(this.id).text(this.ime + ' ' + this.prezime));
+                    });
+                }
+            });
         });
 
         $(function () {
