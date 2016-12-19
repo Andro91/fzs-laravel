@@ -75,32 +75,44 @@ class IzvestajiController extends Controller
 
     public function spisakPoSmerovimaAktivni(Request $request)
     {
+        //dd($request->godina);
+        $statusi = array("1", "2", "4", "5");
         try {
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->where(['upis_godine.statusGodine_id' => 1])->where(['upis_godine.skolskaGodina_id' => $request->godina])
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->whereIn('upis_godine.statusGodine_id', $statusi)->where(['upis_godine.skolskaGodina_id' => $request->godina])
+                ->select('kandidat.*', 'upis_godine.statusGodine_id as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
             //dd($kandidat);
             //dd($kandidat->where('kandidat.tipStudija_id', '2')->get());
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
             //$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('tipStudija_id')->select('tipStudija_id')->groupBy('tipStudija_id')->get();
-            //$picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
+            $picks3 = Kandidat::where(['statusUpisa_id' => 1])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
 
             //return $picks2;
 
 
             $uslov2 = array();
+            $uslov3 = array();
 
             foreach ($picks2 as $item) {
                 $uslov2[] = $item->tipStudija_id;
+            }
+
+            foreach ($picks3 as $item) {
+                $uslov3[] = $item->godinaStudija_id + 1;
             }
             //$program = StudijskiProgram::whereIn('id', $uslov)->get();
 
             $tip = TipStudija::whereIn('id', $uslov2)->get();
             $tipSvi = TipStudija::all();
+
+            $godina = GodinaStudija::whereIn('id', $uslov3)->get();
+            $godinaSve = GodinaStudija::all();
+
+            //dd($godina);
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -110,7 +122,7 @@ class IzvestajiController extends Controller
 
         $pdf = new \Elibyy\TCPDF\TCPDF([$pdf_settings['page_orientation'], $pdf_settings['page_units'], $pdf_settings['page_format'], true, 'UTF-8', false], 'tcpdf2');
 
-        $view = View::make('izvestaji.spisakSvihStudenata')->with('kandidat', $kandidat)->with('tip', $tip)->with('tipSvi', $tipSvi);
+        $view = View::make('izvestaji.spisakSvihStudenata')->with('kandidat', $kandidat)->with('tip', $tip)->with('tipSvi', $tipSvi)->with('godina', $godina)->with('godinaSve', $godinaSve);
 
         $contents = $view->render();
         $pdf->SetTitle('Списак студената по модулима');
