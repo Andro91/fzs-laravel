@@ -14,7 +14,7 @@ class ZapisnikOPolaganjuIspita extends AndroModel
 
     public function predmet()
     {
-        return $this->belongsTo(PredmetProgram::class, 'predmet_id');
+        return $this->belongsTo(Predmet::class, 'predmet_id');
     }
 
     public function ispitniRok()
@@ -25,5 +25,10 @@ class ZapisnikOPolaganjuIspita extends AndroModel
     public function studenti()
     {
         return $this->hasMany(ZapisnikOPolaganju_Student::class, 'zapisnik_id');
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(Profesor::class, 'profesor_id');
     }
 }

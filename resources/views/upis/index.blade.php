@@ -25,6 +25,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="SkolskaGodinaUpisa">Школска година уписа</label>
+                                <select class="form-control" id="SkolskaGodinaUpisa" name="SkolskaGodinaUpisa">
+                                    @foreach($skolskaGodinaUpisa as $item)
+                                        <option value="{{ $item->id }}">{{ $item->naziv }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>

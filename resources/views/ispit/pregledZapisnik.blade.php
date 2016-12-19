@@ -33,8 +33,9 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <h3>Предмет: {{ $zapisnik->predmet->predmet->naziv }}</h3>
+                <h3>Предмет: {{ $zapisnik->predmet->naziv }}</h3>
                 <h4>Испитни рок: {{ $zapisnik->ispitniRok->naziv }}</h4>
+                <h4>Професор: {{ $zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime }}</h4>
             </div>
             <div class="col-lg-4" style="margin-top: 20px">
                 <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">

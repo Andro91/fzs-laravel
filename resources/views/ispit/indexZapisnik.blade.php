@@ -48,7 +48,7 @@
             <tbody>
             @foreach($zapisnici as $index => $zapisnik)
                 <tr>
-                    <td>{{$zapisnik->predmet->predmet->naziv}}</td>
+                    <td>{{$zapisnik->predmet->naziv}}</td>
                     <td>{{$zapisnik->ispitniRok->naziv}}</td>
                     <td>{{$zapisnik->datum->format('d.m.Y.')}}</td>
                     <td>{{$zapisnik->vreme}}</td>

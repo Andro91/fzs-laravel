@@ -77,6 +77,7 @@ class StudentController extends Controller
     {
         $kandidat = Kandidat::find($id);
         $studijskiProgram = StudijskiProgram::where(['tipStudija_id' => 2])->get();
+        $skolskaGodinaUpisa = SkolskaGodUpisa::all();
         $osnovneStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 1])
             ->orderBy('godina','ASC')
             ->orderBy('pokusaj', 'ASC')
@@ -85,7 +86,7 @@ class StudentController extends Controller
 
         $doktorskeStudije = UpisGodine::where(['kandidat_id' => $id, 'tipStudija_id' => 3])->get();
 
-        return view('upis.index', compact('kandidat', 'osnovneStudije', 'masterStudije', 'doktorskeStudije', 'studijskiProgram'));
+        return view('upis.index', compact('kandidat', 'osnovneStudije', 'masterStudije', 'doktorskeStudije', 'studijskiProgram', 'skolskaGodinaUpisa'));
     }
 
     public function upisiStudenta($id, Request $request)
@@ -230,7 +231,7 @@ class StudentController extends Controller
 
     public function upisMasterStudija(Request $request)
     {
-        $result = UpisGodine::upisMasterPostojeciKandidat($request->kandidat_id,$request->StudijskiProgram);
+        $result = UpisGodine::upisMasterPostojeciKandidat($request->kandidat_id,$request->StudijskiProgram,$request->SkolskaGodinaUpisa);
         if($result){
             Session::flash('flash-success', 'upis');
             return redirect("/student/{$request->kandidat_id}/upis");

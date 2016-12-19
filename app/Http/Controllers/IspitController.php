@@ -13,9 +13,11 @@ use App\StatusIspita;
 use App\ZapisnikOPolaganju_Student;
 use App\ZapisnikOPolaganju_StudijskiProgram;
 use App\ZapisnikOPolaganjuIspita;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class IspitController extends Controller
 {
@@ -34,7 +36,7 @@ class IspitController extends Controller
     public function createZapisnik()
     {
         $aktivniIspitniRok = AktivniIspitniRokovi::all();
-        if(count($aktivniIspitniRok->all()) == 0){
+        if (count($aktivniIspitniRok->all()) == 0) {
             $aktivniIspitniRok = null;
         }
         $predmeti = Predmet::all();
@@ -44,32 +46,56 @@ class IspitController extends Controller
         $rok_id = null;
         $predmet_id = null;
 
-        return view('ispit.createZapisnik', compact('aktivniIspitniRok','predmeti', 'rok_id', 'predmet_id', 'profesori' ));
+        return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'rok_id', 'predmet_id', 'profesori'));
     }
 
-    public function vratiZapisnikPredmet(Request $request){
+    public function vratiZapisnikPredmet(Request $request)
+    {
         $prijava = PrijavaIspita::where([
             'rok_id' => $request->rokId
         ])->select('predmet_id', 'profesor_id')->get();
         $predmetId = array_unique($prijava->pluck('predmet_id')->all());
         $profesorId = array_unique($prijava->pluck('profesor_id')->all());
 
-        $profesori = Profesor::whereIn('id',$profesorId)->get()->isEmpty()
+        $profesori = Profesor::whereIn('id', $profesorId)->get()->isEmpty()
             ? Profesor::all()
-            : Profesor::whereIn('id',$profesorId)->get() ;
+            : Profesor::whereIn('id', $profesorId)->get();
 
-        return ['predmeti' => $predmeti = Predmet::whereIn('id',$predmetId)->get(), 'profesori' => $profesori];
+        return ['predmeti' => $predmeti = Predmet::whereIn('id', $predmetId)->get(), 'profesori' => $profesori];
+    }
+
+    public function vratiZapisnikStudenti(Request $request)
+    {
+        $prijava = PrijavaIspita::where([
+            'rok_id' => $request->rok_id,
+            'predmet_id' => $request->predmet_id,
+            'profesor_id' => $request->profesor_id
+        ])->get();
+
+        $prijavaId = $prijava->isEmpty() ? null : $prijava->first()->id;
+
+        $studentiId = $prijava->pluck('kandidat_id')->all();
+
+        $message = count($studentiId) == 0 ? '<div class="alert alert-dismissable alert-info"><h4>Грешка!</h4>Нема пријављених студената за испит!</div>' : '';
+
+        return [
+            'message' => $message,
+            'kandidati' => Kandidat::whereIn('id', $studentiId)->select(['id', 'brojIndeksa', 'imeKandidata', 'prezimeKandidata'])->get(),
+            'prijavaId' => $prijavaId
+        ];
     }
 
     public function podaci(Request $request)
     {
         $prijavaIspita = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id])->get();
-        $ids = array_map(function(PrijavaIspita $o) { return $o->kandidat_id; }, $prijavaIspita->all());
+        $ids = array_map(function (PrijavaIspita $o) {
+            return $o->kandidat_id;
+        }, $prijavaIspita->all());
 
         $prijavaIds = array();
         foreach ($ids as $id) {
             $pom = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id, 'kandidat_id' => $id])->first();
-            if($pom != null){
+            if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
             }
         }
@@ -81,36 +107,59 @@ class IspitController extends Controller
         $rok_id = $request->rok_id;
         $predmet_id = $request->predmet_id;
 
-        if(!empty($prijavaIds)){
-            return view('ispit.createZapisnik', compact('aktivniIspitniRok','predmeti', 'studenti', 'rok_id', 'predmet_id', 'prijavaIds'));
-        }else{
-            return view('ispit.createZapisnik', compact('aktivniIspitniRok','predmeti', 'studenti', 'rok_id', 'predmet_id'));
+        if (!empty($prijavaIds)) {
+            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id', 'prijavaIds'));
+        } else {
+            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id'));
         }
 
     }
 
     public function storeZapisnik(Request $request)
     {
-        $zapisnik = new ZapisnikOPolaganjuIspita($request->all());
-        $zapisnik->save();
+        $messages = [
+            'odabir.required' => 'Нисте одабрали ни једног студента за полагање испита!',
+        ];
 
-        foreach ($request->odabir as $id) {
-            $zapisStudent = new ZapisnikOPolaganju_Student();
-            $zapisStudent->zapisnik_id = $zapisnik->id;
-            $zapisStudent->prijavaIspita_id = $request->odabir2[$id];
-            $zapisStudent->kandidat_id = $id;
-            $zapisStudent->save();
+        $this->validate($request, [
+            'odabir' => 'required',
+        ], $messages);
 
-            $kandidat = Kandidat::find($id);
-            $prijava = $kandidat->prijaveIspita()->where(['rok_id' => $zapisnik->rok_id, 'predmet_id' => $zapisnik->predmet_id])->first();
+        try {
+            $zapisnik = new ZapisnikOPolaganjuIspita($request->all());
+            $zapisnik->save();
 
-            $polozenIspit = new PolozeniIspiti();
-            $polozenIspit->indikatorAktivan = 0;
-            $polozenIspit->kandidat_id = $id;
-            $polozenIspit->predmet_id = $zapisnik->predmet_id;
-            $polozenIspit->zapisnik_id = $zapisnik->id;
-            $polozenIspit->prijava_id = $prijava->id;
-            $polozenIspit->save();
+            $smerovi = array();
+
+            foreach ($request->odabir as $id) {
+                $zapisStudent = new ZapisnikOPolaganju_Student();
+                $zapisStudent->zapisnik_id = $zapisnik->id;
+                $zapisStudent->prijavaIspita_id = $zapisnik->prijavaIspita_id;
+                $zapisStudent->kandidat_id = $id;
+                $zapisStudent->save();
+
+                $kandidat = Kandidat::find($id);
+                $smerovi[] = $kandidat->studijskiProgram_id;
+
+                $polozenIspit = new PolozeniIspiti();
+                $polozenIspit->indikatorAktivan = 0;
+                $polozenIspit->kandidat_id = $id;
+                $polozenIspit->predmet_id = $zapisnik->predmet_id;
+                $polozenIspit->zapisnik_id = $zapisnik->id;
+                $polozenIspit->prijava_id = $zapisnik->prijavaIspita_id;
+                $polozenIspit->save();
+            }
+
+            $smerovi = array_unique($smerovi);
+            foreach ($smerovi as $id) {
+                $zapisSmer = new ZapisnikOPolaganju_StudijskiProgram();
+                $zapisSmer->zapisnik_id = $zapisnik->id;
+                $zapisSmer->StudijskiProgram_id = $id;
+                $zapisSmer->save();
+            }
+
+        }catch (QueryException $ex){
+            Session::flash('error', 'Грешка при упису!');
         }
 
         return redirect('/zapisnik/');
@@ -130,13 +179,15 @@ class IspitController extends Controller
     {
         $zapisnik = ZapisnikOPolaganjuIspita::find($zapisnikId);
         $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $zapisnikId])->get();
-        $ids = array_map(function(ZapisnikOPolaganju_Student $o) { return $o->kandidat_id; }, $zapisnikStudent->all());
+        $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
+            return $o->kandidat_id;
+        }, $zapisnikStudent->all());
         $studenti = Kandidat::whereIn('id', $ids)->get();
 
         $prijavaIds = array();
         foreach ($ids as $id) {
             $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
-            if($pom != null){
+            if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
             }
         }
@@ -144,7 +195,7 @@ class IspitController extends Controller
         $polozeniIspitIds = array();
         foreach ($ids as $id) {
             $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
-            if($pom != null){
+            if ($pom != null) {
                 $polozeniIspitIds[$id] = $pom->id;
             }
         }
@@ -153,7 +204,7 @@ class IspitController extends Controller
         $statusIspita = StatusIspita::all();
         $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get();
 
-        return view('ispit.pregledZapisnik', compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
+        return view('ispit.pregledZapisnik', compact('zapisnik', 'studenti', 'studijskiProgrami', 'statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
     }
 
     public function polozeniIspit(Request $request)

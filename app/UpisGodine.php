@@ -128,15 +128,17 @@ class UpisGodine extends AndroModel
     }
 
     //Upis master studija za postojećeg kandidata
-    public static function upisMasterPostojeciKandidat($kandidatId,$studijskiProgramId)
+    public static function upisMasterPostojeciKandidat($kandidatId,$studijskiProgramId,$skolskaGodinaUpisaId)
     {
         $kandidat = Kandidat::find($kandidatId);
         if(!empty($kandidat)){
             if($kandidat->tipStudija_id == 1){
                 $kandidat->tipStudija_id = 2;
                 $kandidat->studijskiProgram_id = $studijskiProgramId;
+                $kandidat->skolskaGodinaUpisa_id = $skolskaGodinaUpisaId;
                 $kandidat->statusUpisa_id = \Config::get('constants.statusi.upisan');
                 $kandidat->save();
+                UpisGodine::generisiBrojIndeksa($kandidatId);
                 UpisGodine::registrujKandidata($kandidat->id);
                 return true;
             }
