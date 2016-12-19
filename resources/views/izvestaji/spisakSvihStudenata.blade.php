@@ -54,7 +54,7 @@
                                 <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>
                                 <td style="border: 1px solid black;width:170px;">{{$item->email}}</td>
                                 <td style="border: 1px solid black;width:60px;">{{$item->program}}</td>
-                                <td style="border: 1px solid black;width:55px;">@if($item->godina == 1)Уписан/а@elseif($item->godina == 2)Одустао/ла@elseif($item->godina == 3)Обновио/ла@elseif($item->godina == 4)Завршио/ла@endif</td>
+                                <td style="border: 1px solid black;width:55px;">@if($item->godina == 1)Уписан/а@elseif($item->godina == 2)Одустао/ла@elseif($item->godina == 4)Обновио/ла@elseif($item->godina == 5)Завршио/ла@endif</td>
                                 <td style="border: 1px solid black;width:120px;">{{$item->adresaStanovanja}}</td>
                             </tr>
                         @endif
