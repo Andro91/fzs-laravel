@@ -82,7 +82,7 @@ class IzvestajiController extends Controller
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('upis_godine.statusGodine_id', $statusi)->where(['upis_godine.skolskaGodina_id' => $request->godina])->
-                select('kandidat.*', 'upis_godine.statusGodine_id as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
+                select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
             //dd($kandidat);
             //dd($kandidat->where('kandidat.tipStudija_id', '2')->get());
