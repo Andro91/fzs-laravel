@@ -76,7 +76,7 @@ class IspitController extends Controller
 
         $studentiId = $prijava->pluck('kandidat_id')->all();
 
-        $message = count($studentiId) == 0 ? '<div class="alert alert-dismissable alert-info"><h4>Грешка!</h4>Нема пријављених студената за испит!</div>' : '';
+        $message = count($studentiId) == 0 ? '<div class="alert alert-dismissable alert-info"><h4>Ð“Ñ€ÐµÑˆÐºÐ°!</h4>Ð�ÐµÐ¼Ð° Ð¿Ñ€Ð¸Ñ˜Ð°Ð²Ñ™ÐµÐ½Ð¸Ñ… Ñ�Ñ‚ÑƒÐ´ÐµÐ½Ð°Ñ‚Ð° Ð·Ð° Ð¸Ñ�Ð¿Ð¸Ñ‚!</div>' : '';
 
         return [
             'message' => $message,
@@ -118,7 +118,7 @@ class IspitController extends Controller
     public function storeZapisnik(Request $request)
     {
         $messages = [
-            'odabir.required' => 'Нисте одабрали ни једног студента за полагање испита!',
+            'odabir.required' => 'Нисте одабрали студенте за полагање испита!',
         ];
 
         $this->validate($request, [
@@ -159,7 +159,7 @@ class IspitController extends Controller
             }
 
         }catch (QueryException $ex){
-            Session::flash('error', 'Грешка при упису!');
+            Session::flash('flash-error', 'create');
         }
 
         return redirect('/zapisnik/');

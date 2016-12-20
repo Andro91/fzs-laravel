@@ -2,37 +2,20 @@
 @section('page_heading','Записник о полагању испита')
 @section('section')
     <div class="col-lg-10">
-        <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов
-            записник</a>
-
         <div id="messages">
             @if (Session::get('flash-error'))
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>Грешка!</strong>
-                    @if(Session::get('flash-error') === 'update')
+                    @if(Session::get('flash-error') === 'create')
                         Дошло је до грешке при чувању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'delete')
-                        Дошло је до грешке при брисању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'upis')
-                        Дошло је до грешке при упису кандидата! Молимо вас проверите да ли је кандидат уплатио школарину
-                        и покушајте поново.
-                    @endif
-                </div>
-            @elseif(Session::get('flash-success'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Успех!</strong>
-                    @if(Session::get('flash-success') === 'update')
-                        Подаци о кандидату су успешно сачувани.
-                    @elseif(Session::get('flash-success') === 'delete')
-                        Подаци о кандидату су успешно обрисани.
-                    @elseif(Session::get('flash-success') === 'upis')
-                        Упис кандидата је успешно извршен.
                     @endif
                 </div>
             @endif
         </div>
+        <br>
+        <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов
+            записник</a>
         <hr>
         <table id="tabela" class="table">
             <thead>

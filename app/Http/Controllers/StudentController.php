@@ -214,7 +214,8 @@ class StudentController extends Controller
 
         $kandidat->save();
 
-        return redirect("student/index/{$kandidat->tipStudija_id}?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
+        return Redirect::back();
+        //return redirect("student/index/{$kandidat->tipStudija_id}?godina={$kandidat->godinaStudija_id}&studijskiProgramId={$kandidat->studijskiProgram_id}");
     }
 
     public function masovniUpis(Request $request)

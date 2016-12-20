@@ -189,7 +189,12 @@ class UpisGodine extends AndroModel
     public static function generisiBrojIndeksa($kandidatId)
     {
         $kandidat = Kandidat::find($kandidatId);
-        $arhivIndeksa = ArhivIndeksa::where(['tipStudija_id' => $kandidat->tipStudija_id, 'skolskaGodinaUpisa_id' => $kandidat->skolskaGodinaUpisa_id ])->first();
+
+        $arhivIndeksa = ArhivIndeksa::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'skolskaGodinaUpisa_id' => $kandidat->skolskaGodinaUpisa_id
+        ])->first();
+
         if($arhivIndeksa == null){
             $prviZapis = new ArhivIndeksa();
             $prviZapis->tipStudija_id = $kandidat->tipStudija_id;
@@ -203,7 +208,18 @@ class UpisGodine extends AndroModel
             $arhivIndeksa->save();
         }
 
+        $kandidati = Kandidat::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'skolskaGodinaUpisa_id' => $kandidat->skolskaGodinaUpisa_id
+        ])->pluck('brojIndeksa')->all();
+
+        $postojeciIndeksi = array_map(function($item){ return (int)substr($item,1,3); }, $kandidati);
+
         $noviBrojIndeksa = $poslednjiBrojIndeksa + 1;
+
+        while(in_array($noviBrojIndeksa, $postojeciIndeksi)){
+            $noviBrojIndeksa++;
+        }
 
         switch(strlen($noviBrojIndeksa)){
             case 1 : $noviBrojIndeksa = '00' . $noviBrojIndeksa; break;
