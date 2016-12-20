@@ -122,14 +122,14 @@ class IzvestajiController extends Controller
     public function spisakPoSmerovimaAktivni(Request $request)
     {
         //dd($request->godina);
-        $statusi = array("1", "2", "4", "5", "7");
+        $statusi = array("1");
         try {
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('upis_godine.statusGodine_id', $statusi)->
                 select('kandidat.*', 'upis_godine.statusGodine_id as status', 'upis_godine.godina as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
+                ->orderBy('kandidat.imeKandidata')->get();
             //dd($kandidat);
             //dd($kandidat->where('kandidat.tipStudija_id', '2')->get());
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1])->get();
