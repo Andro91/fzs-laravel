@@ -10,6 +10,7 @@
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
             <p></p>
+
             <div class="col-sm-12 col-lg-12">
 
                 <div class="col-sm-12 col-lg-4">
@@ -41,7 +42,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="skolskaGodina_id">Школска година:</label>
-                                        <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="test">
+                                        <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                                name="test">
                                             @foreach($skolskaGodina6 as $bla)
                                                 <option value="{{$bla->id}}">{{$bla->naziv}}</option>
                                             @endforeach
@@ -74,7 +76,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
-                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="skolskaGodina">
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="skolskaGodina">
                                         @foreach($skolskaGodina3 as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
@@ -109,7 +112,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
-                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="godina">
                                         @foreach($skolskaGodina4 as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
@@ -125,7 +129,8 @@
 
 
                 <div class="col-sm-12 col-lg-4">
-                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoPredmetima/') }}">
+                    <form role="form" method="post" target="_blank"
+                          action="{{ url('/izvestaji/spisakPoPredmetima/') }}">
                         {{csrf_field()}}
 
                         <div class="panel panel-success">
@@ -144,7 +149,8 @@
 
                                 <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
-                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="godina">
                                         @foreach($skolskaGodina7 as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
@@ -157,7 +163,8 @@
                             </div>
                         </div>
                     </form>
-                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakDiplomiranih/') }}">
+                    <form role="form" method="post" target="_blank"
+                          action="{{ url('/izvestaji/spisakDiplomiranih/') }}">
                         {{csrf_field()}}
 
                         <div class="panel panel-success">
@@ -191,7 +198,8 @@
 
                                 <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
-                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="godina">
                                         @foreach($skolskaGodina8 as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
@@ -206,7 +214,8 @@
                         </div>
                     </form>
 
-                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoProfesorima/') }}">
+                    <form role="form" method="post" target="_blank"
+                          action="{{ url('/izvestaji/spisakPoProfesorima/') }}">
                         {{csrf_field()}}
 
                         <div class="panel panel-success">
@@ -244,7 +253,8 @@
 
                                 <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
-                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="godina">
                                         @foreach($skolskaGodina as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
@@ -258,7 +268,8 @@
                         </div>
                     </form>
 
-                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/spisakPoSmerovimaAktivni') }}">
+                    <form role="form" method="post" target="_blank"
+                          action="{{ url('/izvestaji/spisakPoSmerovimaAktivni') }}">
                         {{csrf_field()}}
 
                         <div class="panel panel-success">
@@ -267,13 +278,40 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <label for="skolskaGodina_id">Школска година:</label>
+                                    <!--<label for="skolskaGodina_id">Школска година:</label>
                                     <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                        @foreach($skolskaGodina9 as $godina)
+                                            <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                        @endforeach
+                                            </select>-->
+                                </div>
+                                <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                                    <button type="submit" class="btn btn-primary">Штампај</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/integralno') }}">
+                        {{csrf_field()}}
+
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Списак свих активних студената - интегрално</h3>
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="skolskaGodina_id">Школска година уписа:</label>
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id"
+                                            name="godina">
                                         @foreach($skolskaGodina9 as $godina)
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="panel-body">
                                 <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
                                 </div>
@@ -288,7 +326,9 @@
         </div>
         <div id="menu1" class="tab-pane fade">
             <p></p>
+
             <h3>Издвајање података у Excel табелу</h3>
+
             <div class="col-sm-12 col-lg-4">
 
                 <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/excelStampa/') }}">

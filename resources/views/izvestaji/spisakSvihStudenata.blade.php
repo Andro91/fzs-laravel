@@ -12,67 +12,67 @@
         <h1 style="padding-bottom: 100px;">{{$tip->naziv}}</h1>
         @foreach($tipSvi as $test)
 
-            @if($test->id == $tip->id)
+        @if($test->id == $tip->id)
 
-                @foreach($godina as $bla)
+        @foreach($godina as $bla)
 
-                    @if($bla->id <= 4 && $tip->id == 1 || $bla->id == 1 && $tip->id == 2)
+        @if($bla->id <= 4 && $tip->id == 1 || $bla->id == 1 && $tip->id == 2)
 
-                    <h1 style="padding-bottom: 100px;">{{$bla->naziv}} година</h1>
+                <!--<h1 style="padding-bottom: 100px;">{{$bla->naziv}} година</h1>-->
+        <table style="border: 1px solid black;">
+            <thead>
+            <tr>
+                <th style="border: 1px solid black;width:35px;"><b>Р.бр.</b></th>
+                <th style="border: 1px solid black;"><b>Број индекса</b>
+                </th>
+                <th style="border: 1px solid black;width:150px;"><b>Име и презиме</b>
+                </th>
+                <th style="border: 1px solid black;width:90px;"><b>Телефон</b>
+                </th>
+                <th style="border: 1px solid black;width:170px;"><b>Мејл адреса</b>
+                </th>
+                <th style="border: 1px solid black;width:60px;"><b>Програм</b>
+                </th>
+                <th style="border: 1px solid black;width:65px;"><b>Статус</b>
+                </th>
+                <th style="border: 1px solid black;width:120px;"><b>Место становања</b>
+                </th>
+            </tr>
+            </thead>
+            <?php $a = 0;?>
 
-
-                <br/>
-                <br/>
-                <table style="border: 1px solid black;">
-                    <thead>
+            @foreach($kandidat as $index => $item)
+                @if($item->tipStudija_id == $test->id && $item->godina == $bla->id)
+                    <?php $a++;?>
                     <tr>
-                        <th style="border: 1px solid black;width:35px;"><b>Р.бр.</b></th>
-                        <th style="border: 1px solid black;"><b>Број индекса</b>
-                        </th>
-                        <th style="border: 1px solid black;width:150px;"><b>Име и презиме</b>
-                        </th>
-                        <th style="border: 1px solid black;width:90px;"><b>Телефон</b>
-                        </th>
-                        <th style="border: 1px solid black;width:170px;"><b>Мејл адреса</b>
-                        </th>
-                        <th style="border: 1px solid black;width:60px;"><b>Програм</b>
-                        </th>
-                        <th style="border: 1px solid black;width:55px;"><b>Статус</b>
-                        </th>
-                        <th style="border: 1px solid black;width:120px;"><b>Место становања</b>
-                        </th>
+                        <td style="border: 1px solid black;width:35px;">{{$a}}</td>
+                        <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
+                        <td style="border: 1px solid black;width:150px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                        <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>
+                        <td style="border: 1px solid black;width:170px;">{{$item->email}}</td>
+                        <td style="border: 1px solid black;width:60px;">{{$item->program}}</td>
+                        <td style="border: 1px solid black;width:65px;">@if($item->status == 1)Уписан @elseif($item->status == 2)Одустао @elseif($item->status == 4)Обновио @elseif($item->status == 5)Завршио @elseif($item->status == 6)Дипломирао @elseif($item->status == 7)Мировање @endif</td>
+                        <td style="border: 1px solid black;width:120px;">{{$item->adresaStanovanja}}</td>
                     </tr>
-                    </thead>
-                    <?php $a = 0;?>
-                    @foreach($kandidat as $index => $item)
-                        @if($item->tipStudija_id == $test->id && $item->godinaStudija_id == $bla->id)
-                            <?php $a++;?>
-                            <tr>
-                                <td style="border: 1px solid black;width:35px;">{{$a}}</td>
-                                <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                                <td style="border: 1px solid black;width:150px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
-                                <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>
-                                <td style="border: 1px solid black;width:170px;">{{$item->email}}</td>
-                                <td style="border: 1px solid black;width:60px;">{{$item->program}}</td>
-                                <td style="border: 1px solid black;width:55px;">@if($item->godina == 1)Уписан/а@elseif($item->godina == 2)Одустао/ла@elseif($item->godina == 4)Обновио/ла@elseif($item->godina == 5)Завршио/ла@endif</td>
-                                <td style="border: 1px solid black;width:120px;">{{$item->adresaStanovanja}}</td>
-                            </tr>
-                        @endif
+                @endif
 
-                    @endforeach
-                    <?php $zbir = $zbir + $a;?>
-                </table>
-                <br/>
-                <br/>
-                <br/>
+            @endforeach
+            <tr>
+                <td colspan="8"><b>{{$bla->naziv}} година, укупан број студената: {{$a}}</b></td>
+            </tr>
+            <?php $zbir = $zbir + $a;?>
+        </table>
+        <br/>
+        <br/>
+        <br/>
 
-                        @endif
+        @endif
 
-                    @endforeach
+    @endforeach
 
-                    @endif
+    @endif
 
-        @endforeach
+    @endforeach
 
 </div>
 @endforeach
