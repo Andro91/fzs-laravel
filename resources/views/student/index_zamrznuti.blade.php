@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Студенти са замрзнутим статусом студија')
+@section('page_heading','Студенти у статусу мировања студија')
 @section('section')
     <div class="col-lg-12">
         <div id="messages">

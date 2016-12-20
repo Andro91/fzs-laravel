@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class UpisGodine extends AndroModel
 {
@@ -109,7 +110,8 @@ class UpisGodine extends AndroModel
             $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
             $upis->statusGodine_id = 1;
             $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
-            $upis->datumUpisa = null;
+            $upis->datumUpisa = Carbon::now();
+            $upis->datumPromene = Carbon::now();
             $upis->save();
         }else if($kandidat->tipStudija_id == 3)
         {
@@ -121,7 +123,8 @@ class UpisGodine extends AndroModel
             $upis->studijskiProgram_id = $kandidat->studijskiProgram_id;
             $upis->statusGodine_id = 1;
             $upis->skolskaGodina_id = $kandidat->skolskaGodinaUpisa_id;
-            $upis->datumUpisa = null;
+            $upis->datumUpisa = Carbon::now();
+            $upis->datumPromene = Carbon::now();
             $upis->save();
         }
 
@@ -130,17 +133,18 @@ class UpisGodine extends AndroModel
     //Upis master studija za postojećeg kandidata
     public static function upisMasterPostojeciKandidat($kandidatId,$studijskiProgramId,$skolskaGodinaUpisaId)
     {
-        $kandidat = Kandidat::find($kandidatId);
+        $kandidat = Kandidat::find($kandidatId)->replicate();
         if(!empty($kandidat)){
             if($kandidat->tipStudija_id == 1){
                 $kandidat->tipStudija_id = 2;
                 $kandidat->studijskiProgram_id = $studijskiProgramId;
                 $kandidat->skolskaGodinaUpisa_id = $skolskaGodinaUpisaId;
                 $kandidat->statusUpisa_id = \Config::get('constants.statusi.upisan');
+                $kandidat->brojIndeksa = null;
                 $kandidat->save();
-                UpisGodine::generisiBrojIndeksa($kandidatId);
+                UpisGodine::generisiBrojIndeksa($kandidat->id);
                 UpisGodine::registrujKandidata($kandidat->id);
-                return true;
+                return $kandidat->id;
             }
             return false;
         }

@@ -16,7 +16,7 @@ class CreateKandidatTable extends Migration
             $table->increments('id');
             $table->string('imeKandidata')->nullable();
             $table->string('prezimeKandidata')->nullable();
-            $table->string('jmbg')->unique();
+            $table->string('jmbg');
             $table->dateTime('datumRodjenja')->nullable();
             $table->string('mestoRodjenja')->nullable();
             $table->integer('krsnaSlava_id')->unsigned()->index();

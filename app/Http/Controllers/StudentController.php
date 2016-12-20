@@ -235,7 +235,7 @@ class StudentController extends Controller
         $result = UpisGodine::upisMasterPostojeciKandidat($request->kandidat_id,$request->StudijskiProgram,$request->SkolskaGodinaUpisa);
         if($result){
             Session::flash('flash-success', 'upis');
-            return redirect("/student/{$request->kandidat_id}/upis");
+            return redirect("/student/{$result}/upis");
         }else{
             Session::flash('flash-error', 'upis');
             return Redirect::back();

@@ -16,6 +16,7 @@ class CreateZapisnikOPolaganjuIspitaTable extends Migration
             $table->increments('id');
             $table->integer('predmet_id');
             $table->integer('rok_id');
+            $table->integer('prijavaIspita_id');
             $table->date('datum');
             $table->time('vreme');
             $table->string('ucionica');

@@ -44,36 +44,14 @@
         </div>
         {{--Modal za upis na master studije KRAJ--}}
 
-        <div id="messages">
-            @if (Session::get('flash-error'))
-                <div class="alert alert-dismissible alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Грешка!</strong>
-                    @if(Session::get('flash-error') === 'update')
-                        Дошло је до грешке при чувању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'delete')
-                        Дошло је до грешке при брисању података! Молимо вас покушајте поново.
-                    @elseif(Session::get('flash-error') === 'upis')
-                        Дошло је до грешке при упису студента! Молимо вас проверите да ли је студент уплатио школарину и
-                        покушајте поново.
-                    @endif
-                </div>
-            @elseif(Session::get('flash-success'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Успех!</strong>
-                    @if(Session::get('flash-success') === 'update')
-                        Подаци о студенту су успешно сачувани.
-                    @elseif(Session::get('flash-success') === 'delete')
-                        Подаци о студенту су успешно обрисани.
-                    @elseif(Session::get('flash-success') === 'upis')
-                        Упис студента је успешно извршен.
-                    @endif
-                </div>
-            @endif
-        </div>
         <div>
-            <h4>Подаци о студенту</h4>
+            <h4>Подаци о студенту &nbsp;
+                <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
+                    <div title="Измена">
+                        <span class="fa fa-edit"></span>
+                    </div>
+                </a>
+            </h4>
             <ul class="list-group">
                 <li class="list-group-item">Број Индекса:
                     <strong>
@@ -97,12 +75,6 @@
                         </strong>
                     </li>
                 @endif
-                <li class="list-group-item">Тренутни статус:
-                    <strong>
-                        <span class='btn btn-lg btn-default'>{{ $kandidat->statusUpisa->naziv }}</span>
-
-                    </strong>
-                </li>
             </ul>
         </div>
         <div class="panel panel-primary">
@@ -110,12 +82,13 @@
                 <h3 class="panel-title">Статус студија</h3>
             </div>
             <div class="panel-body">
+                <h3 class="text-center">
+                    <strong>Тренутни статус:
+                        <span class='label label-default'>{{ $kandidat->statusUpisa->naziv }}</span>
+                    </strong>
+                </h3>
+                <br>
                 <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}/0" class="btn btn-primary">Врати на статус кандидата</a>
-                {{--@if($kandidat->statusUpisa_id == Config::get('constants.statusi.zamrzao'))--}}
-                    {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}" class="btn btn-warning">Одмрзни годину</a>--}}
-                {{--@else--}}
-                    {{--<a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.zamrzao') }}" class="btn btn-warning">Замрзни годину</a>--}}
-                {{--@endif--}}
                 @if($kandidat->statusUpisa_id != Config::get('constants.statusi.diplomirao'))
                     <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.diplomirao') }}/0" class="btn btn-success">Дипломирао</a>
                 @endif
