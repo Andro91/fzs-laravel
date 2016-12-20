@@ -54,7 +54,7 @@
                         <div class="form-group col-lg-6">
                             <label for="statusUpisa_id">Статус</label>
                             <select class="form-control" id="statusUpisa_id"
-                                    name="statusUpisa_id" disabled>
+                                    name="statusUpisa_id">
                                 @foreach($statusKandidata as $item)
                                     <option value="{{ $item->id }}" {{ ($kandidat->statusUpisa_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                 @endforeach
@@ -65,7 +65,7 @@
                             <input class="form-control dateMask" type="text" name="datumStatusa"
                                    id="datumStatusa"
                                    value="{{ !empty($kandidat->datumStatusa) ?
-                                           $kandidat->datumStatusa->format('d.m.Y.') : "" }}" disabled>
+                                           $kandidat->datumStatusa->format('d.m.Y.') : "" }}">
                         </div>
                     </div>
                     {{--<div class="form-group">--}}
