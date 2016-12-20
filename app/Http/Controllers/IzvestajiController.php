@@ -658,7 +658,7 @@ class IzvestajiController extends Controller
 
     public function zapisnikStampa(Request $request)
     {
-        //return $request->id;
+        //return $request->profesor;
 
         try {
             $zapisnik = ZapisnikOPolaganjuIspita::find($request->id);
@@ -698,7 +698,8 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
         //compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
-        $view = View::make('izvestaji.zapisnik')->with('zapisnik', $zapisnik)->with('studenti', $studenti)->with('ispit', $ispit->naziv)->with('polozeniIspiti', $polozeniIspiti);
+        $view = View::make('izvestaji.zapisnik')->with('zapisnik', $zapisnik)->with('studenti', $studenti)->with('ispit', $ispit->naziv)->with('polozeniIspiti', $polozeniIspiti)
+        ->with('predmet', $request->predmet)->with('rok', $request->rok)->with('profesor', $request->profesor);
 
         $contents = $view->render();
         PDF::SetTitle('Записник о полагању испита');

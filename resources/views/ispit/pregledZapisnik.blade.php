@@ -41,6 +41,9 @@
                 <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
+                        <input type="hidden" name="predmet" value="{{$zapisnik->predmet->naziv}}">
+                        <input type="hidden" name="rok" value="{{$zapisnik->ispitniRok->naziv}}">
+                        <input type="hidden" name="profesor" value="{{$zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime}}">
                         <input type="hidden" name="id" value="{{$zapisnik->id}}">
                         <input type="submit" class="btn btn-primary" value="Штампа записника">
                     </div>
