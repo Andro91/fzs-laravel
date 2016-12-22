@@ -154,19 +154,24 @@ class UpisGodine extends AndroModel
     public static function upisiGodinu($id, $godina, $skolskaGodinaUpisaId)
     {
         $kandidat = Kandidat::find($id);
-        $upis = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->first();
+        $upis = UpisGodine::where([
+            'kandidat_id' => $id,
+            'godina' => $godina,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
 
         //Ako nije prva godina, staramo se da prethodnu godinu obelezimo kao zavrsenu
-        if($godina > 1 && !empty($kandidat->brojIndeksa)){
-            $max = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->max('pokusaj');
-            $prethodnaGodina = UpisGodine::where([
-                'kandidat_id' => $id,
-                'godina' => $godina-1,
-                'pokusaj' => $max,
-                'tipStudija_id' => $kandidat->tipStudija_id])->first();
-            $prethodnaGodina->statusGodine_id = 5;
-            $ads = $prethodnaGodina->save();
-        }
+//        if($godina > 1 && !empty($kandidat->brojIndeksa)){
+//            $max = UpisGodine::where(['kandidat_id' => $id, 'godina' => $godina])->max('pokusaj');
+//            $prethodnaGodina = UpisGodine::where([
+//                'kandidat_id' => $id,
+//                'godina' => $godina-1,
+//                'pokusaj' => $max,
+//                'tipStudija_id' => $kandidat->tipStudija_id])->first();
+//            $prethodnaGodina->statusGodine_id = 5;
+//            $ads = $prethodnaGodina->save();
+//        }
+
         $upis->statusGodine_id = 1;
         $upis->skolskaGodina_id = $skolskaGodinaUpisaId;
         $upis->datumUpisa = Carbon::now();

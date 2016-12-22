@@ -1025,7 +1025,6 @@ class KandidatController extends Controller
 
     public function upisKandidata($id)
     {
-
         $kandidat = Kandidat::find($id);
         UpisGodine::registrujKandidata($id);
 
