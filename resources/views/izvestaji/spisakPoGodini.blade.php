@@ -26,7 +26,7 @@
                     </thead>
                     <?php $a = 0; $b = 0; ?>
                     @foreach($kandidat as $index => $item)
-                        @if($item->godinaStudija_id == $godina)
+
                             <?php $a++; ?>
                             <tr>
                                 <td style="border: 1px solid black;width:30px">{{$a}}</td>
@@ -34,7 +34,7 @@
                                 <td style="border: 1px solid black;width:200px">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
                                 <td style="border: 1px solid black;width:150px">{{$item->program}}</td>
                             </tr>
-                        @endif
+
 
                     @endforeach
                 </table>

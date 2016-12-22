@@ -40,7 +40,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="skolskaGodina_id">Школска година:</label>
                                         <select style="width:130px;" class="form-control" id="skolskaGodina_id"
                                                 name="test">
@@ -48,7 +48,7 @@
                                                 <option value="{{$bla->id}}">{{$bla->naziv}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <button type="submit" class="btn btn-primary">Штампај</button>
                             </div>
@@ -74,7 +74,7 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
                                     <select style="width:130px;" class="form-control" id="skolskaGodina_id"
                                             name="skolskaGodina">
@@ -82,7 +82,7 @@
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
                                 </div>
@@ -110,7 +110,7 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
                                     <select style="width:130px;" class="form-control" id="skolskaGodina_id"
                                             name="godina">
@@ -118,7 +118,7 @@
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
                                 </div>
@@ -147,7 +147,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
                                     <select style="width:130px;" class="form-control" id="skolskaGodina_id"
                                             name="godina">
@@ -155,7 +155,7 @@
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
@@ -172,14 +172,14 @@
                                 <h3 class="panel-title">Списак дипломираних студената</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="form-group pull-left" style="width: 35%;  margin-right: 2%">
+                                <!--<div class="form-group pull-left" style="width: 35%;  margin-right: 2%">
                                     <label for="from">Од:</label>
                                     <input name="from" id="from" type="text" class="form-control">
                                 </div>
                                 <div class="form-group pull-left" style="width: 35%;  margin-right: 2%">
                                     <label for="to">До:</label>
                                     <input name="to" id="to" type="text" class="form-control">
-                                </div>
+                                </div>-->
                                 <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
                                 </div>
@@ -196,7 +196,7 @@
                             </div>
                             <div class="panel-body">
 
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="skolskaGodina_id">Школска година:</label>
                                     <select style="width:130px;" class="form-control" id="skolskaGodina_id"
                                             name="godina">
@@ -204,7 +204,7 @@
                                             <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Штампај</button>
@@ -351,14 +351,14 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="skolskaGodina_idE">Школска година:</label>
                                 <select style="width:130px;" class="form-control" id="skolskaGodina_idE" name="godinaE">
                                     @foreach($skolskaGodinaE as $godina)
                                         <option value="{{$godina->id}}">{{$godina->naziv}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Штампај</button>
                             </div>

@@ -14,6 +14,7 @@ use App\ProfesorPredmet;
 use App\SkolskaGodUpisa;
 use App\StudijskiProgram;
 use App\TipStudija;
+use App\UpisGodine;
 use Illuminate\Http\Request;
 use App\Region;
 use Illuminate\Support\Facades\Redirect;
@@ -184,14 +185,14 @@ class IzvestajiController extends Controller
         try {
             $studenti = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->program])
-                ->where(['kandidat.godinaStudija_id' => $request->godina])
-                ->where(['upis_godine.skolskaGodina_id' => $request->test])
-                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                ->where(['upis_godine.statusGodine_id' => 1])->where(['upis_godine.studijskiProgram_id' => $request->program])
+                ->where(['upis_godine.godina' => $request->godina])
+                ->join('studijski_program', 'upis_godine.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
                 //Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina, 'studijskiProgram_id' => $request->program])->orderBy('brojIndeksa')->get();
 //dd($studenti);
+            //dd($studenti);
             if ($studenti) {
                 $program = StudijskiProgram::where(['id' => $request->program])->get();
 
@@ -220,8 +221,7 @@ class IzvestajiController extends Controller
 
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->program])
-                ->where(['upis_godine.skolskaGodina_id' => $request->godina])
+                ->where(['upis_godine.statusGodine_id' => 1])->where(['upis_godine.studijskiProgram_id' => $request->program])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
@@ -249,14 +249,26 @@ class IzvestajiController extends Controller
     public function spisakPoGodini(Request $request)
     {
         try {
-            $kandidat = DB::table('kandidat')
-                ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->where(['upis_godine.statusGodine_id' => 1])->where(['upis_godine.skolskaGodina_id' => $request->skolskaGodina])
-                ->where(['upis_godine.godina' => $request->godina])
-                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
-            //dd($kandidat);
+            if($request->godina == 5){
+                $kandidat = DB::table('kandidat')
+                    ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                    ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                    ->where(['upis_godine.statusGodine_id' => 1])
+                    ->where(['upis_godine.godina' => 1])->where(['upis_godine.tipStudija_id' => 2])
+                    ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                    ->orderBy('kandidat.brojIndeksa')->get();
+            }
+            else
+            {
+                $kandidat = DB::table('kandidat')
+                    ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                    ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                    ->where(['upis_godine.statusGodine_id' => 1])
+                    ->where(['upis_godine.godina' => $request->godina])->where(['upis_godine.tipStudija_id' => 1])
+                    ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                    ->orderBy('kandidat.brojIndeksa')->get();
+            }
+
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina])->get();
             /*$picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 1])->distinct('studijskiProgram_id')->where('godinaStudija_id', $request->godina)->select('studijskiProgram_id')->groupBy('studijskiProgram_id')->get();
@@ -292,7 +304,12 @@ class IzvestajiController extends Controller
     public function spisakPoSlavama()
     {
         try {
-            $kandidat = Kandidat::where(['statusUpisa_id' => 1])->orderBy('brojIndeksa')->get();
+            $kandidat = DB::table('kandidat')
+                ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
+                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
+                ->where(['upis_godine.statusGodine_id' => 1])
+                ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
+                ->orderBy('kandidat.brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('krsnaSlava_id')->select('krsnaSlava_id')->groupBy('krsnaSlava_id')->get();
 
             $uslov = array();
@@ -452,8 +469,8 @@ class IzvestajiController extends Controller
 
             $studenti = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->where(['upis_godine.skolskaGodina_id' => $request->godina])->where(['upis_godine.statusGodine_id' => 1])
+                ->join('studijski_program', 'upis_godine.studijskiProgram_id', '=', 'studijski_program.id')
+                ->where(['upis_godine.statusGodine_id' => 1])
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program',
                     'studijski_program.id as program_id')->orderBy('kandidat.brojIndeksa')->get();
 
@@ -683,10 +700,11 @@ class IzvestajiController extends Controller
     {
 
         try {
-            $from = new DateTime($request->from);
-            $to = new DateTime($request->to);
+            //$from = new DateTime($request->from);
+            //$to = new DateTime($request->to);
 
-            $diplomirani = DiplomskiRad::whereBetween('datumOdbrane', array($from, $to))->get();
+            $diplomirani = DB::table('kandidat')->where(['statusUpisa_id' => 6])
+                ->select('kandidat.*')->orderBy('kandidat.brojIndeksa')->get();
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -763,7 +781,6 @@ class IzvestajiController extends Controller
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->where(['upis_godine.statusGodine_id' => 1])->where(['kandidat.studijskiProgram_id' => $request->programE])
-                ->where(['upis_godine.skolskaGodina_id' => $request->godinaE])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();

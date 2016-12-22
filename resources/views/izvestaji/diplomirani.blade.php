@@ -2,7 +2,7 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if(!$diplomirani->isEmpty())
+@if(1==1)
 
     <div>
 
@@ -19,16 +19,13 @@
                 </th>
                 <th style="border: 1px solid black;"><b>Презиме</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Датум дипломирања</b>
-                </th>
             </tr>
             </thead>
             @foreach($diplomirani as $item)
                 <tr>
-                    <td style="border: 1px solid black;">{{$item->student->brojIndeksa}}</td>
-                    <td style="border: 1px solid black;">{{$item->student->imeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{$item->student->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black;">{{ date('d.m.Y.',strtotime($item->datumOdbrane)) }}</td>
+                    <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
+                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
+                    <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
                 </tr>
 
             @endforeach
