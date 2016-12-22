@@ -292,6 +292,30 @@
                         </div>
                     </form>
 
+                    <form role="form" method="post" target="_blank"
+                          action="{{ url('/izvestaji/spisakPoSmerovimaOstali') }}">
+                        {{csrf_field()}}
+
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Списак свих студената - остало</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <!--<label for="skolskaGodina_id">Школска година:</label>
+                                    <select style="width:130px;" class="form-control" id="skolskaGodina_id" name="godina">
+                                        @foreach($skolskaGodina9 as $godina)
+                                            <option value="{{$godina->id}}">{{$godina->naziv}}</option>
+                                        @endforeach
+                                            </select>-->
+                                </div>
+                                <div class="form-group pull-left" style="width: 20%; margin-right: 7%;">
+                                    <button type="submit" class="btn btn-primary">Штампај</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
                     <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/integralno') }}">
                         {{csrf_field()}}
 
