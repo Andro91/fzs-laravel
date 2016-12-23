@@ -296,4 +296,21 @@ class StudentController extends Controller
         return view('student.index_diplomirani', compact('studenti','tipStudija','studijskiProgrami'));
     }
 
+    public function ispisaniStudenti(Request $request)
+    {
+        $statusIspisan = \Config::get('constants.statusi.odustao');
+        $tipStudija = TipStudija::all();
+        $studijskiProgrami = StudijskiProgram::where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'indikatorAktivan' => 1])->get();
+
+        $studenti = Kandidat::where([
+            'tipStudija_id' => $request->tipStudijaId,
+            'studijskiProgram_id' => $request->studijskiProgramId,
+            'statusUpisa_id' => $statusIspisan
+        ])->get();
+
+        return view('student.index_ispisani', compact('studenti','tipStudija','studijskiProgrami'));
+    }
+
 }

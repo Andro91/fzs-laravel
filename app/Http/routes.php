@@ -57,6 +57,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/student/zamrznuti', 'StudentController@zamrznutiStudenti');
     //diplomirani studenti
     Route::get('/student/diplomirani', 'StudentController@diplomiraniStudenti');
+    //ispisani studenti
+    Route::get('/student/ispisani', 'StudentController@ispisaniStudenti');
 
     Route::get('/kalendar/', 'KalendarController@index');
     Route::get('/kalendar/indexRok/', 'KalendarController@indexRok');
