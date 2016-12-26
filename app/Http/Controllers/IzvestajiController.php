@@ -244,7 +244,7 @@ class IzvestajiController extends Controller
         try {
             $studenti = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->whereIn(['upis_godine.statusGodine_id', $statusi])->where(['upis_godine.studijskiProgram_id' => $request->program])
+                ->whereIn('upis_godine.statusGodine_id', $statusi)->where(['upis_godine.studijskiProgram_id' => $request->program])
                 ->where(['upis_godine.godina' => $request->godina])
                 ->join('studijski_program', 'upis_godine.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
@@ -281,7 +281,7 @@ class IzvestajiController extends Controller
 
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->whereIn(['upis_godine.statusGodine_id', $statusi])->where(['upis_godine.studijskiProgram_id' => $request->program])
+                ->whereIn('upis_godine.statusGodine_id', $statusi)->where(['upis_godine.studijskiProgram_id' => $request->program])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
@@ -314,7 +314,7 @@ class IzvestajiController extends Controller
                 $kandidat = DB::table('kandidat')
                     ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                     ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                    ->whereIn(['upis_godine.statusGodine_id' => $statusi])
+                    ->whereIn('upis_godine.statusGodine_id', $statusi)
                     ->where(['upis_godine.godina' => 1])->where(['upis_godine.tipStudija_id' => 2])
                     ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                     ->orderBy('kandidat.brojIndeksa')->get();
@@ -322,7 +322,7 @@ class IzvestajiController extends Controller
                 $kandidat = DB::table('kandidat')
                     ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                     ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                    ->whereIn(['upis_godine.statusGodine_id', $statusi])
+                    ->whereIn('upis_godine.statusGodine_id', $statusi)
                     ->where(['upis_godine.godina' => $request->godina])->where(['upis_godine.tipStudija_id' => 1])
                     ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                     ->orderBy('kandidat.brojIndeksa')->get();
@@ -367,7 +367,7 @@ class IzvestajiController extends Controller
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
-                ->whereIn(['upis_godine.statusGodine_id', $statusi])
+                ->whereIn('upis_godine.statusGodine_id', $statusi)
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('krsnaSlava_id')->select('krsnaSlava_id')->groupBy('krsnaSlava_id')->get();
@@ -405,6 +405,8 @@ class IzvestajiController extends Controller
             //$profesori = Profesor::all();
             $predmeti = Predmet::all();
             $veza = ProfesorPredmet::all();
+
+            dd($profesori);
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -530,7 +532,7 @@ class IzvestajiController extends Controller
             $studenti = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
                 ->join('studijski_program', 'upis_godine.studijskiProgram_id', '=', 'studijski_program.id')
-                ->whereIn(['upis_godine.statusGodine_id', $statusi])
+                ->whereIn('upis_godine.statusGodine_id', $statusi)
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program',
                     'studijski_program.id as program_id')->orderBy('kandidat.brojIndeksa')->get();
 
@@ -849,7 +851,7 @@ class IzvestajiController extends Controller
             // DB::setFetchMode(\PDO::FETCH_ASSOC);
             $kandidat = DB::table('kandidat')
                 ->join('upis_godine', 'kandidat.id', '=', 'upis_godine.kandidat_id')
-                ->whereIn(['upis_godine.statusGodine_id', $statusi])->where(['kandidat.studijskiProgram_id' => $request->programE])
+                ->whereIn('upis_godine.statusGodine_id', $statusi)->where(['kandidat.studijskiProgram_id' => $request->programE])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'upis_godine.godina as godina', 'studijski_program.naziv as program')
                 ->orderBy('kandidat.brojIndeksa')->get();

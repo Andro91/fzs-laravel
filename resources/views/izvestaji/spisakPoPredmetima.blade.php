@@ -22,10 +22,10 @@
                     <th style="border: 1px solid black;width:200px; background-color: grey;">
                         <b>Име и презиме</b>
                     </th>
-                    <th style="border: 1px solid black;width:150px">
+                    <th style="border: 1px solid black;width:150px; background-color: grey;">
                         <b>Мејл</b>
                     </th>
-                    <th style="border: 1px solid black;width:60px">
+                    <th style="border: 1px solid black;width:60px; background-color: grey;">
                         <b>Година</b>
                     </th>
                 </tr>

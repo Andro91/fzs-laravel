@@ -18,10 +18,8 @@
                     <tr>
                         <th style="border: 1px solid black; width:30px; background-color: grey;"><b>Р.бр.</b></th>
                         <th style="border: 1px solid black; width:100px; background-color: grey;"><b>Број индекса</b></th>
-                        <th style="border: 1px solid black; width:200px; background-color: grey;"><b>Име и презиме</b>
-                        </th>
-                        <th style="border: 1px solid black;width:150px"><b>Програм</b>
-                        </th>
+                        <th style="border: 1px solid black; width:200px; background-color: grey;"><b>Име и презиме</b></th>
+                        <th style="border: 1px solid black;width:150px; background-color: grey;"><b>Програм</b></th>
                     </tr>
                     </thead>
                     <?php $a = 0; $b = 0; ?>
