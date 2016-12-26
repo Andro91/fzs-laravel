@@ -34,10 +34,12 @@
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="godina">Година студија:</label>
-                                        <select class="form-control" id="godina" name="godina">
-                                            @foreach($godina as $godina)
-                                                <option value="{{$godina->id}}">{{$godina->naziv}}</option>
-                                            @endforeach
+                                        <select id="godina" class="form-control" name="godina">
+                                            <option value="1">Прва</option>
+                                            <option value="2">Друга</option>
+                                            <option value="3">Трећа</option>
+                                            <option value="4">Четврта</option>
+                                            <option value="5">Пета</option>
                                         </select>
                                     </div>
                                     <!--<div class="form-group">
@@ -66,10 +68,12 @@
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="godina">Година студија:</label>
-                                        <select class="form-control" id="godina" name="godina">
-                                            @foreach($godinaS as $godinaS)
-                                                <option value="{{$godinaS->id}}">{{$godinaS->naziv}}</option>
-                                            @endforeach
+                                        <select id="godina" class="form-control" name="godina">
+                                            <option value="1">Прва</option>
+                                            <option value="2">Друга</option>
+                                            <option value="3">Трећа</option>
+                                            <option value="4">Четврта</option>
+                                            <option value="5">Пета</option>
                                         </select>
                                     </div>
 
@@ -316,7 +320,7 @@
                         </div>
                     </form>
 
-                    <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/integralno') }}">
+                   <!-- <form role="form" method="post" target="_blank" action="{{ url('/izvestaji/integralno') }}">
                         {{csrf_field()}}
 
                         <div class="panel panel-success">
@@ -341,7 +345,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form>-->
 
                 </div>
 

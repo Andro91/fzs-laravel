@@ -5,29 +5,30 @@
 @if(!$polozeniIspiti->isEmpty())
 
     <div style="text-align: center;">
-
-            <h1 style="padding-bottom: 100px;">Записник о полагању испита</h1>
-<table>
-    <tr>
-        <td>
-            <div style="text-align: left;">
-                <h4>Предмет: {{ $predmet }}</h4>
-                <h4>Испитни рок: {{ $rok }}</h4>
-                <h4>Професор: {{ $profesor }}</h4>
-                <b>Студијски програм:</b> @foreach($programi as $index => $program)
-                    <label><b>{{$program->skrNazivStudijskogPrograma}}</b></label>
-                @endforeach
-            </div>
-        </td>
-        <td>
-            <div style="text-align: right;">
-                <h4>Датум: {{ date('d.m.Y.',strtotime($datum)) }}</h4>
-                <h4>Време: {{ $vreme }}</h4>
-                <h4>Учионица: {{ $ucionica }}</h4>
-            </div>
-        </td>
-    </tr>
-</table>
+        <?php $a = 0;?>
+        <h1 style="padding-bottom: 100px;">Записник о полагању испита</h1>
+        <table>
+            <tr>
+                <td>
+                    <div style="text-align: left;">
+                        <h4>Предмет: {{ $predmet }}</h4>
+                        <h4>Испитни рок: {{ $rok }}</h4>
+                        <h4>Професор: {{ $profesor }}</h4>
+                        <b>Студијски програм:</b> @foreach($programi as $program)
+                            <?php $a++;?>
+                            @if($a == $programi->count())<label><b>{{$program->naziv}}</b></label>@else<label><b>{{$program->naziv}}, </b></label>@endif
+                        @endforeach
+                    </div>
+                </td>
+                <td>
+                    <div style="text-align: right;">
+                        <h4>Датум: {{ date('d.m.Y.',strtotime($datum)) }}</h4>
+                        <h4>Време: {{ $vreme }}</h4>
+                        <h4>Учионица: {{ $ucionica }}</h4>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <br/>
         <br/>
@@ -63,6 +64,25 @@
             @endforeach
         </table>
     </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <div>
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Потпис испитивача</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="padding-bottom: 10px;"></td>
+                <td style="border-bottom: 1px solid black;"></td>
+            </tr>
+        </table>
+    </div>
+
 @else
     <h1>Нема дипломираних студената у овом периоду.</h1>
 @endif

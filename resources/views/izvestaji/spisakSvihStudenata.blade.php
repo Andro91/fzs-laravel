@@ -33,7 +33,7 @@
                 </th>
                 <th style="border: 1px solid black; width:60px; background-color: grey;"><b>Програм</b>
                 </th>
-                <th style="border: 1px solid black; width:65px; background-color: grey;"><b>Статус</b>
+                <th style="border: 1px solid black; width:70px; background-color: grey;"><b>Статус</b>
                 </th>
                 <th style="border: 1px solid black; width:120px; background-color: grey;"><b>Место становања</b>
                 </th>
@@ -51,7 +51,7 @@
                         <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>
                         <td style="border: 1px solid black;width:170px;">{{$item->email}}</td>
                         <td style="border: 1px solid black;width:60px;">{{$item->program}}</td>
-                        <td style="border: 1px solid black;width:65px;">@if($item->status == 1)Уписан @elseif($item->status == 2)Одустао @elseif($item->status == 4)Обновио @elseif($item->status == 5)Завршио @elseif($item->status == 6)Дипломирао @elseif($item->status == 7)Мировање @endif</td>
+                        <td style="border: 1px solid black;width:70px;">@if($item->status == 1)Уписан @elseif($item->status == 2)Исписан @elseif($item->status == 4)Обновио @elseif($item->status == 5)Завршио @elseif($item->status == 6)Дипломирао @elseif($item->status == 7)Мировање @endif</td>
                         <td style="border: 1px solid black;width:120px;">{{$item->adresaStanovanja}}</td>
                     </tr>
                 @endif
