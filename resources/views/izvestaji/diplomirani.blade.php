@@ -13,11 +13,11 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;"><b>Број индекса</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Име</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Име</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Презиме</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Презиме</b>
                 </th>
             </tr>
             </thead>

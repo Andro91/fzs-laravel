@@ -22,20 +22,20 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;width:35px;"><b>Р.бр.</b></th>
-                <th style="border: 1px solid black;"><b>Број индекса</b>
+                <th style="border: 1px solid black; width:35px; background-color: grey;"><b>Р.бр.</b></th>
+                <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black;width:150px;"><b>Име и презиме</b>
+                <th style="border: 1px solid black; width:150px; background-color: grey;"><b>Име и презиме</b>
                 </th>
-                <th style="border: 1px solid black;width:90px;"><b>Телефон</b>
+                <th style="border: 1px solid black; width:90px; background-color: grey;"><b>Телефон</b>
                 </th>
-                <th style="border: 1px solid black;width:170px;"><b>Мејл адреса</b>
+                <th style="border: 1px solid black; width:170px; background-color: grey;"><b>Мејл адреса</b>
                 </th>
-                <th style="border: 1px solid black;width:60px;"><b>Програм</b>
+                <th style="border: 1px solid black; width:60px; background-color: grey;"><b>Програм</b>
                 </th>
-                <th style="border: 1px solid black;width:65px;"><b>Статус</b>
+                <th style="border: 1px solid black; width:65px; background-color: grey;"><b>Статус</b>
                 </th>
-                <th style="border: 1px solid black;width:120px;"><b>Место становања</b>
+                <th style="border: 1px solid black; width:120px; background-color: grey;"><b>Место становања</b>
                 </th>
             </tr>
             </thead>
@@ -45,7 +45,7 @@
                 @if($item->tipStudija_id == $test->id && $item->godina == $bla->id)
                     <?php $a++;?>
                     <tr>
-                        <td style="border: 1px solid black;width:35px;">{{$a}}</td>
+                        <td style="border: 1px solid black; width:35px;">{{$a}}</td>
                         <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
                         <td style="border: 1px solid black;width:150px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
                         <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>

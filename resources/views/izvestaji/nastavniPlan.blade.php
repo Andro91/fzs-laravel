@@ -13,19 +13,19 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;"><b>Р. бр.</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Р. бр.</b>
                 </th>
-                <th style="border: 1px solid black; width: 200px;"><b>Назив</b>
+                <th style="border: 1px solid black; width: 200px; background-color: grey;"><b>Назив</b>
                 </th>
-                <th style="border: 1px solid black;">Семестар
+                <th style="border: 1px solid black; background-color: grey;">Семестар
                 </th>
-                <th style="border: 1px solid black;"><b>Тип</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Тип</b>
                 </th>
-                <th style="border: 1px solid black; width: 50px;"><b>Вежбе</b>
+                <th style="border: 1px solid black; width: 50px; background-color: grey;"><b>Вежбе</b>
                 </th>
-                <th style="border: 1px solid black; width: 75px;"><b>Предавања</b>
+                <th style="border: 1px solid black; width: 75px; background-color: grey;"><b>Предавања</b>
                 </th>
-                <th style="border: 1px solid black; width: 50px;"><b>ЕСПБ</b>
+                <th style="border: 1px solid black; width: 50px; background-color: grey;"><b>ЕСПБ</b>
                 </th>
             </tr>
             </thead>

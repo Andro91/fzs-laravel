@@ -19,12 +19,12 @@
                 <table style="border: 1px solid black;">
                     <thead>
                     <tr>
-                        <th style="border: 1px solid black; width: 40px;"><b>Р.бр.</b></th>
-                        <th style="border: 1px solid black;"><b>Број индекса</b>
+                        <th style="border: 1px solid black; width: 40px; background-color: grey;"><b>Р.бр.</b></th>
+                        <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;width: 170px;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width: 170px; background-color: grey;"><b>Име и презиме</b>
                         </th>
-                        <th style="border: 1px solid black;width: 170px;"><b>Мејл</b>
+                        <th style="border: 1px solid black;width: 170px; background-color: grey;"><b>Мејл</b>
                         </th>
                     </tr>
                     </thead>

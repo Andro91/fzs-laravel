@@ -23,12 +23,12 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;"></th>
-                <th style="border: 1px solid black;"><b>Назив</b>
+                <th style="border: 1px solid black; background-color: grey;"></th>
+                <th style="border: 1px solid black; background-color: grey;"><b>Назив</b>
                 </th>
-                <th style="border: 1px solid black;"><b>ЕСПБ</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>ЕСПБ</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Оцена</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Оцена</b>
                 </th>
             </tr>
             </thead>

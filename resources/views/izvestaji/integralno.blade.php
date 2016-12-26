@@ -19,20 +19,20 @@
                 <table style="border: 1px solid black;">
                     <thead>
                     <tr>
-                        <th style="border: 1px solid black;width:35px;"><b>Р.бр.</b></th>
-                        <th style="border: 1px solid black;"><b>Број индекса</b>
+                        <th style="border: 1px solid black;width:35px; background-color: grey;"><b>Р.бр.</b></th>
+                        <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;width:150px;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width:150px; background-color: grey;"><b>Име и презиме</b>
                         </th>
-                        <th style="border: 1px solid black;width:75px;"><b>Телефон</b>
+                        <th style="border: 1px solid black;width:75px; background-color: grey;"><b>Телефон</b>
                         </th>
-                        <th style="border: 1px solid black;width:150px;"><b>Мејл адреса</b>
+                        <th style="border: 1px solid black;width:150px; background-color: grey;"><b>Мејл адреса</b>
                         </th>
-                        <th style="border: 1px solid black;"><b>Програм</b>
+                        <th style="border: 1px solid black; background-color: grey;"><b>Програм</b>
                         </th>
-                        <th style="border: 1px solid black;width:55px;"><b>Година</b>
+                        <th style="border: 1px solid black;width:55px; background-color: grey;"><b>Година</b>
                         </th>
-                        <th style="border: 1px solid black;width:120px;"><b>Место становања</b>
+                        <th style="border: 1px solid black;width:120px; background-color: grey;"><b>Место становања</b>
                         </th>
                     </tr>
                     </thead>

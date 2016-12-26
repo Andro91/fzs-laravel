@@ -814,6 +814,16 @@ class IzvestajiController extends Controller
 
             $ispit = Predmet::where(['id' => $zapisnik->predmet_id])->first();
             //return $ispit->naziv;
+            $predmet_program = PredmetProgram::where(['predmet_id' => $ispit->id])->get();
+            $ids = array();
+
+            foreach ($predmet_program as $item) {
+                $ids[] = $item->studijskiProgram_id;
+            }
+
+            $programi = StudijskiProgram::whereIn('id', $ids)->get();
+
+            //return $programi;
 
 
         } catch (\Illuminate\Database\QueryException $e) {
@@ -821,7 +831,8 @@ class IzvestajiController extends Controller
         }
         //compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
         $view = View::make('izvestaji.zapisnik')->with('zapisnik', $zapisnik)->with('studenti', $studenti)->with('ispit', $ispit->naziv)->with('polozeniIspiti', $polozeniIspiti)
-            ->with('predmet', $request->predmet)->with('rok', $request->rok)->with('profesor', $request->profesor);
+            ->with('predmet', $request->predmet)->with('rok', $request->rok)->with('profesor', $request->profesor)->with('programi', $programi)->with('datum', $zapisnik->datum)->with('vreme', $zapisnik->vreme)
+            ->with('ucionica', $zapisnik->ucionica);
 
         $contents = $view->render();
         PDF::SetTitle('Записник о полагању испита');

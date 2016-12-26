@@ -15,8 +15,8 @@
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black;"><b>Р.бр.</b></th>
-                <th style="border: 1px solid black;"><b>Назив</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Р.бр.</b></th>
+                <th style="border: 1px solid black; background-color: grey;"><b>Назив</b>
                 </th>
             </tr>
             </thead>

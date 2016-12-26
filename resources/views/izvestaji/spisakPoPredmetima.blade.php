@@ -17,9 +17,9 @@
             <table style="border: 1px solid black;">
                 <thead>
                 <tr>
-                    <th style="border: 1px solid black;width:40px"><b>Р.бр.</b></th>
-                    <th style="border: 1px solid black;width:80px"><b>Број индекса</b></th>
-                    <th style="border: 1px solid black;width:200px">
+                    <th style="border: 1px solid black; width:40px; background-color: grey;"><b>Р.бр.</b></th>
+                    <th style="border: 1px solid black;width: 80px; background-color: grey;"><b>Број индекса</b></th>
+                    <th style="border: 1px solid black;width:200px; background-color: grey;">
                         <b>Име и презиме</b>
                     </th>
                     <th style="border: 1px solid black;width:150px">

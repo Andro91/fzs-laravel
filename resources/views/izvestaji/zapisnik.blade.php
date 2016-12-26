@@ -7,43 +7,57 @@
     <div style="text-align: center;">
 
             <h1 style="padding-bottom: 100px;">Записник о полагању испита</h1>
+<table>
+    <tr>
+        <td>
+            <div style="text-align: left;">
+                <h4>Предмет: {{ $predmet }}</h4>
+                <h4>Испитни рок: {{ $rok }}</h4>
+                <h4>Професор: {{ $profesor }}</h4>
+                <b>Студијски програм:</b> @foreach($programi as $index => $program)
+                    <label><b>{{$program->skrNazivStudijskogPrograma}}</b></label>
+                @endforeach
+            </div>
+        </td>
+        <td>
+            <div style="text-align: right;">
+                <h4>Датум: {{ date('d.m.Y.',strtotime($datum)) }}</h4>
+                <h4>Време: {{ $vreme }}</h4>
+                <h4>Учионица: {{ $ucionica }}</h4>
+            </div>
+        </td>
+    </tr>
+</table>
 
-        <div style="text-align: left;">
-            <h3>Предмет: {{ $predmet }}</h3>
-            <h4>Испитни рок: {{ $rok }}</h4>
-            <h4>Професор: {{ $profesor }}</h4>
-        </div>
+        <br/>
+        <br/>
+        <br/>
+
 
         <table style="border: 1px solid black;">
             <thead>
             <tr>
-                <th style="border: 1px solid black; width: 20px;"></th>
-                <th style="border: 1px solid black;"><b>Број индекса</b>
+                <th style="border: 1px solid black; width: 40px; background-color: grey;"><b>Р. бр.</b></th>
+                <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black; width:120px;"><b>Име и презиме</b>
+                <th style="border: 1px solid black; width:155px; background-color: grey;"><b>Име и презиме</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Број полагања</b>
+                <th style="border: 1px solid black; background-color: grey;"><b>Број полагања</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Оцена усмени</b>
+                <th style="border: 1px solid black; width:70px; background-color: grey;"><b>Број бодова</b>
                 </th>
-                <th style="border: 1px solid black;"><b>Оцена писмени</b>
-                </th>
-                <th style="border: 1px solid black;"><b>Број бодова</b>
-                </th>
-                <th style="border: 1px solid black;"><b>Коначна оцена</b>
+                <th style="border: 1px solid black; width:100px; background-color: grey;"><b>Коначна оцена</b>
                 </th>
             </tr>
             </thead>
             @foreach($polozeniIspiti as $index => $ispit)
                 <tr>
-                    <td style="border: 1px solid black; width: 20px;">{{$index + 1}}</td>
+                    <td style="border: 1px solid black; width: 40px;">{{$index + 1}}</td>
                     <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->brojIndeksa}}</td>
-                    <td style="border: 1px solid black; text-align: left; width:120px;">{{$ispit->kandidat->imeKandidata}} {{$ispit->kandidat->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black; text-align: left;">{{$ispit->prijava->brojPolaganja}}</td>
-                    <td style="border: 1px solid black; text-align: left;"></td>
-                    <td style="border: 1px solid black; text-align: left;"></td>
-                    <td style="border: 1px solid black; text-align: left;"></td>
-                    <td style="border: 1px solid black; text-align: left;"></td>
+                    <td style="border: 1px solid black; text-align: left; width:155px;">{{$ispit->kandidat->imeKandidata}} {{$ispit->kandidat->prezimeKandidata}}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{$ispit->prijava->brojPolaganja}}</td>
+                    <td style="border: 1px solid black; width:70px;"></td>
+                    <td style="border: 1px solid black; text-align: left; width:100px;"></td>
                 </tr>
 
             @endforeach
