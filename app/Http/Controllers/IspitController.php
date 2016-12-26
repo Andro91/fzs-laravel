@@ -76,7 +76,7 @@ class IspitController extends Controller
 
         $studentiId = $prijava->pluck('kandidat_id')->all();
 
-        $message = count($studentiId) == 0 ? '<div class="alert alert-dismissable alert-info"><h4>Ð“Ñ€ÐµÑˆÐºÐ°!</h4>Ð�ÐµÐ¼Ð° Ð¿Ñ€Ð¸Ñ˜Ð°Ð²Ñ™ÐµÐ½Ð¸Ñ… Ñ�Ñ‚ÑƒÐ´ÐµÐ½Ð°Ñ‚Ð° Ð·Ð° Ð¸Ñ�Ð¿Ð¸Ñ‚!</div>' : '';
+        $message = count($studentiId) == 0 ? '<div class="alert alert-dismissable alert-info"><strong>Обавештење: </strong> Нема студената пријављених за испит.</div>' : '';
 
         return [
             'message' => $message,

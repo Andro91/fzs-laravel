@@ -358,7 +358,7 @@ class KandidatController extends Controller
         $sport = Sport::all();
         $dokumentiPrvaGodina = PrilozenaDokumenta::where('skolskaGodina_id', '1')->get();
         $dokumentiOstaleGodine = PrilozenaDokumenta::where('skolskaGodina_id', '2')->get();
-        $statusKandidata = StatusGodine::all();
+        $statusKandidata = StatusGodine::whereNotIn('id', [4,5])->get();
 
         $prilozenaDokumenta = KandidatPrilozenaDokumenta::where('kandidat_id', $id)->lists('prilozenaDokumenta_id')->toArray();
 
@@ -855,7 +855,7 @@ class KandidatController extends Controller
         $tipStudija = TipStudija::all();
         $godinaStudija = GodinaStudija::all();
         $skolskeGodineUpisa = SkolskaGodUpisa::all();
-        $statusKandidata = StatusGodine::all();
+        $statusKandidata = StatusGodine::whereNotIn('id', [4,5])->get();
 
         $dokumentaMaster = PrilozenaDokumenta::where('skolskaGodina_id', '3')->get();
 

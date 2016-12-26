@@ -193,8 +193,18 @@ class StudentController extends Controller
     public function promeniStatus($id, $statusId, $godinaId)
     {
         $kandidat = Kandidat::find($id);
-        if($statusId == $this->status['zavrsio'] || $statusId == $this->status['odustao'] || $statusId == $this->status['obnovio']){
+        if($statusId == $this->status['zavrsio'] || $statusId == $this->status['odustao'] || $statusId == $this->status['obnovio']) {
 
+        }else if($kandidat->statusUpisa_id == $this->status['odustao'] && $statusId == 1){
+            //deo gde se upisuje ispisani kandidat
+            $kandidat->statusUpisa_id = $statusId;
+            $kandidat->datumStatusa = Carbon::now();
+            $kandidat->skolskaGodinaUpisa_id = $godinaId;
+            $kandidat->save();
+
+            UpisGodine::generisiBrojIndeksa($kandidat->id);
+
+            return Redirect::back();
         }else{
             $kandidat->statusUpisa_id = $statusId;
         }

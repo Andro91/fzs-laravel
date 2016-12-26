@@ -43,7 +43,6 @@
             </div>
         </div>
         {{--Modal za upis na master studije KRAJ--}}
-
         <div>
             <h4>Подаци о студенту &nbsp;
                 <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
@@ -88,14 +87,28 @@
                     </strong>
                 </h3>
                 <br>
-                <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}/0" class="btn btn-primary">Врати на статус кандидата</a>
-                @if($kandidat->statusUpisa_id != Config::get('constants.statusi.diplomirao'))
-                    <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.diplomirao') }}/0" class="btn btn-success">Дипломирао</a>
-                @endif
-                @if($kandidat->tipStudija_id == 1)
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                        Упис на мастер студије
-                    </button>
+                @if($kandidat->statusUpisa_id == Config::get('constants.statusi.odustao'))
+                <div class="form-group">
+                    <label for="skolskaGodinaPonovnogUpisa">Школска година:</label>
+                    <select class="form-control" id="skolskaGodinaPonovnogUpisa" name="skolskaGodinaPonovnogUpisa" style="width: 30%">
+                        @foreach($skolskaGodinaUpisa as $item)
+                            <option value="{{$item->id}}">{{$item->naziv}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.upisan') }}/0" class="btn btn-primary" id="buttonPonovnogUpisa">Упиши са новим бројем индекса</a>
+                </div>
+                @else
+                    <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.nijeupisan') }}/0" class="btn btn-primary">Врати на статус кандидата</a>
+                    @if($kandidat->statusUpisa_id != Config::get('constants.statusi.diplomirao'))
+                        <a href="/student/{{ $kandidat->id }}/status/{{ Config::get('constants.statusi.diplomirao') }}/0" class="btn btn-success">Дипломирао</a>
+                    @endif
+                    @if($kandidat->tipStudija_id == 1)
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                            Упис на мастер студије
+                        </button>
+                    @endif
                 @endif
             </div>
         </div>
@@ -294,4 +307,16 @@
         </div>
     </div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+    <script>
+        function replaceAt(string, index, character) {
+            return string.substr(0, index) + character + string.substr(index+character.length);
+        }
+
+        $('#skolskaGodinaPonovnogUpisa').change(function () {
+            var button = $('#buttonPonovnogUpisa');
+            var href = button.attr('href');
+            href = replaceAt(href, 20, $('#skolskaGodinaPonovnogUpisa').val());
+            button.attr('href', href);
+        });
+    </script>
 @endsection

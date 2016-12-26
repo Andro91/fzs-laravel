@@ -76,7 +76,7 @@
                         <td>{{$kandidat->jmbg}}</td>
                         <td>{{$kandidat->brojIndeksa}}</td>
                         <td>
-                            <a class="btn btn-warning" href="{{$putanja}}/kandidat/{{ $kandidat->id }}/edit">
+                            <a class="btn btn-warning" href="{{$putanja}}/{{ $kandidat->tipStudija_id == 1 ? 'kandidat' : 'master' }}/{{ $kandidat->id }}/edit">
                                 <div title="Измена">
                                     <span class="fa fa-edit"></span>
                                 </div>

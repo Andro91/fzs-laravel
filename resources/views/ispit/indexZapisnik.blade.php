@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('page_heading','Записник о полагању испита')
 @section('section')
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div id="messages">
             @if (Session::get('flash-error'))
                 <div class="alert alert-dismissible alert-danger">
@@ -22,8 +22,8 @@
             <tr>
                 <th>Предмет</th>
                 <th>Испитни рок</th>
+                <th>Професор</th>
                 <th>Датум</th>
-                <th>Време</th>
                 <th>Број студената</th>
                 <th></th>
             </tr>
@@ -33,8 +33,8 @@
                 <tr>
                     <td>{{$zapisnik->predmet->naziv}}</td>
                     <td>{{$zapisnik->ispitniRok->naziv}}</td>
+                    <td>{{$zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime}}</td>
                     <td>{{$zapisnik->datum->format('d.m.Y.')}}</td>
-                    <td>{{$zapisnik->vreme}}</td>
                     <td>{{$zapisnik->studenti->count()}}</td>
                     <td>
                         <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед
