@@ -134,8 +134,7 @@ class PrijavaController extends Controller
             $validator = PrijavaIspita::where([
                 'kandidat_id' => $kandidatId,
                 'predmet_id' => $request->predmet_id,
-                'rok_id' => $request->rok_id,
-                'profesor_id' => $request->profesor_id
+                'rok_id' => $request->rok_id
             ])->get();
 
             if (!$validator->isEmpty()) {

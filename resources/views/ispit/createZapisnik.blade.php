@@ -76,6 +76,10 @@
                             <input type="button" id="ajaxSubmitPrijava" class="btn btn-success"
                                    value="Прикажи студенте">
                         </div>
+                        <div class="form-group col-lg-2">
+                            <label for="ajaxSubmitPrijava">&nbsp;</label><br>
+                            <div id="addStudentLink" class="btn btn-primary">Додај студента</div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <hr>
@@ -133,17 +137,17 @@
                     <div id="messageEmpty">
                     </div>
 
-                    @if(!empty($predmet_id))
-                        <div class="form-group">
-                            <a class="btn btn-primary" href="/prijava/zaPredmet/{{ $predmet_id }}">Додај студента</a>
-                        </div>
-                    @endif
-                    <hr>
-                    <div class="form-group text-center">
-                        <button type="submit" name="Submit" class="btn btn-primary btn-lg"><span
-                                    class="fa fa-save"></span> Сачувај
-                        </button>
-                    </div>
+                    {{--@if(!empty($predmet_id))--}}
+                        {{--<div class="form-group">--}}
+                            {{--<a class="btn btn-primary" href="/prijava/zaPredmet/{{ $predmet_id }}">Додај студента</a>--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
+                    {{--<hr>--}}
+                    {{--<div class="form-group text-center">--}}
+                        {{--<button type="submit" name="Submit" class="btn btn-primary btn-lg"><span--}}
+                                    {{--class="fa fa-save"></span> Сачувај--}}
+                        {{--</button>--}}
+                    {{--</div>--}}
                 </form>
             </div>
         </div>
@@ -156,6 +160,21 @@
     <br>
     <br>
     <script>
+//        function replaceAt(string, index, character) {
+//            return string.substr(0, index) + character + string.substr(index+character.length);
+//        }
+//
+//        $('#skolskaGodinaPonovnogUpisa').change(function () {
+//            var button = $('#buttonPonovnogUpisa');
+//            var href = button.attr('href');
+//            href = replaceAt(href, 20, $('#skolskaGodinaPonovnogUpisa').val());
+//            button.attr('href', href);
+//        });
+
+        $('#addStudentLink').click(function(){
+            window.location = "/prijava/zaPredmet/" + $('#predmet_id').val();
+        });
+
         $('#rok_id').change(function () {
             var rok = $('#rok_id');
             $.ajax({
