@@ -112,246 +112,246 @@
                 </table>
             </div>
         </div>
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Положени испити</h3>
-            </div>
-            <div class="panel-body">
-                <div>
+        {{--<div class="panel panel-success">--}}
+            {{--<div class="panel-heading">--}}
+                {{--<h3 class="panel-title">Положени испити</h3>--}}
+            {{--</div>--}}
+            {{--<div class="panel-body">--}}
+                {{--<div>--}}
 
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
+                    {{--<!-- Nav tabs -->--}}
+                    {{--<ul class="nav nav-tabs" role="tablist">--}}
 
-                        <li role="presentation" class="active"><a href="#prvaGodina" aria-controls="prvaGodina"
-                                                                  role="tab"
-                                                                  data-toggle="tab">Прва година</a></li>
+                        {{--<li role="presentation" class="active"><a href="#prvaGodina" aria-controls="prvaGodina"--}}
+                                                                  {{--role="tab"--}}
+                                                                  {{--data-toggle="tab">Прва година</a></li>--}}
 
-                        <li role="presentation"><a href="#drugaGodina" aria-controls="drugaGodina" role="tab"
-                                                   data-toggle="tab">Друга година</a></li>
+                        {{--<li role="presentation"><a href="#drugaGodina" aria-controls="drugaGodina" role="tab"--}}
+                                                   {{--data-toggle="tab">Друга година</a></li>--}}
 
-                        <li role="presentation"><a href="#trecaGodina" aria-controls="trecaGodina" role="tab"
-                                                   data-toggle="tab">Трећа година</a></li>
+                        {{--<li role="presentation"><a href="#trecaGodina" aria-controls="trecaGodina" role="tab"--}}
+                                                   {{--data-toggle="tab">Трећа година</a></li>--}}
 
-                        <li role="presentation"><a href="#cetvrtaGodina" aria-controls="cetvrtaGodina" role="tab"
-                                                   data-toggle="tab">Четврта година</a></li>
+                        {{--<li role="presentation"><a href="#cetvrtaGodina" aria-controls="cetvrtaGodina" role="tab"--}}
+                                                   {{--data-toggle="tab">Четврта година</a></li>--}}
 
-                        @if(!empty($priznatiIspiti))
-                            <li role="presentation"><a href="#priznati" aria-controls="priznati" role="tab"
-                                                       data-toggle="tab">Признати испити</a></li>
-                        @endif
+                        {{--@if(!empty($priznatiIspiti))--}}
+                            {{--<li role="presentation"><a href="#priznati" aria-controls="priznati" role="tab"--}}
+                                                       {{--data-toggle="tab">Признати испити</a></li>--}}
+                        {{--@endif--}}
 
-                        <li role="presentation"><a href="#master" aria-controls="master" role="tab"
-                                                   data-toggle="tab">Мастер студије</a></li>
-                    </ul>
+                        {{--<li role="presentation"><a href="#master" aria-controls="master" role="tab"--}}
+                                                   {{--data-toggle="tab">Мастер студије</a></li>--}}
+                    {{--</ul>--}}
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="prvaGodina">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Предмет</th>
-                                    <th>Рок</th>
-                                    <th>Број Полагања</th>
-                                    <th>Датум</th>
-                                    <th>Оцена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(!empty($polozeniIspitiPrvaGodina))
-                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
-                                        <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
-                                            <td>{{$ispit->konacnaOcena}}</td>
-                                            <td>
+                    {{--<!-- Tab panes -->--}}
+                    {{--<div class="tab-content">--}}
+                        {{--<div role="tabpanel" class="tab-pane active" id="prvaGodina">--}}
+                            {{--<table class="table">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th>Предмет</th>--}}
+                                    {{--<th>Рок</th>--}}
+                                    {{--<th>Број Полагања</th>--}}
+                                    {{--<th>Датум</th>--}}
+                                    {{--<th>Оцена</th>--}}
+                                    {{--<th></th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(!empty($polozeniIspitiPrvaGodina))--}}
+                                    {{--@foreach($polozeniIspitiPrvaGodina as $index => $ispit)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$ispit->predmet->predmet->naziv}}</td>--}}
+                                            {{--<td>{{$ispit->prijava->rok->naziv}}</td>--}}
+                                            {{--<td>{{$ispit->prijava->brojPolaganja}}</td>--}}
+                                            {{--<td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>--}}
+                                            {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                            {{--<td>--}}
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
                                                 {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
                                                 {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="drugaGodina">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Предмет</th>
-                                    <th>Рок</th>
-                                    <th>Број Полагања</th>
-                                    <th>Датум</th>
-                                    <th>Оцена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(!empty($polozeniIspitiDrugaGodina))
-                                    @foreach($polozeniIspitiDrugaGodina as $index => $ispit)
-                                        <tr>
-                                            <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                            <td>{{$ispit->prijava->rok->naziv}}</td>
-                                            <td>{{$ispit->prijava->brojPolaganja}}</td>
-                                            <td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>
-                                            <td>{{$ispit->konacnaOcena}}</td>
-                                            <td>
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                        {{--<div role="tabpanel" class="tab-pane" id="drugaGodina">--}}
+                            {{--<table class="table">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th>Предмет</th>--}}
+                                    {{--<th>Рок</th>--}}
+                                    {{--<th>Број Полагања</th>--}}
+                                    {{--<th>Датум</th>--}}
+                                    {{--<th>Оцена</th>--}}
+                                    {{--<th></th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(!empty($polozeniIspitiDrugaGodina))--}}
+                                    {{--@foreach($polozeniIspitiDrugaGodina as $index => $ispit)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$ispit->predmet->predmet->naziv}}</td>--}}
+                                            {{--<td>{{$ispit->prijava->rok->naziv}}</td>--}}
+                                            {{--<td>{{$ispit->prijava->brojPolaganja}}</td>--}}
+                                            {{--<td>{{$ispit->zapisnik->datum->format('d.m.Y.')}}</td>--}}
+                                            {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                            {{--<td>--}}
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
                                                 {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
                                                 {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="trecaGodina">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Предмет</th>
-                                    <th>Рок</th>
-                                    <th>Број Полагања</th>
-                                    <th>Датум</th>
-                                    <th>Оцена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(!empty($polozeniIspitiTrecaGodina))
-                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
-                                        <tr>
-                                            <td>{{$ispit->naziv}}</td>
-                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
-                                            <td>{{$ispit->broj}}</td>
-                                            <td>{{$ispit->datum}}</td>
-                                            <td>{{$ispit->konacnaOcena}}</td>
-                                            <td>
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                        {{--<div role="tabpanel" class="tab-pane" id="trecaGodina">--}}
+                            {{--<table class="table">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th>Предмет</th>--}}
+                                    {{--<th>Рок</th>--}}
+                                    {{--<th>Број Полагања</th>--}}
+                                    {{--<th>Датум</th>--}}
+                                    {{--<th>Оцена</th>--}}
+                                    {{--<th></th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(!empty($polozeniIspitiTrecaGodina))--}}
+                                    {{--@foreach($polozeniIspitiPrvaGodina as $index => $ispit)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$ispit->naziv}}</td>--}}
+                                            {{--<td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>--}}
+                                            {{--<td>{{$ispit->broj}}</td>--}}
+                                            {{--<td>{{$ispit->datum}}</td>--}}
+                                            {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                            {{--<td>--}}
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
                                                 {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
                                                 {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="cetvrtaGodina">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Предмет</th>
-                                    <th>Рок</th>
-                                    <th>Број Полагања</th>
-                                    <th>Датум</th>
-                                    <th>Оцена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(!empty($polozeniIspitiCetvrtaGodina))
-                                    @foreach($polozeniIspitiPrvaGodina as $index => $ispit)
-                                        <tr>
-                                            <td>{{$ispit->naziv}}</td>
-                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
-                                            <td>{{$ispit->broj}}</td>
-                                            <td>{{$ispit->datum}}</td>
-                                            <td>{{$ispit->konacnaOcena}}</td>
-                                            <td>
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                        {{--<div role="tabpanel" class="tab-pane" id="cetvrtaGodina">--}}
+                            {{--<table class="table">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th>Предмет</th>--}}
+                                    {{--<th>Рок</th>--}}
+                                    {{--<th>Број Полагања</th>--}}
+                                    {{--<th>Датум</th>--}}
+                                    {{--<th>Оцена</th>--}}
+                                    {{--<th></th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(!empty($polozeniIspitiCetvrtaGodina))--}}
+                                    {{--@foreach($polozeniIspitiPrvaGodina as $index => $ispit)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$ispit->naziv}}</td>--}}
+                                            {{--<td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>--}}
+                                            {{--<td>{{$ispit->broj}}</td>--}}
+                                            {{--<td>{{$ispit->datum}}</td>--}}
+                                            {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                            {{--<td>--}}
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
                                                 {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
                                                 {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                        </div>
-                        @if(!empty($priznatiIspiti))
-                            <div role="tabpanel" class="tab-pane" id="priznati">
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                        {{--@if(!empty($priznatiIspiti))--}}
+                            {{--<div role="tabpanel" class="tab-pane" id="priznati">--}}
 
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>Предмет</th>
-                                                <th>Оцена</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-lg-8">--}}
+                                        {{--<table class="table">--}}
+                                            {{--<thead>--}}
+                                            {{--<tr>--}}
+                                                {{--<th>Предмет</th>--}}
+                                                {{--<th>Оцена</th>--}}
+                                                {{--<th></th>--}}
+                                            {{--</tr>--}}
+                                            {{--</thead>--}}
+                                            {{--<tbody>--}}
 
-                                            @foreach($priznatiIspiti as $index => $ispit)
-                                                <tr>
-                                                    <td>{{$ispit->predmet->predmet->naziv}}</td>
-                                                    <td>{{$ispit->konacnaOcena}}</td>
-                                                    <td>
-                                                        <a class="btn btn-danger"
-                                                           href="{{$putanja}}/deletePriznatIspit/{{ $ispit->id }}"
-                                                           onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">
-                                                            <div title="Брисање">
-                                                                <span class="fa fa-trash"></span>
-                                                            </div>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <div role="tabpanel" class="tab-pane" id="master">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Предмет</th>
-                                    <th>Рок</th>
-                                    <th>Број Полагања</th>
-                                    <th>Датум</th>
-                                    <th>Оцена</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(!empty($polozeniIspitiMaster))
-                                    @foreach($polozeniIspitiMaster as $index => $ispit)
-                                        <tr>
-                                            <td>{{$ispit->naziv}}</td>
-                                            <td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>
-                                            <td>{{$ispit->broj}}</td>
-                                            <td>{{$ispit->datum}}</td>
-                                            <td>{{$ispit->konacnaOcena}}</td>
-                                            <td>
+                                            {{--@foreach($priznatiIspiti as $index => $ispit)--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>{{$ispit->predmet->naziv}}</td>--}}
+                                                    {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                                    {{--<td>--}}
+                                                        {{--<a class="btn btn-danger"--}}
+                                                           {{--href="{{$putanja}}/deletePriznatIspit/{{ $ispit->id }}"--}}
+                                                           {{--onclick="return confirm('Да ли сте сигурни да желите да обришете податке?');">--}}
+                                                            {{--<div title="Брисање">--}}
+                                                                {{--<span class="fa fa-trash"></span>--}}
+                                                            {{--</div>--}}
+                                                        {{--</a>--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
+                                            {{--@endforeach--}}
+                                            {{--</tbody>--}}
+                                        {{--</table>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
+                        {{--<div role="tabpanel" class="tab-pane" id="master">--}}
+                            {{--<table class="table">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th>Предмет</th>--}}
+                                    {{--<th>Рок</th>--}}
+                                    {{--<th>Број Полагања</th>--}}
+                                    {{--<th>Датум</th>--}}
+                                    {{--<th>Оцена</th>--}}
+                                    {{--<th></th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(!empty($polozeniIspitiMaster))--}}
+                                    {{--@foreach($polozeniIspitiMaster as $index => $ispit)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{$ispit->naziv}}</td>--}}
+                                            {{--<td>{{\App\PrijavaIspita::nazivRokaPoId($ispit->rok)}}</td>--}}
+                                            {{--<td>{{$ispit->broj}}</td>--}}
+                                            {{--<td>{{$ispit->datum}}</td>--}}
+                                            {{--<td>{{$ispit->konacnaOcena}}</td>--}}
+                                            {{--<td>--}}
                                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                                 {{--<a class="btn btn-danger"--}}
                                                 {{--href="{{$putanja}}/prijava/delete/{{ $prijava->id }}?prijava=student"--}}
                                                 {{--onclick="return confirm('Да ли сте сигурни да желите да обришете ову пријаву?');">Бриши</a>--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                </div>
-            </div>
-        </div>
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <br>
         <br>
     </div>

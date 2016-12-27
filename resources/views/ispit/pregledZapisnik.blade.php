@@ -71,24 +71,24 @@
                                    value="{{ $ispit->kandidat->id }}">
                             <input type="hidden" id="predmet_id" name="predmet_id" value="{{ $zapisnik->predmet_id }}">
 
-                            <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
-                                <label for="ocenaPismeni">Оцена писмени</label>
-                                <input type="text" id="ocenaPismeni" name="ocenaPismeni[{{ $index }}]"
-                                       value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaPismeni : "" }}"
-                                       class="form-control">
-                            </div>
-                            <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
-                                <label for="ocenaUsmeni">Оцена усмени</label>
-                                <input type="text" id="ocenaUsmeni" name="ocenaUsmeni[{{ $index }}]"
-                                       value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaUsmeni : "" }}"
-                                       class="form-control">
-                            </div>
-                            <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
-                                <label for="brojBodova">Број бодова</label>
-                                <input type="text" id="brojBodova" name="brojBodova[{{ $index }}]"
-                                       value="{{ $ispit->indikatorAktivan == 1 ? $ispit->brojBodova : "" }}"
-                                       class="form-control">
-                            </div>
+                            {{--<div class="form-group pull-left" style="width: 30%; margin-right: 2%">--}}
+                                {{--<label for="ocenaPismeni">Оцена писмени</label>--}}
+                                {{--<input type="text" id="ocenaPismeni" name="ocenaPismeni[{{ $index }}]"--}}
+                                       {{--value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaPismeni : "" }}"--}}
+                                       {{--class="form-control">--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group pull-left" style="width: 30%; margin-right: 2%">--}}
+                                {{--<label for="ocenaUsmeni">Оцена усмени</label>--}}
+                                {{--<input type="text" id="ocenaUsmeni" name="ocenaUsmeni[{{ $index }}]"--}}
+                                       {{--value="{{ $ispit->indikatorAktivan == 1 ? $ispit->ocenaUsmeni : "" }}"--}}
+                                       {{--class="form-control">--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group pull-left" style="width: 30%; margin-right: 2%">--}}
+                                {{--<label for="brojBodova">Број бодова</label>--}}
+                                {{--<input type="text" id="brojBodova" name="brojBodova[{{ $index }}]"--}}
+                                       {{--value="{{ $ispit->indikatorAktivan == 1 ? $ispit->brojBodova : "" }}"--}}
+                                       {{--class="form-control">--}}
+                            {{--</div>--}}
                             <div class="form-group pull-left" style="width: 30%; margin-right: 2%">
                                 <label for="konacnaOcena">Коначна оцена</label>
                                 <select class="form-control konacnaOcena" data-index="{{ $index }}"

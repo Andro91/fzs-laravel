@@ -143,11 +143,11 @@
                         {{--</div>--}}
                     {{--@endif--}}
                     {{--<hr>--}}
-                    {{--<div class="form-group text-center">--}}
-                        {{--<button type="submit" name="Submit" class="btn btn-primary btn-lg"><span--}}
-                                    {{--class="fa fa-save"></span> Сачувај--}}
-                        {{--</button>--}}
-                    {{--</div>--}}
+                    <div class="form-group text-center">
+                        <button type="submit" name="Submit" class="btn btn-primary btn-lg"><span
+                                    class="fa fa-save"></span> Сачувај
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
