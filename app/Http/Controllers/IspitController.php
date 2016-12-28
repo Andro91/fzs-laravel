@@ -211,6 +211,9 @@ class IspitController extends Controller
     {
         $zapisnikId = 0;
         foreach ($request->ispit_id as $index => $ispit) {
+            if($request->brojBodova[$index] == 0){
+                continue;
+            }
             $polozeniIspit = PolozeniIspiti::find($ispit);
             $polozeniIspit->ocenaPismeni = $request->ocenaPismeni[$index];
             $polozeniIspit->ocenaUsmeni = $request->ocenaUsmeni[$index];
