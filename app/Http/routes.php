@@ -99,6 +99,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/zapisnik/storeZapisnik', 'IspitController@storeZapisnik');
     Route::get('/zapisnik/delete/{id}', 'IspitController@deleteZapisnik');
     Route::get('/zapisnik/pregled/{id}', 'IspitController@pregledZapisnik');
+    Route::get('/zapisnik/pregled/{zapisnikId}/{kandidatId}/delete', 'IspitController@pregledZapisnikDelete');
 
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 

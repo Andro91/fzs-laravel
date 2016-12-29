@@ -213,9 +213,13 @@
                     profesor_id: profesor.val()
                 },
                 success: function (result) {
+
                     if(result['message'].length > 0){
                         $('#messageEmpty').html(result['message']);
+                    }else{
+                        $('#messageEmpty').html("");
                     }
+                    $("#tabela").find("tr").remove();
                     $.each(result['kandidati'], function (e) {
                         $('#tabela').append('<tr><td>' + '<input type="checkbox" id="odabir" name="odabir[' + this.id + ']" value="' + this.id + '" checked>' +
                                 '</td><td>' + this.brojIndeksa +

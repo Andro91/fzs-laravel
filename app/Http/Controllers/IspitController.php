@@ -178,14 +178,16 @@ class IspitController extends Controller
     public function pregledZapisnik($zapisnikId)
     {
         $zapisnik = ZapisnikOPolaganjuIspita::find($zapisnikId);
-        $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $zapisnikId])->get();
-        $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
-            return $o->kandidat_id;
-        }, $zapisnikStudent->all());
-        $studenti = Kandidat::whereIn('id', $ids)->get();
+        $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $zapisnikId])->pluck('kandidat_id')->all();
+//        dd($zapisnikStudent);
+//        $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
+//            return $o->kandidat_id;
+//        }, $zapisnikStudent->all());
+        $studenti = Kandidat::whereIn('id', $zapisnikStudent)->get();
+
 
         $prijavaIds = array();
-        foreach ($ids as $id) {
+        foreach ($zapisnikStudent as $id) {
             $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
@@ -193,7 +195,7 @@ class IspitController extends Controller
         }
 
         $polozeniIspitIds = array();
-        foreach ($ids as $id) {
+        foreach ($zapisnikStudent as $id) {
             $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $polozeniIspitIds[$id] = $pom->id;
@@ -266,6 +268,21 @@ class IspitController extends Controller
         $polozenIspit->delete();
 
         return redirect("/prijava/zaStudenta/{$kandidatId}");
+    }
+
+    public function pregledZapisnikDelete($zapisnikId, $kandidatId)
+    {
+        ZapisnikOPolaganju_Student::where([
+            'zapisnik_id' => $zapisnikId,
+            'kandidat_id' => $kandidatId
+        ])->delete();
+
+        PolozeniIspiti::where([
+            'zapisnik_id' => $zapisnikId,
+            'kandidat_id' => $kandidatId
+        ])->delete();
+
+        return \Redirect::back();
     }
 
 }

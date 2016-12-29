@@ -204,7 +204,12 @@
                                 </select>
                             </td>
                             <td>
-
+                                <a class="btn btn-danger" style="padding: 9px 12px" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}/{{ $ispit->kandidat->id }}/delete"
+                                   onclick="return confirm('Да ли сте сигурни да желите да обришете овог студента?');">
+                                    <div title="Брисање">
+                                        <span class="fa fa-trash"></span>
+                                    </div>
+                                </a>
                             </td>
                         </tr>
                     {{--</form>--}}
