@@ -13,6 +13,7 @@ use App\StatusIspita;
 use App\ZapisnikOPolaganju_Student;
 use App\ZapisnikOPolaganju_StudijskiProgram;
 use App\ZapisnikOPolaganjuIspita;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -179,12 +180,7 @@ class IspitController extends Controller
     {
         $zapisnik = ZapisnikOPolaganjuIspita::find($zapisnikId);
         $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $zapisnikId])->pluck('kandidat_id')->all();
-//        dd($zapisnikStudent);
-//        $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
-//            return $o->kandidat_id;
-//        }, $zapisnikStudent->all());
         $studenti = Kandidat::whereIn('id', $zapisnikStudent)->get();
-
 
         $prijavaIds = array();
         foreach ($zapisnikStudent as $id) {
@@ -204,18 +200,19 @@ class IspitController extends Controller
 
         $studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $zapisnikId])->get();
         $statusIspita = StatusIspita::all();
-        $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get();
+        $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get()->all();
+        $kandidati = Kandidat::all();
 
-        return view('ispit.pregledZapisnik', compact('zapisnik', 'studenti', 'studijskiProgrami', 'statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
+        return view('ispit.pregledZapisnik', compact('zapisnik', 'studenti', 'studijskiProgrami', 'statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds','kandidati'));
     }
 
     public function polozeniIspit(Request $request)
     {
         $zapisnikId = 0;
         foreach ($request->ispit_id as $index => $ispit) {
-            if($request->brojBodova[$index] == 0){
-                continue;
-            }
+//            if($request->brojBodova[$index] == 0){
+//                continue;
+//            }
             $polozeniIspit = PolozeniIspiti::find($ispit);
             $polozeniIspit->ocenaPismeni = $request->ocenaPismeni[$index];
             $polozeniIspit->ocenaUsmeni = $request->ocenaUsmeni[$index];
@@ -283,6 +280,83 @@ class IspitController extends Controller
         ])->delete();
 
         return \Redirect::back();
+    }
+
+    public function dodajStudenta(Request $request)
+    {
+        $zapisnikId = $request->zapisnikId;
+
+        $messages = [
+            'odabir.required' => 'Нисте одабрали студенте за полагање испита!',
+        ];
+
+        $this->validate($request, [
+            'odabir' => 'required',
+        ], $messages);
+
+        try {
+            $zapisnik = ZapisnikOPolaganjuIspita::find($zapisnikId);
+
+            $prijavljeniStudenti = ZapisnikOPolaganju_Student::where([
+                'zapisnik_id' => $zapisnikId
+            ])->pluck('kandidat_id')->all();
+
+            $prijavljeniSmerovi = ZapisnikOPolaganju_StudijskiProgram::where([
+                'zapisnik_id' => $zapisnikId
+            ])->pluck('studijskiProgram_id')->all();
+
+            $smerovi = array();
+
+            foreach ($request->odabir as $id) {
+                if(in_array($id, $prijavljeniStudenti)){
+                    //ako student vec postoji u zapisniku, preskacemo ga
+                    continue;
+                }
+
+                $zapisStudent = new ZapisnikOPolaganju_Student();
+                $zapisStudent->zapisnik_id = $zapisnik->id;
+                $zapisStudent->prijavaIspita_id = $zapisnik->prijavaispita_id;
+                $zapisStudent->kandidat_id = $id;
+                $zapisStudent->save();
+
+                $kandidat = Kandidat::find($id);
+                if(!in_array($kandidat->studijskiProgram_id, $prijavljeniSmerovi)){
+                    $smerovi[] = $kandidat->studijskiProgram_id;
+                }
+
+                $polozenIspit = new PolozeniIspiti();
+                $polozenIspit->indikatorAktivan = 0;
+                $polozenIspit->kandidat_id = $id;
+                $polozenIspit->predmet_id = $zapisnik->predmet_id;
+                $polozenIspit->zapisnik_id = $zapisnik->id;
+                $polozenIspit->prijava_id = $zapisnik->prijavaispita_id;
+                $polozenIspit->save();
+
+                $prijavaIspita = new PrijavaIspita();
+                $prijavaIspita->kandidat_id = $id;
+                $prijavaIspita->predmet_id = $zapisnik->predmet_id;
+                $prijavaIspita->profesor_id = $zapisnik->profesor_id;
+                $prijavaIspita->rok_id = $zapisnik->rok_id;
+                $prijavaIspita->brojPolaganja = 1;
+                $prijavaIspita->datum = Carbon::now();
+                $prijavaIspita->tipPrijave_id = 0;
+                $prijavaIspita->save();
+            }
+
+            $smerovi = array_unique($smerovi);
+            foreach ($smerovi as $id) {
+                $zapisSmer = new ZapisnikOPolaganju_StudijskiProgram();
+                $zapisSmer->zapisnik_id = $zapisnik->id;
+                $zapisSmer->StudijskiProgram_id = $id;
+                $zapisSmer->save();
+            }
+
+        }catch (QueryException $ex){
+            dd($ex);
+            Session::flash('flash-error', 'Дошло је до грешке!');
+        }
+
+        return redirect('/zapisnik/pregled/' . $zapisnikId);
     }
 
 }
