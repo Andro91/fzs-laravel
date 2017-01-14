@@ -152,6 +152,7 @@
                                 <div class="form-group col-lg-10">
                                     <label for="KrsnaSlava">Крсна слава</label>
                                     <select class="form-control auto-combobox" id="KrsnaSlava" name="KrsnaSlava">
+                                        <option value=""></option>
                                         @foreach($krsnaSlava as $item)
                                             <option value="{{ $item->id }}" {{ ($kandidat->krsnaSlava_id == $item->id ? "selected":"") }}>{{ $item->naziv }}</option>
                                         @endforeach
