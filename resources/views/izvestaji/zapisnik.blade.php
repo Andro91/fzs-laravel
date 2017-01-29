@@ -62,6 +62,126 @@
                 </tr>
 
             @endforeach
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; width: 40px;"></td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
+                <td style="border: 1px solid black; text-align: center;"></td>
+                <td style="border: 1px solid black; width:70px;"></td>
+                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
+            </tr>
         </table>
     </div>
 
@@ -69,7 +189,7 @@
     <br/>
     <br/>
     <div>
-        <table>
+        <table nobr="true">
             <tr>
                 <td></td>
                 <td></td>
@@ -84,7 +204,7 @@
     </div>
 
 @else
-    <h1>Нема дипломираних студената у овом периоду.</h1>
+    <h1>Нема.</h1>
 @endif
 
 

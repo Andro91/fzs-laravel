@@ -824,7 +824,7 @@ class IzvestajiController extends Controller
             $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
                 return $o->kandidat_id;
             }, $zapisnikStudent->all());
-            $studenti = Kandidat::whereIn('id', $ids)->get();
+            $studenti = Kandidat::whereIn('id', $ids)->orderBy('brojIndeksa')->get();
 
             $prijavaIds = array();
             foreach ($ids as $id) {
@@ -853,26 +853,24 @@ class IzvestajiController extends Controller
             //return $ids2;
 
             $ispit = Predmet::where(['id' => $zapisnik->predmet_id])->first();
+
+            $predmetiProgramiSpisak = PredmetProgram::where(['predmet_id' => $zapisnik->predmet_id])->get();
             //return $ispit->naziv;
             //$predmet_program = PredmetProgram::where(['predmet_id' => $polozeniIspiti->kandidat->studijskiProgram_id])->get();
             $ids = array();
-            $ids2 = array();
+            //$ids2 = array();
 
-            foreach ($polozeniIspiti as $item) {
-                $ids[] = $item->kandidat_id;
+            foreach ($predmetiProgramiSpisak as $item) {
+                $ids[] = $item->studijskiProgram_id;
             }
 
-            $uslov = Kandidat::whereIn('id', $ids)->distinct('studijskiProgram_id')->get();
+            //$uslov = PredmetProgram::whereIn('id', $ids)->distinct('studijskiProgram_id')->get();
 
-            foreach ($uslov as $item) {
+            /*foreach ($uslov as $item) {
                 $ids2[] = $item->studijskiProgram_id;
-            }
+            }*/
 
-            //dd($uslov);
-
-            $programi = StudijskiProgram::whereIn('id', $ids2)->get();
-
-            //return $programi;
+            $programi = StudijskiProgram::whereIn('id', $ids)->get();
 
 
         } catch (\Illuminate\Database\QueryException $e) {
