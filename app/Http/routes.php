@@ -101,6 +101,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/zapisnik/pregled/{id}', 'IspitController@pregledZapisnik');
     Route::get('/zapisnik/pregled/{zapisnikId}/{kandidatId}/delete', 'IspitController@pregledZapisnikDelete');
     Route::post('/zapisnik/pregled/dodajStudenta', 'IspitController@dodajStudenta');
+    Route::post('/zapisnik/pregled/izmeniPodatke', 'IspitController@izmeniPodatke');
 
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 

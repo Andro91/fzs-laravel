@@ -18,6 +18,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class IspitController extends Controller
@@ -357,6 +358,18 @@ class IspitController extends Controller
         }
 
         return redirect('/zapisnik/pregled/' . $zapisnikId);
+    }
+
+    public function izmeniPodatke(Request $request)
+    {
+        $zapisnik = ZapisnikOPolaganjuIspita::find($request->zapisnikId);
+
+        $zapisnik->vreme = $request->vreme;
+        $zapisnik->ucionica = $request->ucionica;
+        $zapisnik->save();
+
+        return Redirect::back();
+
     }
 
 }

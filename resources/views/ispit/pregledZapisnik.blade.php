@@ -58,6 +58,40 @@
             </div>
         </div>
         {{--Modal za dodavanje studenata KRAJ--}}
+        {{--Modal za izmenu podataka POCETAK--}}
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="width: 60%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Измена</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{$putanja}}/zapisnik/pregled/izmeniPodatke" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="zapisnikId" value="{{$zapisnik->id}}">
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label for="ucionica">Учионица</label>
+                                    <input type="text" class="form-control" name="ucionica" id="ucionica">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="vreme">Време</label>
+                                    <input type="text" class="form-control timeMask" name="vreme" id="vreme">
+                                </div>
+                                <div class="form-group col-lg-10">
+                                    <input type="submit" class="btn btn-success" value="Сачувај">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--Modal za izmenu podataka KRAJ--}}
         <div id="messages">
             @if (Session::get('errors'))
                 <div class="alert alert-dismissable alert-danger">
@@ -86,7 +120,7 @@
                 <h4>Професор: {{ $zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime }}</h4>
             </div>
             <div class="col-lg-4" style="margin-top: 20px">
-                <h4>Време полагања: {{ $zapisnik->vreme }}</h4>
+                <h4>Време полагања: {{ substr($zapisnik->vreme, 0, -3) }}</h4>
                 <h4>Учионица: {{ $zapisnik->ucionica }}</h4>
             </div>
             <div class="col-lg-2" style="margin-top: 20px">
@@ -101,6 +135,12 @@
                         <input type="submit" class="btn btn-primary" value="Штампа записника">
                     </div>
                 </form>
+            </div>
+            <div class="col-lg-2">
+                <button type="button" name="edit" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal2">
+                    <i class="fa fa-pencil-square-o"></i> Измени време/учионицу
+                </button>
             </div>
         </div>
         <hr>
@@ -281,6 +321,7 @@
         });
     </script>
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
 @endsection
 
 
