@@ -72,6 +72,7 @@
                                 <td>
                                     <select class="form-control konacnaOcena" data-index="{{ $index }}"
                                             name="konacnaOcena[{{ $index }}]">
+                                        <option value=""></option>
                                         <option value="6">6</option>
                                         <option value="7">7</option>
                                         <option value="8">8</option>

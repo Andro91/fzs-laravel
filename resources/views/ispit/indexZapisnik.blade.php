@@ -14,8 +14,64 @@
             @endif
         </div>
         <br>
-        <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов
-            записник</a>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов
+                    записник</a>
+                <a href="{{$putanja}}/zapisnik/arhiva/" class="btn btn-warning"><i class="fa fa-archive"></i> Архива</a>
+                <a href="{{$putanja}}/zapisnik/pretraga/" class="btn btn-primary"><i class="fa fa-search"></i> Претрага
+                    записника</a>
+            </div>
+        </div>
+        <hr>
+        <h4>Филтрирање записника</h4>
+        <form role="form" method="get" action="{{$putanja}}/zapisnik">
+            {{ csrf_field() }}
+            <div class="row">
+
+                <div class="form-group col-lg-3">
+                    <label for="filter_predmet_id">Предмет</label>
+                    <select class="form-control auto-combobox" id="filter_predmet_id"
+                            name="filter_predmet_id">
+                        @foreach($predmeti as $item)
+                            <option value="{{$item->id}}" {{ (!empty(app('request')->input('filter_predmet_id')) && app('request')->input('filter_predmet_id') == $item->id) ? 'selected' : '' }}>{{ $item->naziv }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-3">
+                    <label for="filter_rok_id">Испитни рок</label>
+                    <select class="form-control" id="filter_rok_id"
+                            name="filter_rok_id">
+                        @if(!empty($aktivniIspitniRok))
+                            @foreach($aktivniIspitniRok as $tip)
+                                <option value="{{$tip->id}}" {{ (!empty(app('request')->input('filter_rok_id')) && app('request')->input('filter_rok_id') == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-3">
+                    <label for="filter_profesor_id">Професор</label>
+                    <select class="form-control auto-combobox" id="filter_profesor_id"
+                            name="filter_profesor_id">
+                        @foreach($profesori as $item)
+                            <option value="{{$item->id}}" {{ (!empty(app('request')->input('filter_profesor_id')) && app('request')->input('filter_profesor_id') == $item->id) ? 'selected' : '' }}>{{ $item->ime . " " . $item->prezime }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-1">
+                    <label for="submit">&nbsp;</label>
+                    <input type="submit" id="submit" class="btn btn-primary" value="Филтрирај">
+                </div>
+                <div class="form-group col-lg-1">
+                    <label for="a">&nbsp;</label>
+                    <a href="{{$putanja}}/zapisnik/" class="btn btn-danger"><i class="fa fa-close"></i> Поништи филтар</a>
+                </div>
+            </div>
+        </form>
         <hr>
         <table id="tabela" class="table">
             <thead>
@@ -40,7 +96,17 @@
                         <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед
                             полагања</a>
                         <a class="btn btn-danger" href="{{$putanja}}/zapisnik/delete/{{ $zapisnik->id }}"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете овај записник?');">Бриши</a>
+                           onclick="return confirm('Да ли сте сигурни да желите да обришете овај записник?');">
+                            <div title="Брисање" style="padding: 2pt;">
+                                <i class="fa fa-trash"></i>
+                            </div>
+                        </a>
+                        <a class="btn btn-warning"
+                           href="{{$putanja}}/zapisnik/arhiviraj/{{ $zapisnik->id }}">
+                            <div title="архива">
+                                <i class="fa fa-archive"></i> У архиву
+                            </div>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -50,6 +116,7 @@
         <br>
     </div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+    <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
 @endsection
 
 

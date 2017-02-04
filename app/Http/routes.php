@@ -102,6 +102,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/zapisnik/pregled/{zapisnikId}/{kandidatId}/delete', 'IspitController@pregledZapisnikDelete');
     Route::post('/zapisnik/pregled/dodajStudenta', 'IspitController@dodajStudenta');
     Route::post('/zapisnik/pregled/izmeniPodatke', 'IspitController@izmeniPodatke');
+    Route::get('/zapisnik/arhiva/', 'IspitController@arhivaZapisnik');
+    Route::get('/zapisnik/pretraga/', 'IspitController@pretragaZapisnik');
+    Route::get('/zapisnik/arhiviraj/{id}', 'IspitController@arhivirajZapisnik');
+    Route::post('/zapisnik/arhivirajRok', 'IspitController@arhivirajZapisnikeZaIspitniRok');
+
 
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 

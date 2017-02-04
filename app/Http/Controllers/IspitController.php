@@ -29,10 +29,26 @@ class IspitController extends Controller
         $this->middleware('auth');
     }
 
-    public function indexZapisnik()
+    public function indexZapisnik(Request $request)
     {
-        $zapisnici = ZapisnikOPolaganjuIspita::all();
-        return view('ispit.indexZapisnik', compact('zapisnici'));
+        $zapisnici = ZapisnikOPolaganjuIspita::where(['arhiviran' => false]);
+        if(!empty($request->filter_predmet_id)){
+            $zapisnici = $zapisnici->where(['predmet_id' => $request->filter_predmet_id]);
+        }
+        if(!empty($request->filter_rok_id)){
+            $zapisnici = $zapisnici->where(['rok_id' => $request->filter_rok_id]);
+        }
+        if(!empty($request->filter_profesor_id)){
+            $zapisnici = $zapisnici->where(['profesor_id' => $request->filter_profesor_id]);
+        }
+
+        $zapisnici = $zapisnici->get();
+
+        $predmeti = Predmet::all();
+        $profesori = Profesor::all();
+        $aktivniIspitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+
+        return view('ispit.indexZapisnik', compact('zapisnici', 'predmeti', 'profesori', 'aktivniIspitniRok'));
     }
 
     public function createZapisnik()
@@ -370,6 +386,35 @@ class IspitController extends Controller
 
         return Redirect::back();
 
+    }
+
+    public function arhivaZapisnik()
+    {
+        $arhiviraniZapisnici = ZapisnikOPolaganjuIspita::where(['arhiviran' => true])->get();
+        $aktivniIspitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+        return view('ispit.arhivaZapisnik', compact('arhiviraniZapisnici', 'aktivniIspitniRok'));
+    }
+
+    public function arhivirajZapisnik($id)
+    {
+        $zapsinik = ZapisnikOPolaganjuIspita::find($id);
+
+        $zapsinik->arhiviran = true;
+        $zapsinik->save();
+
+        return Redirect::back();
+    }
+
+    public function arhivirajZapisnikeZaIspitniRok(Request $requset)
+    {
+        $zapsinici = ZapisnikOPolaganjuIspita::where(['rok_id'=>$requset->rok_id])->get();
+
+        foreach ($zapsinici as $zapsinik) {
+            $zapsinik->arhiviran = true;
+            $zapsinik->save();
+        }
+
+        return Redirect::back();
     }
 
 }
