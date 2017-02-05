@@ -284,6 +284,15 @@ class IspitController extends Controller
         return redirect("/prijava/zaStudenta/{$kandidatId}");
     }
 
+    //Brisanje ispita sa privremene forme za retroaktivne studente
+    public function deletePrivremeniIspit($id)
+    {
+        $polozenIspit = PolozeniIspiti::find($id);
+        $polozenIspit->delete();
+
+        return Redirect::back();
+    }
+
     public function pregledZapisnikDelete($zapisnikId, $kandidatId)
     {
         ZapisnikOPolaganju_Student::where([

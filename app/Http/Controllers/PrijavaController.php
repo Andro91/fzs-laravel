@@ -392,4 +392,54 @@ class PrijavaController extends Controller
         "<td>" . $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . "</td>" .
         "<td>{$kandidat->godinaStudija->nazivRimski}</td></tr>";
     }
+
+    /// ====================================================================================================================
+    //
+    //  Privremeni deo
+    //
+    /// ====================================================================================================================
+
+    public function unosPrivremeni(Kandidat $kandidat)
+    {
+        $ispiti = Predmet::all();
+        $polozeniIspiti = PolozeniIspiti::where(['kandidat_id' => $kandidat->id])->get();
+        return view('upis.unosPrivremeni', compact('kandidat', 'ispiti', 'polozeniIspiti'));
+    }
+
+    public function vratiIspitPoId(Request $request)
+    {
+        $predmet = Predmet::find($request->id);
+
+        return "<tr>" .
+        "<td><input type='checkbox' name='odabir[$predmet->id]' value='$predmet->id' checked></td>" .
+        "<td>{$predmet->naziv}</td>" .
+        "<td><select class='form-control konacnaOcena' data-index='$predmet->id' name='konacnaOcena[$predmet->id]'>" .
+        "<option value='0'></option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option></select></td></tr>";
+    }
+
+    public function dodajPolozeneIspite(Request $request)
+    {
+        //dd($request->all());
+        $kandidat = $request->kandidat_id;
+        $ispiti = $request->odabir;
+
+        foreach ($ispiti as $index => $ispit) {
+            $novIspit = new PolozeniIspiti();
+            $novIspit->prijava_id = 0;
+            $novIspit->zapisnik_id = 0;
+            $novIspit->kandidat_id = $kandidat;
+            $novIspit->predmet_id = $ispit;
+            $novIspit->ocenaPismeni = 0;
+            $novIspit->ocenaUsmeni = 0;
+            $novIspit->konacnaOcena = $request->konacnaOcena[$index];
+            $novIspit->brojBodova = 0;
+            $novIspit->statusIspita = 1;
+            $novIspit->odluka_id = 0;
+            $novIspit->indikatorAktivan = 1;
+            $novIspit->save();
+        }
+
+        return Redirect::back();
+
+    }
 }

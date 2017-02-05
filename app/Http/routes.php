@@ -84,11 +84,16 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/prijava/', 'PrijavaController@storePrijavaIspita');
     Route::get('/prijava/delete/{id}', 'PrijavaController@deletePrijavaIspita');
+    Route::get('/prijava/unosPrivremeni/{kandidat}', 'PrijavaController@unosPrivremeni');
+
+    Route::post('/prijava/dodajPolozeneIspite', 'PrijavaController@dodajPolozeneIspite');
+
 
     //AJAX pozivi sa prijave
     Route::post('/prijava/vratiKandidataPrijava', 'PrijavaController@vratiKandidataPrijava');
     Route::post('/prijava/vratiPredmetPrijava', 'PrijavaController@vratiPredmetPrijava');
     Route::post('/prijava/vratiKandidataPoBroju', 'PrijavaController@vratiKandidataPoBroju');
+    Route::post('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
 
     //Zapisnik o polaganju ispita
     Route::get('/zapisnik', 'IspitController@indexZapisnik');
@@ -114,6 +119,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/priznavanjeIspita/{kandidatId}', 'IspitController@priznavanjeIspita');
     Route::post('/storePriznatiIspiti/', 'IspitController@storePriznatiIspiti');
     Route::get('/deletePriznatIspit/{id}', 'IspitController@deletePriznatIspit');
+    Route::get('/deletePrivremeniIspit/{id}', 'IspitController@deletePrivremeniIspit');
 
 
     Route::get('/student/{id}/obnova', 'StudentController@obnoviGodinu');
