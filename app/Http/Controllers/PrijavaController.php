@@ -15,6 +15,7 @@ use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\TipPrijave;
 use App\TipStudija;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -38,10 +39,9 @@ class PrijavaController extends Controller
 //            'tipStudija_id' => $request->tipStudijaId,
 //            'indikatorAktivan' => 1])->get();
 
-//        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();
-        $predmetProgram = Predmet::all();
+//        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();S
 
-        $predmeti = $predmetProgram;
+        $predmeti = Predmet::all();
 
         return view('prijava.spisakPredmeta', compact('tipStudija','studijskiProgrami','predmeti'));
     }
@@ -50,15 +50,15 @@ class PrijavaController extends Controller
     //Predmet se bira iznad
     public function indexPrijavaIspitaPredmet($id)
     {
-        $predmet = Predmet::find($id);
+        $predmetProgram = PredmetProgram::where(['predmet_id' => $id])->get();
 
-//        $predmetProgram = PredmetProgram::where(['predmet_id' => $id])->get();
+        $prijave = new Collection();
 
-        $prijave = $predmet->prijaveIspita();
-
-        if($prijave != null){
-            $prijave = $predmet->prijaveIspita()->get();
+        foreach ($predmetProgram as $predmet) {
+            $prijave = $prijave->merge($predmet->prijaveIspita);
         }
+
+        $predmet = Predmet::find($id);
 
         return view('prijava.indexPredmet', compact('predmet','prijave'));
     }
@@ -100,14 +100,6 @@ class PrijavaController extends Controller
 
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
 
-//        $profesorPredmet = ProfesorPredmet::where(['predmet_id' => $predmet->id])->select('profesor_id')->get();
-//        if($profesorPredmet->isEmpty()){
-//            $profesor = Profesor::all();
-//        }else{
-//            $ids = array_map(function(ProfesorPredmet $o) { return $o->profesor_id; }, $profesorPredmet->all());
-//            $profesor = Profesor::whereIn('id', $ids)->get();
-//        }
-
         $profesor = Profesor::all();
 
         return view('prijava.createManyPredmet', compact('kandidati', 'predmet', 'studijskiProgram', 'godinaStudija',
@@ -119,7 +111,7 @@ class PrijavaController extends Controller
         $errorArray = array();
         $duplicateArray = array();
 
-        //dd($request->all());
+        $predmetProgram = PredmetProgram::where(['predmet_id' => $request->predmet_id])->get();
 
         $messages = [
             'odabir.required' => 'Нисте одабрали ни једног студента за пријаву испита!',
@@ -131,18 +123,23 @@ class PrijavaController extends Controller
 
         foreach ($request->odabir as $kandidatId) {
 
+            $kandidat = Kandidat::find($kandidatId);
+
             $validator = PrijavaIspita::where([
                 'kandidat_id' => $kandidatId,
-                'predmet_id' => $request->predmet_id,
                 'rok_id' => $request->rok_id
-            ])->get();
+            ])->whereIn('predmet_id',$predmetProgram->pluck('id')->all())->get();
 
             if (!$validator->isEmpty()) {
-                $duplicateArray[] = Kandidat::find($kandidatId);
+                $duplicateArray[] = $kandidat;
                 continue;
             }
 
             $prijava = new PrijavaIspita($request->all());
+            $prijava->predmet_id = $predmetProgram::where([
+                'studijskiProgram_id' => $kandidat->studijskiProgram_id,
+                'tipStudija_id' => $kandidat->tipStudija_id
+            ])->first()->id;
             $prijava->brojPolaganja = 1;
             $prijava->kandidat_id = $kandidatId;
             $saved = $prijava->save();
@@ -347,9 +344,6 @@ class PrijavaController extends Controller
         $kandidat = Kandidat::find($request->id);
         $predmetProgram = PredmetProgram::where(['tipStudija_id' => $kandidat->tipStudija_id, 'studijskiProgram_id' => $kandidat->studijskiProgram_id])->get();
 
-//        $ids = array_map(function(PredmetProgram $o) { return $o->predmet_id; }, $predmetProgram->all());
-//        $predmeti = Predmet::find($ids);
-
         $stringPredmeti = "";
         foreach ($predmetProgram as $item) {
             $stringPredmeti .= "<option value='{$item->id}'>{$item->predmet->naziv}</option>";
@@ -395,24 +389,38 @@ class PrijavaController extends Controller
 
     /// ====================================================================================================================
     //
+    //  DIPLOMSKI RAD
+    //
+    /// ====================================================================================================================
+
+    public function diplomskiTema(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::all();
+        return view('prijava.diplomskiTema', compact('kandidat', 'profesor', 'predmeti'));
+    }
+
+
+    /// ====================================================================================================================
+    //
     //  Privremeni deo
     //
     /// ====================================================================================================================
 
     public function unosPrivremeni(Kandidat $kandidat)
     {
-        $ispiti = Predmet::all();
+        $ispiti = PredmetProgram::all();
         $polozeniIspiti = PolozeniIspiti::where(['kandidat_id' => $kandidat->id])->get();
         return view('upis.unosPrivremeni', compact('kandidat', 'ispiti', 'polozeniIspiti'));
     }
 
     public function vratiIspitPoId(Request $request)
     {
-        $predmet = Predmet::find($request->id);
+        $predmet = PredmetProgram::find($request->id);
 
         return "<tr>" .
         "<td><input type='checkbox' name='odabir[$predmet->id]' value='$predmet->id' checked></td>" .
-        "<td>{$predmet->naziv}</td>" .
+        "<td>{$predmet->predmet->naziv}</td>" .
         "<td><select class='form-control konacnaOcena' data-index='$predmet->id' name='konacnaOcena[$predmet->id]'>" .
         "<option value='0'></option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option></select></td></tr>";
     }

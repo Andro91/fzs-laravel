@@ -95,6 +95,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/prijava/vratiKandidataPoBroju', 'PrijavaController@vratiKandidataPoBroju');
     Route::post('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
 
+
+    //Diplomski rad
+    Route::get('/prijava/diplomskiTema/{kandidat}', 'PrijavaController@diplomskiTema');
+    Route::get('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
+    Route::get('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
+
     //Zapisnik o polaganju ispita
     Route::get('/zapisnik', 'IspitController@indexZapisnik');
     Route::get('/zapisnik/create', 'IspitController@createZapisnik');
