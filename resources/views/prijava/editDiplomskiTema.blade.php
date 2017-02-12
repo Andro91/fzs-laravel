@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Пријава теме дипломског рада')
+@section('page_heading','Измена теме дипломског рада')
 @section('section')
     <div class="col-lg-10">
         {{--GRESKE--}}
@@ -24,12 +24,13 @@
         @endif
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Пријава теме дипломског рада</h3>
+                <h3 class="panel-title">Измена теме дипломског рада</h3>
             </div>
             <div class="panel-body">
-                <form role="form" method="post" action="{{ url('/prijava/storeDiplomskiTema') }}">
+                <form role="form" method="post" action="{{ url('/prijava/updateDiplomskiTema') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="kandidat_id" id="kandidat_id" value="{{ $kandidat->id }}">
+                    <input type="hidden" name="diplomskiTema_id" id="diplomskiTema_id" value="{{ $diplomskiRadTema->id }}">
                     <input type="hidden" name="tipStudija_id" id="tipStudija_id"
                            value="{{ $kandidat->tipStudija_id }}">
                     <input type="hidden" name="studijskiProgram_id" id="studijskiProgram_id"
@@ -71,7 +72,9 @@
                             <label for="predmet_id">Дипломски рад из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
                                 @foreach($predmeti as $item)
-                                    <option value="{{ $item->id }}">{{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}</option>
+                                    <option value="{{ $item->id }}" {{ ($diplomskiRadTema->predmet_id == $item->id ? "selected":"") }}>
+                                        {{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -79,17 +82,17 @@
                     <div class="row">
                         <div class="form-group col-lg-10">
                             <label for="nazivTeme">Назив теме:</label>
-                            <input id="nazivTeme" name="nazivTeme" type="text" class="form-control">
+                            <input id="nazivTeme" name="nazivTeme" type="text" class="form-control" value="{{$diplomskiRadTema->nazivTeme}}">
                         </div>
 
                         <div class="form-group col-lg-4">
                             <label for="formatDatum">Датум</label>
                             <input id="formatDatum" class="form-control dateMask" type="text" name="formatDatum"
-                                   value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}"/>
+                                   value="{{ $diplomskiRadTema->datum->format('d.m.Y.') }}"/>
                         </div>
 
                         <input type="hidden" name="datum" id="datum"
-                               value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+                               value="{{ $diplomskiRadTema->datum->format('Y-m-d') }}">
 
                     </div>
 
@@ -99,7 +102,7 @@
                         <div class="form-group col-lg-4">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="indikatorOdobreno" value="1">
+                                    <input type="checkbox" name="indikatorOdobreno" value="1" {{ ($diplomskiRadTema->indikatorOdobreno == 1 ? "checked":"") }}>
                                     <b>Тема одобрена</b>
                                 </label>
                             </div>
@@ -110,7 +113,7 @@
                             <label for="profesor_id">Тему одобрио:</label>
                             <select class="form-control" id="profesor_id" name="profesor_id">
                                 @foreach($profesor as $tip)
-                                    <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
+                                    <option value="{{$tip->id}}" {{ ($diplomskiRadTema->profesor_id == $tip->id ? "selected":"") }}>{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
                             </select>
                         </div>

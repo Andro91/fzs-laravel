@@ -116,22 +116,134 @@
             </div>
         </div>
         @if($kandidat->tipStudija_id == 1)
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Дипломирање</h3>
-                </div>
-                <div class="panel-body">
-                    <a href="{{$putanja}}/prijava/diplomskiTema/{{$kandidat->id}}" class="btn btn-success"><span
-                                class="fa fa-plus"></span> Пријава теме дипломског рада</a>
-
-                    <a href="{{$putanja}}/prijava/diplomskiOdbrana/{{$kandidat->id}}" class="btn btn-success"><span
-                                class="fa fa-plus"></span> Пријава одбране дипломског рада</a>
-
-                    <a href="{{$putanja}}/prijava/diplomskiPolaganje/{{$kandidat->id}}" class="btn btn-success">
-                        <i class="fa fa-plus"></i> Пријава за полагање дипломског испита</a>
-                </div>
-            </div>
         @endif
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Дипломирање</h3>
+            </div>
+            <div class="panel-body">
+                    <table id="tabela" class="table">
+                        <thead>
+                        <tr>
+                            <th>ВРСТА</th>
+                            <th>Назив</th>
+                            <th>Предмет</th>
+                            <th>Тему одобрио професор</th>
+                            <th>Одбрану одобрио професор</th>
+                            <th>Одобрена</th>
+                            <th>Датум пријаве</th>
+                            <th>Датум одбране</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if($diplomskiRadTema != null)
+                            <tr>
+                            <td>Пријава ТЕМЕ</td>
+                            <td>{{$diplomskiRadTema->nazivTeme}}</td>
+                            <td>{{$diplomskiRadTema->predmet->predmet->naziv}}</td>
+                            <td>{{$diplomskiRadTema->profesor->ime . " " . $diplomskiRadTema->profesor->prezime}}</td>
+                            <td>-</td>
+                            <td>
+                                @if($diplomskiRadTema->indikatorOdobreno == 1)
+                                    <div class='label label-success'>ДА</div>
+                                @else
+                                    <div class='label label-danger'>НЕ</div>
+                                @endif
+                            </td>
+                            <td>{{$diplomskiRadTema->datum->format('d.m.Y')}}</td>
+                            <td>-</td>
+                            <td>
+                                <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiTema/{{ $kandidat->id }}/edit">
+                                    <div title="Измена">
+                                        <span class="fa fa-edit"></span>
+                                    </div>
+                                </a>
+                                <a class="btn btn-danger" href="{{$putanja}}/deleteDiplomskiTema/{{ $kandidat->id }}/delete"
+                                   onclick="return confirm('Да ли сте сигурни да желите да обришете?');">
+                                    <div title="Брисање">
+                                        <span class="fa fa-trash"></span>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                        @endif
+                        @if($diplomskiRadOdbrana != null)
+                            <tr>
+                                <td>Пријава ОДБРАНЕ</td>
+                                <td>{{$diplomskiRadOdbrana->nazivTeme}}</td>
+                                <td>{{$diplomskiRadOdbrana->predmet->predmet->naziv}}</td>
+                                <td>{{$diplomskiRadOdbrana->odobrioTemuProfesor->ime . " " . $diplomskiRadOdbrana->odobrioTemuProfesor->prezime}}</td>
+                                <td>{{$diplomskiRadOdbrana->odobrioOdbranuProfesor->ime . " " . $diplomskiRadOdbrana->odobrioOdbranuProfesor->prezime}}</td>
+                                <td>
+                                    @if($diplomskiRadOdbrana->indikatorOdobreno == 1)
+                                        <div class='label label-success'>ДА</div>
+                                    @else
+                                        <div class='label label-danger'>НЕ</div>
+                                    @endif
+                                </td>
+                                <td>{{$diplomskiRadOdbrana->datumPrijave->format('d.m.Y')}}</td>
+                                <td>{{$diplomskiRadOdbrana->datumOdbrane->format('d.m.Y')}}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiOdbrana/{{ $kandidat->id }}/edit">
+                                        <div title="Измена">
+                                            <span class="fa fa-edit"></span>
+                                        </div>
+                                    </a>
+                                    <a class="btn btn-danger" href="{{$putanja}}/deleteDiplomskiOdbrana/{{ $kandidat->id }}/delete"
+                                       onclick="return confirm('Да ли сте сигурни да желите да обришете?');">
+                                        <div title="Брисање">
+                                            <span class="fa fa-trash"></span>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                        @if($diplomskiRadPolaganje != null)
+                            <tr>
+                                <td>Пријава ПОЛАГАЊА</td>
+                                <td>{{$diplomskiRadPolaganje->nazivTeme}}</td>
+                                <td>{{$diplomskiRadPolaganje->predmet->predmet->naziv}}</td>
+                                <td>{{$diplomskiRadPolaganje->profesor->ime . " " . $diplomskiRadPolaganje->profesor->prezime}}</td>
+                                <td>{{$diplomskiRadPolaganje->profesor->ime . " " . $diplomskiRadPolaganje->profesor->prezime}}</td>
+                                <td>
+                                    @if($diplomskiRadPolaganje->brojBodova > 0)
+                                        <div class='label label-success'>Оцена: {{$diplomskiRadPolaganje->ocena}}</div>
+                                    @endif
+                                </td>
+                                <td>-</td>
+                                <td>{{$diplomskiRadPolaganje->datum->format('d.m.Y')}}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiPolaganje/{{ $kandidat->id }}/edit">
+                                        <div title="Измена">
+                                            <span class="fa fa-edit"></span>
+                                        </div>
+                                    </a>
+                                    <a class="btn btn-danger" href="{{$putanja}}/deleteDiplomskiPolaganje/{{ $kandidat->id }}/delete"
+                                       onclick="return confirm('Да ли сте сигурни да желите да обришете?');">
+                                        <div title="Брисање">
+                                            <span class="fa fa-trash"></span>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                <a href="{{$putanja}}/prijava/diplomskiTema/{{$kandidat->id}}" class="btn btn-success"
+                @if($diplomskiRadTema != null) {{ 'disabled' }}@endif>
+                    <i class="fa fa-plus"></i> Пријава теме дипломског рада</a>
+
+                <a href="{{$putanja}}/prijava/diplomskiOdbrana/{{$kandidat->id}}" class="btn btn-success"
+                @if($diplomskiRadOdbrana != null) {{ 'disabled' }}@endif>
+                    <i class="fa fa-plus"></i> Пријава одбране дипломског рада</a>
+
+                <a href="{{$putanja}}/prijava/diplomskiPolaganje/{{$kandidat->id}}" class="btn btn-success"
+                @if($diplomskiRadPolaganje != null) {{ 'disabled' }}@endif>
+                    <i class="fa fa-plus"></i> Пријава за полагање дипломског испита</a>
+            </div>
+        </div>
+
         <br>
         <br>
     </div>

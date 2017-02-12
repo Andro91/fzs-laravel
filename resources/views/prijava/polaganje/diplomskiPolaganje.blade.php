@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Пријава теме дипломског рада')
+@section('page_heading','Пријава полагања дипломског рада')
 @section('section')
     <div class="col-lg-10">
         {{--GRESKE--}}
@@ -24,10 +24,10 @@
         @endif
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Пријава теме дипломског рада</h3>
+                <h3 class="panel-title">Пријава полагања дипломског рада</h3>
             </div>
             <div class="panel-body">
-                <form role="form" method="post" action="{{ url('/prijava/storeDiplomskiTema') }}">
+                <form role="form" method="post" action="{{ url('/prijava/storeDiplomskiPolaganje') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="kandidat_id" id="kandidat_id" value="{{ $kandidat->id }}">
                     <input type="hidden" name="tipStudija_id" id="tipStudija_id"
@@ -91,20 +91,15 @@
                         <input type="hidden" name="datum" id="datum"
                                value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 
+                        <div class="form-group col-lg-4">
+                            <label for="vreme">Време</label>
+                            <input id="vreme" class="form-control timeMask" type="text" name="vreme"/>
+                        </div>
+
                     </div>
 
                     <div class="clearfix"></div>
                     <hr>
-                    <div class="row">
-                        <div class="form-group col-lg-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="indikatorOdobreno" value="1">
-                                    <b>Тема одобрена</b>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="profesor_id">Тему одобрио:</label>
@@ -114,25 +109,60 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group col-lg-4">
+                            <label for="rok_id">Испитни рок</label>
+                            <select class="form-control" id="rok_id" name="rok_id">
+                                @foreach($ispitniRok as $tip)
+                                    <option value="{{$tip->id}}">{{$tip->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="brojBodova">Број бодова</label>
+                            <input type="text" class="form-control brojBodova"
+                                   id="brojBodova"
+                                   name="brojBodova">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="ocena">Оцена</label>
+                            <select id="ocena" class="form-control konacnaOcena"
+                                    name="ocena">
+                                <option value="0"></option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="konacnaOcenaSlovima">Оцена словима</label>
+                            <select id="konacnaOcenaSlovima" class="form-control konacnaOcenaSlovima"
+                                    name="konacnaOcenaSlovima" disabled>
+                                <option value="0"></option>
+                                <option value="5">пет</option>
+                                <option value="6">шест</option>
+                                <option value="7">седам</option>
+                                <option value="8">осам</option>
+                                <option value="9">девет</option>
+                                <option value="10">десет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
                     <div class="form-group text-center">
-                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span
+                        <button type="submit" name="Submit" class="btn btn-primary btn-lg"><span
                                     class="fa fa-save"></span> Сачувај
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <script>
         $(function () {
             var formatDatum = $("#formatDatum");
@@ -153,6 +183,45 @@
                     event.preventDefault();
                     return false;
                 }
+            });
+        });
+
+        $(document).ready(function () {
+            $('.brojBodova').on('input', function (e) {
+                var brojBodova = $(this).val();
+                var ocena = 0;
+                switch (true) {
+                    case (brojBodova == 0):
+                        ocena = 0;
+                        break;
+                    case (brojBodova <= 50):
+                        ocena = 5;
+                        break;
+                    case (brojBodova >= 51 && brojBodova <= 60):
+                        ocena = 6;
+                        break;
+                    case (brojBodova >= 61 && brojBodova <= 70):
+                        ocena = 7;
+                        break;
+                    case (brojBodova >= 71 && brojBodova <= 80):
+                        ocena = 8;
+                        break;
+                    case (brojBodova >= 81 && brojBodova <= 90):
+                        ocena = 9;
+                        break;
+                    case (brojBodova >= 91 && brojBodova <= 100):
+                        ocena = 10;
+                        break;
+                    default:
+                        ocena = 0;
+                        break;
+                }
+                $('.konacnaOcena').val(ocena);
+                $('.konacnaOcenaSlovima').val(ocena);
+            });
+
+            $('.konacnaOcena').change(function () {
+                $('.konacnaOcenaSlovima').val($('.konacnaOcena').val());
             });
         });
     </script>

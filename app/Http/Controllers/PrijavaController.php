@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\AktivniIspitniRokovi;
+use App\DiplomskiPolaganje;
+use App\DiplomskiPrijavaOdbrane;
+use App\DiplomskiPrijavaTeme;
 use App\GodinaStudija;
 use App\Kandidat;
 use App\PolozeniIspiti;
@@ -165,6 +168,21 @@ class PrijavaController extends Controller
         $kandidat = Kandidat::find($id);
         $prijave = $kandidat->prijaveIspita()->get();
 
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        $diplomskiRadOdbrana = DiplomskiPrijavaOdbrane::where([
+            'kandidat_id' => $id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        $diplomskiRadPolaganje = DiplomskiPolaganje::where([
+            'kandidat_id' => $id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
 //        $priznatiIspiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
 
 //        $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
@@ -242,7 +260,10 @@ class PrijavaController extends Controller
 
         return view('prijava.index', compact(
             'kandidat',
-            'prijave'
+            'prijave',
+            'diplomskiRadTema',
+            'diplomskiRadOdbrana',
+            'diplomskiRadPolaganje'
 //            ,
 //            'polozeniIspitiPrvaGodina',
 //            'polozeniIspitiDrugaGodina',
@@ -393,11 +414,234 @@ class PrijavaController extends Controller
     //
     /// ====================================================================================================================
 
+    ///
+    /// TEMA
+    ///
     public function diplomskiTema(Kandidat $kandidat)
     {
         $profesor = Profesor::all();
-        $predmeti = PredmetProgram::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
         return view('prijava.diplomskiTema', compact('kandidat', 'profesor', 'predmeti'));
+    }
+
+    public function storeDiplomskiTema(Request $request)
+    {
+        $messages = [
+            'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио тему завршног рада.',
+        ];
+
+        $this->validate($request, [
+            'kandidat_id' => 'unique_with:diplomski_prijava_teme,tipStudija_id',
+        ], $messages);
+
+        $prijavaTeme = new DiplomskiPrijavaTeme($request->all());
+        $prijavaTeme->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function editdiplomskiTema(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        return view('prijava.editDiplomskiTema', compact('kandidat', 'profesor', 'predmeti', 'diplomskiRadTema'));
+    }
+
+    public function updateDiplomskiTema(Request $request)
+    {
+        $prijavaTeme = DiplomskiPrijavaTeme::find($request->diplomskiTema_id);
+        $prijavaTeme->fill($request->all());
+        if(!isset($request->indikatorOdobreno)){
+            $prijavaTeme->indikatorOdobreno = 0;
+        }else{
+            $prijavaTeme->indikatorOdobreno = 1;
+        }
+        $prijavaTeme->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function deleteDiplomskiTema(Kandidat $kandidat)
+    {
+        $prijavaTeme = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        $prijavaTeme->delete();
+
+        return redirect('/prijava/zaStudenta/' . $kandidat->id);
+    }
+
+
+    ///
+    /// ODBRANA
+    ///
+    public function diplomskiOdbrana(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        return view('prijava.odbrana.diplomskiOdbrana', compact('kandidat', 'profesor', 'predmeti', 'diplomskiRadTema'));
+    }
+
+    public function storeDiplomskiOdbrana(Request $request)
+    {
+        $messages = [
+            'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио одбрану завршног рада.',
+        ];
+
+        $this->validate($request, [
+            'kandidat_id' => 'unique_with:diplomski_prijava_odbrane,tipStudija_id',
+        ], $messages);
+
+        $prijavaOdbrane = new DiplomskiPrijavaOdbrane($request->all());
+        $prijavaOdbrane->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function editDiplomskiOdbrana(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        $diplomskiRadOdbrana = DiplomskiPrijavaOdbrane::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        return view('prijava.odbrana.editDiplomskiOdbrana',
+            compact('kandidat', 'profesor', 'predmeti', 'diplomskiRadTema', 'diplomskiRadOdbrana'));
+    }
+
+    public function updateDiplomskiOdbrana(Request $request)
+    {
+        $prijavaOdbrane = DiplomskiPrijavaOdbrane::find($request->diplomskiRadOdbrana_id);
+        $prijavaOdbrane->fill($request->all());
+        if(!isset($request->indikatorOdobreno)){
+            $prijavaOdbrane->indikatorOdobreno = 0;
+        }else{
+            $prijavaOdbrane->indikatorOdobreno = 1;
+        }
+        $prijavaOdbrane->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function deleteDiplomskiOdbrana(Kandidat $kandidat)
+    {
+        $prijavaOdbrane = DiplomskiPrijavaOdbrane::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        $prijavaOdbrane->delete();
+
+        return redirect('/prijava/zaStudenta/' . $kandidat->id);
+    }
+
+
+    ///
+    /// POLAGANJE
+    ///
+    public function diplomskiPolaganje(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+
+        return view('prijava.polaganje.diplomskiPolaganje', compact('kandidat', 'profesor', 'predmeti',
+            'diplomskiRadTema', 'ispitniRok'));
+    }
+
+    public function storeDiplomskiPolaganje(Request $request)
+    {
+        $messages = [
+            'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио полагање завршног рада.',
+        ];
+
+        $this->validate($request, [
+            'kandidat_id' => 'unique_with:diplomski_polaganje,tipStudija_id',
+        ], $messages);
+
+        $prijavaPolaganje = new DiplomskiPolaganje($request->all());
+        $prijavaPolaganje->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function editDiplomskiPolaganje(Kandidat $kandidat)
+    {
+        $profesor = Profesor::all();
+        $predmeti = PredmetProgram::where([
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->orderBy('semestar', 'asc')->get();
+        $diplomskiRadTema = DiplomskiPrijavaTeme::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        $diplomskiRadPolaganje = DiplomskiPolaganje::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+        $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
+
+
+        return view('prijava.polaganje.editDiplomskiPolaganje',
+            compact('kandidat', 'profesor', 'predmeti', 'diplomskiRadTema', 'diplomskiRadPolaganje', 'ispitniRok'));
+    }
+
+    public function updateDiplomskiPolaganje(Request $request)
+    {
+        $prijavaPolaganje = DiplomskiPolaganje::find($request->polaganje_id);
+        $prijavaPolaganje->fill($request->all());
+
+        $prijavaPolaganje->save();
+
+        return redirect('/prijava/zaStudenta/' . $request->kandidat_id);
+    }
+
+    public function deleteDiplomskiPolaganje(Kandidat $kandidat)
+    {
+        $prijavaOdbrane = DiplomskiPolaganje::where([
+            'kandidat_id' => $kandidat->id,
+            'tipStudija_id' => $kandidat->tipStudija_id
+        ])->first();
+
+        $prijavaOdbrane->delete();
+
+        return redirect('/prijava/zaStudenta/' . $kandidat->id);
     }
 
 

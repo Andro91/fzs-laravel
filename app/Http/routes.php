@@ -97,9 +97,28 @@ Route::group(['middleware' => ['web']], function () {
 
 
     //Diplomski rad
+    //TEMA
     Route::get('/prijava/diplomskiTema/{kandidat}', 'PrijavaController@diplomskiTema');
     Route::get('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
     Route::get('/prijava/vratiIspitPoId', 'PrijavaController@vratiIspitPoId');
+    Route::post('/prijava/storeDiplomskiTema', 'PrijavaController@storeDiplomskiTema');
+    Route::get('/prijava/diplomskiTema/{kandidat}/edit', 'PrijavaController@editDiplomskiTema');
+    Route::post('/prijava/updateDiplomskiTema', 'PrijavaController@updateDiplomskiTema');
+    Route::get('/deleteDiplomskiTema/{kandidat}/delete', 'PrijavaController@deleteDiplomskiTema');
+
+    //ODBRANA
+    Route::get('/prijava/diplomskiOdbrana/{kandidat}', 'PrijavaController@diplomskiOdbrana');
+    Route::post('/prijava/storeDiplomskiOdbrana', 'PrijavaController@storeDiplomskiOdbrana');
+    Route::get('/prijava/diplomskiOdbrana/{kandidat}/edit', 'PrijavaController@editDiplomskiOdbrana');
+    Route::post('/prijava/updateDiplomskiOdbrana', 'PrijavaController@updateDiplomskiOdbrana');
+    Route::get('/deleteDiplomskiOdbrana/{kandidat}/delete', 'PrijavaController@deleteDiplomskiOdbrana');
+
+    //POLAGANJE
+    Route::get('/prijava/diplomskiPolaganje/{kandidat}', 'PrijavaController@diplomskiPolaganje');
+    Route::post('/prijava/storeDiplomskiPolaganje', 'PrijavaController@storeDiplomskipolaganje');
+    Route::get('/prijava/diplomskiPolaganje/{kandidat}/edit', 'PrijavaController@editDiplomskiPolaganje');
+    Route::post('/prijava/updateDiplomskiPolaganje', 'PrijavaController@updateDiplomskiPolaganje');
+    Route::get('/deleteDiplomskiPolaganje/{kandidat}/delete', 'PrijavaController@deleteDiplomskiPolaganje');
 
     //Zapisnik o polaganju ispita
     Route::get('/zapisnik', 'IspitController@indexZapisnik');
