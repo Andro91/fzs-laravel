@@ -102,7 +102,7 @@
                     <hr>
                     <div class="row">
                         <div class="form-group col-lg-8">
-                            <label for="profesor_id">Тему одобрио:</label>
+                            <label for="profesor_id">Тему одобрио (ментор):</label>
                             <select class="form-control" id="profesor_id" name="profesor_id">
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
@@ -114,6 +114,26 @@
                             <select class="form-control" id="rok_id" name="rok_id">
                                 @foreach($ispitniRok as $tip)
                                     <option value="{{$tip->id}}">{{$tip->naziv}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="profesor_id_predsednik">Председник комисије:</label>
+                            <select class="form-control" id="profesor_id_predsednik" name="profesor_id_predsednik">
+                                <option value="0"></option>
+                                @foreach($profesor as $tip)
+                                    <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="profesor_id_clan">Члан комисије:</label>
+                            <select class="form-control" id="profesor_id_clan" name="profesor_id_clan">
+                                <option value="0"></option>
+                                @foreach($profesor as $tip)
+                                    <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
                             </select>
                         </div>

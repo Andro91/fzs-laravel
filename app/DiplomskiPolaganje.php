@@ -9,7 +9,7 @@ class DiplomskiPolaganje extends Model
     public $table = 'diplomski_polaganje';
     public $dates = ['datum'];
     public $fillable = ['kandidat_id', 'tipStudija_id', 'studijskiProgram_id', 'predmet_id', 'nazivTeme', 'datum', 'vreme',
-        'profesor_id', 'rok_id', 'brojBodova', 'ocena'];
+        'profesor_id', 'profesor_id_predsednik', 'profesor_id_clan', 'rok_id', 'brojBodova', 'ocena'];
 
     public function predmet()
     {

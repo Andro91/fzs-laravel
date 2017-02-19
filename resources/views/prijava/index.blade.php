@@ -122,6 +122,7 @@
                 <h3 class="panel-title">Дипломирање</h3>
             </div>
             <div class="panel-body">
+                @if($diplomskiRadTema != null || $diplomskiRadPolaganje != null || $diplomskiRadOdbrana != null)
                     <table id="tabela" class="table">
                         <thead>
                         <tr>
@@ -131,8 +132,8 @@
                             <th>Тему одобрио професор</th>
                             <th>Одбрану одобрио професор</th>
                             <th>Одобрена</th>
-                            <th>Датум пријаве</th>
-                            <th>Датум одбране</th>
+                            {{--<th>Датум пријаве</th>--}}
+                            {{--<th>Датум одбране</th>--}}
                             <th></th>
                         </tr>
                         </thead>
@@ -151,8 +152,8 @@
                                     <div class='label label-danger'>НЕ</div>
                                 @endif
                             </td>
-                            <td>{{$diplomskiRadTema->datum->format('d.m.Y')}}</td>
-                            <td>-</td>
+                            {{--<td>{{$diplomskiRadTema->datum->format('d.m.Y')}}</td>--}}
+                            {{--<td>-</td>--}}
                             <td>
                                 <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiTema/{{ $kandidat->id }}/edit">
                                     <div title="Измена">
@@ -182,8 +183,8 @@
                                         <div class='label label-danger'>НЕ</div>
                                     @endif
                                 </td>
-                                <td>{{$diplomskiRadOdbrana->datumPrijave->format('d.m.Y')}}</td>
-                                <td>{{$diplomskiRadOdbrana->datumOdbrane->format('d.m.Y')}}</td>
+                                {{--<td>{{$diplomskiRadOdbrana->datumPrijave->format('d.m.Y')}}</td>--}}
+                                {{--<td>{{$diplomskiRadOdbrana->datumOdbrane->format('d.m.Y')}}</td>--}}
                                 <td>
                                     <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiOdbrana/{{ $kandidat->id }}/edit">
                                         <div title="Измена">
@@ -205,14 +206,14 @@
                                 <td>{{$diplomskiRadPolaganje->nazivTeme}}</td>
                                 <td>{{$diplomskiRadPolaganje->predmet->predmet->naziv}}</td>
                                 <td>{{$diplomskiRadPolaganje->profesor->ime . " " . $diplomskiRadPolaganje->profesor->prezime}}</td>
-                                <td>{{$diplomskiRadPolaganje->profesor->ime . " " . $diplomskiRadPolaganje->profesor->prezime}}</td>
+                                <td>-</td>
                                 <td>
                                     @if($diplomskiRadPolaganje->brojBodova > 0)
                                         <div class='label label-success'>Оцена: {{$diplomskiRadPolaganje->ocena}}</div>
                                     @endif
                                 </td>
-                                <td>-</td>
-                                <td>{{$diplomskiRadPolaganje->datum->format('d.m.Y')}}</td>
+                                {{--<td>-</td>--}}
+                                {{--<td>{{$diplomskiRadPolaganje->datum->format('d.m.Y')}}</td>--}}
                                 <td>
                                     <a class="btn btn-warning" href="{{$putanja}}/prijava/diplomskiPolaganje/{{ $kandidat->id }}/edit">
                                         <div title="Измена">
@@ -230,6 +231,7 @@
                         @endif
                         </tbody>
                     </table>
+                @endif
                 <a href="{{$putanja}}/prijava/diplomskiTema/{{$kandidat->id}}" class="btn btn-success"
                 @if($diplomskiRadTema != null) {{ 'disabled' }}@endif>
                     <i class="fa fa-plus"></i> Пријава теме дипломског рада</a>

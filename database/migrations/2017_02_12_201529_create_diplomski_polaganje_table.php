@@ -22,6 +22,8 @@ class CreateDiplomskiPolaganjeTable extends Migration
             $table->date('datum');
             $table->time('vreme');
             $table->integer('profesor_id');
+            $table->integer('profesor_id_predsednik');
+            $table->integer('profesor_id_clan');
             $table->integer('rok_id');
             $table->integer('brojBodova')->nullable();
             $table->integer('ocena')->nullable();
