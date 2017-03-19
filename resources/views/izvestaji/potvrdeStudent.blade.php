@@ -10,11 +10,11 @@
                 <h3 class="panel-title"></h3>
             </div>
             <div class="panel-body">
-                <div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
-                    <a class="btn btn-primary form-group"
+                <!--<div class="form-group pull-left" style="width: 48%; margin-right: 2%;">
+                    <!--<a class="btn btn-primary form-group"
                        href="{{$putanja}}/izvestaji/{{$student->id}}/diplomaUnos">Унос података за
                         уверење</a>
-                </div>
+                </div>-->
                 <div class="form-group pull-left" style="width: 48%;">
                     <input type="hidden" value="{{$student->id}}">
                     <a class="btn btn-primary form-group" target="_blank"
@@ -22,11 +22,11 @@
                         уверења</a>
                 </div>
 
-                <div class="form-group pull-left" style="width: 48%; margin-right: 2%">
+                <!--<div class="form-group pull-left" style="width: 48%; margin-right: 2%">
                     <a class="btn btn-primary form-group"
                        href="{{$putanja}}/izvestaji/diplomskiUnos/{{$student->id}}">Унос података за
                         дипломски</a>
-                </div>
+                </div>-->
 
                 <div class="form-group pull-left" style="width: 48%; ">
                     <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/komisijaStampa/{{$student->id}}">

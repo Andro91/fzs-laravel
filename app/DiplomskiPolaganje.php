@@ -25,4 +25,14 @@ class DiplomskiPolaganje extends Model
     {
         return $this->belongsTo(AktivniIspitniRokovi::class, 'rok_id');
     }
+
+    public function clan()
+    {
+        return $this->belongsTo(Profesor::class, 'profesor_id_clan');
+    }
+
+    public function predsednik()
+    {
+        return $this->belongsTo(Profesor::class, 'profesor_id_predsednik');
+    }
 }

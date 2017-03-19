@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Diploma;
+use App\DiplomskiPolaganje;
+use App\DiplomskiPrijavaOdbrane;
+use App\DiplomskiPrijavaTeme;
 use App\DiplomskiRad;
 use App\GodinaStudija;
 use App\Kandidat;
@@ -597,8 +600,9 @@ class IzvestajiController extends Controller
     {
         try {
             $studenti = Kandidat::where(['id' => $student->id])->get();
-            $diplome = Diploma::where(['kandidat_id' => $student->id])->get();
-            $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
+            $diplome = DiplomskiPolaganje::where(['kandidat_id' => $student->id])->get();
+            $diplomski_radovi = DiplomskiPrijavaOdbrane::where(['kandidat_id' => $student->id])->get();
+            $diplomski_radovi_prijava = DiplomskiPrijavaTeme::where(['kandidat_id' => $student->id])->get();
             $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->get();
 
             $zbir = 0;
@@ -618,7 +622,8 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first())->with('diplomski', $diplomski_radovi->first())->with('prosek', $prosek);
+        $view = View::make('izvestaji.diplomaStampa')->with('student', $studenti->first())->with('diploma', $diplome->first())->with('diplomski', $diplomski_radovi->first())->with('prosek', $prosek)
+            ->with('diplomski_radovi_prijava', $diplomski_radovi_prijava);
 
         $contents = $view->render();
         PDF::SetTitle('Уверење');
@@ -703,16 +708,19 @@ class IzvestajiController extends Controller
     {
         try {
             //$studenti = Kandidat::where(['id' => $student->id])->get();
-            $diplome = Diploma::where(['kandidat_id' => $student->id])->get();
-            $diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
-            //$diplomski = $diplomski_radovi->first();
+            $diplomski = DiplomskiPolaganje::where(['kandidat_id' => $student->id])->get();
+            $podaci = DiplomskiPrijavaOdbrane::where(['kandidat_id' => $student->id])->get();
+            //$diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
+            //$rad = $diplomski_radovi->first();
             //return $studenti->first();
+
+            //dd($diplomski);
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.komisijaStampa')->with('student', $student)->with('diplomski', $diplomski_radovi->first())->with('diploma', $diplome->first());
+        $view = View::make('izvestaji.komisijaStampa')->with('student', $student)->with('diplomski', $diplomski->first())->with('podaci', $podaci->first());
 
         $contents = $view->render();
         PDF::SetTitle('Одлука о формирању комисије');

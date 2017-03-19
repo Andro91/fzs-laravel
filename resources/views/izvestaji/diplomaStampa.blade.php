@@ -59,7 +59,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td style="border-top: 1px solid black;">{{$diploma->potpis->zvanje}} {{$diploma->potpis->ime}} {{$diploma->potpis->prezime}}, {{$diploma->funkcija}}</td>
+
         </tr>
     </table>
 </div>

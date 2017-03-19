@@ -1,7 +1,7 @@
 <div style="height: 70px;"><img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if($student && $diplomski && $diploma)
+@if($student && $diplomski && $podaci)
     <div style="text-align: left">
 
     </div>
@@ -22,7 +22,7 @@
         <p>
             <ul>
             <li>{{$diplomski->predsednik->zvanje}} {{$diplomski->predsednik->ime}} {{$diplomski->predsednik->prezime}}, председник комисије</li>
-            <li>{{$diplomski->mentor->zvanje}} {{$diplomski->mentor->ime}} {{$diplomski->mentor->prezime}}, ментор</li>
+            <li>{{$diplomski->profesor->zvanje}} {{$diplomski->profesor->ime}} {{$diplomski->profesor->prezime}}, ментор</li>
             <li>{{$diplomski->clan->zvanje}} {{$diplomski->clan->ime}} {{$diplomski->clan->prezime}}, члан</li>
         </ul>
         </p>
@@ -33,7 +33,7 @@
 <div>
     <table>
         <tr>
-            <td><label>Датум: {{$diploma->datumOdbrane}}</label></td>
+            <td><label>Датум: {{ date('d.m.Y.',strtotime($podaci->datumOdbrane)) }}</label></td>
             <td></td>
             <td></td>
         </tr>
@@ -50,7 +50,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td style="border-top: 1px solid black; margin-top: 50px;">{{$diploma->potpis->zvanje}} {{$diploma->potpis->ime}} {{$diploma->potpis->prezime}}, {{$diploma->funkcija}}</td>
+
         </tr>
     </table>
 </div>
