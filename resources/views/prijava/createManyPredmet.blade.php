@@ -60,9 +60,15 @@
                             <input id="formatDatum" class="form-control dateMask" type="text" name="formatDatum"
                                    value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}"/>
                         </div>
+                        <div class="form-group col-lg-4">
+                            <label for="formatDatum2">Датум (резервни)</label>
+                            <input id="formatDatum2" class="form-control dateMask" type="text" name="formatDatum2"
+                                   value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}"/>
+                        </div>
                     </div>
 
                     <input type="hidden" name="datum" id="datum" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+                    <input type="hidden" name="datum2" id="datum2" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <div class="clearfix"></div>
                     <hr>
@@ -111,16 +117,6 @@
         $(document).ready(function () {
             var forma = $('#formaKandidatiOdabir');
 
-            $('#masovnaUplata').click(function () {
-                forma.attr("action", "{{ $putanja }}/kandidat/masovnaUplata");
-                forma.submit();
-            });
-
-            $('#masovniUpis').click(function () {
-                forma.attr("action", "{{ $putanja }}/kandidat/masovniUpis");
-                forma.submit();
-            });
-
             $('#addStudentButton').click(function () {
                 addStudentToList();
             });
@@ -156,6 +152,32 @@
                     }
                 });
             }
+
+            var formatDatum = $("#formatDatum");
+            formatDatum.datepicker({
+                dateFormat: 'dd.mm.yy.',
+                altField: "#datum",
+                altFormat: "yy-mm-dd"
+            });
+
+            formatDatum.on('input', function () {
+                var date = moment(formatDatum.val(), "dd.mm.yy");
+                $("#datum").val(date.format('YYYY-MM-DD'));
+            });
+
+            var formatDatum2 = $("#formatDatum2");
+            formatDatum2.datepicker({
+                dateFormat: 'dd.mm.yy.',
+                altField: "#datum2",
+                altFormat: "yy-mm-dd"
+            });
+
+            formatDatum2.on('input', function () {
+                var date = moment(formatDatum2.val(), "dd.mm.yy");
+                $("#datum2").val(date.format('YYYY-MM-DD'));
+            });
         });
+
     </script>
+    <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>
 @endsection

@@ -20,6 +20,8 @@ class CreatePrijavaIspitaTable extends Migration
             $table->integer('rok_id');
             $table->integer('brojPolaganja');
             $table->date('datum');
+            $table->date('datum2');
+            $table->time('vreme');
             $table->integer('tipPrijave_id');
             $table->timestamps();
         });

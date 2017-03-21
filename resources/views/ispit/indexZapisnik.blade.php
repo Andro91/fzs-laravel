@@ -20,8 +20,6 @@
                 <a href="{{$putanja}}/zapisnik/create/" class="btn btn-primary"><span class="fa fa-plus"></span> Нов
                     записник</a>
                 <a href="{{$putanja}}/zapisnik/arhiva/" class="btn btn-warning"><i class="fa fa-archive"></i> Архива</a>
-                <a href="{{$putanja}}/zapisnik/pretraga/" class="btn btn-primary"><i class="fa fa-search"></i> Претрага
-                    записника</a>
             </div>
         </div>
         <hr>
@@ -34,7 +32,8 @@
                     <label for="filter_predmet_id">Предмет</label>
                     <select class="form-control auto-combobox" id="filter_predmet_id"
                             name="filter_predmet_id">
-                        @foreach($predmeti as $item)
+                        <option value=""></option>
+                    @foreach($predmeti as $item)
                             <option value="{{$item->id}}" {{ (!empty(app('request')->input('filter_predmet_id')) && app('request')->input('filter_predmet_id') == $item->id) ? 'selected' : '' }}>{{ $item->naziv }}</option>
                         @endforeach
                     </select>
@@ -44,6 +43,7 @@
                     <label for="filter_rok_id">Испитни рок</label>
                     <select class="form-control" id="filter_rok_id"
                             name="filter_rok_id">
+                        <option value=""></option>
                         @if(!empty($aktivniIspitniRok))
                             @foreach($aktivniIspitniRok as $tip)
                                 <option value="{{$tip->id}}" {{ (!empty(app('request')->input('filter_rok_id')) && app('request')->input('filter_rok_id') == $tip->id) ? 'selected' : '' }}>{{$tip->naziv}}</option>
@@ -56,6 +56,7 @@
                     <label for="filter_profesor_id">Професор</label>
                     <select class="form-control auto-combobox" id="filter_profesor_id"
                             name="filter_profesor_id">
+                        <option value=""></option>
                         @foreach($profesori as $item)
                             <option value="{{$item->id}}" {{ (!empty(app('request')->input('filter_profesor_id')) && app('request')->input('filter_profesor_id') == $item->id) ? 'selected' : '' }}>{{ $item->ime . " " . $item->prezime }}</option>
                         @endforeach
