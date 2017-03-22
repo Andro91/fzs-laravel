@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('page_heading','Записник о полагању испита')
+@section('page_heading','Ретроактивни унос')
 @section('section')
     <div class="col-lg-10">
         <div>
@@ -42,7 +42,7 @@
                 <select class="form-control auto-combobox" id="addIspitList" name="addIspitList">
                     <option value="0"></option>
                     @foreach($ispiti as $index => $ispit)
-                        <option value="{{$ispit->id}}">{{$ispit->naziv}}</option>
+                        <option value="{{$ispit->id}}">{{$ispit->predmet->naziv}}</option>
                     @endforeach
                 </select>
             </div>
@@ -84,7 +84,7 @@
                     <tbody>
                     @foreach($polozeniIspiti as $ispit)
                         <tr>
-                            <td>{{$ispit->predmet->naziv}}</td>
+                            <td>{{$ispit->predmet->predmet->naziv}}</td>
                             <td>{{$ispit->konacnaOcena}}</td>
                             <td>
                                 <a class="btn btn-danger" href="{{$putanja}}/deletePrivremeniIspit/{{$ispit->id}}"

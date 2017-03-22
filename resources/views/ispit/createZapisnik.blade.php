@@ -87,22 +87,28 @@
                     <input type="hidden" id="prijavaIspita_id" name="prijavaIspita_id" value="">
 
                     <input type="hidden" id="datum" name="datum" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+                    <input type="hidden" id="datum2" name="datum2" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
 
                     <h3>Студенти који су пријавили испит у испитном року</h3>
 
                     <div class="clearfix"></div>
                     <hr>
                     <div class="row">
-                        <div class="form-group col-lg-4">
+                        <div class="form-group col-lg-3">
                             <label for="formatDatum">Датум</label>
                             <input type="text" id="formatDatum" name="formatDatum" class="form-control dateMask"
                                    value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}">
                         </div>
-                        <div class="form-group col-lg-2">
+                        <div class="form-group col-lg-3">
+                            <label for="formatDatum">Датум 2</label>
+                            <input type="text" id="formatDatum2" name="formatDatum2" class="form-control dateMask"
+                                   value="{{ Carbon\Carbon::now()->format('d.m.Y.') }}">
+                        </div>
+                        <div class="form-group col-lg-3">
                             <label for="vreme">Време</label>
                             <input type="text" id="vreme" name="vreme" class="form-control timeMask">
                         </div>
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-3">
                             <label for="ucionica">Учионица</label>
                             <input type="text" id="ucionica" name="ucionica" class="form-control">
                         </div>
@@ -241,6 +247,18 @@
             formatDatum.on('input', function () {
                 var date = moment(formatDatum.val(), "dd.mm.yy");
                 $("#datum").val(date.format('YYYY-MM-DD'));
+            });
+
+            var formatDatum2 = $("#formatDatum2");
+            formatDatum2.datepicker({
+                dateFormat: 'dd.mm.yy.',
+                altField: "#datum",
+                altFormat: "yy-mm-dd"
+            });
+
+            formatDatum2.on('input', function () {
+                var date = moment(formatDatum2.val(), "dd.mm.yy");
+                $("#datum2").val(date.format('YYYY-MM-DD'));
             });
 
 

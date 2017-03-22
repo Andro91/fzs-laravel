@@ -391,6 +391,8 @@ class IspitController extends Controller
 
         $zapisnik->vreme = $request->vreme;
         $zapisnik->ucionica = $request->ucionica;
+        $zapisnik->datum = $request->datum;
+        $zapisnik->datum2 = $request->datum2;
         $zapisnik->save();
 
         return Redirect::back();

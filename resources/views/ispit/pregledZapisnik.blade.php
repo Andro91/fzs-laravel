@@ -71,6 +71,9 @@
                         <form action="{{$putanja}}/zapisnik/pregled/izmeniPodatke" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="zapisnikId" value="{{$zapisnik->id}}">
+                            <input type="hidden" id="datum" name="datum" value="{{$zapisnik->datum}}">
+                            <input type="hidden" id="datum2" name="datum2" value="{{$zapisnik->datum2}}">
+
                             <div class="row">
                                 <div class="form-group col-lg-4">
                                     <label for="ucionica">Учионица</label>
@@ -79,6 +82,16 @@
                                 <div class="form-group col-lg-4">
                                     <label for="vreme">Време</label>
                                     <input type="text" class="form-control timeMask" name="vreme" id="vreme">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label for="formatDatum">Датум</label>
+                                    <input type="text" class="form-control dateMask" name="formatDatum" id="formatDatum">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="formatDatum2">Датум 2</label>
+                                    <input type="text" class="form-control dateMask" name="formatDatum2" id="formatDatum2">
                                 </div>
                                 <div class="form-group col-lg-10">
                                     <input type="submit" class="btn btn-success" value="Сачувај">
@@ -122,6 +135,7 @@
             <div class="col-lg-4" style="margin-top: 20px">
                 <h4>Време полагања: {{ substr($zapisnik->vreme, 0, -3) }}</h4>
                 <h4>Учионица: {{ $zapisnik->ucionica }}</h4>
+                <h4>Датум: {{ $zapisnik->datum->format('d.m.Y.') . ' / ' . $zapisnik->datum2->format('d.m.Y.') }}</h4>
             </div>
             <div class="col-lg-2" style="margin-top: 20px">
                 <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
@@ -156,6 +170,7 @@
                         <th>Поени</th>
                         <th>Оцена број</th>
                         <th>Оцена словима</th>
+                        <th>Статус</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -211,6 +226,15 @@
                                     </option>
                                     <option value="10" {{ $ispit->konacnaOcena == 10 ? 'selected' : "" }}>десет
                                     </option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" data-index="{{ $index }}"
+                                        name="statusIspita[{{$index}}]">
+                                    <option value="0"></option>
+                                    @foreach($statusIspita as $index => $status)
+                                        <option value="{{$status->id}}" {{ $ispit->statusIspita == $status->id ? 'selected' : "" }}>{{$status->naziv}}</option>
+                                    @endforeach
                                 </select>
                             </td>
                             <td>
@@ -319,6 +343,33 @@
                 });
             }
         });
+
+
+
+        var formatDatum = $("#formatDatum");
+        formatDatum.datepicker({
+            dateFormat: 'dd.mm.yy.',
+            altField: "#datum",
+            altFormat: "yy-mm-dd"
+        });
+
+        formatDatum.on('input', function () {
+            var date = moment(formatDatum.val(), "dd.mm.yy");
+            $("#datum").val(date.format('YYYY-MM-DD'));
+        });
+
+        var formatDatum2 = $("#formatDatum2");
+        formatDatum2.datepicker({
+            dateFormat: 'dd.mm.yy.',
+            altField: "#datum2",
+            altFormat: "yy-mm-dd"
+        });
+
+        formatDatum2.on('input', function () {
+            var date = moment(formatDatum2.val(), "dd.mm.yy");
+            $("#datum2").val(date.format('YYYY-MM-DD'));
+        });
+
     </script>
     <script type="text/javascript" src="{{ $putanja }}/js/jquery-ui-autocomplete.js"></script>
     <script type="text/javascript" src="{{ $putanja }}/js/dateMask.js"></script>

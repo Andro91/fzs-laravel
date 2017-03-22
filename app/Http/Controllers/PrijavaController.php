@@ -498,6 +498,7 @@ class PrijavaController extends Controller
             'kandidat_id' => $kandidat->id,
             'tipStudija_id' => $kandidat->tipStudija_id
         ])->first();
+        if($diplomskiRadTema == null){return "Не постоји пријава теме дипломског рада!";}
         return view('prijava.odbrana.diplomskiOdbrana', compact('kandidat', 'profesor', 'predmeti', 'diplomskiRadTema'));
     }
 
