@@ -139,10 +139,17 @@ class PrijavaController extends Controller
             }
 
             $prijava = new PrijavaIspita($request->all());
-            $prijava->predmet_id = $predmetProgram::where([
+
+            $predmetProgramZaPrijavu = PredmetProgram::where([
                 'studijskiProgram_id' => $kandidat->studijskiProgram_id,
-                'tipStudija_id' => $kandidat->tipStudija_id
-            ])->first()->id;
+                'tipStudija_id' => $kandidat->tipStudija_id,
+                'predmet_id' => $request->predmet_id
+            ])->first();
+
+            if($predmetProgramZaPrijavu != null){
+                $prijava->predmet_id = $predmetProgramZaPrijavu->id;
+            }
+
             $prijava->brojPolaganja = 1;
             $prijava->kandidat_id = $kandidatId;
             $saved = $prijava->save();
