@@ -100,7 +100,8 @@
                     </table>
                     <hr>
                     <div class="form-group text-center">
-                        <input type="submit" value="Пријави студенте на испит" class="btn btn-lg btn-primary">
+                        <input type="submit" name="Submit" value="Креирај пријаву" class="btn btn-lg btn-primary">
+                        <input type="submit" name="Submit2" value="Креирај пријаву и записник" class="btn btn-lg btn-success">
                     </div>
                 </form>
             </div>

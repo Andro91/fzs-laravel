@@ -201,7 +201,13 @@ class IspitController extends Controller
 
         $prijavaIds = array();
         foreach ($zapisnikStudent as $id) {
-            $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
+            $kandidat = Kandidat::find($id);
+            $predmetProgram = PredmetProgram::where([
+                'predmet_id' => $zapisnik->predmet_id,
+                'tipStudija_id' => $kandidat->tipStudija_id,
+                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+            ])->first();
+            $pom = PrijavaIspita::where(['predmet_id' => $predmetProgram->id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
             }
@@ -209,7 +215,13 @@ class IspitController extends Controller
 
         $polozeniIspitIds = array();
         foreach ($zapisnikStudent as $id) {
-            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
+            $kandidat = Kandidat::find($id);
+            $predmetProgram = PredmetProgram::where([
+                'predmet_id' => $zapisnik->predmet_id,
+                'tipStudija_id' => $kandidat->tipStudija_id,
+                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+            ])->first();
+            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $predmetProgram->id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $polozeniIspitIds[$id] = $pom->id;
             }

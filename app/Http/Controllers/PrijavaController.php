@@ -18,7 +18,11 @@ use App\StudijskiProgram;
 use App\TipPredmeta;
 use App\TipPrijave;
 use App\TipStudija;
+use App\ZapisnikOPolaganju_Student;
+use App\ZapisnikOPolaganju_StudijskiProgram;
+use App\ZapisnikOPolaganjuIspita;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -124,14 +128,22 @@ class PrijavaController extends Controller
             'odabir' => 'required',
         ], $messages);
 
+        if(isset($request->Submit2)){
+            $zapisnik = new ZapisnikOPolaganjuIspita($request->all());
+            $zapisnik->save();
+
+            $smerovi = array();
+        }
+
         foreach ($request->odabir as $kandidatId) {
 
             $kandidat = Kandidat::find($kandidatId);
 
             $validator = PrijavaIspita::where([
                 'kandidat_id' => $kandidatId,
-                'rok_id' => $request->rok_id
-            ])->whereIn('predmet_id',$predmetProgram->pluck('id')->all())->get();
+                'rok_id' => $request->rok_id,
+                'predmet_id' => $request->predmet_id
+            ])->get();
 
             if (!$validator->isEmpty()) {
                 $duplicateArray[] = $kandidat;
@@ -148,14 +160,47 @@ class PrijavaController extends Controller
 
             if($predmetProgramZaPrijavu != null){
                 $prijava->predmet_id = $predmetProgramZaPrijavu->id;
+                if(isset($request->Submit2)){$zapisnik->predmet_id = $predmetProgramZaPrijavu->id;}
+            }else{
+                continue;
             }
 
             $prijava->brojPolaganja = 1;
             $prijava->kandidat_id = $kandidatId;
             $saved = $prijava->save();
 
+            if(isset($request->Submit2)){
+                $zapisStudent = new ZapisnikOPolaganju_Student();
+                $zapisStudent->zapisnik_id = $zapisnik->id;
+                $zapisStudent->prijavaIspita_id = $prijava->id;
+
+                $zapisStudent->kandidat_id = $kandidatId;
+                $zapisStudent->save();
+
+                $kandidat = Kandidat::find($kandidatId);
+                $smerovi[] = $kandidat->studijskiProgram_id;
+
+                $polozenIspit = new PolozeniIspiti();
+                $polozenIspit->indikatorAktivan = 0;
+                $polozenIspit->kandidat_id = $kandidatId;
+                $polozenIspit->predmet_id = $zapisnik->predmet_id;
+                $polozenIspit->zapisnik_id = $zapisnik->id;
+                $polozenIspit->prijava_id = $prijava->id;
+                $polozenIspit->save();
+            }
+
             if(!$saved){
                 $errorArray[] = Kandidat::find($kandidatId);
+            }
+        }
+
+        if(isset($request->Submit2)){
+            $smerovi = array_unique($smerovi);
+            foreach ($smerovi as $id) {
+                $zapisSmer = new ZapisnikOPolaganju_StudijskiProgram();
+                $zapisSmer->zapisnik_id = $zapisnik->id;
+                $zapisSmer->StudijskiProgram_id = $id;
+                $zapisSmer->save();
             }
         }
 
@@ -356,7 +401,7 @@ class PrijavaController extends Controller
     {
         $prijava = PrijavaIspita::find($id);
         $kandidat = $prijava->kandidat_id;
-        $predmet = $prijava->predmet_id;
+        $predmet = PredmetProgram::find($prijava->predmet_id)->predmet_id;
         PrijavaIspita::destroy($id);
 
         if($request->prijava == 'predmet'){
