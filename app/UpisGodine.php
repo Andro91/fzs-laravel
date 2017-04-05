@@ -141,6 +141,7 @@ class UpisGodine extends AndroModel
                 $kandidat->skolskaGodinaUpisa_id = $skolskaGodinaUpisaId;
                 $kandidat->statusUpisa_id = \Config::get('constants.statusi.upisan');
                 $kandidat->brojIndeksa = null;
+                $kandidat->godinaStudija_id = 1;
                 $kandidat->save();
                 UpisGodine::generisiBrojIndeksa($kandidat->id);
                 UpisGodine::registrujKandidata($kandidat->id);
