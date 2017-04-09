@@ -734,7 +734,7 @@ class IzvestajiController extends Controller
     public function polozeniStampa(Kandidat $student)
     {
         try {
-            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->where(['indikatorAktivan' => 1])->where(['statusIspita' => 1])->get();
+            $ispiti = PolozeniIspiti::where(['kandidat_id' => $student->id])->where(['indikatorAktivan' => 1])->where(['statusIspita' => 5])->orWhere(['statusIspita' => 1])->get();
 
             $zbir = 0;
             $i = 0;
@@ -824,8 +824,6 @@ class IzvestajiController extends Controller
 
     public function zapisnikStampa(Request $request)
     {
-        //return $request->profesor;
-
         try {
             $zapisnik = ZapisnikOPolaganjuIspita::find($request->id);
             $zapisnikStudent = ZapisnikOPolaganju_Student::where(['zapisnik_id' => $request->id])->get();

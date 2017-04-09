@@ -94,20 +94,37 @@
                     <td>{{$zapisnik->datum->format('d.m.Y.')}}</td>
                     <td>{{$zapisnik->studenti->count()}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед
-                            полагања</a>
-                        <a class="btn btn-danger" href="{{$putanja}}/zapisnik/delete/{{ $zapisnik->id }}"
-                           onclick="return confirm('Да ли сте сигурни да желите да обришете овај записник?');">
-                            <div title="Брисање" style="padding: 2pt;">
-                                <i class="fa fa-trash"></i>
+                        <div style="display:inline;">
+                        <div class="col-lg-12" style="margin-top: 20px">
                             </div>
-                        </a>
-                        <a class="btn btn-warning"
-                           href="{{$putanja}}/zapisnik/arhiviraj/{{ $zapisnik->id }}">
-                            <div title="архива">
-                                <i class="fa fa-archive"></i> У архиву
+                            <div>
+                            <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
+                                {{ csrf_field() }}
+                                <div style="display:none;">
+                                    <input type="hidden" name="predmet" value="{{$zapisnik->predmet->naziv}}">
+                                    <input type="hidden" name="rok" value="{{$zapisnik->ispitniRok->naziv}}">
+                                    <input type="hidden" name="profesor"
+                                           value="{{$zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime}}">
+                                    <input type="hidden" name="id" value="{{$zapisnik->id}}">
+                                </div>
+                                <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед
+                                    полагања</a>
+                                <a class="btn btn-danger" href="{{$putanja}}/zapisnik/delete/{{ $zapisnik->id }}"
+                                   onclick="return confirm('Да ли сте сигурни да желите да обришете овај записник?');">
+                                    <div title="Брисање" style="padding: 2pt;">
+                                        <i class="fa fa-trash"></i>
+                                    </div>
+                                </a>
+                                <a class="btn btn-warning"
+                                   href="{{$putanja}}/zapisnik/arhiviraj/{{ $zapisnik->id }}">
+                                    <div title="архива">
+                                        <i class="fa fa-archive"></i> У архиву
+                                    </div>
+                                </a>
+                                <button type="submit" class="btn btn-primary fa fa-print"></button>
+                            </form>
                             </div>
-                        </a>
+                        </div>
                     </td>
                 </tr>
             @endforeach
