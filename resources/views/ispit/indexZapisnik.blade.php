@@ -94,11 +94,8 @@
                     <td>{{$zapisnik->datum->format('d.m.Y.')}}</td>
                     <td>{{$zapisnik->studenti->count()}}</td>
                     <td>
-                        <div style="display:inline;">
-                        <div class="col-lg-12" style="margin-top: 20px">
-                            </div>
                             <div>
-                            <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
+                            <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post" style="margin-bottom: 0px">
                                 {{ csrf_field() }}
                                 <div style="display:none;">
                                     <input type="hidden" name="predmet" value="{{$zapisnik->predmet->naziv}}">
@@ -107,8 +104,7 @@
                                            value="{{$zapisnik->profesor->ime . " " . $zapisnik->profesor->prezime}}">
                                     <input type="hidden" name="id" value="{{$zapisnik->id}}">
                                 </div>
-                                <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед
-                                    полагања</a>
+                                <a class="btn btn-primary" href="{{$putanja}}/zapisnik/pregled/{{ $zapisnik->id }}">Преглед</a>
                                 <a class="btn btn-danger" href="{{$putanja}}/zapisnik/delete/{{ $zapisnik->id }}"
                                    onclick="return confirm('Да ли сте сигурни да желите да обришете овај записник?');">
                                     <div title="Брисање" style="padding: 2pt;">
@@ -124,7 +120,6 @@
                                 <button type="submit" class="btn btn-primary fa fa-print"></button>
                             </form>
                             </div>
-                        </div>
                     </td>
                 </tr>
             @endforeach

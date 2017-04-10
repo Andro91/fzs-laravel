@@ -201,13 +201,16 @@ class IspitController extends Controller
 
         $prijavaIds = array();
         foreach ($zapisnikStudent as $id) {
-            $kandidat = Kandidat::find($id);
-            $predmetProgram = PredmetProgram::where([
-                'predmet_id' => $zapisnik->predmet_id,
-                'tipStudija_id' => $kandidat->tipStudija_id,
-                'studijskiProgram_id' => $kandidat->studijskiProgram_id
-            ])->first();
-            $pom = PrijavaIspita::where(['predmet_id' => $predmetProgram->id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
+//            $kandidat = Kandidat::find($id);
+            //dd($zapisnik->predmet_id,$kandidat->tipStudija_id,$kandidat->studijskiProgram_id);
+//            $predmetProgram = PredmetProgram::where([
+//                'predmet_id' => $zapisnik->predmet_id,
+//                'tipStudija_id' => $kandidat->tipStudija_id,
+//                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+//            ])->first();
+//            $predmetProgram = PredmetProgram::find($zapisnik->predmet_id);
+
+            $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
             }
@@ -215,22 +218,26 @@ class IspitController extends Controller
 
         $polozeniIspitIds = array();
         foreach ($zapisnikStudent as $id) {
-            $kandidat = Kandidat::find($id);
-            $predmetProgram = PredmetProgram::where([
-                'predmet_id' => $zapisnik->predmet_id,
-                'tipStudija_id' => $kandidat->tipStudija_id,
-                'studijskiProgram_id' => $kandidat->studijskiProgram_id
-            ])->first();
-            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $predmetProgram->id, 'kandidat_id' => $id])->first();
+//            $kandidat = Kandidat::find($id);
+//            $predmetProgram = PredmetProgram::where([
+//                'predmet_id' => $zapisnik->predmet_id,
+//                'tipStudija_id' => $kandidat->tipStudija_id,
+//                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+//            ])->first();
+            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $polozeniIspitIds[$id] = $pom->id;
             }
         }
 
+        $predmetProgram = PredmetProgram::find($zapisnik->predmet_id);
         $studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $zapisnikId])->get();
         $statusIspita = StatusIspita::all();
         $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get()->all();
-        $kandidati = Kandidat::all();
+        $kandidati = Kandidat::where([
+            'tipStudija_id' => $predmetProgram->tipStudija_id,
+            'studijskiProgram_id' => $predmetProgram->studijskiProgram_id
+        ])->get();
 
         return view('ispit.pregledZapisnik', compact('zapisnik', 'studenti', 'studijskiProgrami', 'statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds','kandidati'));
     }
@@ -271,17 +278,19 @@ class IspitController extends Controller
 
     public function storePriznatiIspiti(Request $request)
     {
-        foreach ($request->predmetId as $index => $ispit) {
+        if($request->predmetId != null){
+            foreach ($request->predmetId as $index => $ispit) {
 
-            $polozenIspit = new PolozeniIspiti();
-            $polozenIspit->kandidat_id = $request->kandidat_id;
-            $polozenIspit->predmet_id = $ispit;
-            $polozenIspit->zapisnik_id = 0;
-            $polozenIspit->prijava_id = 0;
-            $polozenIspit->konacnaOcena = $request->konacnaOcena[$index];
-            $polozenIspit->statusIspita = 5;
-            $polozenIspit->indikatorAktivan = 1;
-            $polozenIspit->save();
+                $polozenIspit = new PolozeniIspiti();
+                $polozenIspit->kandidat_id = $request->kandidat_id;
+                $polozenIspit->predmet_id = $ispit;
+                $polozenIspit->zapisnik_id = 0;
+                $polozenIspit->prijava_id = 0;
+                $polozenIspit->konacnaOcena = $request->konacnaOcena[$index];
+                $polozenIspit->statusIspita = 5;
+                $polozenIspit->indikatorAktivan = 1;
+                $polozenIspit->save();
+            }
         }
 
         return redirect("/prijava/zaStudenta/{$request->kandidat_id}");
