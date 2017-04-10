@@ -6,10 +6,10 @@
     <div style="text-align: left"><label>Број: 66/2016</label> <br/>
         <label>Датум: {{$datum}}</label>
     </div>
-    <p style="text-align: center;">
+    <div style="text-align: center;">
 
     <h1>УВЕРЕЊЕ</h1><br/><h4>О ПОЛОЖЕНИМ ИСПИТИМА</h4><br/>
-    </p>
+    </div>
     <div style="text-align: justify;">{{$student->imeKandidata}} ({{$student->imePrezimeJednogRoditelja}})
         {{$student->prezimeKandidata}} рођен/а {{ date('d.m.Y.',strtotime($student->datumRodjenja)) }}
         године, место {{$student->mestoRodjenja}}, општина {{$student->mestoRodjenja}},
@@ -18,7 +18,6 @@
     </div>
 
     <div>
-        <br/>
         <br/>
         <table style="border: 1px solid black;">
             <thead>
