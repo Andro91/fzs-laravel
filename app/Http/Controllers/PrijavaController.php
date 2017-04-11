@@ -101,9 +101,11 @@ class PrijavaController extends Controller
     {
         $predmet = Predmet::find($id);
 
+        $studijskiProgrami = PredmetProgram::where(['predmet_id' => $id])->pluck('studijskiProgram_id')->all();
+
         $kandidati = Kandidat::where([
             'statusUpisa_id' => 1
-        ])->get();
+        ])->whereIn('studijskiProgram_id', $studijskiProgrami)->get();
 
         $ispitniRok = AktivniIspitniRokovi::where(['indikatorAktivan' => 1])->get();
 
@@ -130,6 +132,7 @@ class PrijavaController extends Controller
 
         if(isset($request->Submit2)){
             $zapisnik = new ZapisnikOPolaganjuIspita($request->all());
+            $zapisnik->datum2 = $request->datum2;
             $zapisnik->save();
 
             $smerovi = array();
@@ -160,7 +163,10 @@ class PrijavaController extends Controller
 
             if($predmetProgramZaPrijavu != null){
                 $prijava->predmet_id = $predmetProgramZaPrijavu->id;
-                if(isset($request->Submit2)){$zapisnik->predmet_id = $predmetProgramZaPrijavu->id;}
+                if(isset($request->Submit2)){
+                    $zapisnik->predmet_id = $request->predmet_id;
+                    $zapisnik->save();
+                }
             }else{
                 continue;
             }

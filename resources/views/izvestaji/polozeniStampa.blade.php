@@ -34,8 +34,8 @@
             @foreach($ispiti as $index => $ispit)
                 <tr>
                     <td style="border: 1px solid black; width:35px;">{{$index + 1}}</td>
-                    <td style="border: 1px solid black; width:350px;">{{$ispit->predmet->predmet->naziv}}</td>
-                    <td style="border: 1px solid black; width:50px; text-align: right;">{{$ispit->predmet->espb}}</td>
+                    <td style="border: 1px solid black; width:350px;">{{$ispit->predmet->naziv}}</td>
+                    <td style="border: 1px solid black; width:50px; text-align: right;">{{$espbArray[$index]}}</td>
                     <td style="border: 1px solid black; width:50px; text-align: right;">{{$ispit->konacnaOcena}}</td>
                 </tr>
             @endforeach

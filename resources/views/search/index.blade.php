@@ -75,7 +75,7 @@
                                         Статус
                                     </a>
                                     <a class="btn btn-primary btn-sm"
-                                       href="{{$putanja}}/prijava/zastudenta/{{ $kandidat->id }}">
+                                       href="{{$putanja}}/prijava/zaStudenta/{{ $kandidat->id }}">
                                         Испити
                                     </a>
                                     <a class="btn btn-primary btn-sm"

@@ -749,6 +749,15 @@ class IzvestajiController extends Controller
                 $i++;
             }
 
+            $espbArray = array();
+            foreach ($ispiti as $ispit) {
+                $predmetProgram = PredmetProgram::where([
+                    'studijskiProgram_id' => $student->studijskiProgram_id,
+                    'predmet_id' => $ispit->predmet_id
+                ])->first();
+                $espbArray[] = $predmetProgram->espb;
+            }
+
             if ($i != 0) {
                 $prosek = $zbir / $i;
             } else {
@@ -762,7 +771,7 @@ class IzvestajiController extends Controller
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti)->with('datum', date("d.m.Y", strtotime($datum)))->with('prosek', $prosek);
+        $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti)->with('datum', date("d.m.Y", strtotime($datum)))->with('prosek', $prosek)->with('espbArray', $espbArray);
 
         $contents = $view->render();
         PDF::SetTitle('Уверење о положеним испитима');
@@ -891,7 +900,7 @@ class IzvestajiController extends Controller
         //compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
         $view = View::make('izvestaji.zapisnik')->with('zapisnik', $zapisnik)->with('studenti', $studenti)->with('ispit', $ispit->naziv)->with('polozeniIspiti', $polozeniIspiti)
             ->with('predmet', $request->predmet)->with('rok', $request->rok)->with('profesor', $request->profesor)->with('programi', $programi)->with('datum', $zapisnik->datum)->with('vreme', $zapisnik->vreme)
-            ->with('ucionica', $zapisnik->ucionica);
+            ->with('ucionica', $zapisnik->ucionica)->with('datum2', $zapisnik->datum2);
 
         $contents = $view->render();
         PDF::SetTitle('Записник о полагању испита');

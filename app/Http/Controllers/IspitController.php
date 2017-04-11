@@ -84,11 +84,14 @@ class IspitController extends Controller
 
     public function vratiZapisnikStudenti(Request $request)
     {
+        $program = PredmetProgram::where([
+            'predmet_id' => $request->predmet_id
+        ])->pluck('id');
         $prijava = PrijavaIspita::where([
             'rok_id' => $request->rok_id,
-            'predmet_id' => $request->predmet_id,
             'profesor_id' => $request->profesor_id
-        ])->get();
+        ])->whereIn('predmet_id', $program)->get();
+
 
         $prijavaId = $prijava->isEmpty() ? null : $prijava->first()->id;
 
@@ -201,16 +204,15 @@ class IspitController extends Controller
 
         $prijavaIds = array();
         foreach ($zapisnikStudent as $id) {
-//            $kandidat = Kandidat::find($id);
-            //dd($zapisnik->predmet_id,$kandidat->tipStudija_id,$kandidat->studijskiProgram_id);
-//            $predmetProgram = PredmetProgram::where([
-//                'predmet_id' => $zapisnik->predmet_id,
-//                'tipStudija_id' => $kandidat->tipStudija_id,
-//                'studijskiProgram_id' => $kandidat->studijskiProgram_id
-//            ])->first();
-//            $predmetProgram = PredmetProgram::find($zapisnik->predmet_id);
+            $kandidat = Kandidat::find($id);
 
-            $pom = PrijavaIspita::where(['predmet_id' => $zapisnik->predmet_id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
+            $predmetProgram = PredmetProgram::where([
+                'predmet_id' => $zapisnik->predmet_id,
+                'tipStudija_id' => $kandidat->tipStudija_id,
+                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+            ])->first();
+
+            $pom = PrijavaIspita::where(['predmet_id' => $predmetProgram->id, 'rok_id' => $zapisnik->rok_id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $prijavaIds[$id] = $pom->id;
             }
@@ -218,22 +220,27 @@ class IspitController extends Controller
 
         $polozeniIspitIds = array();
         foreach ($zapisnikStudent as $id) {
-//            $kandidat = Kandidat::find($id);
-//            $predmetProgram = PredmetProgram::where([
-//                'predmet_id' => $zapisnik->predmet_id,
-//                'tipStudija_id' => $kandidat->tipStudija_id,
-//                'studijskiProgram_id' => $kandidat->studijskiProgram_id
-//            ])->first();
-            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $zapisnik->predmet_id, 'kandidat_id' => $id])->first();
+            $kandidat = Kandidat::find($id);
+            $predmetProgram = PredmetProgram::where([
+                'predmet_id' => $zapisnik->predmet_id,
+                'tipStudija_id' => $kandidat->tipStudija_id,
+                'studijskiProgram_id' => $kandidat->studijskiProgram_id
+            ])->first();
+            $pom = PolozeniIspiti::where(['zapisnik_id' => $zapisnik->id, 'predmet_id' => $predmetProgram->id, 'kandidat_id' => $id])->first();
             if ($pom != null) {
                 $polozeniIspitIds[$id] = $pom->id;
             }
         }
 
-        $predmetProgram = PredmetProgram::find($zapisnik->predmet_id);
+        $predmetProgram = PredmetProgram::where([
+            'predmet_id' => $zapisnik->predmet_id,
+            'tipStudija_id' => $kandidat->tipStudija_id,
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->first();
         $studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $zapisnikId])->get();
         $statusIspita = StatusIspita::all();
         $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get()->all();
+
         $kandidati = Kandidat::where([
             'tipStudija_id' => $predmetProgram->tipStudija_id,
             'studijskiProgram_id' => $predmetProgram->studijskiProgram_id
@@ -341,6 +348,8 @@ class IspitController extends Controller
             'odabir' => 'required',
         ], $messages);
 
+
+
         try {
             $zapisnik = ZapisnikOPolaganjuIspita::find($zapisnikId);
 
@@ -359,6 +368,20 @@ class IspitController extends Controller
                     //ako student vec postoji u zapisniku, preskacemo ga
                     continue;
                 }
+                $kandidat = Kandidat::find($id);
+                $predmetProgram = PredmetProgram::where([
+                    'studijskiProgram_id' => $kandidat->studijskiProgram_id,
+                    'predmet_id' => $zapisnik->predmet_id
+                ])->get();
+
+
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem = new PrijavaIspita();
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->kandidat_id = $id;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->predmet_id = $predmetProgram->first()->id;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->profesor_id = $zapisnik->profesor_id;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->rok_id = $zapisnik->rok_id;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->brojPolaganja = 1;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->save();
 
                 $zapisStudent = new ZapisnikOPolaganju_Student();
                 $zapisStudent->zapisnik_id = $zapisnik->id;
@@ -366,7 +389,7 @@ class IspitController extends Controller
                 $zapisStudent->kandidat_id = $id;
                 $zapisStudent->save();
 
-                $kandidat = Kandidat::find($id);
+
                 if(!in_array($kandidat->studijskiProgram_id, $prijavljeniSmerovi)){
                     $smerovi[] = $kandidat->studijskiProgram_id;
                 }
@@ -376,7 +399,7 @@ class IspitController extends Controller
                 $polozenIspit->kandidat_id = $id;
                 $polozenIspit->predmet_id = $zapisnik->predmet_id;
                 $polozenIspit->zapisnik_id = $zapisnik->id;
-                $polozenIspit->prijava_id = $zapisnik->prijavaispita_id;
+                $polozenIspit->prijava_id = $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->id;
                 $polozenIspit->save();
 
                 $prijavaIspita = new PrijavaIspita();

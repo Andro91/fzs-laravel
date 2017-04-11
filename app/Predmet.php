@@ -28,5 +28,4 @@ class Predmet extends AndroModel
         return $this->belongsTo(StudijskiProgram::class, 'studijskiProgram_id');
     }
 
-
 }

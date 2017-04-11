@@ -6,14 +6,18 @@
 
     <div style="text-align: center;">
         <?php $a = 0;?>
-        <h1 style="padding-bottom: 100px;">Записник о полагању испита</h1>
-        <table>
+
+            <table cellspacing='0' cellpadding='0' border='0'>
+                <tr>
+                    <td><div style="font-size: 20px; page-break-inside: avoid;"> Записник о полагању испита </div></td>
+                </tr>
+            </table>
+            <table cellspacing='0' cellpadding='0' border='0'>
             <tr>
                 <td>
-                    <div style="text-align: left;">
-                        <h4>Предмет: {{ $predmet }}</h4>
-                        <h4>Испитни рок: {{ $rok }}</h4>
-                        <h4>Професор: {{ $profesor }}</h4>
+                    <div style="text-align: left; page-break-inside: avoid;"><span>Предмет: {{ $predmet }}</span><br/>
+                        <span>Испитни рок: {{ $rok }}</span><br/>
+                        <span>Професор: {{ $profesor }}</span><br/>
                         <b>Студијски програм:</b> @foreach($programi as $program)
                             <?php $a++;?>
                             @if($a == $programi->count())<label><b>{{$program->naziv}}</b></label>@else<label><b>{{$program->naziv}}, </b></label>@endif
@@ -21,10 +25,10 @@
                     </div>
                 </td>
                 <td>
-                    <div style="text-align: right;">
-                        <h4>Датум: {{ date('d.m.Y.',strtotime($datum)) }}</h4>
-                        <h4>Време: {{ $vreme }}</h4>
-                        <h4>Учионица: {{ $ucionica }}</h4>
+                    <div style="text-align: right; page-break-inside: avoid;">
+                        <span>Датум: {{ date('d.m.Y.',strtotime($datum)) }} - {{ date('d.m.Y.',strtotime($datum2)) }}</span><br/>
+                        <span>Време: {{ $vreme }}</span><br/>
+                        <span>Учионица: {{$ucionica}} </span><br/>
                     </div>
                 </td>
             </tr>
@@ -33,7 +37,6 @@
         <br/>
         <br/>
         <br/>
-
 
         <table style="border: 1px solid black;">
             <thead>
@@ -126,62 +129,7 @@
                 <td style="border: 1px solid black; width:70px;"></td>
                 <td style="border: 1px solid black; text-align: left; width:100px;"></td>
             </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
+
         </table>
     </div>
 
