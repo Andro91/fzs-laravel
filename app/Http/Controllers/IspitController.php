@@ -381,11 +381,13 @@ class IspitController extends Controller
                 $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->profesor_id = $zapisnik->profesor_id;
                 $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->rok_id = $zapisnik->rok_id;
                 $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->brojPolaganja = 1;
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->datum = Carbon::now();
+                $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->tipPrijave_id = 0;
                 $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->save();
 
                 $zapisStudent = new ZapisnikOPolaganju_Student();
                 $zapisStudent->zapisnik_id = $zapisnik->id;
-                $zapisStudent->prijavaIspita_id = $zapisnik->prijavaispita_id;
+                $zapisStudent->prijavaIspita_id = $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->id;
                 $zapisStudent->kandidat_id = $id;
                 $zapisStudent->save();
 
@@ -402,15 +404,15 @@ class IspitController extends Controller
                 $polozenIspit->prijava_id = $novaPrijavaZaDodatogStudentaNaZapisnikPrekoRedaMamuVamJebem->id;
                 $polozenIspit->save();
 
-                $prijavaIspita = new PrijavaIspita();
-                $prijavaIspita->kandidat_id = $id;
-                $prijavaIspita->predmet_id = $zapisnik->predmet_id;
-                $prijavaIspita->profesor_id = $zapisnik->profesor_id;
-                $prijavaIspita->rok_id = $zapisnik->rok_id;
-                $prijavaIspita->brojPolaganja = 1;
-                $prijavaIspita->datum = Carbon::now();
-                $prijavaIspita->tipPrijave_id = 0;
-                $prijavaIspita->save();
+//                $prijavaIspita = new PrijavaIspita();
+//                $prijavaIspita->kandidat_id = $id;
+//                $prijavaIspita->predmet_id = $zapisnik->predmet_id;
+//                $prijavaIspita->profesor_id = $zapisnik->profesor_id;
+//                $prijavaIspita->rok_id = $zapisnik->rok_id;
+//                $prijavaIspita->brojPolaganja = 1;
+//                $prijavaIspita->datum = Carbon::now();
+//                $prijavaIspita->tipPrijave_id = 0;
+//                $prijavaIspita->save();
             }
 
             $smerovi = array_unique($smerovi);
