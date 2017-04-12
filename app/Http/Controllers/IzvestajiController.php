@@ -750,14 +750,14 @@ class IzvestajiController extends Controller
             }
 
             $espbArray = array();
-            foreach ($ispiti as $ispit) {
+            /*foreach ($ispiti as $ispit) {
                 $predmetProgram = PredmetProgram::where([
                     'studijskiProgram_id' => $student->studijskiProgram_id,
                     'predmet_id' => $ispit->predmet_id
                 ])->first();
 
                 $espbArray[] = $predmetProgram->espb;
-            }
+            }*/
 
             if ($i != 0) {
                 $prosek = $zbir / $i;
