@@ -162,10 +162,15 @@ class IspitController extends Controller
                 $kandidat = Kandidat::find($id);
                 $smerovi[] = $kandidat->studijskiProgram_id;
 
+                $programId = PredmetProgram::where([
+                    'predmet_id' => $request->predmet_id,
+                    'studijskiProgram_id' => $kandidat->studijskiProgram_id
+                ])->first()->id;
+
                 $polozenIspit = new PolozeniIspiti();
                 $polozenIspit->indikatorAktivan = 0;
                 $polozenIspit->kandidat_id = $id;
-                $polozenIspit->predmet_id = $zapisnik->predmet_id;
+                $polozenIspit->predmet_id = $programId;
                 $polozenIspit->zapisnik_id = $zapisnik->id;
                 $polozenIspit->prijava_id = $zapisnik->prijavaIspita_id;
                 $polozenIspit->save();

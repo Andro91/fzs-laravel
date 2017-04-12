@@ -120,8 +120,6 @@ class PrijavaController extends Controller
         $errorArray = array();
         $duplicateArray = array();
 
-        $predmetProgram = PredmetProgram::where(['predmet_id' => $request->predmet_id])->get();
-
         $messages = [
             'odabir.required' => 'Нисте одабрали ни једног студента за пријаву испита!',
         ];
@@ -186,10 +184,15 @@ class PrijavaController extends Controller
                 $kandidat = Kandidat::find($kandidatId);
                 $smerovi[] = $kandidat->studijskiProgram_id;
 
+                $programId = PredmetProgram::where([
+                    'predmet_id' => $request->predmet_id,
+                    'studijskiProgram_id' => $kandidat->studijskiProgram_id
+                ])->first()->id;
+
                 $polozenIspit = new PolozeniIspiti();
                 $polozenIspit->indikatorAktivan = 0;
                 $polozenIspit->kandidat_id = $kandidatId;
-                $polozenIspit->predmet_id = $zapisnik->predmet_id;
+                $polozenIspit->predmet_id = $programId;
                 $polozenIspit->zapisnik_id = $zapisnik->id;
                 $polozenIspit->prijava_id = $prijava->id;
                 $polozenIspit->save();
