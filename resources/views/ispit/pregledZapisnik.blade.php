@@ -229,7 +229,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" data-index="{{ $index }}"
+                                <select class="form-control statusIspita" data-index="{{ $index }}"
                                         name="statusIspita[{{$index}}]">
                                     <option value="0"></option>
                                     @foreach($statusIspita as $index => $status)
@@ -298,6 +298,11 @@
                 }
                 $('.konacnaOcena[data-index=' + indeks + ']').val(ocena);
                 $('.konacnaOcenaSlovima[data-index=' + indeks + ']').val(ocena);
+                if(ocena > 5){
+                    $('.statusIspita[data-index='+ indeks +']').val(1);
+                }else{
+                    $('.statusIspita[data-index='+ indeks +']').val(2);
+                }
             });
 
             $('.konacnaOcena').change(function () {

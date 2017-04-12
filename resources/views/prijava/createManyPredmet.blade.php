@@ -120,6 +120,7 @@
 
             $('#addStudentButton').click(function () {
                 addStudentToList();
+                $('div.form-group:nth-child(14) > span:nth-child(3) > input:nth-child(1)').val('');
             });
 
             $("div.form-group:nth-child(13) > span:nth-child(3) > input:nth-child(1)").keypress(function(e){
