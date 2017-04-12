@@ -2,7 +2,7 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if(!$polozeniIspiti->isEmpty())
+@if(1==1)
 
     <div style="text-align: center;">
         <?php $a = 0;?>
@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <div style="text-align: right; page-break-inside: avoid;">
-                        <span>Датум: {{ date('d.m.Y.',strtotime($datum)) }} - {{ date('d.m.Y.',strtotime($datum2)) }}</span><br/>
+                        <span>Датум: {{ date('d.m.',strtotime($datum)) }}/{{ date('d.m.Y.',strtotime($datum2)) }}</span><br/>
                         <span>Време: {{ $vreme }}</span><br/>
                         <span>Учионица: {{$ucionica}} </span><br/>
                     </div>
@@ -34,7 +34,6 @@
             </tr>
         </table>
 
-        <br/>
         <br/>
         <br/>
 
@@ -57,13 +56,12 @@
             @foreach($polozeniIspiti as $index => $ispit)
                 <tr>
                     <td style="border: 1px solid black; width: 40px;">{{$index + 1}}</td>
-                    <td style="border: 1px solid black; text-align: left;">{{$ispit->kandidat->brojIndeksa}}</td>
-                    <td style="border: 1px solid black; text-align: left; width:155px;">{{$ispit->kandidat->imeKandidata}} {{$ispit->kandidat->prezimeKandidata}}</td>
-                    <td style="border: 1px solid black; text-align: center;">{{$ispit->prijava->brojPolaganja}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{$ispit->indeks}}</td>
+                    <td style="border: 1px solid black; text-align: left; width:155px;">{{$ispit->imeKandidata}} {{$ispit->prezimeKandidata}}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{$ispit->polaganja}}</td>
                     <td style="border: 1px solid black; width:70px;"></td>
                     <td style="border: 1px solid black; text-align: left; width:100px;"></td>
                 </tr>
-
             @endforeach
             <tr>
                 <td style="border: 1px solid black; width: 40px;"></td>
@@ -105,31 +103,6 @@
                 <td style="border: 1px solid black; width:70px;"></td>
                 <td style="border: 1px solid black; text-align: left; width:100px;"></td>
             </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; width: 40px;"></td>
-                <td style="border: 1px solid black; text-align: left;"></td>
-                <td style="border: 1px solid black; text-align: left; width:155px;"></td>
-                <td style="border: 1px solid black; text-align: center;"></td>
-                <td style="border: 1px solid black; width:70px;"></td>
-                <td style="border: 1px solid black; text-align: left; width:100px;"></td>
-            </tr>
-
         </table>
     </div>
 

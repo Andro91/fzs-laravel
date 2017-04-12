@@ -755,6 +755,7 @@ class IzvestajiController extends Controller
                     'studijskiProgram_id' => $student->studijskiProgram_id,
                     'predmet_id' => $ispit->predmet_id
                 ])->first();
+
                 $espbArray[] = $predmetProgram->espb;
             }
 
@@ -865,9 +866,20 @@ class IzvestajiController extends Controller
 
             //$studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $request->id])->get();
             //$statusIspita = StatusIspita::all();
-            $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $request->id])->get();
+            //$polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $request->id])->get();
             //return $studijskiProgrami;
             //return $polozeniIspiti;
+
+            $polozeniIspiti = DB::table('polozeni_ispiti')
+                ->where(['polozeni_ispiti.zapisnik_id' => $request->id])
+                ->join('kandidat', 'polozeni_ispiti.kandidat_id', '=', 'kandidat.id')
+                ->join('prijava_ispita', 'polozeni_ispiti.prijava_id', '=', 'prijava_ispita.id')
+                ->select('kandidat.*', 'kandidat.brojIndeksa as indeks', 'prijava_ispita.brojPolaganja as polaganja')
+                ->orderBy('indeks')->get();
+
+            //dd($polozeniIspiti);
+
+            //dd($polozeniIspiti2);
 
             //$ids2 = PolozeniIspiti::where(['zapisnik_id' => $request->id])->kandidat;
 
