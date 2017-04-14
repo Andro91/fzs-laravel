@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="form-group col-lg-1">
-                    <label for="submit">&nbsp;</label>
+                    <label for="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <input type="submit" id="submit" class="btn btn-primary" value="Филтрирај">
                 </div>
                 <div class="form-group col-lg-1">

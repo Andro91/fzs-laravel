@@ -42,11 +42,6 @@ class PrijavaController extends Controller
     public function spisakPredmeta(Request $request)
     {
         $tipStudija = TipStudija::all();
-//        $studijskiProgrami = StudijskiProgram::where([
-//            'tipStudija_id' => $request->tipStudijaId,
-//            'indikatorAktivan' => 1])->get();
-
-//        $predmetProgram = PredmetProgram::where(['studijskiProgram_id' => $request->studijskiProgramId])->get();S
 
         $predmeti = Predmet::all();
 
@@ -245,6 +240,10 @@ class PrijavaController extends Controller
         ])->first();
 
 //        $priznatiIspiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
+        $ispiti = PolozeniIspiti::where([
+            'kandidat_id' => $id,
+            'indikatorAktivan' => 1
+        ])->get();
 
 //        $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
 //            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
@@ -324,7 +323,8 @@ class PrijavaController extends Controller
             'prijave',
             'diplomskiRadTema',
             'diplomskiRadOdbrana',
-            'diplomskiRadPolaganje'
+            'diplomskiRadPolaganje',
+            'ispiti'
 //            ,
 //            'polozeniIspitiPrvaGodina',
 //            'polozeniIspitiDrugaGodina',

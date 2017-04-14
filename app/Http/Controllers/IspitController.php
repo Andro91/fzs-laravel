@@ -106,35 +106,35 @@ class IspitController extends Controller
         ];
     }
 
-    public function podaci(Request $request)
-    {
-        $prijavaIspita = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id])->get();
-        $ids = array_map(function (PrijavaIspita $o) {
-            return $o->kandidat_id;
-        }, $prijavaIspita->all());
-
-        $prijavaIds = array();
-        foreach ($ids as $id) {
-            $pom = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id, 'kandidat_id' => $id])->first();
-            if ($pom != null) {
-                $prijavaIds[$id] = $pom->id;
-            }
-        }
-
-        $aktivniIspitniRok = AktivniIspitniRokovi::all();
-        $predmeti = PredmetProgram::all();
-        $studenti = Kandidat::whereIn('id', $ids)->get();
-        //dd($studenti);
-        $rok_id = $request->rok_id;
-        $predmet_id = $request->predmet_id;
-
-        if (!empty($prijavaIds)) {
-            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id', 'prijavaIds'));
-        } else {
-            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id'));
-        }
-
-    }
+//    public function podaci(Request $request)
+//    {
+//        $prijavaIspita = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id])->get();
+//        $ids = array_map(function (PrijavaIspita $o) {
+//            return $o->kandidat_id;
+//        }, $prijavaIspita->all());
+//
+//        $prijavaIds = array();
+//        foreach ($ids as $id) {
+//            $pom = PrijavaIspita::where(['predmet_id' => $request->predmet_id, 'rok_id' => $request->rok_id, 'kandidat_id' => $id])->first();
+//            if ($pom != null) {
+//                $prijavaIds[$id] = $pom->id;
+//            }
+//        }
+//
+//        $aktivniIspitniRok = AktivniIspitniRokovi::all();
+//        $predmeti = PredmetProgram::all();
+//        $studenti = Kandidat::whereIn('id', $ids)->get();
+//        //dd($studenti);
+//        $rok_id = $request->rok_id;
+//        $predmet_id = $request->predmet_id;
+//
+//        if (!empty($prijavaIds)) {
+//            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id', 'prijavaIds'));
+//        } else {
+//            return view('ispit.createZapisnik', compact('aktivniIspitniRok', 'predmeti', 'studenti', 'rok_id', 'predmet_id'));
+//        }
+//
+//    }
 
     public function storeZapisnik(Request $request)
     {
@@ -192,11 +192,17 @@ class IspitController extends Controller
 
     }
 
-    public function deleteZapisnik($id)
+    public static function deleteZapisnikAndChildren($id)
     {
-        ZapisnikOPolaganjuIspita::destroy($id);
         ZapisnikOPolaganju_Student::where(['zapisnik_id' => $id])->delete();
         ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $id])->delete();
+
+        ZapisnikOPolaganjuIspita::destroy($id);
+    }
+
+    public function deleteZapisnik($id)
+    {
+        IspitController::deleteZapisnikAndChildren($id);
 
         return \Redirect::back();
     }
@@ -322,6 +328,29 @@ class IspitController extends Controller
     {
         $polozenIspit = PolozeniIspiti::find($id);
         $polozenIspit->delete();
+
+        return Redirect::back();
+    }
+
+    public function deletePolozeniIspit($id, Request $request)
+    {
+        $ispit = PolozeniIspiti::find($id);
+
+        if($request->brisiZapisnik == 1){
+            $zapisnik = ZapisnikOPolaganju_Student::where([
+                'zapisnik_id' => $ispit->zapisnik_id,
+                'kandidat_id' => $ispit->kandidat_id
+            ])->delete();
+            PolozeniIspiti::destroy($id);
+        }else{
+            $ispit->indikatorAktivan = 0;
+            $ispit->ocenaPismeni = 0;
+            $ispit->ocenaUsmeni = 0;
+            $ispit->konacnaOcena = 0;
+            $ispit->brojBodova = 0;
+            $ispit->statusIspita = 0;
+            $ispit->save();
+        }
 
         return Redirect::back();
     }

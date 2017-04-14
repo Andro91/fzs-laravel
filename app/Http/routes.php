@@ -138,6 +138,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/zapisnik/arhivirajRok', 'IspitController@arhivirajZapisnikeZaIspitniRok');
 
 
+    Route::get('/ispit/delete/{id}', 'IspitController@deletePolozeniIspit');
+
+
     Route::post('/zapisnik/polozeniIspit', 'IspitController@polozeniIspit');
 
     //Priznavanje ispita za kandidate koji se upisusju na II, III, i IV godinu studija

@@ -135,7 +135,7 @@
             <div class="col-lg-4" style="margin-top: 20px">
                 <h4>Време полагања: {{ substr($zapisnik->vreme, 0, -3) }}</h4>
                 <h4>Учионица: {{ $zapisnik->ucionica }}</h4>
-                <h4>Датум: {{ is_null($zapisnik->datum) ? '' : $zapisnik->datum->format('d.m.Y.') . ' / ' . is_null($zapisnik->datum2) ? '' : $zapisnik->datum2->format('d.m.Y.') }}</h4>
+                <h4>Датум: {{ ($zapisnik->datum == null ? '' : $zapisnik->datum->format('d.m.Y.')) . ' / ' . ($zapisnik->datum2 == null ? '' : $zapisnik->datum2->format('d.m.Y.')) }}</h4>
             </div>
             <div class="col-lg-2" style="margin-top: 20px">
                 <form target="_blank" action="{{$putanja}}/izvestaji/zapisnikStampa/{{$zapisnik->id}}" method="post">
@@ -250,14 +250,19 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="form-group text-center">
-                    <button type="button" name="add" class="btn btn-primary btn-lg" data-toggle="modal"
-                            data-target="#myModal"><span
-                                class="fa fa-plus"></span> Додај студента
-                    </button>
-                    <button type="submit" name="Submit" class="btn btn-success btn-lg"><span
-                                class="fa fa-save"></span> Сачувај
-                    </button>
+
+                <div class="row">
+                    <div class="form-group text-center col-lg-10">
+                        <button type="submit" name="Submit" class="btn btn-success btn-lg"><span
+                                    class="fa fa-save"></span> Сачувај
+                        </button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" name="add" class="btn btn-primary btn-lg" data-toggle="modal"
+                                data-target="#myModal"><span
+                                    class="fa fa-plus"></span> Додај студента
+                        </button>
+                    </div>
                 </div>
             </form>
         @endif

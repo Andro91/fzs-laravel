@@ -102,7 +102,7 @@
                             <td>{{$prijava->predmet->predmet->naziv}}</td>
                             <td>{{$prijava->rok->naziv}}</td>
                             <td>{{$prijava->brojPolaganja}}</td>
-                            <td>{{$prijava->datum->format('d.m.Y')}}</td>
+                            <td data-order="{{$prijava->datum->timestamp}}">{{$prijava->datum->format('d.m.Y')}}</td>
                             <td>
                                 {{--<a class="btn btn-primary" href="{{$putanja}}/master/{{ $kandidat->id }}/edit">Измени</a>--}}
                                 <a class="btn btn-danger"
@@ -245,11 +245,70 @@
                     <i class="fa fa-plus"></i> Пријава за полагање дипломског испита</a>
             </div>
         </div>
-
+        @if(!empty($ispiti))
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Положени испити</h3>
+            </div>
+            <div class="panel-body">
+                <table id="tabela2" class="table">
+                    <thead>
+                    <tr>
+                        <th>Предмет</th>
+                        <th>Рок</th>
+                        <th>Оцена</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($ispiti as $index => $ispit)
+                        <tr>
+                            <td>{{$ispit->predmet->predmet->naziv}}</td>
+                            <td>{{$ispit->prijava->rok->naziv}}</td>
+                            <td>{{$ispit->konacnaOcena}}</td>
+                            <td>
+                                <a class="btn btn-danger"
+                                   href="{{$putanja}}/ispit/delete/{{ $ispit->id }}?brisiZapisnik=0"
+                                   onclick="return confirm('Ова акција брише само оцену и враћа испит у почетно стање на записнику. Да ли сте сигурни да желите да наставите?');">Бриши оцену</a>
+                                <a class="btn btn-danger"
+                                   href="{{$putanja}}/ispit/delete/{{ $ispit->id }}?brisiZapisnik=1"
+                                   onclick="return confirm('Ова акција брише оцену и упис студента на записнику. Да ли сте сигурни да желите да наставите?');">Бриши оцену и записник</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @endif
         <br>
         <br>
     </div>
     <script type="text/javascript" src="{{ URL::asset('/js/tabela.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tabela2').dataTable({
+                "aaSorting": [],
+                "oLanguage": {
+                    "sProcessing": "Процесирање у току...",
+                    "sLengthMenu": "Прикажи _MENU_ елемената",
+                    "sZeroRecords": "Није пронађен ниједан резултат",
+                    "sInfo": "Приказ _START_ до _END_ од укупно _TOTAL_ елемената",
+                    "sInfoEmpty": "Приказ 0 до 0 од укупно 0 елемената",
+                    "sInfoFiltered": "(филтрирано од укупно _MAX_ елемената)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Претрага:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "Почетна",
+                        "sPrevious": "Претходна",
+                        "sNext": "Следећа",
+                        "sLast": "Последња"
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
 
 
