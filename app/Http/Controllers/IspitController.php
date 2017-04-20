@@ -250,7 +250,11 @@ class IspitController extends Controller
         ])->first();
         $studijskiProgrami = ZapisnikOPolaganju_StudijskiProgram::where(['zapisnik_id' => $zapisnikId])->get();
         $statusIspita = StatusIspita::all();
-        $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get()->all();
+        $polozeniIspiti = PolozeniIspiti::where(['zapisnik_id' => $zapisnikId])->get();
+
+        $polozeniIspiti = $polozeniIspiti->sortBy(function ($name, $key) {
+            return  Kandidat::find($name['kandidat_id'])->brojIndeksa;
+        });
 
         $kandidati = Kandidat::where([
             'tipStudija_id' => $predmetProgram->tipStudija_id,
@@ -337,11 +341,20 @@ class IspitController extends Controller
         $ispit = PolozeniIspiti::find($id);
 
         if($request->brisiZapisnik == 1){
-            $zapisnik = ZapisnikOPolaganju_Student::where([
+            ZapisnikOPolaganju_Student::where([
                 'zapisnik_id' => $ispit->zapisnik_id,
                 'kandidat_id' => $ispit->kandidat_id
             ])->delete();
+
             PolozeniIspiti::destroy($id);
+
+            $zapisnikProvera = ZapisnikOPolaganju_Student::where([
+                'zapisnik_id' => $ispit->zapisnik_id
+            ])->get();
+
+            if($zapisnikProvera->count() == 0){
+                ZapisnikOPolaganjuIspita::destroy($ispit->zapisnik_id);
+            }
         }else{
             $ispit->indikatorAktivan = 0;
             $ispit->ocenaPismeni = 0;
@@ -355,6 +368,7 @@ class IspitController extends Controller
         return Redirect::back();
     }
 
+    //Brise studenta sa pregleda zapisnika
     public function pregledZapisnikDelete($zapisnikId, $kandidatId)
     {
         ZapisnikOPolaganju_Student::where([
@@ -366,6 +380,15 @@ class IspitController extends Controller
             'zapisnik_id' => $zapisnikId,
             'kandidat_id' => $kandidatId
         ])->delete();
+
+        $zapisnikProvera = ZapisnikOPolaganju_Student::where([
+            'zapisnik_id' => $zapisnikId
+        ])->get();
+
+        if($zapisnikProvera->count() == 0){
+            ZapisnikOPolaganjuIspita::destroy($zapisnikId);
+            return redirect('/zapisnik');
+        }
 
         return \Redirect::back();
     }
@@ -458,7 +481,6 @@ class IspitController extends Controller
             }
 
         }catch (QueryException $ex){
-            dd($ex);
             Session::flash('flash-error', 'Дошло је до грешке!');
         }
 
