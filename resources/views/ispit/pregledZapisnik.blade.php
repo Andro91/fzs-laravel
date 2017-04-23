@@ -175,9 +175,10 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $i = 1 ?>
                     @foreach($polozeniIspiti as $index => $ispit)
                         <tr>
-                            <td>{{$index + 1}}
+                            <td>{{$i}}
                                 <input type="hidden" id="ispit_id" name="ispit_id[{{ $index }}]"
                                        value="{{ $ispit->id }}">
                                 <input type="hidden" id="zapisnik_id" name="zapisnik_id[{{ $index }}]"
@@ -247,6 +248,7 @@
                                 </a>
                             </td>
                         </tr>
+                        <?php $i++ ?>
                     @endforeach
                     </tbody>
                 </table>

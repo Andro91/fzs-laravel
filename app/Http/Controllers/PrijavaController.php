@@ -411,7 +411,29 @@ class PrijavaController extends Controller
         $prijava = PrijavaIspita::find($id);
         $kandidat = $prijava->kandidat_id;
         $predmet = PredmetProgram::find($prijava->predmet_id)->predmet_id;
+
+        $zapisnikStudent = ZapisnikOPolaganju_Student::where(['prijavaIspita_id' => $id])->first();
+        $polozeniIspit = PolozeniIspiti::where(['prijava_id' => $id])->first();
+
+        $zapisnikId = 0;
+        if($zapisnikStudent != null){
+            $zapisnikId = $zapisnikStudent->zapisnik_id;
+            $zapisnikStudent->delete();
+        }
+
+        if($polozeniIspit != null){
+            $polozeniIspit->delete();
+        }
+
         PrijavaIspita::destroy($id);
+
+        $zapisnikProvera = ZapisnikOPolaganju_Student::where([
+            'zapisnik_id' => $zapisnikId
+        ])->get();
+
+        if($zapisnikId != 0 && $zapisnikProvera->count() == 0){
+            ZapisnikOPolaganjuIspita::destroy($zapisnikId);
+        }
 
         if($request->prijava == 'predmet'){
             return redirect("/prijava/zaPredmet/{$predmet}");
