@@ -117,10 +117,12 @@ class PrijavaController extends Controller
 
         $messages = [
             'odabir.required' => 'Нисте одабрали ни једног студента за пријаву испита!',
+            'profesor_id.required' => 'Нисте одабрали професора за пријаву испита!'
         ];
 
         $this->validate($request, [
             'odabir' => 'required',
+            'profesor_id' => 'required'
         ], $messages);
 
         if(isset($request->Submit2)){
@@ -239,84 +241,10 @@ class PrijavaController extends Controller
             'tipStudija_id' => $kandidat->tipStudija_id
         ])->first();
 
-//        $priznatiIspiti = PolozeniIspiti::where(['kandidat_id' => $id])->get();
         $ispiti = PolozeniIspiti::where([
             'kandidat_id' => $id,
             'indikatorAktivan' => 1
         ])->get();
-
-//        $polozeniIspitiPrvaGodina = \DB::table('polozeni_ispiti')
-//            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-//            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-//            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-//            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-//            ->select(\DB::raw("polozeni_ispiti.*, predmet.naziv as naziv, prijava_ispita.rok_id as rok, prijava_ispita.brojPolaganja as broj, DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-//            ->where(['predmet_program.godinaStudija_id' => 1, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-//            ->get();
-
-//        $polozeniIspitiPrvaGodina = PolozeniIspiti::whereHas('predmet', function ($query) {
-//            $query->where([
-//                'godinaStudija_id' => 1,
-//                'tipStudija_id' => 1]);
-//        })->where(['kandidat_id' => $id])->get();
-
-//        $polozeniIspitiDrugaGodina = \DB::table('polozeni_ispiti')
-//            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-//            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-//            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-//            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-//            ->select(\DB::raw("polozeni_ispiti.*,
-//                predmet.naziv as naziv,
-//                prijava_ispita.rok_id as rok,
-//                prijava_ispita.brojPolaganja as broj,
-//                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-//            ->where(['predmet_program.godinaStudija_id' => 2, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-//            ->get();
-
-//        $polozeniIspitiDrugaGodina = PolozeniIspiti::whereHas('predmet', function ($query) {
-//            $query->where([
-//                'godinaStudija_id' => 2,
-//                'tipStudija_id' => 1]);
-//        })->where(['kandidat_id' => $id])->get();
-
-//        $polozeniIspitiTrecaGodina = \DB::table('polozeni_ispiti')
-//            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-//            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-//            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-//            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-//            ->select(\DB::raw("polozeni_ispiti.*,
-//                predmet.naziv as naziv,
-//                prijava_ispita.rok_id as rok,
-//                prijava_ispita.brojPolaganja as broj,
-//                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-//            ->where(['predmet_program.godinaStudija_id' => 3, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-//            ->get();
-//
-//        $polozeniIspitiCetvrtaGodina = \DB::table('polozeni_ispiti')
-//            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-//            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-//            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-//            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-//            ->select(\DB::raw("polozeni_ispiti.*,
-//                predmet.naziv as naziv,
-//                prijava_ispita.rok_id as rok,
-//                prijava_ispita.brojPolaganja as broj,
-//                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-//            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 1, 'polozeni_ispiti.kandidat_id' => $id])
-//            ->get();
-//
-//        $polozeniIspitiMaster = \DB::table('polozeni_ispiti')
-//            ->join('predmet_program', 'polozeni_ispiti.predmet_id', '=', 'predmet_program.id')
-//            ->join('predmet', 'predmet.id', '=', 'predmet_program.predmet_id')
-//            ->join('prijava_ispita', 'prijava_ispita.id', '=', 'polozeni_ispiti.prijava_id')
-//            ->join('zapisnik_o_polaganju_ispita', 'zapisnik_o_polaganju_ispita.id', '=', 'polozeni_ispiti.zapisnik_id')
-//            ->select(\DB::raw("polozeni_ispiti.*,
-//                predmet.naziv as naziv,
-//                prijava_ispita.rok_id as rok,
-//                prijava_ispita.brojPolaganja as broj,
-//                DATE_FORMAT(zapisnik_o_polaganju_ispita.datum , '%d.%m.%Y') as datum"))
-//            ->where(['predmet_program.godinaStudija_id' => 4, 'predmet_program.tipStudija_id' => 2, 'polozeni_ispiti.kandidat_id' => $id])
-//            ->get();
 
         return view('prijava.index', compact(
             'kandidat',
@@ -325,13 +253,6 @@ class PrijavaController extends Controller
             'diplomskiRadOdbrana',
             'diplomskiRadPolaganje',
             'ispiti'
-//            ,
-//            'polozeniIspitiPrvaGodina',
-//            'polozeniIspitiDrugaGodina',
-//            'polozeniIspitiTrecaGodina',
-//            'polozeniIspitiCetvrtaGodina',
-//            'polozeniIspitiMaster',
-//            'priznatiIspiti'
             ));
     }
 

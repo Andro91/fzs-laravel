@@ -22,6 +22,10 @@
                 @endif
             </div>
         @endif
+        <div class="row">
+            <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        </div>
+        <br>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Пријава полагања дипломског рада</h3>

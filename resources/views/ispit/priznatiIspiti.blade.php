@@ -12,6 +12,10 @@
                 </ul>
             </div>
         @endif
+            <div class="row">
+                <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+            </div>
+            <br>
         <div>
             <h4>Подаци о студенту</h4>
             <ul class="list-group">

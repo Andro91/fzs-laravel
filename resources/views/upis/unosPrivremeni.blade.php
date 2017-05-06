@@ -1,7 +1,11 @@
 @extends('layouts.layout')
-@section('page_heading','Ретроактивни унос')
+@section('page_heading','Додај испите')
 @section('section')
     <div class="col-lg-10">
+        <div class="row">
+            <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        </div>
+        <br>
         <div>
             <h4>Подаци о студенту &nbsp;
                 <a class="btn btn-warning"

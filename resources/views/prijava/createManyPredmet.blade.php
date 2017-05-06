@@ -37,6 +37,7 @@
                     <div class="form-group" style="width: 80%;">
                         <label for="profesor_id">Професор</label>
                         <select class="form-control auto-combobox" id="profesor_id" name="profesor_id">
+                            <option value=""></option>
                             @foreach($profesor as $tip)
                                 <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                             @endforeach
@@ -76,7 +77,7 @@
                     <div class="form-group col-lg-4">
                         <label for="addStudentList">Студенти</label>
                         <select class="form-control auto-combobox" id="addStudentList" name="addStudentList">
-                            <option value="0"></option>
+                            <option value=""></option>
                             @foreach($kandidati as $index => $kandidat)
                                 <option value="{{$kandidat->id}}">{{$kandidat->brojIndeksa}}</option>
                             @endforeach

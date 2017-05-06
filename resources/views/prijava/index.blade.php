@@ -51,7 +51,7 @@
                             class="fa fa-plus"></span> Признати испити</a>
 
                 <a href="{{$putanja}}/prijava/unosPrivremeni/{{$kandidat->id}}" class="btn btn-warning">
-                    <i class="fa fa-plus"></i> Додај испите ретроактивно</a>
+                    <i class="fa fa-plus"></i> Додај испите</a>
 
                 <div id="messages">
                     @if (Session::get('flash-error'))
