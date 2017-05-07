@@ -22,9 +22,8 @@
                 @endif
             </div>
         @endif
-        <div class="row">
-            <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
-        </div>
+        <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        <br>
         <br>
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -73,9 +72,10 @@
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="predmet_id">Дипломски рад из предмета</label>
-                            <select class="form-control" id="predmet_id" name="predmet_id">
+                            <select class="form-control auto-combobox" id="predmet_id" name="predmet_id">
+                                <option value=""></option>
                                 @foreach($predmeti as $item)
-                                    <option value="{{ $item->id }}">{{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->predmet->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -107,17 +107,9 @@
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="profesor_id">Тему одобрио (ментор):</label>
-                            <select class="form-control" id="profesor_id" name="profesor_id">
+                            <select class="form-control auto-combobox" id="profesor_id" name="profesor_id">
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <label for="rok_id">Испитни рок</label>
-                            <select class="form-control" id="rok_id" name="rok_id">
-                                @foreach($ispitniRok as $tip)
-                                    <option value="{{$tip->id}}">{{$tip->naziv}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -125,8 +117,8 @@
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label for="profesor_id_predsednik">Председник комисије:</label>
-                            <select class="form-control" id="profesor_id_predsednik" name="profesor_id_predsednik">
-                                <option value="0"></option>
+                            <select class="form-control auto-combobox" id="profesor_id_predsednik" name="profesor_id_predsednik">
+                                <option value=""></option>
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
@@ -134,8 +126,8 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <label for="profesor_id_clan">Члан комисије:</label>
-                            <select class="form-control" id="profesor_id_clan" name="profesor_id_clan">
-                                <option value="0"></option>
+                            <select class="form-control auto-combobox" id="profesor_id_clan" name="profesor_id_clan">
+                                <option value=""></option>
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach

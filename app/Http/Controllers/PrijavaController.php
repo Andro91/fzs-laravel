@@ -32,11 +32,10 @@ use App\Http\Requests;
 class PrijavaController extends Controller
 {
 
-/// ====================================================================================================================
-//
-//  Deo za prijavu ispita sa strane predmeta
-//
-/// ====================================================================================================================
+    //region PRIJAVA ISPITA - PREDMET
+    //
+    //  Deo za prijavu ispita sa strane predmeta
+    //
 
     //Spisak svih predmeta
     public function spisakPredmeta(Request $request)
@@ -212,13 +211,12 @@ class PrijavaController extends Controller
 
         return view('prijava.rezultat', compact('errorArray', 'duplicateArray'))->with('predmetId', $request->predmet_id);
     }
+    //endregion
 
-
-/// ====================================================================================================================
-//
-//  Deo za prijavu ispita sa strane studenta
-//
-/// ====================================================================================================================
+    //region PRIJAVA ISPITA - STUDENT
+    //
+    //  Deo za prijavu ispita sa strane studenta
+    //
 
     //Stranica Status studenta
     public function svePrijaveIspitaZaStudenta($id)
@@ -295,12 +293,12 @@ class PrijavaController extends Controller
             'tipPredmeta', 'tipStudija', 'ispitniRok', 'profesor', 'tipPrijave', 'profesori'));
 
     }
+    //endregion
 
-/// ====================================================================================================================
-//
-//  Deo za čuvanje i brisanje prijave ispita (Univerzalno)
-//
-/// ====================================================================================================================
+    //region PRIJAVA ISPITA - SAVE/DELETE
+    //
+    //  Deo za čuvanje i brisanje prijave ispita (Univerzalno)
+    //
 
     public function storePrijavaIspita(Request $request)
     {
@@ -411,16 +409,10 @@ class PrijavaController extends Controller
         "<td>" . $kandidat->imeKandidata . " " . $kandidat->prezimeKandidata . "</td>" .
         "<td>{$kandidat->godinaStudija->nazivRimski}</td></tr>";
     }
+    //endregion
 
-    /// ====================================================================================================================
-    //
-    //  DIPLOMSKI RAD
-    //
-    /// ====================================================================================================================
+    //region DIPLOMSKI RAD - TEMA
 
-    ///
-    /// TEMA
-    ///
     public function diplomskiTema(Kandidat $kandidat)
     {
         $profesor = Profesor::all();
@@ -435,10 +427,16 @@ class PrijavaController extends Controller
     {
         $messages = [
             'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио тему завршног рада.',
+            'predmet_id.required' => 'Унесите име предмета!',
+            'profesor_id.required' => 'Унесите име ментора!',
+            'nazivTeme.required' => 'Унесите назив теме!'
         ];
 
         $this->validate($request, [
             'kandidat_id' => 'unique_with:diplomski_prijava_teme,tipStudija_id',
+            'predmet_id' => 'required',
+            'profesor_id' => 'required',
+            'nazivTeme' => 'required'
         ], $messages);
 
         $prijavaTeme = new DiplomskiPrijavaTeme($request->all());
@@ -463,6 +461,18 @@ class PrijavaController extends Controller
 
     public function updateDiplomskiTema(Request $request)
     {
+        $messages = [
+            'predmet_id.required' => 'Унесите име предмета!',
+            'profesor_id.required' => 'Унесите име ментора!',
+            'nazivTeme.required' => 'Унесите назив теме!'
+        ];
+
+        $this->validate($request, [
+            'predmet_id' => 'required',
+            'profesor_id' => 'required',
+            'nazivTeme' => 'required'
+        ], $messages);
+
         $prijavaTeme = DiplomskiPrijavaTeme::find($request->diplomskiTema_id);
         $prijavaTeme->fill($request->all());
         if(!isset($request->indikatorOdobreno)){
@@ -486,11 +496,9 @@ class PrijavaController extends Controller
 
         return redirect('/prijava/zaStudenta/' . $kandidat->id);
     }
+    //endregion
 
-
-    ///
-    /// ODBRANA
-    ///
+    //region DIPLOMSKI RAD - ODBRANA
     public function diplomskiOdbrana(Kandidat $kandidat)
     {
         $profesor = Profesor::all();
@@ -510,11 +518,20 @@ class PrijavaController extends Controller
     {
         $messages = [
             'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио одбрану завршног рада.',
+            'predmet_id.required' => 'Унесите име предмета!',
+            'temu_odobrio_profesor_id.required' => 'Унесите име професора који одобрава ТЕМУ!',
+            'nazivTeme.required' => 'Унесите назив теме!',
+            'odbranu_odobrio_profesor_id.required' => 'Унесите име професора који одобрава ОДБРАНУ!',
         ];
 
         $this->validate($request, [
             'kandidat_id' => 'unique_with:diplomski_prijava_odbrane,tipStudija_id',
+            'predmet_id' => 'required',
+            'temu_odobrio_profesor_id' => 'required',
+            'nazivTeme' => 'required',
+            'odbranu_odobrio_profesor_id' => 'required'
         ], $messages);
+
 
         $prijavaOdbrane = new DiplomskiPrijavaOdbrane($request->all());
         $prijavaOdbrane->save();
@@ -544,6 +561,20 @@ class PrijavaController extends Controller
 
     public function updateDiplomskiOdbrana(Request $request)
     {
+        $messages = [
+            'predmet_id.required' => 'Унесите име предмета!',
+            'temu_odobrio_profesor_id.required' => 'Унесите име професора који одобрава ТЕМУ!',
+            'nazivTeme.required' => 'Унесите назив теме!',
+            'odbranu_odobrio_profesor_id.required' => 'Унесите име професора који одобрава ОДБРАНУ!',
+        ];
+
+        $this->validate($request, [
+            'predmet_id' => 'required',
+            'temu_odobrio_profesor_id' => 'required',
+            'nazivTeme' => 'required',
+            'odbranu_odobrio_profesor_id' => 'required'
+        ], $messages);
+
         $prijavaOdbrane = DiplomskiPrijavaOdbrane::find($request->diplomskiRadOdbrana_id);
         $prijavaOdbrane->fill($request->all());
         if(!isset($request->indikatorOdobreno)){
@@ -567,11 +598,9 @@ class PrijavaController extends Controller
 
         return redirect('/prijava/zaStudenta/' . $kandidat->id);
     }
+    //endregion
 
-
-    ///
-    /// POLAGANJE
-    ///
+    //region DIPLOMSKI RAD - POLAGANJE
     public function diplomskiPolaganje(Kandidat $kandidat)
     {
         $profesor = Profesor::all();
@@ -593,10 +622,20 @@ class PrijavaController extends Controller
     {
         $messages = [
             'kandidat_id.unique_with' => 'Дошло је до грешке. Проверите да ли је студент већ пријавио полагање завршног рада.',
+            'predmet_id.required' => 'Унесите име предмета!',
+            'profesor_id.required' => 'Унесите име МЕНТОРА!',
+            'profesor_id_predsednik.required' => 'Унесите име председника комисије!',
+            'profesor_id_clan.required' => 'Унесите име члана комисије!',
+            'nazivTeme.required' => 'Унесите назив теме!',
         ];
 
         $this->validate($request, [
             'kandidat_id' => 'unique_with:diplomski_polaganje,tipStudija_id',
+            'predmet_id' => 'required',
+            'profesor_id' => 'required',
+            'profesor_id_predsednik' => 'required',
+            'profesor_id_clan' => 'required',
+            'nazivTeme' => 'required',
         ], $messages);
 
         $prijavaPolaganje = new DiplomskiPolaganje($request->all());
@@ -629,6 +668,22 @@ class PrijavaController extends Controller
 
     public function updateDiplomskiPolaganje(Request $request)
     {
+        $messages = [
+            'predmet_id.required' => 'Унесите име предмета!',
+            'profesor_id.required' => 'Унесите име МЕНТОРА!',
+            'profesor_id_predsednik.required' => 'Унесите име председника комисије!',
+            'profesor_id_clan.required' => 'Унесите име члана комисије!',
+            'nazivTeme.required' => 'Унесите назив теме!',
+        ];
+
+        $this->validate($request, [
+            'predmet_id' => 'required',
+            'profesor_id' => 'required',
+            'profesor_id_predsednik' => 'required',
+            'profesor_id_clan' => 'required',
+            'nazivTeme' => 'required',
+        ], $messages);
+
         $prijavaPolaganje = DiplomskiPolaganje::find($request->polaganje_id);
         $prijavaPolaganje->fill($request->all());
 
@@ -648,13 +703,12 @@ class PrijavaController extends Controller
 
         return redirect('/prijava/zaStudenta/' . $kandidat->id);
     }
+    //endregion
 
-
-    /// ====================================================================================================================
+    //region PRIVREMENI DEO
     //
-    //  Privremeni deo
+    //  Privremeni deo za unos priznatih ispita retroaktivno
     //
-    /// ====================================================================================================================
 
     public function unosPrivremeni(Kandidat $kandidat)
     {
@@ -699,4 +753,5 @@ class PrijavaController extends Controller
         return Redirect::back();
 
     }
+    //endregion
 }

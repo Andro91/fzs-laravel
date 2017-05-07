@@ -22,6 +22,9 @@
                 @endif
             </div>
         @endif
+        <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        <br>
+        <br>
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">Измена одбране дипломског рада</h3>
@@ -71,11 +74,9 @@
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="predmet_id">Дипломски рад из предмета</label>
-                            <select class="form-control" id="predmet_id" name="predmet_id">
+                            <select class="form-control auto-combobox" id="predmet_id" name="predmet_id">
                                 @foreach($predmeti as $item)
-                                    <option value="{{ $item->id }}" {{ ($diplomskiRadOdbrana->predmet_id == $item->id ? "selected":"") }}>
-                                        {{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}
-                                    </option>
+                                    <option value="{{ $item->id }}" {{ ($diplomskiRadOdbrana->predmet_id == $item->id ? "selected":"") }}>{{ $item->predmet->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -108,7 +109,7 @@
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="profesor_id">Тему одобрио:</label>
-                            <select class="form-control" id="temu_odobrio_profesor_id" name="temu_odobrio_profesor_id">
+                            <select class="form-control auto-combobox" id="temu_odobrio_profesor_id" name="temu_odobrio_profesor_id">
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}" {{ ($diplomskiRadOdbrana->temu_odobrio_profesor_id == $tip->id ? "selected":"") }}>{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
@@ -132,7 +133,7 @@
                     <div class="row">
                         <div class="form-group col-lg-8">
                             <label for="profesor_id">Одбрану одобрио:</label>
-                            <select class="form-control" id="odbranu_odobrio_profesor_id" name="odbranu_odobrio_profesor_id">
+                            <select class="form-control auto-combobox" id="odbranu_odobrio_profesor_id" name="odbranu_odobrio_profesor_id">
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}" {{ ($diplomskiRadOdbrana->odbranu_odobrio_profesor_id == $tip->id ? "selected":"") }} >{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach

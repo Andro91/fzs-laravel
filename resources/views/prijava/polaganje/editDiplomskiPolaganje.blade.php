@@ -22,6 +22,9 @@
                 @endif
             </div>
         @endif
+        <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        <br>
+        <br>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Пријава полагања дипломског рада</h3>
@@ -72,7 +75,7 @@
                             <label for="predmet_id">Дипломски рад из предмета</label>
                             <select class="form-control" id="predmet_id" name="predmet_id">
                                 @foreach($predmeti as $item)
-                                    <option value="{{ $item->id }}">{{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->predmet->naziv }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -109,14 +112,6 @@
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}" {{ ($diplomskiRadPolaganje->profesor_id == $tip->id ? "selected":"") }}
                                             >{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <label for="rok_id">Испитни рок</label>
-                            <select class="form-control" id="rok_id" name="rok_id">
-                                @foreach($ispitniRok as $tip)
-                                    <option value="{{$tip->id}}">{{$tip->naziv}}</option>
                                 @endforeach
                             </select>
                         </div>

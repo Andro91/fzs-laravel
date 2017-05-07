@@ -22,9 +22,8 @@
                 @endif
             </div>
         @endif
-        <div class="row">
-            <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
-        </div>
+        <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
+        <br>
         <br>
         <div class="panel panel-primary">
             <div class="panel-heading">
