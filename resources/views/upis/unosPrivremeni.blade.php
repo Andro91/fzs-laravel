@@ -44,7 +44,7 @@
             <div class="form-group col-lg-4">
                 <label for="addIspitList">Испити</label>
                 <select class="form-control auto-combobox" id="addIspitList" name="addIspitList">
-                    <option value="0"></option>
+                    <option value=""></option>
                     @foreach($ispiti as $index => $ispit)
                         <option value="{{$ispit->id}}">{{$ispit->predmet->naziv}}</option>
                     @endforeach

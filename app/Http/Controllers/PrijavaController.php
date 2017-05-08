@@ -724,7 +724,7 @@ class PrijavaController extends Controller
         return "<tr>" .
         "<td><input type='checkbox' name='odabir[$predmet->id]' value='$predmet->id' checked></td>" .
         "<td>{$predmet->predmet->naziv}</td>" .
-        "<td><select class='form-control konacnaOcena' data-index='$predmet->id' name='konacnaOcena[$predmet->id]'>" .
+        "<td><select class='form-control konacnaOcena input-sm' data-index='$predmet->id' name='konacnaOcena[$predmet->id]'>" .
         "<option value='0'></option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option></select></td></tr>";
     }
 

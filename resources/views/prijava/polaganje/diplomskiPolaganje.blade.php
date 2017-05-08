@@ -25,6 +25,7 @@
         <a class="btn btn-primary" href="/prijava/zaStudenta/{{ $kandidat->id }}">Назад на студента</a>
         <br>
         <br>
+
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Пријава полагања дипломског рада</h3>
@@ -108,6 +109,7 @@
                         <div class="form-group col-lg-8">
                             <label for="profesor_id">Тему одобрио (ментор):</label>
                             <select class="form-control auto-combobox" id="profesor_id" name="profesor_id">
+                                <option value=""></option>
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                 @endforeach
@@ -117,7 +119,8 @@
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label for="profesor_id_predsednik">Председник комисије:</label>
-                            <select class="form-control auto-combobox" id="profesor_id_predsednik" name="profesor_id_predsednik">
+                            <select class="form-control auto-combobox" id="profesor_id_predsednik"
+                                    name="profesor_id_predsednik">
                                 <option value=""></option>
                                 @foreach($profesor as $tip)
                                     <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
