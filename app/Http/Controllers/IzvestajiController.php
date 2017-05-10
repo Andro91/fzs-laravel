@@ -737,11 +737,40 @@ class IzvestajiController extends Controller
 
             $ispitiIds = [1,5];
 
-            $ispiti = PolozeniIspiti::where('kandidat_id', $student->id)
+            /*$ispiti = PolozeniIspiti::where('kandidat_id', $student->id)
                 ->where('indikatorAktivan', 1)
                 ->whereIn('statusIspita', $ispitiIds)
-                ->get();
+                ->orderBy('semestar')->get();*/
 
+
+            $ispiti = DB::table('polozeni_ispiti')
+                ->where(['polozeni_ispiti.kandidat_id' => $student->id])->whereIn('statusIspita', $ispitiIds)
+                ->join('kandidat', 'polozeni_ispiti.kandidat_id', '=', 'kandidat.id')
+                ->join('predmet_program',function($join){
+
+                    $join->on("predmet_program.predmet_id","=","polozeni_ispiti.predmet_id")
+
+                        ->on("predmet_program.studijskiProgram_id","=","kandidat.studijskiProgram_id");
+
+                })
+                ->join('predmet', 'polozeni_ispiti.predmet_id', '=', 'predmet.id')
+                ->select('polozeni_ispiti.*', 'predmet.naziv as naziv', 'predmet_program.espb as espb')
+                ->orderBy('predmet_program.semestar')->get();
+
+            /*
+             * ->join("jobs",function($join){
+
+                $join->on("jobs.user_id","=","users.id")
+
+                    ->on("jobs.item_id","=","items.id");
+
+            })
+
+             Full texts 	id 	studijskiProgram_id
+
+            'polozeni_ispiti.predmet_id', '=', 'predmet_program.predmet_id'
+             * */
+;
             $zbir = 0;
             $i = 0;
             foreach ($ispiti as $ispit) {

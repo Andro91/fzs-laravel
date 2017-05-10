@@ -2,7 +2,7 @@
     <img src="{{$putanja}}/images/zaglavlje.png" alt="test alt attribute" width="250" height="65" border="0"/>
 </div>
 <hr>
-@if(!$ispiti->isEmpty())
+@if($ispiti != null)
     <div style="text-align: left"><label>Број: 66/2016</label> <br/>
         <label>Датум: {{$datum}}</label>
     </div>
@@ -23,20 +23,34 @@
             <thead>
             <tr>
                 <th style="border: 1px solid black; background-color: grey; width:35px;"><b>Рбр</b></th>
-                <th style="border: 1px solid black; background-color: grey; width:350px;"><b>Назив</b>
+                <th style="border: 1px solid black; background-color: grey; width:300px;"><b>Назив</b>
                 </th>
                 <th style="border: 1px solid black; background-color: grey; width:50px;"><b>ЕСПБ</b>
                 </th>
                 <th style="border: 1px solid black; background-color: grey; width:50px;"><b>Оцена</b>
+                </th>
+                <th style="border: 1px solid black; background-color: grey; width:100px;"><b>Оцена словима</b>
                 </th>
             </tr>
             </thead>
             @foreach($ispiti as $index => $ispit)
                 <tr>
                     <td style="border: 1px solid black; width:35px;">{{$index + 1}}</td>
-                    <td style="border: 1px solid black; width:350px;">{{$ispit->predmet->predmet->naziv}}</td>
-                    <td style="border: 1px solid black; width:50px; text-align: right;">{{$ispit->predmet->espb}}</td>
-                    <td style="border: 1px solid black; width:50px; text-align: right;">{{$ispit->konacnaOcena}}</td>
+                    <td style="border: 1px solid black; width:300px;">{{$ispit->naziv}}</td>
+                    <td style="border: 1px solid black; width:50px; text-align: center;">{{$ispit->espb}}</td>
+                    <td style="border: 1px solid black; width:50px; text-align: center;">{{$ispit->konacnaOcena}}</td>
+                    <td style="border: 1px solid black; width:100px; text-align: center;">
+                            @if($ispit->konacnaOcena == 6)шест
+                            @endif
+                            @if($ispit->konacnaOcena == 7)седам
+                            @endif
+                            @if($ispit->konacnaOcena == 8)осам
+                            @endif
+                            @if($ispit->konacnaOcena == 9)девет
+                            @endif
+                            @if($ispit->konacnaOcena == 10)десет
+                            @endif
+                    </td>
                 </tr>
             @endforeach
         </table>
@@ -56,7 +70,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td>Одговорно лице</td>
+            <td>Овлашћено лице факултета</td>
         </tr>
         <tr>
             <td></td>
