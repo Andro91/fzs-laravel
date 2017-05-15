@@ -97,9 +97,9 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="predmet_id">Пријављујем се за полагање испита из предмета</label>
-                                    <select class="form-control" id="predmet_id" name="predmet_id">
+                                    <select class="form-control auto-combobox" id="predmet_id" name="predmet_id">
                                         @foreach($predmeti as $item)
-                                            <option value="{{ $item->id }}">{{ "Семестар " . $item->semestar . ': ' . $item->predmet->naziv }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->predmet->naziv }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -139,7 +139,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-8">
                                     <label for="profesor_id">Професор</label>
-                                    <select class="form-control" id="profesor_id" name="profesor_id">
+                                    <select class="form-control auto-combobox" id="profesor_id" name="profesor_id">
                                         @foreach($profesor as $tip)
                                             <option value="{{$tip->id}}">{{$tip->zvanje . " " .$tip->ime . " " . $tip->prezime}}</option>
                                         @endforeach

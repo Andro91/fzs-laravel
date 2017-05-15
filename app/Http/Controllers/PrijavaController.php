@@ -712,7 +712,9 @@ class PrijavaController extends Controller
 
     public function unosPrivremeni(Kandidat $kandidat)
     {
-        $ispiti = PredmetProgram::all();
+        $ispiti = PredmetProgram::where([
+            'studijskiProgram_id' => $kandidat->studijskiProgram_id
+        ])->get();
         $polozeniIspiti = PolozeniIspiti::where(['kandidat_id' => $kandidat->id])->get();
         return view('upis.unosPrivremeni', compact('kandidat', 'ispiti', 'polozeniIspiti'));
     }
