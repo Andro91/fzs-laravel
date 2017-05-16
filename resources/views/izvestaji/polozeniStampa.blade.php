@@ -6,9 +6,18 @@
     <div style="text-align: left"><label>Број: 66/2016</label> <br/>
         <label>Датум: {{$datum}}</label>
     </div>
-    <div style="text-align: center;">
 
-    <h1>УВЕРЕЊЕ</h1><br/><h4>О ПОЛОЖЕНИМ ИСПИТИМА</h4><br/>
+    <div style="text-align: center;">
+        <table cellspacing='0' cellpadding='0' border='0'>
+            <tr>
+                <td><div style="font-size: 20px; page-break-inside: avoid;"> УВЕРЕЊЕ </div></td>
+            </tr>
+        </table>
+        <table cellspacing='0' cellpadding='0' border='0'>
+            <tr>
+                <td><div style="font-size: 12px; page-break-inside: avoid;"> О ПОЛОЖЕНИМ ИСПИТИМА </div></td>
+            </tr>
+        </table>
     </div>
     <div style="text-align: justify;">{{$student->imeKandidata}} ({{$student->imePrezimeJednogRoditelja}})
         {{$student->prezimeKandidata}} рођен/а {{ date('d.m.Y.',strtotime($student->datumRodjenja)) }}

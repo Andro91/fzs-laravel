@@ -243,8 +243,21 @@
                 <a href="{{$putanja}}/prijava/diplomskiPolaganje/{{$kandidat->id}}" class="btn btn-success"
                 @if($diplomskiRadPolaganje != null) {{ 'disabled' }}@endif>
                     <i class="fa fa-plus"></i> Пријава за полагање дипломског испита</a>
+
             </div>
         </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Документа</h3>
+                </div>
+                <div class="panel-body">
+                        <input type="hidden" value="{{$kandidat->id}}">
+                        <a class="btn btn-primary form-group" target="_blank"
+                           href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа уверења о дипломирању</a>
+                        <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/komisijaStampa/{{$kandidat->id}}">Комисија</a>
+                        <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/polozeniStampa/{{$kandidat->id}}">Уверење о положеним испитима</a>
+                </div>
+            </div>
         @if(!empty($ispiti))
         <div class="panel panel-primary">
             <div class="panel-heading">

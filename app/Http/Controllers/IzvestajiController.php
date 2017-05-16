@@ -807,7 +807,7 @@ class IzvestajiController extends Controller
         PDF::SetTitle('Уверење о положеним испитима');
         PDF::SetMargins(12, 2, 12, true);
         PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
+        PDF::SetFont('freeserif', '', 10);
         PDF::WriteHtml($contents);
         PDF::Output('Ispiti.pdf');
     }
