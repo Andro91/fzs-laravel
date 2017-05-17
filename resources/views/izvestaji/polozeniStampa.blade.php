@@ -22,8 +22,8 @@
     <div style="text-align: justify;">{{$student->imeKandidata}} ({{$student->imePrezimeJednogRoditelja}})
         {{$student->prezimeKandidata}} рођен/а {{ date('d.m.Y.',strtotime($student->datumRodjenja)) }}
         године, место {{$student->mestoRodjenja}}, општина {{$student->mestoRodjenja}},
-        Република Србија, број индекса {{$student->brojIndeksa}}, тип студија {{$student->program->tipStudija->naziv}},
-        смер - {{$student->program->naziv}}, положио/ла је све испите предвиђене наставним планом и програмом:
+        Република Србија, број индекса {{$student->brojIndeksa}}, положио/ла  је на Факултету за спорт у Београду, {{$student->program->tipStudija->naziv}} - {{$student->program->naziv}},
+        следеће испите предвиђене наставним планом и програмом:
     </div>
 
     <div>

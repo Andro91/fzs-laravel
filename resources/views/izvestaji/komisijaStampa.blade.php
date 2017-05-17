@@ -4,7 +4,7 @@
 @if($student && $diplomski && $podaci)
 
     <div>
-        <p style="text-align: justify;">На основу Правилника о изради и одбрани дипломског рада, својих овлашћења и писмене пријаве за одрбрану дипломског рада кандидата коју је
+        <p style="text-align: justify;">На основу Правилника о изради и одбрани дипломског рада, својих овлашћења и писмене пријаве за одбрану дипломског рада кандидата коју је
             поднео {{$student->imeKandidata}} {{$student->prezimeKandidata}}, декан Факултета за спорт доноси следећу:
             </p>
 
@@ -28,7 +28,7 @@
     </div>
 
 
-<label>Одбрана је заказана дана {{ date('d.m.Y.',strtotime($podaci->datumOdbrane)) }} у {{$podaci2->vreme}} сати</label>
+<label>Одбрана је заказана дана {{ date('d.m.Y.',strtotime($podaci->datumOdbrane)) }} са почетком у  {{substr($podaci2->vreme, 0, -3)}} сати.</label>
 
     <br/>
     <br/>
@@ -38,7 +38,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Проф. др Ивана Гајић</td>
+                <td>Проф. др Иванка Гајић</td>
             </tr>
             <tr>
                 <td>У Београду, {{$datum}}</td>
