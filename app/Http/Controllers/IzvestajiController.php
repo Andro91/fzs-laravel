@@ -710,17 +710,21 @@ class IzvestajiController extends Controller
             //$studenti = Kandidat::where(['id' => $student->id])->get();
             $diplomski = DiplomskiPolaganje::where(['kandidat_id' => $student->id])->get();
             $podaci = DiplomskiPrijavaOdbrane::where(['kandidat_id' => $student->id])->get();
+            $podaci2 = DiplomskiPolaganje::where(['kandidat_id' => $student->id])->get();
             //$diplomski_radovi = DiplomskiRad::where(['kandidat_id' => $student->id])->get();
             //$rad = $diplomski_radovi->first();
             //return $studenti->first();
 
             //dd($diplomski);
 
+            $datum = Carbon::now();
+
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
         }
 
-        $view = View::make('izvestaji.komisijaStampa')->with('student', $student)->with('diplomski', $diplomski->first())->with('podaci', $podaci->first());
+        $view = View::make('izvestaji.komisijaStampa')->with('student', $student)->with('diplomski', $diplomski->first())->with('podaci', $podaci->first())->with('datum', date("d.m.Y", strtotime($datum)))
+            ->with('podaci2', $podaci2->first());
 
         $contents = $view->render();
         PDF::SetTitle('Одлука о формирању комисије');
@@ -730,6 +734,7 @@ class IzvestajiController extends Controller
         PDF::WriteHtml($contents);
         PDF::Output('Komisija.pdf');
     }
+
 
     public function polozeniStampa(Kandidat $student)
     {
@@ -743,7 +748,7 @@ class IzvestajiController extends Controller
                 ->orderBy('semestar')->get();*/
 
 
-            $ispiti = DB::table('polozeni_ispiti')
+            /*$ispiti = DB::table('polozeni_ispiti')
                 ->where(['polozeni_ispiti.kandidat_id' => $student->id])->whereIn('statusIspita', $ispitiIds)
                 ->join('kandidat', 'polozeni_ispiti.kandidat_id', '=', 'kandidat.id')
                 ->join('predmet_program',function($join){
@@ -755,7 +760,18 @@ class IzvestajiController extends Controller
                 })
                 ->join('predmet', 'polozeni_ispiti.predmet_id', '=', 'predmet.id')
                 ->select('polozeni_ispiti.*', 'predmet.naziv as naziv', 'predmet_program.espb as espb')
-                ->orderBy('predmet_program.semestar')->get();
+                ->orderBy('predmet_program.semestar')->get();*/
+
+            $ispiti = DB::table('polozeni_ispiti')
+                ->where(['polozeni_ispiti.kandidat_id' => $student->id])->whereIn('statusIspita', $ispitiIds)
+                ->join('kandidat', 'polozeni_ispiti.kandidat_id', '=', 'kandidat.id')
+                ->join("predmet_program", "predmet_program.id","=","polozeni_ispiti.predmet_id")
+                ->join('predmet', 'predmet_program.predmet_id', '=', 'predmet.id')
+                ->orderBy('predmet_program.semestar')
+                ->get();
+
+
+            //dd($ispiti2);
 
             /*
              * ->join("jobs",function($join){
@@ -803,7 +819,11 @@ class IzvestajiController extends Controller
 
         $view = View::make('izvestaji.polozeniStampa')->with('student', $student)->with('ispiti', $ispiti)->with('datum', date("d.m.Y", strtotime($datum)))->with('prosek', $prosek)->with('espbArray', $espbArray);
 
+
+
         $contents = $view->render();
+
+        PDF::SetAutoPageBreak(TRUE, 5);
         PDF::SetTitle('Уверење о положеним испитима');
         PDF::SetMargins(12, 2, 12, true);
         PDF::AddPage();

@@ -2,9 +2,7 @@
 </div>
 <hr>
 @if($student && $diplomski && $podaci)
-    <div style="text-align: left">
 
-    </div>
     <div>
         <p style="text-align: justify;">На основу Правилника о изради и одбрани дипломског рада, својих овлашћења и писмене пријаве за одрбрану дипломског рада кандидата коју је
             поднео {{$student->imeKandidata}} {{$student->prezimeKandidata}}, декан Факултета за спорт доноси следећу:
@@ -28,32 +26,38 @@
         </p>
 
     </div>
-<br/>
 
-<div>
-    <table>
-        <tr>
-            <td><label>Датум: {{ date('d.m.Y.',strtotime($podaci->datumOdbrane)) }}</label></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
 
-        </tr>
-    </table>
-</div>
+<label>Одбрана је заказана дана {{ date('d.m.Y.',strtotime($podaci->datumOdbrane)) }} у {{$podaci2->vreme}} сати</label>
+
+    <br/>
+    <br/>
+
+    <div>
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Проф. др Ивана Гајић</td>
+            </tr>
+            <tr>
+                <td>У Београду, {{$datum}}</td>
+
+                <td></td>
+                <td>Декан Факултета за спорт</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="padding-bottom: 10px;"></td>
+                <td style="border-bottom: 1px solid black;"></td>
+            </tr>
+        </table>
+    </div>
 @else
     <h1>Нема података о комисији.</h1>
 @endif
