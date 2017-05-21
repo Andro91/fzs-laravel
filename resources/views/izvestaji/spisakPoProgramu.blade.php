@@ -20,7 +20,7 @@
                         <th style="border: 1px solid black; width:30px; background-color: grey;"><b>Р.бр.</b></th>
                         <th style="border: 1px solid black; width:65px; background-color: grey;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black; width:300px; background-color: grey;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black; width:300px; background-color: grey;"><b>Презиме и име</b>
                         </th>
                         <th style="border: 1px solid black; width:50px; background-color: grey;"><b>Година</b>
                         </th>
@@ -34,9 +34,9 @@
                             <td style="border: 1px solid black;width:30px;">
                                 {{$a}}</td>
                             <td style="border: 1px solid black;width:65px;">
-                                {{$item->brojIndeksa}}</td>
+                                {{SUBSTR($item->brojIndeksa, 5)}}/{{SUBSTR($item->brojIndeksa, 0, 4)}}</td>
                             <td style="border: 1px solid black;width:300px;">
-                                {{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                                {{$item->prezimeKandidata}} {{$item->imeKandidata}}</td>
                             <td style="border: 1px solid black;text-align: right;width:50px;">
                                 {{$item->godina}}</td>
                         </tr>

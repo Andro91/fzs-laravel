@@ -43,7 +43,7 @@
                 <th style="border: 1px solid black; width: 40px; background-color: grey;"><b>Р. бр.</b></th>
                 <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black; width:155px; background-color: grey;"><b>Име и презиме</b>
+                <th style="border: 1px solid black; width:155px; background-color: grey;"><b>Презиме и име</b>
                 </th>
                 <th style="border: 1px solid black; background-color: grey;"><b>Број полагања</b>
                 </th>
@@ -56,8 +56,8 @@
             @foreach($polozeniIspiti as $index => $ispit)
                 <tr>
                     <td style="border: 1px solid black; width: 40px;">{{$index + 1}}</td>
-                    <td style="border: 1px solid black; text-align: left;">{{$ispit->indeks}}</td>
-                    <td style="border: 1px solid black; text-align: left; width:155px;">{{$ispit->imeKandidata}} {{$ispit->prezimeKandidata}}</td>
+                    <td style="border: 1px solid black; text-align: left;">{{SUBSTR($ispit->indeks, 5)}}/{{SUBSTR($ispit->indeks, 0, 4)}}</td>
+                    <td style="border: 1px solid black; text-align: left; width:155px;">{{$ispit->prezimeKandidata}} {{$ispit->imeKandidata}}</td>
                     <td style="border: 1px solid black; text-align: center;">{{$ispit->polaganja}}</td>
                     <td style="border: 1px solid black; width:70px;"></td>
                     <td style="border: 1px solid black; text-align: left; width:100px;"></td>

@@ -11,6 +11,11 @@ class DiplomskiPolaganje extends Model
     public $fillable = ['kandidat_id', 'tipStudija_id', 'studijskiProgram_id', 'predmet_id', 'nazivTeme', 'datum', 'vreme',
         'profesor_id', 'profesor_id_predsednik', 'profesor_id_clan', 'rok_id', 'brojBodova', 'ocena'];
 
+    public function student()
+    {
+        return $this->belongsTo(Kandidat::class, 'kandidat_id');
+    }
+
     public function predmet()
     {
         return $this->belongsTo(PredmetProgram::class, 'predmet_id');

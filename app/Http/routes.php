@@ -382,6 +382,7 @@ Route::post('izvestaji/spisakPoSlavama', 'IzvestajiController@spisakPoSlavama');
 Route::post('izvestaji/spisakPoProfesorima', 'IzvestajiController@spisakPoProfesorima');
 Route::post('izvestaji/excelStampa', 'IzvestajiController@excelStampa');
 Route::post('izvestaji/integralno', 'IzvestajiController@integralno');
+Route::get('izvestaji/zapisnikDiplomski/{student}', 'IzvestajiController@zapisnikDiplomski');
 
 //Route::any('/kandidat/{kandidat}/{indikator}', 'KandidatController@update');
 

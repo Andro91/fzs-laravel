@@ -22,7 +22,7 @@
                         <th style="border: 1px solid black; width: 40px; background-color: grey;"><b>Р.бр.</b></th>
                         <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                         </th>
-                        <th style="border: 1px solid black;width: 170px; background-color: grey;"><b>Име и презиме</b>
+                        <th style="border: 1px solid black;width: 170px; background-color: grey;"><b>Презиме и име</b>
                         </th>
                         <th style="border: 1px solid black;width: 170px; background-color: grey;"><b>Мејл</b>
                         </th>
@@ -34,8 +34,8 @@
                             <?php $a++; ?>
                             <tr>
                                 <td style="border: 1px solid black;width: 40px;">{{$a}}</td>
-                                <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                                <td style="border: 1px solid black; width: 170px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                                <td style="border: 1px solid black;">{{SUBSTR($item->brojIndeksa, 5)}}/{{SUBSTR($item->brojIndeksa, 0, 4)}}</td>
+                                <td style="border: 1px solid black; width: 170px;">{{$item->prezimeKandidata}} {{$item->imeKandidata}}</td>
                                 <td style="border: 1px solid black;width: 170px;">{{$item->email}}</td>
                             </tr>
                         @endif

@@ -16,18 +16,18 @@
                 <th style="border: 1px solid black; background-color: grey;"></th>
                 <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black; background-color: grey;"><b>Име</b>
-                </th>
                 <th style="border: 1px solid black; background-color: grey;"><b>Презиме</b>
+                </th>
+                <th style="border: 1px solid black; background-color: grey;"><b>Име</b>
                 </th>
             </tr>
             </thead>
             @foreach($diplomirani as $index => $item)
                 <tr>
                     <td style="border: 1px solid black;">{{$index + 1}}</td>
-                    <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
+                    <td style="border: 1px solid black;">{{SUBSTR($item->brojIndeksa, 5)}}/{{SUBSTR($item->brojIndeksa, 0, 4)}}</td>
                     <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
+                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
                 </tr>
 
             @endforeach

@@ -4,7 +4,7 @@
 <hr>
 
 <div>
-    <h1 style="padding-bottom: 100px;">Списак студената</h1>
+    <h1 style="padding-bottom: 100px;">Списак активних студената школске 2016/2017</h1>
     <br/>
     <br/>
     <?php $zbir = 0;?>
@@ -25,7 +25,7 @@
                 <th style="border: 1px solid black; width:35px; background-color: grey;"><b>Р.бр.</b></th>
                 <th style="border: 1px solid black; background-color: grey;"><b>Број индекса</b>
                 </th>
-                <th style="border: 1px solid black; width:150px; background-color: grey;"><b>Име и презиме</b>
+                <th style="border: 1px solid black; width:150px; background-color: grey;"><b>Презиме и име</b>
                 </th>
                 <th style="border: 1px solid black; width:90px; background-color: grey;"><b>Телефон</b>
                 </th>
@@ -46,8 +46,8 @@
                     <?php $a++;?>
                     <tr>
                         <td style="border: 1px solid black; width:35px;">{{$a}}</td>
-                        <td style="border: 1px solid black;">{{$item->brojIndeksa}}</td>
-                        <td style="border: 1px solid black;width:150px;">{{$item->imeKandidata}} {{$item->prezimeKandidata}}</td>
+                        <td style="border: 1px solid black;">{{SUBSTR($item->brojIndeksa, 5)}}/{{SUBSTR($item->brojIndeksa, 0, 4)}}</td>
+                        <td style="border: 1px solid black;width:150px;">{{$item->prezimeKandidata}} {{$item->imeKandidata}}</td>
                         <td style="border: 1px solid black;width:90px;">{{$item->kontaktTelefon}}</td>
                         <td style="border: 1px solid black;width:170px;">{{$item->email}}</td>
                         <td style="border: 1px solid black;width:60px;">{{$item->program}}</td>

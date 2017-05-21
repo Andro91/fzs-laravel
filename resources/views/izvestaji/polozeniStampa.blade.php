@@ -3,7 +3,7 @@
 </div>
 <hr>
 @if($ispiti != null)
-    <div style="text-align: left"><label>Број: 66/2016</label> <br/>
+    <div style="text-align: left"><label>___________________</label> <br/>
         <label>Датум: {{$datum}}</label>
     </div>
 

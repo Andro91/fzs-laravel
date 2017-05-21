@@ -43,7 +43,7 @@ class IzvestajiController extends Controller
     {
         //$region->delete();
         try {
-            $kandidat = Kandidat::where(['statusUpisa_id' => 3])->orderBy('brojIndeksa')->get();
+            $kandidat = Kandidat::where(['statusUpisa_id' => 3])->orderByRaw('SUBSTR(brojIndeksa, 5)')->orderBy('brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
             $picks2 = Kandidat::where(['statusUpisa_id' => 3])->distinct('godinaStudija_id')->select('godinaStudija_id')->groupBy('godinaStudija_id')->get();
             $picks3 = Kandidat::where(['statusUpisa_id' => 3])->distinct('studijskiProgram_id', 'godinaStudija_id')->select('studijskiProgram_id', 'godinaStudija_id')->groupBy('studijskiProgram_id', 'godinaStudija_id')->get();
@@ -72,7 +72,7 @@ class IzvestajiController extends Controller
         $contents = $view->render();
         $pdf->SetTitle('Списак кандидата по модулима');
         $pdf->AddPage();
-        $pdf->SetFont('freeserif', '', 12);
+        $pdf->SetFont('freeserif', '', 10);
         $pdf->WriteHtml($contents);
         $pdf->Output('Spisak.pdf');
     }
@@ -86,7 +86,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('kandidat.statusUpisa_id', $statusi)->where(['kandidat.skolskaGodinaUpisa_id' => $request->godina])->
                 select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
+                ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
             //dd($kandidat);
             //dd($kandidat->where('kandidat.tipStudija_id', '2')->get());
@@ -117,7 +117,7 @@ class IzvestajiController extends Controller
         $contents = $view->render();
         $pdf->SetTitle('Списак студената по модулима');
         $pdf->AddPage();
-        $pdf->SetFont('freeserif', '', 12);
+        $pdf->SetFont('freeserif', '', 10);
         $pdf->WriteHtml($contents);
         $pdf->Output('Spisak.pdf');
     }
@@ -185,7 +185,7 @@ class IzvestajiController extends Controller
         $contents = $view->render();
         $pdf->SetTitle('Списак студената по модулима');
         $pdf->AddPage();
-        $pdf->SetFont('freeserif', '', 12);
+        $pdf->SetFont('freeserif', '', 10);
         $pdf->WriteHtml($contents);
         $pdf->Output('Spisak.pdf');
     }
@@ -199,7 +199,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('kandidat.statusUpisa_id', $statusi)->
                 select('kandidat.*', 'kandidat.statusUpisa_id as status', 'kandidat.godinaStudija_id as godina', 'studijski_program.skrNazivStudijskogPrograma as program')
-                ->orderBy('kandidat.imeKandidata')->get();
+                ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
             /*->whereIn('kandidat.statusUpisa_id', $statusi)->where(['kandidat.studijskiProgram_id' => $request->program])
                    ->where(['kandidat.godinaStudija_id' => $request->godina])->where(['kandidat.tipStudija_id' => 2])
@@ -250,7 +250,7 @@ class IzvestajiController extends Controller
         $contents = $view->render();
         $pdf->SetTitle('Списак студената по модулима');
         $pdf->AddPage();
-        $pdf->SetFont('freeserif', '', 12);
+        $pdf->SetFont('freeserif', '', 10);
         $pdf->WriteHtml($contents);
         $pdf->Output('Spisak.pdf');
     }
@@ -266,7 +266,7 @@ class IzvestajiController extends Controller
                     ->where(['kandidat.tipStudija_id' => 2])
                     ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                     ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                    ->orderBy('kandidat.brojIndeksa')->get();
+                    ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
                 //->where(['kandidat.godinaStudija_id' => $request->godina]) - ovo treeba da se vrati kad se baza dovede u red, sad postoje studenti kojima je godina studija 0
 
@@ -289,7 +289,7 @@ class IzvestajiController extends Controller
                     ->where(['kandidat.godinaStudija_id' => $request->godina])->where(['kandidat.tipStudija_id' => 1])
                     ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                     ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                    ->orderBy('kandidat.brojIndeksa')->get();
+                    ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
                 if ($studenti) {
                     $program = StudijskiProgram::where(['id' => $request->program])->get();
@@ -328,7 +328,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('kandidat.godinaStudija_id', $godine)->where(['kandidat.tipStudija_id' => $tip])
                 ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
+                ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
             $program = StudijskiProgram::where('id', $request->program)->get()->first();
 
@@ -345,7 +345,7 @@ class IzvestajiController extends Controller
         $contents = $view->render();
         $pdf->SetTitle('Списак студената');
         $pdf->AddPage();
-        $pdf->SetFont('freeserif', '', 12);
+        $pdf->SetFont('freeserif', '', 10);
         $pdf->WriteHtml($contents);
         $pdf->Output('Spisak.pdf');
     }
@@ -360,14 +360,14 @@ class IzvestajiController extends Controller
                     ->whereIn('kandidat.statusUpisa_id', $statusi)
                     ->where(['kandidat.godinaStudija_id' => 1])->where(['kandidat.tipStudija_id' => 2])
                     ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                    ->orderBy('kandidat.brojIndeksa')->get();
+                    ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
             } else {
                     $kandidat = DB::table('kandidat')
                         ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                         ->whereIn('kandidat.statusUpisa_id', $statusi)
                         ->where(['kandidat.godinaStudija_id' => $request->godina])->where(['kandidat.tipStudija_id' => 1])
                         ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                        ->orderBy('kandidat.brojIndeksa')->get();
+                        ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
             }
 
             //$kandidat = Kandidat::where(['statusUpisa_id' => 1, 'godinaStudija_id' => $request->godina])->get();
@@ -410,7 +410,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('kandidat.statusUpisa_id', $statusi)
                 ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
+                ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
             $picks = Kandidat::where(['statusUpisa_id' => 1])->distinct('krsnaSlava_id')->select('krsnaSlava_id')->groupBy('krsnaSlava_id')->get();
 
             $uslov = array();
@@ -571,7 +571,7 @@ class IzvestajiController extends Controller
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->whereIn('kandidat.statusUpisa_id', $statusi)
                 ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program',
-                    'studijski_program.id as program_id')->orderBy('kandidat.brojIndeksa')->get();
+                    'studijski_program.id as program_id')->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
             //dd($programi);
 
@@ -871,7 +871,7 @@ class IzvestajiController extends Controller
             //$to = new DateTime($request->to);
 
             $diplomirani = DB::table('kandidat')->where(['statusUpisa_id' => 6])
-                ->select('kandidat.*')->orderBy('kandidat.brojIndeksa')->get();
+                ->select('kandidat.*')->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
@@ -895,7 +895,7 @@ class IzvestajiController extends Controller
             $ids = array_map(function (ZapisnikOPolaganju_Student $o) {
                 return $o->kandidat_id;
             }, $zapisnikStudent->all());
-            $studenti = Kandidat::whereIn('id', $ids)->orderBy('brojIndeksa')->get();
+            $studenti = Kandidat::whereIn('id', $ids)->orderByRaw('SUBSTR(brojIndeksa, 5)')->orderBy('brojIndeksa')->get();
 
             $prijavaIds = array();
             foreach ($ids as $id) {
@@ -924,7 +924,7 @@ class IzvestajiController extends Controller
                 ->join('kandidat', 'polozeni_ispiti.kandidat_id', '=', 'kandidat.id')
                 ->join('prijava_ispita', 'polozeni_ispiti.prijava_id', '=', 'prijava_ispita.id')
                 ->select('kandidat.*', 'kandidat.brojIndeksa as indeks', 'prijava_ispita.brojPolaganja as polaganja')
-                ->orderBy('indeks')->get();
+                ->orderByRaw('SUBSTR(indeks, 5)')->orderBy('indeks')->get();
 
             //dd($polozeniIspiti);
 
@@ -964,11 +964,36 @@ class IzvestajiController extends Controller
             ->with('ucionica', $zapisnik->ucionica)->with('datum2', $zapisnik->datum2);
 
         $contents = $view->render();
+        PDF::SetAutoPageBreak(TRUE, 5);
         PDF::SetTitle('Записник о полагању испита');
         PDF::AddPage();
-        PDF::SetFont('freeserif', '', 12);
+        PDF::SetFont('freeserif', '', 10);
         PDF::WriteHtml($contents);
         PDF::Output('Zapisnik.pdf');
+    }
+
+    public function zapisnikDiplomski(Kandidat $student)
+    {
+        try {
+            //dd($request->id);
+
+            $diplomski = DiplomskiPolaganje::where(['kandidat_id' => $student->id])->first();
+
+
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd('Дошло је до непредвиђене грешке.' . $e->getMessage());
+        }
+        //compact('zapisnik','studenti','studijskiProgrami','statusIspita', 'polozeniIspiti', 'polozeniIspitIds', 'prijavaIds'));
+        $view = View::make('izvestaji.zapisnikDiplomski')->with('diplomski', $diplomski);
+
+        $contents = $view->render();
+        PDF::SetAutoPageBreak(TRUE, 5);
+        PDF::SetTitle('Записник са одбране дипломског');
+        PDF::AddPage();
+        PDF::SetFont('freeserif', '', 10);
+        PDF::WriteHtml($contents);
+        PDF::Output('ZapisnikDiplomski.pdf');
     }
 
     public function excelStampa(Request $request)
@@ -980,7 +1005,7 @@ class IzvestajiController extends Controller
                 ->whereIn('kandidat.statusUpisa_id', $statusi)->where(['kandidat.studijskiProgram_id' => $request->programE])
                 ->join('studijski_program', 'kandidat.studijskiProgram_id', '=', 'studijski_program.id')
                 ->select('kandidat.*', 'kandidat.godinaStudija_id as godina', 'studijski_program.naziv as program')
-                ->orderBy('kandidat.brojIndeksa')->get();
+                ->orderByRaw('SUBSTR(kandidat.brojIndeksa, 5)')->orderBy('kandidat.brojIndeksa')->get();
 
             //$program = StudijskiProgram::where('id', $request->programE)->get()->first();
 

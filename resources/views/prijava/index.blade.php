@@ -256,6 +256,7 @@
                            href="{{$putanja}}/izvestaji/diplomaStampa/{{$kandidat->id}}">Штампа уверења о дипломирању</a>
                         <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/komisijaStampa/{{$kandidat->id}}">Комисија</a>
                         <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/polozeniStampa/{{$kandidat->id}}">Уверење о положеним испитима</a>
+                        <a target="_blank" class="btn btn-primary" href="{{$putanja}}/izvestaji/zapisnikDiplomski/{{$kandidat->id}}">Записник са одбране дипломског</a>
                 </div>
             </div>
         @if(!empty($ispiti))

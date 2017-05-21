@@ -20,8 +20,8 @@
                         <thead>
                         <tr>
                             <th>Р.бр.</th>
-                            <th style="border: 1px solid black; background-color: grey;"><b>Име</b></th>
                             <th style="border: 1px solid black; background-color: grey;"><b>Презиме</b></th>
+                            <th style="border: 1px solid black; background-color: grey;"><b>Име</b></th>
                             <th style="border: 1px solid black; background-color: grey;"><b>Број бодова</b></th>
                         </tr>
                         </thead>
@@ -31,8 +31,8 @@
                                 <?php $a++; ?>
                                 <tr>
                                     <td style="border: 1px solid black;">{{$a}}</td>
-                                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
                                     <td style="border: 1px solid black;">{{$item->prezimeKandidata}}</td>
+                                    <td style="border: 1px solid black;">{{$item->imeKandidata}}</td>
                                     <td style="border: 1px solid black;">{{$item->ukupniBrojBodova}}</td>
                                 </tr>
                             @else
