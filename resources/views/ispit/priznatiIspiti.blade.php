@@ -74,7 +74,7 @@
                                 <td>{{$predmet->espb}}</td>
                                 <td>{{$predmet->tipPredmeta->naziv}}</td>
                                 <td>
-                                    <select class="form-control konacnaOcena input-sm" data-index="{{ $index }}"
+                                    <select class="konacnaOcena" data-index="{{ $index }}"
                                             name="konacnaOcena[{{ $index }}]">
                                         <option value=""></option>
                                         <option value="6">6</option>
